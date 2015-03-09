@@ -1,0 +1,30 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-size: 23px;
+  font-family: 'Neuton',serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat',sans-serif;
+  font-weight: 700;
+  color: #00589c;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+/*# sourceMappingURL=main.css.map */
