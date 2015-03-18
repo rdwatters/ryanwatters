@@ -1,11 +1,11 @@
 {
   "name": "rdwprototype",
   "version": "0.0.0",
-  "homepage": "http://www.rdwprototype.link",
+  "homepage": "http://www.ryanwatters.me",
   "authors": [
-    "Ryan Watters watters.ryan@Gmail.com"
+    "Ryan Watters watters.ryan@gmail.com"
   ],
-  "description": "Ryan's First Site",
+  "description": "The website of Ryan D Watters",
   "license": "private",
   "private": true,
   "ignore": [

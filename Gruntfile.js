@@ -14,7 +14,7 @@ module.exports = function(grunt) {
   // not to regerate.
   //
   // You have been warned!
-
+  require('load-grunt-tasks')(grunt);
   grunt.initConfig({
     // BUILD SASS TO CSS
     sass: {
@@ -36,33 +36,33 @@ module.exports = function(grunt) {
         }]
       }
     },
-    // BUILD COFFEE TO JAVASCRIPT
-    coffee: {
-      compile: {
-        files: {
-          'static/javascript/main.js': ['coffee/*.coffee'] // compile and concat into single file
-        }
+    //Use babel.js for ES6 Transpilation
+    "babel": {
+      options: {
+        sourceMap: true
       },
+      dist: {
+        files: {
+          "static/javascript/main.js": "static/javascript/babel.js"
+        }
+      }
     },
-
     // WHEN FILES CHANGE, RUN THE ABOVE TASKS ALONG WITH BUILD
     watch: {
-      sass : {
+      sass: {
         files: ['sass/**/*.scss'],
         tasks: ['sass', 'build']
       },
-      coffee : {
-        files: ['coffee/**/*.coffee'],
-        tasks: ['coffee', 'build']
-      },
+      babel: {
+        files: ['static/javascript/babel.js'],
+        tasks: ['babel', 'build']
+      }
     }
   });
-
+  grunt.registerTask("default", ["babel"]);
   // THIS LOADS THE TASKS WE NEED ABOVE IN FROM OUR NPM
   // Note, that we need to have these installed through the package.json file as well
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-coffee');
-
   // NEVER REMOVE THESE LINES, OR ELSE YOUR PROJECT MAY NOT WORK
   require('./options/generatorOptions.js')(grunt);
   grunt.loadTasks('tasks');

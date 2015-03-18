@@ -1,1 +1,1 @@
-$('a[href^="http://"]').not('a[href*=rdwprototype]').attr('target','_blank');
+$('a[href^="http://"]').not('a[href*=ryanwatters]').attr('target','_blank');
