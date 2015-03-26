@@ -1,0 +1,80 @@
+form.search-form {
+    display: inline-block;
+    float: right;
+    right: 0;
+    margin-right: 10px;
+    height: $header-height/2;
+    color: $header-background-color;
+}
+
+#st-search-input {
+    transition:all .5s ease-in-out;
+    cursor:pointer;
+    border: none;
+    font-size: $search-font-size;
+    border-radius: 50%;
+    background-color: white;
+    vertical-align: middle;
+    width: 6px;
+    height: $search-height;
+    line-height: $search-line-height;
+    margin-top: $header-line-height/4;
+    margin-bottom: $header-line-height/4;
+    font-size: $header-font-size / 2;
+    &:focus {
+        color: $primary;
+        width: 200px;
+        border-radius: 0px;
+        font-size: 16px;
+    }
+}
+
+.st-search-input {
+    font-size: $header-font-size/2;
+}
+
+#st-search-input.active~.fa.fa-search {
+    display: none;
+}
+
+%placeholder {
+    font-size: $search-font-size;
+    opacity: 0.8;
+    &:focus {
+        outline: none;
+    }
+}
+
+#st-search-input::-moz-placeholder {
+    @extend %placeholder;
+}
+
+#st-search-input:-ms-input-placeholder {
+    @extend %placeholder;
+}
+
+#st-search-input::-webkit-input-placeholder {
+    @extend %placeholder;
+}
+
+.swiftype-widget .autocomplete ul li p.title {
+    color: $primary;
+}
+/* Change background color of selected search result */
+
+.swiftype-widget .autocomplete ul li.active {
+    background: none;
+    background-color: lighten($header-background-color, 20%);
+    border-top: 1px solid lighten($header-background-color, 20%);
+    border-bottom: 1px solid lighten($header-background-color, 20%);
+}
+/* change the color of the section text (displayed below the title) */
+
+.swiftype-widget .autocomplete ul li.active .sections em {
+    color: white;
+}
+
+h3 > a.st-search-result-link {
+    font-size: 24px!important;
+    color: $primary;
+}

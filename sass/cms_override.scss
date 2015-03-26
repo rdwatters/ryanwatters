@@ -1,0 +1,16 @@
+.wh-markdown-preview {
+
+
+
+
+}
+
+span.icon-vim, span.icon-vim-toggle {
+	display:none;
+	&:before {
+		display:none;
+	}
+	&:after {
+		display:none;
+	}
+}

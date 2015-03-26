@@ -1,0 +1,11 @@
+span.icon-vim, span.icon-vim-toggle {
+  display: none;
+}
+span.icon-vim:before, span.icon-vim-toggle:before {
+  display: none;
+}
+span.icon-vim:after, span.icon-vim-toggle:after {
+  display: none;
+}
+
+/*# sourceMappingURL=cms_override.css.map */

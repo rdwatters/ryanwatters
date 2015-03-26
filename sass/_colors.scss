@@ -1,0 +1,36 @@
+$primary: #34495e;
+$secondary: lighten($primary,15%);
+$tertiary: #93a8ac;
+$light-base: #ffffff;
+$light-darken: darken($light-base,10%);
+$dark-base:#1c0f13;
+$dark-lighten: lighten($dark-base,10%);
+$color3: #36393b;
+$color5: #192433;
+$gray-dark: #333333;
+
+// Typography Colors
+$font-base-dark:$dark-base;
+$font-base-light:$light-base;
+$form-headings:$primary; 
+$form-header-font-color: $light-base;
+$form-font-color: $font-base-dark; 
+$form-header-background: $primary;
+
+// Header
+$header-font-color:$light-base;
+$header-background-color:$primary;
+
+// Body
+$body-base-font-color:$font-base-dark;
+$body-header-color:$font-base-dark;
+$body-background-color: $light-base;
+
+// Footer
+
+$footer-background-color:$primary;
+$footer-font-color:$header-font-color;
+
+// Overlay 
+$overlay: $header-background-color;
+$overlay-type: darken($body-base-font-color, 10%);

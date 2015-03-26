@@ -1,31 +1,76 @@
-{# ------------------------------------------------------- #} {# INDIVIDUAL VIEW FOR EACH article #} {# This page can use any data from http:localhost:2000/cms/#/form/article/ #} {# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #} {# http://paularmstrong.github.io/swig/docs/tags/ #} {# Learn about calling data into Webhook pages here: #} {# http://www.webhook.com/docs/template-rules-and-filters/ #} {# ------------------------------------------------------- #} {# Confused what extends and blocks do? Watch a primer: #} {# http://www.webhook.com/docs/template-inheritance-blocks/ #} {% extends "templates/partials/base.html" %} {# This sets our page
-<title>. It will append this article's name to the site title defined in base.html #} {% block title %}{% parent %} - {{ item.name }}{% endblock %} {% block content %}
-    <p><a href="{{ url('articles') }}">View All Articles</a>
+{% extends "templates/partials/base.html" %} 
+{% block content %}
+    <p><a href="{{ url('articles') }}">View a list of all articles</a></p>
+    <h1>{{ item.title }}</h1>
+    <h2>{{ item.subtitle}}</h2>
+    <p>{%if item.most_recent_update %}
+        <strong>Updated:</strong> {{ item.most_recent_update|date('F d, Y')}} {% else %}
+        <strong>UpdatedOriginal:</strong> {{item.last_updated|date('F d Y') }}{% endif %} <br>
+        <strong>Published: </strong>{{ item.publish_date|date('F d Y') }}</p>
+        <strong>Date without filter: {{item.publish_date}}</strong>
+    <p>
+        <strong>Author: </strong> {# Relationship. Note that use the label you set for the relation, not the content-type name. #} {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+        <a href="{{ url(item.author) }}">{{ item.author.name }}</a>
     </p>
-    <h1>{{ item.article_title }}</h1>
-    <h2>{{ item.article_subtitle}}</h2>
-    <h4>        {% for relation in item.author %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+    {% set prev = prevItem(item, 'publish_date', true) %} {% set next = nextItem(item, 'publish_date', true) %}
+    <a href="{{ url(prev) }}">Prev</a>
+    <a href="{{ url(next) }}">Next</a>
+    <p><strong>Topic: </strong> {% for relation in item.topic %}
+        <a href="{{ url(relation) }}">{{ relation.name }}</a> {% if not loop.last %},{% endif %} {% endfor %}
+    </p>
+    <p>
+        <strong>Title: {{ item.title }} </strong>
+    </p>
+    <p>
+        <strong>Subtitle: {{ item.subtitle }} </strong>
+    </p>
+    {# for image in item.images #}
+        <img src="{{image.image|imageSize(400,400)}}" alt="{{image.alt_text}}"/>
+    {# endfor #}
+    <p>
+        <strong>Description: {{ item.description }} </strong>
+    </p>
+    <p><strong>Keywords and stuff:</strong>
+    {% if item.keywords%}
+        {% for keyword in item.keywords %}
+        {{ keyword.name }},
         {% endfor %}
-    </h4>
+    {% else %}
+        {{getSetting('site_keywords')}}
+    {% endif %}
+    </p>
+    <div style="font-size:3em;font-weight:bold;">HELLO! You!{{ item.images.name.url }}</div>
+    <p>
+        <strong>Article Image:</strong> 
+        {% for relation in item.images %} 
+        <img src="{{ relation.image|imageSize(800,800)}}" alt="relation.alt_text"/>
+        {% endfor %}
 
-    <strong>Name: </strong> {{ item.name }}
+    </p>
+    <article>
+        <p> <strong>Article Body: {{ item.article_body|markdown }} </strong></p>
+    </article>
+    <p> <strong>Keywords: </strong> {# Relationship. Note that use the label you set for the relation, not the content-type name. #} 
+    <p>
+    {% for relation in item.keywords %}
+    <a href="{{ getCurrentUrl() + '#stq=' + relation.name + '&stp=1' }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %} {% endfor %}</p>
+        <p><strong>Sort: </strong> {{ item.sort }}</p>
+        <p><strong>Allow Comments?: </strong> {# List the checkboxes available. Output their values. #} </p>
+        {% if item.allow_comments %}
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = 'ryanwatters';
 
-    <strong>Create Date: </strong> {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #} {{ item.create_date|date('F d Y') }}
-
-    <strong>Last Updated: </strong> {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #} {{ item.last_updated|date('F d Y') }}
-
-    <strong>Publish Date: </strong> {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #} {{ item.publish_date|date('F d Y') }}
-
-    <strong>Article Title: </strong> {{ item.article_title }}
-
-    <strong>Header Image: </strong> {# You can pull out a lot more information from the image property. Info here: #} {# http://www.webhook.com/docs/widget-template-reference/#image #}
-
-    <strong>Article Body: </strong> {{ item.article_body|markdown }}
-
-    <strong>Preview URL: </strong> {{ item.preview_url }}
-
-    <strong>Slug: </strong> {{ item.slug }}
-
-    <strong>Author: </strong> {# Relationship. Note that use the label you set for the relation, not the content-type name. #} {% endblock %}
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        {% endif%} 
+{% endblock %}

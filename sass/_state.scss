@@ -1,0 +1,16 @@
+.reveal {
+    -webkit-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+    visibility: visible;
+}
+.hide {
+    -webkit-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+    visibility: hidden;
+}
+
+#disqus_thread {
+	width:90%;
+	margin-right:auto;
+	margin-left:auto;
+}

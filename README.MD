@@ -1,3 +1,10 @@
-##My site. Ryan Watters.
+#Ryan Watters Portfolio and Blogging Site
 
-Personal blogging and portfolio site being developed with the [webhoook CMS](http://www.webhook.com);
+Site currently being developed in the [webhoook CMS](http://www.webhook.com);
+
+##Specs
+
+###Open Graph Protocol
+
+* *All* 
+    - Meta headers, including 

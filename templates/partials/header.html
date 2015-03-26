@@ -1,12 +1,6 @@
-{# Simple search form, remove from search index #}
-<header>
-<a href="/" class="link-home">HOME</a>
-    <div class="overlay overlay-search">
-        <form action="/search-results/" tabindex="1" method="get" data-search-index="false" class="tipue-search" autocomplete="on">
-            <input tabindex="1" type="text" class="search" name="q" placeholder="Search" id="tipue_search_input" autocomplete="off" />
-        </form>
-        <button type="button" class="close-search">X</button>
-    </div>
-    <div class="search-button" id="trigger-overlay" type="button" role="search">Search <i class="fa fa-search"></i>
-    </div>
+<header class="header">
+    <a href="/">HOME</a>
+    <form class="search-form">
+        <input type="text" id="st-search-input" class="st-search-input" / placeholder="Search...">
+    </form>
 </header>
