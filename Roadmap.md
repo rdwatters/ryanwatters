@@ -1,10 +1,11 @@
 #Roadmap
 
-###Metadata:
+###Metadata & SEO:
 
 - [ ] Open Graph Protocol - http://ogp.me
 - [ ] Twitter Cards - https://dev.twitter.com/cards/overview
 - [ ] Schema.org for article pages - http://schema.org/Article
+- [ ] SEO friendly titles and descriptions in article content types.
 
 ###Search: 
 
@@ -20,6 +21,11 @@
 
 - [ ] Cron Job and Free Cloud Syncing
 - [ ] Pandoc - http://johnmacfarlane.net/pandoc/
+
+
+###Blog Content
+
+- [ ] Tutorials on all of the above:)
 
 
 

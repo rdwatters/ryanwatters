@@ -1,62 +1,119 @@
-{% extends "templates/partials/base.html" %} {% block content %}
-<p><a href="{{ url('articles') }}">View a list of all articles</a></p>
-
-<article>
-    <h1 itemprop="name">{{ item.title }}</h1>
-    <h2>{{ item.subtitle}}</h2>
-    <p><strong>Updated: </strong>{%if item.most_recent_update %}
-      {{- item.most_recent_update|date('F d, Y') -}}{% else %}
-      {{- item.last_updated|date('F d Y') -}}{% endif %}<br>
-      <strong>Published: </strong>{{ item.publish_date|date('F d Y') }}</p>
-    <p>
-    <p><strong>Topic: </strong> {% for relation in item.topic %}
-    <a href="{{ url(relation) }}">{{ relation.name }}</a> {% if not loop.last %},{% endif %}{% endfor %}
-    </p>
-    <p itemprop="author">
-    <strong>Author: </strong><a href="{{ url(item.author) }}">{{ item.author.name }}</a>
-    </p>
-    <p itemprop="keywords"> <strong>Keywords: </strong> {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-    <p>
-{% set prev = prevItem(item, 'publish_date', true) %} {% set next = nextItem(item, 'publish_date', true) %}
-<div class="previous">
-    <a href="{{ url(prev) }}">Prev</a>
-</div>
-<strong>Article Body: {{ item.article_body|markdown }} </strong>
-<div class="next">
-    <a href="{{ url(next) }}">Next</a>
-</div>
-
-
-{# for image in item.images #}
-    <img src="{{item.images|first.image|imageSize(400,400)}}" alt="{{image.alt_text}}" />{# endfor #}
-    <p>
-      <strong>Description: {{ item.description }} </strong>
-    </p>
-    <p><strong>Keywords and stuff:</strong> {% if item.keywords%} {% for keyword in item.keywords %} {{ keyword.name }}, {% endfor %} {% else %} {{getSetting('site_keywords')}} {% endif %}
-    </p>
-    <p><strong>Article Image:</strong> {% for relation in item.images %}<img src="{{ relation.image|imageSize(500,500)}}" alt="relation.alt_text" />{% endfor %}</p>
-<article>
-  
-</article>
-
-    {% for relation in item.keywords %}
-    <a href="{{ getCurrentUrl() + '#stq=' + relation.name + '&stp=1' }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}{% endfor %}</p>
-</article> 
-     {% if item.allow_comments %}
-      <div id="disqus_thread"></div>
-        <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = 'ryanwatters';
-
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-        var dsq = document.createElement('script');
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-        </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-      {% endif%} 
-  {% endblock %}
+{# ------------------------------------------------------- #}
+{# INDIVIDUAL VIEW FOR EACH articles #}
+{# This page can use any data from http:localhost:2000/cms/#/form/articles/ #}
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+{# ------------------------------------------------------- #}
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+{# This sets our page <title>. It will append this articles's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block content %}
+  <p><a href="{{ url('articles') }}">View a list of all articles</a></p>
+  <h1>{{ item.name }}</h1>
+  <ul>
+      <li>
+        <strong>Name: </strong>
+        {{ item.name }}
+      </li>
+      <li>
+        <strong>Create Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.create_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Last Updated: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.last_updated|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Publish Date: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.publish_date|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Author: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+        <a href="{{ url(item.author) }}">{{ item.author.name }}</a>
+      </li>
+      <li>
+        <strong>Topic: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.topics %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
+        <strong>Title: </strong>
+        {{ item.title }}
+      </li>
+      <li>
+        <strong>Subtitle: </strong>
+        {{ item.subtitle }}
+      </li>
+      <li>
+        <strong>Description: </strong>
+        {{ item.description }}
+      </li>
+      <li>
+        <strong>Images: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.images %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
+        <strong>Article Body: </strong>
+        {{ item.article_body|markdown }}
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ item.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ item.slug }}
+      </li>
+      <li>
+        <strong>Keywords: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.keywords %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
+        <strong>Sort: </strong>
+        {{ item.sort }}
+      </li>
+      <li>
+        <strong>Allow Comments?: </strong>
+        {# List the checkboxes available. Output their values. #}
+        <ul>
+          {% for option in item.allow_comments %}
+            {# Output the values for every option. Alternatively, wrap this in an if statement to only show True values. #}
+            <li>
+              {{ option.label }}: {{ option.value }}
+            </li>
+          {% endfor%}
+        </ul>
+      </li>
+      <li>
+        <strong>Most Recent Update: </strong>
+        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
+        {{ item.most_recent_update|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Editorial Comments (Article Title): </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+        <a href="{{ url(item.editorial_comments_article_title) }}">{{ item.editorial_comments_article_title.name }}</a>
+      </li>
+  </ul>
+{% endblock %}
