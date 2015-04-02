@@ -911,24 +911,6 @@ form.search-form {
   color: #34495e;
 }
 
-/* Change background color of selected search result */
-.swiftype-widget .autocomplete ul li.active {
-  background: none;
-  background-color: #587ca0;
-  border-top: 1px solid #587ca0;
-  border-bottom: 1px solid #587ca0;
-}
-
-/* change the color of the section text (displayed below the title) */
-.swiftype-widget .autocomplete ul li.active .sections em {
-  color: white;
-}
-
-h3 > a.st-search-result-link {
-  font-size: 24px !important;
-  color: #34495e;
-}
-
 header {
   font-size: 32px;
   font-family: "Playfair Display", Georgia, serif;

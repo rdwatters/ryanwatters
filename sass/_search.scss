@@ -60,21 +60,3 @@ form.search-form {
 .swiftype-widget .autocomplete ul li p.title {
     color: $primary;
 }
-/* Change background color of selected search result */
-
-.swiftype-widget .autocomplete ul li.active {
-    background: none;
-    background-color: lighten($header-background-color, 20%);
-    border-top: 1px solid lighten($header-background-color, 20%);
-    border-bottom: 1px solid lighten($header-background-color, 20%);
-}
-/* change the color of the section text (displayed below the title) */
-
-.swiftype-widget .autocomplete ul li.active .sections em {
-    color: white;
-}
-
-h3 > a.st-search-result-link {
-    font-size: 24px!important;
-    color: $primary;
-}
