@@ -11,7 +11,7 @@
 ###Search: 
 
 - [ ] Swiftype Meta Tags - https://swiftype.com/documentation/meta_tags
-- [ ] Swiftype faceted search and custom styles - https://swiftype.com/documentation/tutorials/jquery 
+- [ ] Swiftype faceted search and custom styles - https://swiftype.com/documentation/tutorials/jquery
 
 ###Syndication:
 
