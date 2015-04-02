@@ -1,11 +1,12 @@
 #Roadmap
 
-###Metadata & SEO:
+###Metadata/SEO/Social:
 
 - [ ] Open Graph Protocol - http://ogp.me
 - [ ] Twitter Cards - https://dev.twitter.com/cards/overview
 - [ ] Schema.org for article pages - http://schema.org/Article
-- [ ] SEO friendly titles and descriptions in article content types.
+- [ ] Google Plus Badges - https://developers.google.com/+/web/badge/
+- [ ] SEO-friendly alternative titles and descriptions in article content type
 
 ###Search: 
 
