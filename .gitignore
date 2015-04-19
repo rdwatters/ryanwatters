@@ -17,6 +17,7 @@ npm-debug.log
 node_modules
 bower_components
 author_notes.md
+handy.txt
 
 /.build
 /.firebase.conf
