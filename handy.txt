@@ -1,1 +1,21 @@
-$('a[href^="http://"]').not('a[href*=ryanwatters]').attr('target','_blank');
+* **Set all external links to open in a new window**: $('a[href^="http://"]').not('a[href*=ryanwatters]').attr('target','_blank');
+
+##Aria Roles:
+* For every 'base concept' of 'td' add gridcell:[aria gridcell](http://www.w3.org/TR/wai-aria/roles#gridcell)
+Accordions: use ariacontrols attribute for aria-expanded vs aria-collapsed:
+* [expanded vs collapsed](http://www.w3.org/TR/wai-aria/states_and_properties#aria-expanded)
+* Mobile devices should have 'aria-hidden' to areas that are not visible 
+
+
+##Code Snippets for CMS
+* Handy reference to calling in content from the CMS
+<!-- From the oob homepage fro webhook: -->
+{# If you have at least one content page type, we show a list. #}
+{% if cms_types|size !== 0 %}
+<h3>Content types you've created in the CMS so far.</h3>
+<ul>
+{% for type in cms_types %}
+<li><a href="{{ url(type) }}">{{ type.name }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}

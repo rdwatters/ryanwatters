@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-{# Prefix need for Open Graph Protocol #}
+{# Prefix needed for Open Graph Protocol #}
 <html class="no-js" prefix="og: http://ogp.me/ns#">
 <!--<![endif]-->
 <head>
@@ -63,10 +63,7 @@
 <body {% block body_attributes %}{% endblock %}> 
     {% include "templates/partials/header.html" %}
     {% block body %}
-    <!--[if lt IE 7]>
-        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
-    <main data-swiftype-name="body" data-swiftype-type="text" itemscope itemtype="http://schema.org/Article" class="main">
+    <main data-swiftype-name="body" data-swiftype-type="text" role="main" aria-label="main content" itemscope itemtype="http://schema.org/Article" class="main">
     {# By default, your inner pages will load into this block. #} 
         {% block content %}
         {% endblock %} 
@@ -78,15 +75,13 @@
     {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
     <script src="//code.jquery.com/jquery-2.1.3.min.js" async></script>
     <!-- build:js /static/javascript/minified.js -->
+    <script src="/static/javascript/background-check.min.js"></script>
     <script src="/static/javascript/main.js" async></script>   
     <!-- endbuild -->
     <!-- <script src="static/javascript/headerscroll.js"></script> -->
     <!-- <script src="/static/javascript/overlay.js" async></script>  --> 
-    
-
         {% block scripts_extra %}
         {% endblock %}
-
     {% endblock %}
     {# Swiftyp Customizations as a separate partial#}
     {% include "templates/partials/search_and_analytics.html" %}

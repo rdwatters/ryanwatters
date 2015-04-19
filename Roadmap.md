@@ -24,6 +24,17 @@
 - [ ] Cron Job and Free Cloud Syncing
 - [ ] Pandoc - http://johnmacfarlane.net/pandoc/
 
+###Accessibility
+
+- [ ] Aria roles and labels for all page content (`header`,`main`,`footer`)
+- [ ] Alt text
+- [ ] Javascript to define `td` and `gridcell`
+
+###Markdown Styling
+
+- [ ] Javascript allowing editors to change css class within alt text without negatively affecting accessibility
+- [ ] Image classes: right, left, center, full
+
 
 ###Blog Content
 

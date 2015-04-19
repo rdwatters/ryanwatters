@@ -3,23 +3,9 @@
 {# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
 
 {% block content %}
-
-  <h1>Website of Ryan Watters.</h1>
-
-  {# If you have at least one content page type, we show a list. #}
-  {% if cms_types|size !== 0 %}
-
-    <h3>Content types you've created in the CMS so far.</h3>
-
-    <ul>
-    {% for type in cms_types %}
-      <li><a href="{{ url(type) }}">{{ type.name }}</a></li>
-    {% endfor %}
-    </ul>
-
-  {% endif %}
-  <article class="main-article">
-    <h1>Testing Body Stuff</h1>
+  
+  <article class="article">
+    <h1>Ryan D Watters</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatem similique dolorem cumque, optio ratione tempore id aliquid sequi, autem, architecto? Recusandae soluta dolorem eveniet animi inventore quibusdam, a error.</p>
     <p>Dicta magni sint tempora ea, quia expedita illum eaque modi fugiat perspiciatis maiores commodi molestias aliquid, id. Ab vero maxime nesciunt sed, harum molestias, impedit libero, tempore voluptatem, tenetur id!</p>
     <p>Magnam iste eveniet in possimus corporis minus beatae amet fuga minima reprehenderit rerum molestiae, delectus ipsum dolor fugit doloribus autem veniam praesentium ratione impedit necessitatibus distinctio neque culpa quae. Autem!</p>

@@ -1,14 +1,15 @@
 {# Header - set st search to false if using Swiftype as search engine. Otherwise, remove data attribute. #}
-<header class="header" data-swiftype-index='false'>
+<header class="header" role="header" data-swiftype-index='false'>
     <span class="home-logo"><a href="/">RDW</a></span>
-    <nav class="primary-navigation">
-        <ul role='navigation'>
+    <nav class="primary-navigation" role="navigation" aria-label="main navigation">
+        <ul>
             {% for row in cms.mainnavigation.grid %}
             <li><a tabindex="{{- row.index -}}" href="{{- row.navigation_url -}}">{{- row.navigation_heading -}}</a></li>
             {% endfor %}
+            <li><a href="#" class="search-icon">Search</a></li>
             <li>
                 <form class="search-form">
-                    <input type="text" autocomplete="false" id="st-search-input" role="search" placeholder="Search rw.me...">
+                    <input type="text" autocomplete="false" id="st-search-input" role="search" aria-label="search input" placeholder="Search this site...">
                     <div id="st-results-container"></div>
                 </form>
             </li>
@@ -17,7 +18,7 @@
     </nav>
 </header>
 <section class="mobile-navigation">
-  <a id="toggle-mobile-navigation" class="menu-icon" href="#">
+  <a id="toggle-mobile-navigation" title="Main navigation toggle for mobile screens" class="menu-icon" aria-label="navigation menu" aria-controls="navigation" aria-expanded="false" role="button" href="#">
     <div class="menu-icon-inner"></div>
   </a>  
 </section>

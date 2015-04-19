@@ -1,5 +1,10 @@
-//search
-//
+//Search icon
+
+.search-icon {
+// background-image:
+}
+
+//Swiftype Search Input
 .main-navigation input {
     @include transition(.4s);
     width: 100%;
@@ -30,7 +35,7 @@
         display: none;
         padding: -50px;
     }
-    // #st-results-container > div > div.st-result-listing > div.st-results > div > div.st-result-text
+    
 }
 
 .autocomplete {

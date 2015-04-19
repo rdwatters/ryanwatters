@@ -1,7 +1,8 @@
-$footer-background-color:#060b0e;
-$footer-font-color:white;
+$logo-size:60px;
+$header-mplus-height:$logo-size * 2;
 $header-background-color:#333333;
+$footer-background-color:$header-background-color;
+$footer-font-color:white;
 $header-anchor:white;
 $logo-color:darken(#01589B,10%);
-$logo-size:60px;
 $base-font-color:#333333;
