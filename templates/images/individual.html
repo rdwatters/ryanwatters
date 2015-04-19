@@ -48,5 +48,41 @@
         <strong>Alt Text: </strong>
         {{ item.alt_text }}
       </li>
+      <li>
+        <strong>Licensing: </strong>
+        {# List the checkboxes available. Output their values. #}
+        <ul>
+          {% for option in item.licensing %}
+            {# Output the values for every option. Alternatively, wrap this in an if statement to only show True values. #}
+            <li>
+              {{ option.label }}: {{ option.value }}
+            </li>
+          {% endfor%}
+        </ul>
+      </li>
+      <li>
+        <strong>Owner: </strong>
+        {{ item.owner.first }} {{ item.owner.last }}
+      </li>
+      <li>
+        <strong>Owner Website: </strong>
+        {{ item.owner_website }}
+      </li>
+      <li>
+        <strong>Articles (Article Image): </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.articles_article_image %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ item.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ item.slug }}
+      </li>
   </ul>
 {% endblock %}

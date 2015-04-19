@@ -18,26 +18,24 @@
     <p itemprop="author" rel="author">
     <strong>Author: </strong><a href="{{ url(item.author) }}">{{ item.author.name }}</a>
     </p>
-    <p itemprop="keywords"> <strong>Keywords: </strong> {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+    <p itemprop="keywords"> <strong>Keywords: </strong>
         {% for relation in item.keywords %}
         <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}{% endfor %}
     </p>
     <p>
 {% set prev = prevItem(item, 'publish_date', true) %} {% set next = nextItem(item, 'publish_date', true) %}
+{% if prev %}
 <div class="previous">
     <a href="{{ url(prev) }}">Prev</a>
 </div>
+{% endif %}
 <strong>Article Body: {{ item.article_body|markdown }} </strong>
+{% if next %}
 <div class="next">
     <a href="{{ url(next) }}">Next</a>
 </div>
-{# for image in item.images #}
-    <img src="{{item.images|first.image|imageSize(400,400)}}" alt="{{image.alt_text}}" />{# endfor #}
-    <p>
-      <strong>Description: {{ item.description }} </strong>
-    </p>
-    <p><strong>Keywords and stuff:</strong> {% if item.keywords%} {% for keyword in item.keywords %} {{ keyword.name }}, {% endfor %} {% else %} {{getSetting('site_keywords')}} {% endif %}
-    </p>
+{% endif %}
+
 </article> 
      {% if item.allow_comments %}
       <div id="disqus_thread"></div>

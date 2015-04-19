@@ -1,7 +1,23 @@
 {# Header - set st search to false if using Swiftype as search engine. Otherwise, remove data attribute. #}
 <header class="header" data-swiftype-index='false'>
-    <a href="/">HOME</a>
-    <form class="search-form">
-        <input type="text" id="st-search-input" class="st-search-input" / placeholder="Search...">
-    </form>
+    <span class="home-logo"><a href="/">RDW</a></span>
+    <nav class="primary-navigation">
+        <ul role='navigation'>
+            {% for row in cms.mainnavigation.grid %}
+            <li><a tabindex="{{- row.index -}}" href="{{- row.navigation_url -}}">{{- row.navigation_heading -}}</a></li>
+            {% endfor %}
+            <li>
+                <form class="search-form">
+                    <input type="text" autocomplete="false" id="st-search-input" role="search" placeholder="Search rw.me...">
+                    <div id="st-results-container"></div>
+                </form>
+            </li>
+        </ul>
+        <div id="st-results-container"></div>
+    </nav>
 </header>
+<section class="mobile-navigation">
+  <a id="toggle-mobile-navigation" class="menu-icon" href="#">
+    <div class="menu-icon-inner"></div>
+  </a>  
+</section>

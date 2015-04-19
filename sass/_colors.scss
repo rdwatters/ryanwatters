@@ -3,7 +3,7 @@ $secondary: lighten($primary,15%);
 $tertiary: #93a8ac;
 $light-base: #ffffff;
 $light-darken: darken($light-base,10%);
-$dark-base:#1c0f13;
+$dark-base:#373636;
 $dark-lighten: lighten($dark-base,10%);
 $color3: #36393b;
 $color5: #192433;
@@ -18,8 +18,8 @@ $form-font-color: $font-base-dark;
 $form-header-background: $primary;
 
 // Header
-$header-font-color:$light-base;
-$header-background-color:$primary;
+$header-font-color:$dark-lighten;
+$header-background-color:$dark-base;
 
 // Body
 $body-base-font-color:$font-base-dark;
