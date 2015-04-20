@@ -1,11 +1,15 @@
 //SEARCH
 //This module is designed to work with swiftype
-.search-icon svg {
+#search-icon svg {
     display: none;
     @include MQ(M) {
-        display: inline-block;
-        line-height: $header-mplus-height;
-        height: 30px;
+        display: block;
+        position:absolute;
+        margin:0;
+        padding:0;
+        top:$logo-size/4;
+        right:$logo-size/4;
+        height: $logo-size;
     }
 }
 
@@ -29,7 +33,7 @@
 }
 
 #st-results-container {
-    width: 250px;
+    width: $mobile-menu-width;
     font-size: 12px;
     padding-left: 0px;
     border-radius: 0px;

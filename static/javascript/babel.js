@@ -10,7 +10,9 @@ window.onload = init;
 function init() {
         //mobile menu toggle (off-canvas)
         var mobileButton = document.getElementById('toggle-mobile-navigation');
+        var searchButton = document.getElementById('search-icon');
         mobileButton.onclick = toggleMobileMenu;
+        searchButton.onclick = toggleSearchOverlay;
         if (window.outerWidth > 768) {
             headerScroll();
         }
@@ -45,11 +47,16 @@ function headerScroll() {
         wScrollDiff = wScrollBefore - wScrollCurrent;
         if (wScrollCurrent <= headerHeight) {
             header.removeClass('hide-header');
-        }else if(wScrollDiff > 0){
+        } else if (wScrollDiff > 0) {
             header.removeClass('hide-header');
-        }else if(wScrollDiff < 0){
+        } else if (wScrollDiff < 0) {
             header.addClass('hide-header');
         }
         wScrollBefore = wScrollCurrent;
     });
+}
+
+function toggleSearchOverlay(event) {
+    event.preventDefault();
+    console.log('click is working');
 }

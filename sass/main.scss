@@ -68,6 +68,9 @@
                     display: inline-block;
                     // margin-bottom:32px;
                     padding: 0;
+                    &:last-child{
+                    	margin-right:$logo-size;
+                    }
                     a {	
                     		cursor:pointer;
                         vertical-align: middle;

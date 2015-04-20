@@ -638,13 +638,17 @@ picture {
   max-width: 100%;
 }
 
-.search-icon svg {
+#search-icon svg {
   display: none;
 }
 @media only screen and (min-width: 768px) {
-  .search-icon svg {
-    display: inline-block;
-    line-height: 45px;
+  #search-icon svg {
+    display: block;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 7.5px;
+    right: 7.5px;
     height: 30px;
   }
 }
@@ -890,6 +894,9 @@ a.st-search-result-link {
   .header .primary-navigation ul li {
     display: inline-block;
     padding: 0;
+  }
+  .header .primary-navigation ul li:last-child {
+    margin-right: 30px;
   }
   .header .primary-navigation ul li a {
     cursor: pointer;

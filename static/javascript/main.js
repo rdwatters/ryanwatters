@@ -11,7 +11,9 @@ window.onload = init;
 function init() {
     //mobile menu toggle (off-canvas)
     var mobileButton = document.getElementById("toggle-mobile-navigation");
+    var searchButton = document.getElementById("search-icon");
     mobileButton.onclick = toggleMobileMenu;
+    searchButton.onclick = toggleSearchOverlay;
     if (window.outerWidth > 768) {
         headerScroll();
     }
@@ -53,5 +55,9 @@ function headerScroll() {
         }
         wScrollBefore = wScrollCurrent;
     });
+}
+
+function toggleSearchOverlay(event) {
+    console.log("click is working");
 }
 //# sourceMappingURL=main.js.map
