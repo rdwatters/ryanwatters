@@ -1,0 +1,82 @@
+//HOME PAGE SPECIFIC STYLES
+.feature-article-section {	
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width:100vw;    
+    margin: {
+        top: 0;
+        bottom: 0;
+    }
+    padding: {
+        top: 0;
+        bottom: 0;
+    }
+    &:first-child {
+        height:calc(50vh - #{$homepage-image-offset});
+    }
+    @include MQ(M){
+    // @include transition(1s);
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    &:hover{
+        -webkit-filter:grayscale(0%);
+        filter:grayscale(0%);
+    }
+    }
+}
+
+.other-articles {
+    margin-top: 0px;
+    padding-top: 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    .other-article {
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        &:hover {
+            -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
+        }
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: 100%;
+        width: 100vw;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 200px;
+    }
+    @include MQ(M) {
+        margin: {
+            top: 0;
+            bottom: 0;
+        }
+        padding: {
+            top: 0;
+            bottom: 0;
+        }
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        height:calc(50vh - #{$homepage-image-offset});
+    }
+}

@@ -1,101 +1,17 @@
 @import 'normalize';
-@import 'layout';
 @import 'variables';
+@import 'layout';
 @import "bourbon/bourbon";
 @import 'base/base';
-//search is a separate import 
+//SEARCH IS SEPARATE FOR SWIFTYPE STYLING 
 @import 'search';
 @import 'menu-icon';
-html {
-    box-sizing: border-box;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-}
-
-body {
-    min-height: 100%;
-    position: relative;
-    width: 100%;
-    z-index: 0;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-a {
-
-}
 /* HEADER */
-header {
+
+.header {
+    z-index: $header-z;
     overflow-y: scroll;
     overflow-x: hidden;
-    .home-logo:hover {
-        cursor: pointer;
-    }
-    .home-logo > a {
-        @include transition(.4s);
-        cursor: pointer;
-        // z-index: 99;
-        width: $logo-size;
-        height: $logo-size;
-        line-height: $logo-size;
-        color: $header-anchor;
-        text-align: center;
-        font-weight:bold;
-        margin: {
-            top: 10px;
-            right: auto;
-            left: auto;
-        }
-        display:block;
-        background-color: $logo-color;
-        border-radius: 50%;
-        &:hover {
-            cursor: pointer;
-            color: $logo-color;
-            background-color: $header-anchor;
-        }
-    }
-    li {
-        a {
-            padding-left: 0;
-            margin-left: 0;
-            display: block;
-            width: 100%;
-            color: $header-anchor;
-            font-size: 24px;
-            position: relative;
-            &:hover {
-                color: $header-anchor;
-            }
-            &:before {
-                content: "";
-                position: absolute;
-                padding-left: 50px;
-                width: 90%;
-                height: 2px;
-                bottom: 0;
-                left: 0;
-                background-color: $header-anchor;
-                visibility: hidden;
-                -webkit-transform: scaleX(0);
-                transform: scaleX(0);
-                -webkit-transition: all 0.3s ease-in-out 0s;
-                transition: all 0.3s ease-in-out 0s;
-            }
-            &:hover:before {
-                visibility: visible;
-                @include transform(scaleX(1));
-            }
-        }
-    }
     background-color: $header-background-color;
     @include transition(.4s);
     display: block;
@@ -104,9 +20,9 @@ header {
     top: 0px;
     right: 0px;
     flex-direction: column;
-    width: 250px;
+    width: $mobile-menu-width;
     order: 2;
-    @include transform(translateX(250px));
+    @include transform(translateX($mobile-menu-width));
     &.menu-open {
         @include transform(translateX(0px));
     }
@@ -135,6 +51,9 @@ header {
         line-height: $header-mplus-height;
         padding-top: 0;
         @include transform(translateX(0px));
+        &.hide-header {
+            opacity: 0;
+        }
         button.toggle-mobile-menu {
             display: none;
         }
@@ -148,19 +67,22 @@ header {
                 li {
                     display: inline-block;
                     // margin-bottom:32px;
-                    padding:0;
-                    a{
-                    	vertical-align:middle;
-                    	font-size:$base-font-size;
-                    	margin:0;
-                    	margin-right:5px;
-                    	&:hover:before{
-                    		padding-bottom:0;
-                    		margin-bottom:0;
-                    	}
+                    padding: 0;
+                    a {	
+                    		cursor:pointer;
+                        vertical-align: middle;
+                        color:$header-anchor;
+                        font-size: $base-font-size;
+                        text-transform:uppercase;
+                        margin: 0;
+                        margin-right: 10px;
+                        &:hover:before {
+                            padding-bottom: 0;
+                            margin-bottom: 0;
+                        }
                     }
-                    form{
-                    	display:none;
+                    form {
+                        display: none;
                     }
                 }
             }
@@ -181,16 +103,6 @@ header {
     width: 80px;
     height: 50px;
     background-color: transparent!important;
-    svg {
-        height: 50px;
-        width: 50px;
-        line-height: 50px;
-        vertical-align: middle;
-        margin: {
-            right: auto;
-            left: auto;
-        }
-    }
     &:before {
         content: 'Menu';
     }
@@ -214,11 +126,43 @@ header {
     }
 }
 
+.home-logo {
+		z-index: $logo-z;
+    position: fixed;
+    top: $logo-size/4;
+    left: $logo-size/4;
+    font-size: $logo-size/3;
+    padding: 0;
+    &:hover {
+        cursor: pointer;
+    }
+    a {
+        @include transition(.4s);
+        cursor: pointer;
+        margin-bottom: 0;
+        width: $logo-size;
+        height: $logo-size;
+        line-height: $logo-size;
+        color: $header-anchor;
+        text-align: center;
+        font-weight: bold;
+        display: block;
+        background-color: $logo-color;
+        border-radius: 50%;
+        &:hover {
+            cursor: pointer;
+            color: $logo-color;
+            background-color: $header-anchor;
+        }
+    }
+}
+
 .main {
+    z-index: $main-z;
     @include transition(.4s);
     display: block;
     &.menu-open {
-        @include transform(translateX(-250px));
+        @include transform(translateX(-$mobile-menu-width));
         opacity: 0.5;
     }
     margin: {
@@ -229,9 +173,9 @@ header {
         top: 0;
         bottom: 50px;
     }
-     @include MQ(M) {
-     	margin-top:$header-mplus-height + 10px;
-     }
+    @include MQ(M) {
+        padding-top: $header-mplus-height;
+    }
 }
 
 .main-article {
@@ -240,6 +184,7 @@ header {
         right: auto;
         left: auto;
     }
+    @include MQ(M) {}
 }
 
 .footer {
@@ -264,7 +209,9 @@ header {
     @include transition(.4s);
     display: block;
     &.menu-open {
-        @include transform(translateX(-250px));
+        @include transform(translateX(-$mobile-menu-width));
         opacity: 0.5;
     }
 }
+
+@import 'home';

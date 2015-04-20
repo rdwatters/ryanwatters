@@ -1,15 +1,12 @@
-//----- Hamburger component -----
-
-// Config
+//HAMBURGER ICON USED FOR MOBILE MENU
 $mobile-icon-height: 30px;
 $mobile-icon-width: 40px;
 $mobile-icon-layer__height: 6px;
 $mobile-icon-color: $header-background-color;
 $mobile-icon-color-inner: $header-anchor;
 
-
-
 .mobile-navigation {
+  z-index:$mobile-menu-icon-z;
   position:fixed;
   top:10px;
   right:50px;

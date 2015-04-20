@@ -1,10 +1,20 @@
+//global variables for scroll on M+ screens
 "use strict";
 
+var header = $(".header"),
+    wScrollCurrent = 0,
+    wScrollBefore = 0,
+    wScrollDiff = 0;
+
 window.onload = init;
+
 function init() {
     //mobile menu toggle (off-canvas)
     var mobileButton = document.getElementById("toggle-mobile-navigation");
     mobileButton.onclick = toggleMobileMenu;
+    if (window.outerWidth > 768) {
+        headerScroll();
+    }
 }
 //toggle the mobile menu as well as modify aria attributes
 function toggleMobileMenu() {
@@ -26,5 +36,22 @@ function toggleMobileMenu() {
         theButton.classList.add("menu-open");
         theButton.setAttribute("aria-expanded", "true");
     }
+}
+
+//CLEARING OUT THE HEADER ON SCROLL--WILL ONLY ACTIVATE IN M+ SCREEN SIZES
+function headerScroll() {
+    $(window).on("scroll", function () {
+        var headerHeight = $(".header").height();
+        wScrollCurrent = $(window).scrollTop();
+        wScrollDiff = wScrollBefore - wScrollCurrent;
+        if (wScrollCurrent <= headerHeight) {
+            header.removeClass("hide-header");
+        } else if (wScrollDiff > 0) {
+            header.removeClass("hide-header");
+        } else if (wScrollDiff < 0) {
+            header.addClass("hide-header");
+        }
+        wScrollBefore = wScrollCurrent;
+    });
 }
 //# sourceMappingURL=main.js.map

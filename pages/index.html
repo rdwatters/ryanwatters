@@ -1,26 +1,36 @@
-{% extends "templates/partials/base.html" %}
+{% extends "templates/partials/base.html" %} {# This sets our page
+<title>. It will append "- Homepage" to the site title defined in base. #} 
 
-{# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
+{% block content %} 
 
-{% block content %}
-  
-  <article class="article">
-    <h1>Ryan D Watters</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatem similique dolorem cumque, optio ratione tempore id aliquid sequi, autem, architecto? Recusandae soluta dolorem eveniet animi inventore quibusdam, a error.</p>
-    <p>Dicta magni sint tempora ea, quia expedita illum eaque modi fugiat perspiciatis maiores commodi molestias aliquid, id. Ab vero maxime nesciunt sed, harum molestias, impedit libero, tempore voluptatem, tenetur id!</p>
-    <p>Magnam iste eveniet in possimus corporis minus beatae amet fuga minima reprehenderit rerum molestiae, delectus ipsum dolor fugit doloribus autem veniam praesentium ratione impedit necessitatibus distinctio neque culpa quae. Autem!</p>
-    <p>Modi labore voluptatum quos eius eveniet ab commodi vitae facere id consequuntur fugit numquam molestias odit aspernatur deserunt, ratione obcaecati est maiores corrupti doloribus consequatur ipsam non facilis possimus. Autem!</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis maiores laudantium deleniti quae dignissimos voluptas repellat, ipsam reiciendis in earum repellendus voluptates id deserunt molestias blanditiis iure nemo suscipit omnis.</p>
-    <p>Nesciunt fugiat eveniet reprehenderit ullam! Officiis voluptas ipsum, incidunt ipsam maxime tempore error ex culpa, necessitatibus minus! Voluptate, optio culpa, placeat veniam autem fuga voluptatum omnis dolor itaque quae molestiae.</p>
-    <p>Doloribus dolores reiciendis quidem nesciunt blanditiis repellat eveniet in, quod, voluptatum neque reprehenderit tempora inventore quam, doloremque odio eos beatae architecto, consequuntur quibusdam? Quisquam vel ullam numquam praesentium culpa repudiandae.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi voluptatem similique dolorem cumque, optio ratione tempore id aliquid sequi, autem, architecto? Recusandae soluta dolorem eveniet animi inventore quibusdam, a error.</p>
-    <p>Dicta magni sint tempora ea, quia expedita illum eaque modi fugiat perspiciatis maiores commodi molestias aliquid, id. Ab vero maxime nesciunt sed, harum molestias, impedit libero, tempore voluptatem, tenetur id!</p>
-    <p>Magnam iste eveniet in possimus corporis minus beatae amet fuga minima reprehenderit rerum molestiae, delectus ipsum dolor fugit doloribus autem veniam praesentium ratione impedit necessitatibus distinctio neque culpa quae. Autem!</p>
-    <p>Modi labore voluptatum quos eius eveniet ab commodi vitae facere id consequuntur fugit numquam molestias odit aspernatur deserunt, ratione obcaecati est maiores corrupti doloribus consequatur ipsam non facilis possimus. Autem!</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis maiores laudantium deleniti quae dignissimos voluptas repellat, ipsam reiciendis in earum repellendus voluptates id deserunt molestias blanditiis iure nemo suscipit omnis.</p>
-    <p>Nesciunt fugiat eveniet reprehenderit ullam! Officiis voluptas ipsum, incidunt ipsam maxime tempore error ex culpa, necessitatibus minus! Voluptate, optio culpa, placeat veniam autem fuga voluptatum omnis dolor itaque quae molestiae.</p>
-    <p>Doloribus dolores reiciendis quidem nesciunt blanditiis repellat eveniet in, quod, voluptatum neque reprehenderit tempora inventore quam, doloremque odio eos beatae architecto, consequuntur quibusdam? Quisquam vel ullam numquam praesentium culpa repudiandae.</p>
-    <p>HERE IS MY LAST SENTENCE!</p>
-  </article>
-
+{% set articles = cms.articles|sort('publish_date',true) %} 
+{% for article in articles %}
+  {% if loop.first %}
+    <section class="feature-article-section" style="background-image:url('{{article.images[0].image|imageSize(1000)}}');" crossOrigin="anonymous">
+      <a href="{{ url(article) }}">
+        <section class="article-information">        
+          <h2 class="article-title">{{ article.title }}</h2>
+          <span class="article-subtitle">{{ article.subtitle }}</span>
+          <p>{{ article.publish_date|date('F d, Y') }}</p>
+        </section>
+      </a>   
+    </section>
+  {% endif %}
+{% endfor %}
+<div class="other-articles">  
+{% for other in articles|slice(2,4) %}
+  <section class="other-article" style="background-image:url('{{other.images[0].image|imageSize(400)}}');">
+  <a href="{{ url(other) }}">
+    <h2>{{ other.title }}</h2>
+    <p>{{ other.description }}</p>
+  </a>  
+  </section>
+{% endfor %}
+</div>
+<article class="main-article">
+  <h1>Just need scroll content</h1>
+  <p>One Flew Over the Cuckoo's Nest. Man, when you lose your laugh you lose your footing. All I know is this: nobody's very big in the first place, and it looks to me like everybody spends their whole life tearing everybody else down. But it's the truth even if it didn't happen. He knows that you have to laugh at the things that hurt you just to keep yourself in balance, just to keep the world from running you plumb crazy. If you don't watch it people will force you one way or the other, into doing what they think you should do, or into just being mule-stubborn and doing the opposite out of spite. What do you think you are, for Chrissake, crazy or somethin'? Well you're not! You're not! You're no crazier than the average asshole out walkin' around on the streets and that's it.</p>
+  <p>One Flew Over the Cuckoo's Nest. Man, when you lose your laugh you lose your footing. All I know is this: nobody's very big in the first place, and it looks to me like everybody spends their whole life tearing everybody else down. But it's the truth even if it didn't happen. He knows that you have to laugh at the things that hurt you just to keep yourself in balance, just to keep the world from running you plumb crazy. If you don't watch it people will force you one way or the other, into doing what they think you should do, or into just being mule-stubborn and doing the opposite out of spite. What do you think you are, for Chrissake, crazy or somethin'? Well you're not! You're not! You're no crazier than the average asshole out walkin' around on the streets and that's it.</p>
+  <p>One Flew Over the Cuckoo's Nest. Man, when you lose your laugh you lose your footing. All I know is this: nobody's very big in the first place, and it looks to me like everybody spends their whole life tearing everybody else down. But it's the truth even if it didn't happen. He knows that you have to laugh at the things that hurt you just to keep yourself in balance, just to keep the world from running you plumb crazy. If you don't watch it people will force you one way or the other, into doing what they think you should do, or into just being mule-stubborn and doing the opposite out of spite. What do you think you are, for Chrissake, crazy or somethin'? Well you're not! You're not! You're no crazier than the average asshole out walkin' around on the streets and that's it.</p>
+</article>
 {% endblock %}

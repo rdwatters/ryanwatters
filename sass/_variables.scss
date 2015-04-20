@@ -1,8 +1,33 @@
-$logo-size:60px;
-$header-mplus-height:$logo-size * 2;
+//MEDIA QUERY BREAKPOINTS
+   
+$S:     480px;   
+$M:     768px;     
+$L:     800px;
+$XL:    1180px;
+
+//PAGE COMPONENT SIZES
+$logo-size:30px;
+$logo-color:darken(#01589B,10%);
+$header-mplus-height:$logo-size * 1.5;
 $header-background-color:#333333;
+$header-anchor:white;
+$base-font-color:#333333;
 $footer-background-color:$header-background-color;
 $footer-font-color:white;
-$header-anchor:white;
-$logo-color:darken(#01589B,10%);
-$base-font-color:#333333;
+
+//Z-INDEX:
+$header-z:5;
+$logo-z:6;
+$main-z:3;
+$mobile-menu-icon-z:10;
+
+//MOBILE MENU
+$mobile-menu-width:250px;
+
+//HOME PAGE
+// //The following is used to calculate the image height for M+ screens
+$homepage-image-offset:$header-mplus-height/2;
+
+
+//SITE NAME:
+$site-name:'Ryan Watters';
