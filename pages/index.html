@@ -6,27 +6,30 @@
 {% set articles = cms.articles|sort('publish_date',true) %} 
 {% for article in articles %}
   {% if loop.first %}
-    <section class="feature-article-section" style="background-image:url('{{article.images[0].image|imageSize(1000)}}');" crossOrigin="anonymous">
-      <a href="{{ url(article) }}">
-        <section class="article-information">        
-          <h2 class="article-title">{{ article.title }}</h2>
-          <span class="article-subtitle">{{ article.subtitle }}</span>
-          <span class="article-date">{{ article.publish_date|date('F d, Y') }}</span class="article-date">
-        </section>
-      </a>   
-    </section>
+    <section class="featured-article" style="background-image:url('{{article.images[0].image|imageSize(1000)}}');" crossOrigin="anonymous">
+          <section class="article-details">
+            <section class="article-title">
+              <h2 class="title">{{ article.title }}</h2>
+              <h3 class="subtitle">{{ article.subtitle }}</h3>
+            </section>
+            <a href="{{ url(article) }}" class="read-link">Read ...</a>
+          </section>
+          <span class="article-date">{{ article.publish_date|date('F d, Y') }}</span>     
+    </section>  
   {% endif %}
 {% endfor %}
 <div class="other-articles">  
 {% for other in articles|slice(2,4) %}
   <section class="other-article" style="background-image:url('{{other.images[0].image|imageSize(400)}}');">
-    <a href="{{ url(other) }}">
-        <section class="article-information">        
+        <section class="post-information">        
           <h2 class="article-title">{{ other.title }}</h2>
-          <span class="article-subtitle">{{ other.subtitle }}</span>
-          <span class="article-date">{{ other.publish_date|date('F d, Y') }}</span class="article-date">
+          <section class="article-information">
+            <span class="article-subtitle">{{ other.subtitle }}</span>
+            <span class="article-date">{{ other.publish_date|date('F d, Y') }}</span class="article-date">
+            <span class="article-author">{{ other.author.author.first }} {{ other.author.author.last }}</span>
+          </section>
         </section>
-      </a>  
+      <a href="{{ url(other) }}" class="read-article">Read ...</a>  
   </section>
 {% endfor %}
 </div>

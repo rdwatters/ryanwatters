@@ -1,15 +1,16 @@
 @import 'normalize';
-@import 'variables';
-@import 'layout';
 @import "bourbon/bourbon";
 @import 'base/base';
+@import 'variables';
+@import 'layout';
 //SEARCH IS SEPARATE FOR SWIFTYPE STYLING 
 @import 'search';
 @import 'menu-icon';
+@import 'home';
 /* HEADER */
 
 .header {
-    .site-name{
+    .site-name a{
         display:none;
         @include MQ(M) {
             display:inline-block;
@@ -55,7 +56,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        width: 100vw;
+        max-width: 100vw;
         height: $header-mplus-height;
         line-height: $header-mplus-height;
         padding-top: 0;
@@ -68,7 +69,7 @@
         }
         .home-logo {
             float: left;
-            margin-left: 10px;
+            padding-left: 10px;
         }
         .primary-navigation {
             float: right;
@@ -78,7 +79,7 @@
                     // margin-bottom:32px;
                     padding: 0;
                     &:last-child{
-                    	margin-right:$logo-size;
+                    	padding-right:$logo-size;
                     }
                     a {	
                     		cursor:pointer;
@@ -225,5 +226,3 @@
         opacity: 0.5;
     }
 }
-
-@import 'home';
