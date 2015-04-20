@@ -1,18 +1,19 @@
 //HOME PAGE SPECIFIC STYLES
-.feature-article-section {	
+.feature-article-section {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    width:100vw;    
+    width: 100vw;
+    height: 50vh;
     margin: {
         top: 0;
         bottom: 0;
@@ -21,17 +22,27 @@
         top: 0;
         bottom: 0;
     }
-    &:first-child {
-        height:calc(50vh - #{$homepage-image-offset});
+    a {
+        .article-information {
+            color: $base-font-color;
+            display: block;
+            bottom: 0;
+            width: 100vw;
+            background-color: white;
+        }
     }
-    @include MQ(M){
-    // @include transition(1s);
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    &:hover{
-        -webkit-filter:grayscale(0%);
-        filter:grayscale(0%);
-    }
+    @include MQ(M) {
+        height:calc(50vh - # {
+            $homepage-image-offset
+        }
+        );
+        @include transition(.5s);
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        &:hover {
+            -webkit-filter: grayscale(0%);
+            filter: grayscale(0%);
+        }
     }
 }
 
@@ -62,6 +73,15 @@
         background-repeat: no-repeat;
         background-size: cover;
         min-height: 200px;
+        a {
+        .article-information {
+            color: $base-font-color;
+            display: block;
+            bottom: 0;
+            width: 100vw;
+            background-color: white;
+        }
+    }
     }
     @include MQ(M) {
         margin: {

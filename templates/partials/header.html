@@ -1,5 +1,6 @@
 {# Header - set st search to false if using Swiftype as search engine. Otherwise, remove data attribute. #}
 <header class="header" role="header" data-swiftype-index='false'>
+    <span class="site-name">{{ getSetting('site_name') }}</span>
     <nav class="primary-navigation" role="navigation" aria-label="main navigation">
         <ul>
             {% for row in cms.mainnavigation.grid %}

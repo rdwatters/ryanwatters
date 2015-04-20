@@ -11,7 +11,7 @@
         <section class="article-information">        
           <h2 class="article-title">{{ article.title }}</h2>
           <span class="article-subtitle">{{ article.subtitle }}</span>
-          <p>{{ article.publish_date|date('F d, Y') }}</p>
+          <span class="article-date">{{ article.publish_date|date('F d, Y') }}</span class="article-date">
         </section>
       </a>   
     </section>
@@ -20,10 +20,13 @@
 <div class="other-articles">  
 {% for other in articles|slice(2,4) %}
   <section class="other-article" style="background-image:url('{{other.images[0].image|imageSize(400)}}');">
-  <a href="{{ url(other) }}">
-    <h2>{{ other.title }}</h2>
-    <p>{{ other.description }}</p>
-  </a>  
+    <a href="{{ url(other) }}">
+        <section class="article-information">        
+          <h2 class="article-title">{{ other.title }}</h2>
+          <span class="article-subtitle">{{ other.subtitle }}</span>
+          <span class="article-date">{{ other.publish_date|date('F d, Y') }}</span class="article-date">
+        </section>
+      </a>  
   </section>
 {% endfor %}
 </div>

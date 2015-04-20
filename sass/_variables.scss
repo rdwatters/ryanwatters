@@ -5,9 +5,14 @@ $M:     768px;
 $L:     800px;
 $XL:    1180px;
 
+//COLORS
+$base-font-color:#333333;
+$logo-color:darken(#01589B,10%);
+
+
+
 //PAGE COMPONENT SIZES
 $logo-size:30px;
-$logo-color:darken(#01589B,10%);
 $header-mplus-height:$logo-size * 1.5;
 $header-background-color:#333333;
 $header-anchor:white;
