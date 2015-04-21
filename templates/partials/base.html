@@ -48,14 +48,14 @@
         {# By default, your inner pages will load into this block. #} {% block content %} {% endblock %}
     </main>
     {% block footer %} {% include "templates/partials/footer.html" %} {% endblock %} {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #} {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
-    <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
     <!-- build:js /static/javascript/minified.js -->
     <script src="/static/javascript/main.js" async></script>
     <!-- endbuild -->
-    <!-- <script src="static/javascript/headerscroll.js"></script> -->
-    <!-- <script src="/static/javascript/overlay.js" async></script>  -->
-    <!-- <script src="/static/javascript/background-check.min.js"></script> -->
-    {% block scripts_extra %} {% endblock %} {% endblock %} {# Swiftype Customizations and Google Analytics#}
+
+    {% block scripts_extra %} 
+    {% endblock %} 
+    {% endblock %} 
+    {# Swiftype Customizations and Google Analytics#}
     {% include "templates/partials/search_and_analytics.html" %}
 </body>
 

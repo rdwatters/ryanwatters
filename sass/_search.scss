@@ -5,11 +5,15 @@
     @include MQ(M) {
         display: block;
         position:absolute;
+        fill:$header-anchor;
         margin:0;
         padding:0;
         top:$logo-size/4;
         right:$logo-size/4;
         height: $logo-size;
+        .magnifying-glass{
+            fill:$header-anchor;
+        }
     }
 }
 

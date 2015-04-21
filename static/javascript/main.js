@@ -1,11 +1,10 @@
 //global variables for scroll on M+ screens
 "use strict";
 
-var header = $(".header"),
+var header = document.querySelector(".header"),
     wScrollCurrent = 0,
     wScrollBefore = 0,
     wScrollDiff = 0;
-
 window.onload = init;
 
 function init() {
@@ -14,11 +13,30 @@ function init() {
     var searchButton = document.getElementById("search-icon");
     mobileButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearchOverlay;
+    //do not initialize the header transition on M- screen sizes
     if (window.outerWidth > 768) {
-        headerScroll();
+        window.onscroll = function () {
+            changeMenu();
+        };
     }
 }
-//toggle the mobile menu as well as modify aria attributes
+
+function changeMenu() {
+    var theHeader = document.getElementsByTagName("header")[0],
+        headerHeight = parseInt(theHeader.clientHeight);
+    wScrollCurrent = window.pageYOffset | document.body.scrollTop;
+    wScrollDiff = wScrollBefore - wScrollCurrent;
+    if (wScrollCurrent <= headerHeight) {
+        theHeader.classList.remove("hide-header");
+    } else if (wScrollDiff > 0) {
+        theHeader.classList.remove("hide-header");
+    } else if (wScrollDiff < 0) {
+        theHeader.classList.add("hide-header");
+    }
+    wScrollBefore = wScrollCurrent;
+}
+
+//toggle the mobile menu as well as modify ARIA attributes
 function toggleMobileMenu() {
     var mainMenu = document.getElementsByTagName("header")[0],
         mainContent = document.querySelector(".main"),
@@ -40,24 +58,8 @@ function toggleMobileMenu() {
     }
 }
 
-//CLEARING OUT THE HEADER ON SCROLL--WILL ONLY ACTIVATE IN M+ SCREEN SIZES
-function headerScroll() {
-    $(window).on("scroll", function () {
-        var headerHeight = $(".header").height();
-        wScrollCurrent = $(window).scrollTop();
-        wScrollDiff = wScrollBefore - wScrollCurrent;
-        if (wScrollCurrent <= headerHeight) {
-            header.removeClass("hide-header");
-        } else if (wScrollDiff > 0) {
-            header.removeClass("hide-header");
-        } else if (wScrollDiff < 0) {
-            header.addClass("hide-header");
-        }
-        wScrollBefore = wScrollCurrent;
-    });
-}
-
 function toggleSearchOverlay(event) {
+    event.preventDefault();
     console.log("click is working");
 }
 //# sourceMappingURL=main.js.map

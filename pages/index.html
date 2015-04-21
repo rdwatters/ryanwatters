@@ -6,37 +6,43 @@
 {% set articles = cms.articles|sort('publish_date',true) %} 
 {% for article in articles %}
   {% if loop.first %}
-    <section class="featured-article" style="background-image:url('{{article.images[0].image|imageSize(1000)}}');" crossOrigin="anonymous">
-          <section class="article-details">
-            <section class="article-title">
-              <h2 class="title">{{ article.title }}</h2>
-              <h3 class="subtitle">{{ article.subtitle }}</h3>
-            </section>
-            <a href="{{ url(article) }}" class="read-link">Read ...</a>
-          </section>
-          <span class="article-date">{{ article.publish_date|date('F d, Y') }}</span>     
-    </section>  
+<section class="featured-article" style="background-image:url('{{article.images[0].image|imageSize(1000)}}');" alt="{{article.images[0].alt_text}}" crossOrigin="anonymous">
+  <section class="article-details">
+    <section class="article-title-block">
+      <h2 class="title">{{ article.title }}</h2>
+      <h3 class="subtitle">{{ article.subtitle }}</h3>
+    </section>
+    <a href="{{ url(article) }}" class="read-link">Read...</a>
+  </section>
+  <span class="article-date">{{ article.publish_date|date('F d, Y') }}</span>     
+</section>  
   {% endif %}
 {% endfor %}
 <div class="other-articles">  
-{% for other in articles|slice(2,4) %}
-  <section class="other-article" style="background-image:url('{{other.images[0].image|imageSize(400)}}');">
-        <section class="post-information">        
-          <h2 class="article-title">{{ other.title }}</h2>
-          <section class="article-information">
-            <span class="article-subtitle">{{ other.subtitle }}</span>
-            <span class="article-date">{{ other.publish_date|date('F d, Y') }}</span class="article-date">
-            <span class="article-author">{{ other.author.author.first }} {{ other.author.author.last }}</span>
-          </section>
-        </section>
-      <a href="{{ url(other) }}" class="read-article">Read ...</a>  
+{% for other in articles|slice(1,2) %}
+  <section class="other-article" style="background-image:url('{{other.images[0].image|imageSize(500)}}');" alt="{{other.images[0].alt_text}}"crossOrigin="anonymous">
+    <section class="other-article-details">
+      <section class="article-title-block">
+        <h2 class="title">{{ other.title }}</h2>
+        <h3 class="subtitle">{{ other.subtitle }}</h3>
+      </section>
+      <a href="{{ url(other) }}" class="read-link">Read ...</a>
+    </section>
+    <span class="article-date">{{ other.publish_date|date('F d, Y') }}</span>     
   </section>
 {% endfor %}
 </div>
-<article class="main-article">
-  <h1>Just need scroll content</h1>
-  <p>One Flew Over the Cuckoo's Nest. Man, when you lose your laugh you lose your footing. All I know is this: nobody's very big in the first place, and it looks to me like everybody spends their whole life tearing everybody else down. But it's the truth even if it didn't happen. He knows that you have to laugh at the things that hurt you just to keep yourself in balance, just to keep the world from running you plumb crazy. If you don't watch it people will force you one way or the other, into doing what they think you should do, or into just being mule-stubborn and doing the opposite out of spite. What do you think you are, for Chrissake, crazy or somethin'? Well you're not! You're not! You're no crazier than the average asshole out walkin' around on the streets and that's it.</p>
-  <p>One Flew Over the Cuckoo's Nest. Man, when you lose your laugh you lose your footing. All I know is this: nobody's very big in the first place, and it looks to me like everybody spends their whole life tearing everybody else down. But it's the truth even if it didn't happen. He knows that you have to laugh at the things that hurt you just to keep yourself in balance, just to keep the world from running you plumb crazy. If you don't watch it people will force you one way or the other, into doing what they think you should do, or into just being mule-stubborn and doing the opposite out of spite. What do you think you are, for Chrissake, crazy or somethin'? Well you're not! You're not! You're no crazier than the average asshole out walkin' around on the streets and that's it.</p>
-  <p>One Flew Over the Cuckoo's Nest. Man, when you lose your laugh you lose your footing. All I know is this: nobody's very big in the first place, and it looks to me like everybody spends their whole life tearing everybody else down. But it's the truth even if it didn't happen. He knows that you have to laugh at the things that hurt you just to keep yourself in balance, just to keep the world from running you plumb crazy. If you don't watch it people will force you one way or the other, into doing what they think you should do, or into just being mule-stubborn and doing the opposite out of spite. What do you think you are, for Chrissake, crazy or somethin'? Well you're not! You're not! You're no crazier than the average asshole out walkin' around on the streets and that's it.</p>
-</article>
+<section>
+<p><strong>Here is the status:</strong></p>
+<section id="status"></section>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis necessitatibus nam deserunt voluptatum fuga velit quis pariatur culpa expedita, quidem, dolorem, blanditiis atque reprehenderit. Doloremque quidem soluta commodi perferendis exercitationem.</p>
+  <p>Quos enim accusamus dolorum ut soluta corporis modi facere fuga nisi mollitia, repudiandae natus dignissimos nesciunt, alias nihil architecto, rem aperiam suscipit sapiente. Assumenda praesentium nulla, dicta numquam adipisci cumque!</p>
+  <p>Aliquid dolores expedita sequi maxime praesentium odio. Recusandae molestiae optio autem ducimus. Consequuntur iste, dolorum incidunt aperiam commodi enim sit ratione est, corporis vel ex, animi, illum iusto eius tempora.</p>
+  <p>Eligendi impedit facere consectetur ratione, molestiae corporis! Quidem tempora tempore, pariatur natus exercitationem consequuntur non praesentium soluta, id ipsam adipisci temporibus, provident unde facilis delectus, quis aperiam reprehenderit voluptatem aliquam.</p>
+  <p>Dolor itaque fugiat impedit accusamus, perferendis doloremque nihil sequi culpa beatae soluta sunt voluptatum alias id hic suscipit totam aspernatur ullam esse inventore quasi, enim nisi magnam placeat ut! Nihil.</p>
+  <p>Culpa illum temporibus eveniet cum obcaecati, architecto rerum dolor nemo voluptatum nam tempore! Veniam aspernatur architecto, repellat non, optio quisquam eligendi ducimus, voluptatibus recusandae nesciunt officia quae sit ex porro.</p>
+  <p>Nobis, omnis, suscipit. Harum molestiae non, est alias? Aliquid numquam aperiam sit fugiat laboriosam doloremque consequuntur dolore ducimus repellat unde expedita, facere rem deleniti pariatur dolorem ullam perspiciatis, magnam quam.</p>
+  <p>Aperiam dolores quod consequatur facere saepe architecto qui cum veritatis aliquam repudiandae doloribus atque animi sunt facilis magnam, eos ab soluta, quas, debitis sint tenetur voluptatibus. Commodi cupiditate aperiam, quaerat.</p>
+  <p>Repellendus esse consequuntur voluptatem, molestiae quam? Maiores accusamus, asperiores ut qui soluta, accusantium fugit blanditiis facere deserunt animi laudantium explicabo quo odit dolor, ducimus ipsa quasi ad ex! Culpa, sunt.</p>
+</section>
 {% endblock %}

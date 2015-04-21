@@ -7,43 +7,64 @@ $XL:    1180px;
 
 
 //TYPOGRAPHY
-$base-font-size:16px;
+//other typography options...
+// $serif:'Abril Fatface',Georgia,serif;
+$sans-serif:'Open Sans',Arial,Helvetica,sans-serif;
 $serif:'Playfair Display',Georgia,serif;
-$sans-serif:'Raleway',Arial,Helvetica,sans-serif;
+// $sans-serif:'Raleway',Arial,Helvetica,sans-serif;
+$base-font-size:16px;
+$base-line-height:$base-font-size * 1.5;
 $heading-font-family:$serif;
 $body-font-family:$sans-serif;
 
 //COLORS
-$base-font-color:#333333;
-$logo-color:darken(#01589B,10%);
-$accent:tomato;
+$base-font-color:#242526;
+$body-background-color:#95AFBA;
+$logo-color:#3F7CAC;
+$header-background-color:#343A40;
+$header-anchor:white;
+$accent:#7C6C77;
 $button-color:$logo-color;
 $read-button-background-color:$button-color;
-$article-date-background-color:$accent;
 
-
-
-//PAGE COMPONENT SIZES
+//MAIN COMPONENT SIZES
 $logo-size:30px;
 $header-mplus-height:$logo-size * 1.5;
-$header-background-color:#333333;
-$header-anchor:white;
-$base-font-color:#333333;
+$footer-height:$header-mplus-height;
 $footer-background-color:$header-background-color;
 $footer-font-color:white;
 
-//Z-INDEX:
-$header-z:5;
+//Z-INDEX
+$body-z:0;
+$header-z:2;
+$main:1;
+$main-article:1;
+$footer-z:2;
 $logo-z:6;
 $main-z:3;
 $mobile-menu-icon-z:10;
+$highest:11;
+$button-and-badge:$highest * 1.5;
 
 //MOBILE MENU
 $mobile-menu-width:250px;
 
+/*BUTTONS*/
+$button-overlap:-.5em;
+//mobile-buttons--to keep center, only change width
+$mobile-button-width:40%;
+$mobile-button-max-width:200px;
+$mobile-button-margin: (100% - $mobile-button-width)/2;
+
 //HOME PAGE
 // //The following is used to calculate the image height for M+ screens
-$homepage-image-offset:$header-mplus-height/2;
+//HOMEPAGE SPECIFICS
+$home-article-title-background-color:white;
+$home-article-titles:$sans-serif;
+$home-article-subtitles:$body-font-family;
+$home-title-block-opacity:0.9;
+$homepage-image-offset:$header-mplus-height / 2;
+$article-date-background-color:$accent;
 
 
 //SITE NAME:
