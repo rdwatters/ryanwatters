@@ -3,7 +3,7 @@ var header = document.querySelector('.header'),
     wScrollCurrent = 0,
     wScrollBefore = 0,
     wScrollDiff = 0;
-window.onload = init;
+    window.onload = init;
 
 function init() {
     //mobile menu toggle (off-canvas)
@@ -11,11 +11,25 @@ function init() {
     var searchButton = document.getElementById('search-icon');
     mobileButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearchOverlay;
-    //do not initialize the header transition on M- screen sizes
+    //do not initialize the header transition on M & smaller screens
     if (window.outerWidth > 768) {
         window.onscroll = function() {
             changeMenu();
         };
+    }
+    typeOfDevice();
+}
+
+
+function typeOfDevice(){
+    // var phoneType = document.getElementById('phoneType');
+    var device = navigator.userAgent;
+    var apple = ( device.match(/iphone/gi) ? 'iPhone' : device.match(/mac/gi) ? 'Macintosh' : false);
+    
+    if(apple){
+        phoneType.innerHTML = apple;
+    }else{
+        phoneType.innerHTML = "NO DICE!";
     }
 }
 

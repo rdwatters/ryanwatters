@@ -4,7 +4,7 @@
     @include flex-direction(column-reverse);
     @include justify-content(center);
     @include background(center no-repeat);
-    background-size:cover;
+    background-size: cover;
     position: relative;
     width: 100vw;
     height: 50vh;
@@ -29,9 +29,9 @@
             position: relative;
             color: $base-font-color;
             width: 100%;
-            background-color:$home-article-title-background-color;
-            padding:2vw;
-            opacity:$home-title-block-opacity;
+            background-color: $home-article-title-background-color;
+            padding: 2vw;
+            opacity: $home-title-block-opacity;
             .title {
                 font-family: $home-article-titles;
                 font-size: 2.2em;
@@ -59,16 +59,16 @@
             padding: .5em;
             background-color: $read-button-background-color;
             z-index: $button-and-badge;
-            @include MQ(M){
-                position:absolute;
-                margin:0;
-                right:$button-overlap;
-                bottom:$button-overlap;
+            @include MQ(M) {
+                position: absolute;
+                margin: 0;
+                right: $button-overlap;
+                bottom: $button-overlap;
             }
         }
     }
     .article-date {
-        color:$header-anchor;
+        color: $header-anchor;
         display: block;
         position: absolute;
         right: 0;
@@ -82,24 +82,36 @@
     }
 }
 
-.other-articles {
+.recent-articles {
     @include display(flex);
     @include flex-direction(column-reverse);
     @include justify-content(center);
+    //change "other articles" to row layout on M+ screens
     @include MQ(M) {
         @include flex-direction(row);
-        -webkit-align-content:space-around;
-        -ms-flex-line-pack:distribute;
-        align-content:space-around;
         @include justify-content(flex-start);
+        -webkit-align-content: space-around;
+        -ms-flex-line-pack: distribute;
+        align-content: space-around;
+        height: calc(40vh - #{$header-mplus-height});
     }
-    .other-article {
+    .recent-article {
         @include background(center no-repeat);
         background-size: cover;
         position: relative;
         width: 100vw;
         height: 50vh;
-        .other-article-details {
+        @include MQ(M) {
+            height: 30vh;
+            &:first-child {
+                width: 30vw;
+            }
+            &:nth-child(2) {
+                width: 47vw;
+            }
+        }
+        .recent-article-details {
+            @include MQ(M) {}
             .article-title-block {
                 @include MQ(M) {
                     color: darken($base-font-color, 20%);
@@ -109,7 +121,7 @@
                 }
                 .title {
                     font-family: $home-article-titles;
-                    font-size: 2.2em;
+                    font-size: 1.2em;
                     margin-bottom: 0;
                 }
                 .subtitle {
@@ -132,7 +144,7 @@
             }
         }
         .article-date {
-            color:$header-anchor;
+            color: $header-anchor;
             display: block;
             position: absolute;
             right: 0;
@@ -141,13 +153,7 @@
             background-color: $article-date-background-color;
         }
         @include MQ(M) {
-            height: 30vh;
-                &:first-child {            
-                    width:30vw;
-                }
-                &:nth-child(2){
-                    width:47vw;
-                }
+            margin: 2vw 0vw 2vw 2vw;
         }
     }
 }
