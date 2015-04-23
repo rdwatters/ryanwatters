@@ -12,28 +12,16 @@ function init() {
     var mobileButton = document.getElementById("toggle-mobile-navigation");
     var searchButton = document.getElementById("search-icon");
     mobileButton.onclick = toggleMobileMenu;
-    searchButton.onclick = toggleSearchOverlay;
+    searchButton.onclick = toggleOverlay;
     //do not initialize the header transition on M & smaller screens
     if (window.outerWidth > 768) {
         window.onscroll = function () {
             changeMenu();
         };
     }
-    typeOfDevice();
 }
 
-function typeOfDevice() {
-    // var phoneType = document.getElementById('phoneType');
-    var device = navigator.userAgent;
-    var apple = device.match(/iphone/gi) ? "iPhone" : device.match(/mac/gi) ? "Macintosh" : false;
-
-    if (apple) {
-        phoneType.innerHTML = apple;
-    } else {
-        phoneType.innerHTML = "NO DICE!";
-    }
-}
-
+//HEADER FADES IN AND OUT ON SCROLL
 function changeMenu() {
     var theHeader = document.getElementsByTagName("header")[0],
         headerHeight = parseInt(theHeader.clientHeight);
@@ -70,9 +58,23 @@ function toggleMobileMenu() {
         theButton.setAttribute("aria-expanded", "true");
     }
 }
-
-function toggleSearchOverlay(event) {
-    event.preventDefault();
-    console.log("click is working");
+//Toggle the full-screen search overlay
+function toggleOverlay() {
+    console.log("Hello!");
+    var overlay = document.querySelector(".search-form");
+    classie.toggle(overlay, "open");
 }
+
+//PLAYING WITH BROWSER SNIFFING
+// function typeOfDevice(){
+//     // var phoneType = document.getElementById('phoneType');
+//     var device = navigator.userAgent;
+//     var apple = ( device.match(/iphone/gi) ? 'iPhone' : device.match(/mac/gi) ? 'Macintosh' : false);
+
+//     if(apple){
+//         phoneType.innerHTML = apple;
+//     }else{
+//         phoneType.innerHTML = "NO DICE!";
+//     }
+// }
 //# sourceMappingURL=main.js.map

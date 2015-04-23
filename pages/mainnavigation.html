@@ -46,6 +46,23 @@
               {{ row.navigation_url }}
             </li>
             <li>
+              <strong>Submenu Items: </strong>
+              {# Output tablular data. Note that it's up to you to output the thead manually. This just output the data. #}
+                <table>
+                  <tbody>
+                    {% for key, row in row.submenu_items %}
+                      <tr>
+                        {% for key, cell in row %}
+                          <td>
+                            {{ cell }}
+                          </td>
+                        {% endfor %}
+                      </tr>
+                    {% endfor%}
+                  </tbody>
+                </table>
+            </li>
+            <li>
               <strong>Tab Index: </strong>
               {{ row.tab_index }}
             </li>
