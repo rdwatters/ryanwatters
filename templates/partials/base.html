@@ -36,10 +36,12 @@
     <meta property="st:section" content="{{item.description|default(getSetting('site_description'))}}"> 
     {#Shout out to Webhook#}
     <meta name="generator" content="Webhook">
+
     <!-- build:css /static/css/minified.css -->
     <link rel="stylesheet" href="/static/css/main.css" />
     <link rel="stylesheet" href="/static/css/wysiwyg_figures.css" />
     <!-- endbuild -->
+    
     {% block extra_meta %}
     {% endblock %}
     {% block extra_style %} 
