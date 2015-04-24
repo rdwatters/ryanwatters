@@ -1,5 +1,6 @@
 //SEARCH
-//This module is designed to work with swiftype
+//
+//BEGIN SWIFTYPE
 #search-icon svg {
     display: none;
     @include MQ(M) {
@@ -18,16 +19,16 @@
 }
 
 //SWIFTYPE SEARCH INPUT
-.main-navigation input {
-    @include transition(.4s);
-    width: 100%;
-    background-color: white;
-    outline: none;
-    border-radius: none;
-    &:focus {
-        outline: none;
-    }
-}
+// .main-navigation input {
+//     @include transition(.4s);
+//     width: 100%;
+//     background-color: white;
+//     outline: none;
+//     border-radius: none;
+//     &:focus {
+//         outline: none;
+//     }
+// }
 
 #st-search-input {
     transition: transform .4s ease-in-out;
@@ -112,3 +113,4 @@ a.st-search-result-link {
         width: 240px!important;
     }
 }
+//END SWIFTYPE

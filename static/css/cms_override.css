@@ -1,23 +1,2 @@
-body {
-  background-color: #01589B !important;
-}
-
-#ember980 > div > h2 {
-  color: #01589B;
-}
-
-span.icon-vim, span.icon-vim-toggle {
-  display: none;
-}
-span.icon-vim:before, span.icon-vim-toggle:before {
-  display: none;
-}
-span.icon-vim:after, span.icon-vim-toggle:after {
-  display: none;
-}
-
-#ember407 {
-  background-color: #01589B;
-}
-
+body{background-color:#01589B !important}#ember980>div>h2{color:#01589B}span.icon-vim,span.icon-vim-toggle{display:none}span.icon-vim:before,span.icon-vim-toggle:before{display:none}span.icon-vim:after,span.icon-vim-toggle:after{display:none}#ember407{background-color:#01589B}
 /*# sourceMappingURL=cms_override.css.map */
