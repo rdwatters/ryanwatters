@@ -1,9 +1,10 @@
 {% extends "templates/partials/base.html" %} {% block content %}
 <article class="main-article">
+<p><strong></strong> {% for relation in item.images %}<img src="{{ relation.image|imageSize(500,500)}}" alt="{{relation.alt_text}}" />{% endfor %}</p>
     <p><a href="{{ url('articles') }}">View a list of all articles</a></p>
     <h1 itemprop="name">{{ item.title }}</h1>
     <h2>{{ item.subtitle}}</h2>
-    <p><strong>Article Image:</strong> {% for relation in item.images %}<img src="{{ relation.image|imageSize(500,500)}}" alt="{{relation.alt_text}}" />{% endfor %}</p>
+    
     <p><strong>Updated: </strong>{%if item.most_recent_update %}
       {{- item.most_recent_update|date('F d, Y') -}}{% else %}
       {{- item.last_updated|date('F d Y') -}}{% endif %}<br>

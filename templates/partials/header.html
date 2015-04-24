@@ -2,7 +2,7 @@
 <header class="header" role="header" data-swiftype-index='false'>
     <span class="site-name"><a href="/">{{ getSetting('site_name') }}</a></span>
     <nav class="primary-navigation" role="navigation" aria-label="main navigation">
-        <ul>
+        <ul class="navigation">
             {% for row in cms.mainnavigation.grid %}
             <li><a tabindex="{{- row.index -}}" href="{{- row.navigation_url -}}">{{- row.navigation_heading -}}</a></li>
             {% endfor %}
@@ -13,16 +13,15 @@
                     </svg>
                 </a>
             </li>
-            <li>
-                <form class="search-form">
-                    <input type="text" autocomplete="false" id="st-search-input" role="search" aria-label="search input" placeholder="Search this site...">
-                    <div id="st-results-container" class="open"></div>
-                </form>
-            </li>
         </ul>
-        <div id="st-results-container"></div>
     </nav>
 </header>
+<div class="search-wrap">
+    <form class="search-form">
+        <input type="search" autocomplete="false" id="st-search-input" role="search" aria-label="search input" placeholder="Search this site...">
+    </form>
+    <div id="search-results"></div>
+</div>
 <span class="home-logo"><a aria-label="Home Link" href="/" title="Return to the home page">RW</a></span>
 <section class="mobile-navigation">
     <a id="toggle-mobile-navigation" title="Main navigation toggle for mobile screens" class="menu-icon" aria-label="navigation menu" aria-controls="navigation" aria-expanded="false" role="button" href="#">

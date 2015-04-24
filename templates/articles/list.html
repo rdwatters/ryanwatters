@@ -16,6 +16,10 @@
 
 {# This sets our page <title>. It will append articles to the site title defined in base.html #}
 {% block title %}{% parent %} - articles{% endblock %}
+{% block extra_meta %}
+{% parent %}
+<meta name="st:robots" content="nofollow, noindex">
+{% endblock %}
 
 {% block content %}
 

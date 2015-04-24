@@ -1,116 +1,115 @@
 //SEARCH
 //
+//
+input[type="search"]{
+    outline:none;
+    &:focus{
+        outline:none;
+    }
+    &:active{
+        outline:none;
+    }
+}
 //BEGIN SWIFTYPE
 #search-icon svg {
     display: none;
     @include MQ(M) {
         display: block;
-        position:absolute;
-        fill:$header-anchor;
-        margin:0;
-        padding:0;
-        top:$logo-size/4;
-        right:$logo-size/4;
+        position: absolute;
+        fill: $header-anchor;
+        margin: 0;
+        padding: 0;
+        top: $logo-size/4;
+        right: $logo-size/4;
         height: $logo-size;
-        .magnifying-glass{
-            fill:$header-anchor;
+        .magnifying-glass {
+            fill: $header-anchor;
         }
     }
 }
 
-//SWIFTYPE SEARCH INPUT
-// .main-navigation input {
-//     @include transition(.4s);
-//     width: 100%;
-//     background-color: white;
-//     outline: none;
-//     border-radius: none;
-//     &:focus {
-//         outline: none;
+#st-search-input {
+    border-radius: 0;
+    outline:0;
+    border:0;
+}
+#st-search-input:focus{
+    outline:0;
+}
+
+.search-wrap {
+    @include transition(.4s);
+    display: block;
+    z-index: -1;
+    opacity: 0;
+    position: fixed;
+    top: $header-mplus-height;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    &.search-open {
+        opacity: .9;
+        z-index: 99;
+    }
+    #st-search-input {
+        @include placeholder {
+            color: $base-font-color;
+            opacity: .7;
+        }
+        @include appearance(none);
+        @include backface-visibility(hidden);
+        z-index:99;
+        display:block;
+        font-size:2em;
+        width:60%;
+        min-width:600px;
+        margin-right:auto;
+        margin-left:auto;
+        margin-top:80px;
+        outline:none;
+        border:none;
+        border-bottom:2px solid $logo-color;
+        &:focus {
+            outline: 0px solid transparent;
+            @include appearance(none);
+            @include backface-visibility(hidden);
+        }
+    }
+    &.search-open{
+        opacity:.9;
+        z-index:99;
+    }
+}
+
+// .search-wrap {
+//     position:relative;
+//     @include MQ(MMAX) {
+//         @include transform(translateX($mobile-menu-width));
+//         opacity:0;
+//         color: $header-anchor;
+//         width:100%!important;
+//         background-color: transparent;
+//         #st-search-input {
+//             width:$mobile-menu-width;
+//             position:absolute;
+//             right:-$mobile-menu-width;
+//             background-color: transparent;
+//         }
+//         @include placeholder {
+//             color: $header-anchor;
+//         }
+//         &.menu-open {
+//             opacity:1;
+//             @include transform(translateX(-$mobile-menu-width));
+//         }
 //     }
 // }
 
-#st-search-input {
-    transition: transform .4s ease-in-out;
-    width: 100%;
-    border-radius: 0px;
-    height: 30px;
-}
-
-#st-results-container {
-    width: $mobile-menu-width;
-    font-size: 12px;
-    padding-left: 0px;
-    border-radius: 0px;
-    img {
-        width: 0;
-        padding: 0;
-        margin: 0;
-        display: none;
-        padding: -50px;
+#search-results {
+    @include MQ(MMAX) {
+        position: absolute!important;
+        top: $mobile-navigation-height + $header-mplus-height;
+        overflow-y: scroll;
     }
 }
-
-.autocomplete {
-    ul {
-        border-radius: 0px;
-        li {
-            border-radius: 0px;
-            border: none;
-            outline: none;
-        }
-    }
-}
-
-.swiftype .st-result-listing .st-search-summary h2 {
-    color: $header-anchor!important;
-    strong {
-        color: $logo-color!important;
-        font-size: 1.1em!important;
-    }
-    span.st-query {
-        color: $logo-color!important;
-    }
-}
-
-.st-search-summary {
-    color: $header-anchor;
-}
-
-.st-snippet {
-    width: 240px!important;
-    em {
-        font-weight: bold;
-        color: $logo-color;
-        text-transform: uppercase;
-    }
-}
-
-.st-result.with_image {
-    @include transform(translateX(-50));
-}
-
-a.st-search-result-link {
-    width: 240px!important;
-    padding: 0px;
-    margin: 0px;
-}
-
-.st-result-text {
-    h3 a {
-        @include transform(translateX(-100px));
-        &:hover {
-            color: $logo-color;
-        }
-    }
-}
-
-.st-metadata {
-    transform: translateX(-95px);
-    width: 240px;
-    span.st-snippet {
-        color: white!important;
-        width: 240px!important;
-    }
-}
-//END SWIFTYPE

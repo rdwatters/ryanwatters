@@ -8,18 +8,19 @@
 @import 'menu-icon';
 @import 'home';
 body {
-    background-color:$body-background-color;
+    background-color: $body-background-color;
+    position:relative;
 }
 /* HEADER */
 
 .header {
-    .site-name a{
-        display:none;
+    .site-name a {
+        display: none;
         @include MQ(M) {
-            display:inline-block;
-            float:left;
-            margin-left:$logo-size * 1.5;
-            color:$header-anchor;
+            display: inline-block;
+            float: left;
+            margin-left: $logo-size * 1.5;
+            color: $header-anchor;
         }
     }
     z-index: $header-z;
@@ -81,24 +82,21 @@ body {
                     display: inline-block;
                     // margin-bottom:32px;
                     padding: 0;
-                    &:last-child{
-                    	padding-right:$logo-size;
+                    &:last-child {
+                        padding-right: $logo-size;
                     }
-                    a {	
-                    		cursor:pointer;
+                    a {
+                        cursor: pointer;
                         vertical-align: middle;
-                        color:$header-anchor;
+                        color: $header-anchor;
                         font-size: $base-font-size;
-                        text-transform:uppercase;
+                        text-transform: uppercase;
                         margin: 0;
                         margin-right: 10px;
                         &:hover:before {
                             padding-bottom: 0;
                             margin-bottom: 0;
                         }
-                    }
-                    form {
-                        display: none;
                     }
                 }
             }
@@ -141,7 +139,7 @@ body {
 }
 
 .home-logo {
-		z-index: $logo-z;
+    z-index: $logo-z;
     position: fixed;
     top: $logo-size/4;
     left: $logo-size/4;
@@ -194,9 +192,9 @@ body {
 
 .main-article {
     width: 90%;
-    padding-right:5%;
-    padding-left:5%;
-    background-color:white;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: white;
     margin: {
         right: auto;
         left: auto;
@@ -205,7 +203,7 @@ body {
 }
 
 .footer {
-    z-index:$footer-z;
+    z-index: $footer-z;
     display: block;
     clear: both;
     position: absolute;

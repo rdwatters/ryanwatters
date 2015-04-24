@@ -10,7 +10,7 @@ function init() {
     var mobileButton = document.getElementById('toggle-mobile-navigation');
     var searchButton = document.getElementById('search-icon');
     mobileButton.onclick = toggleMobileMenu;
-    searchButton.onclick = toggleOverlay;
+    searchButton.onclick = toggleSearch;
     //do not initialize the header transition on M & smaller screens
     if (window.outerWidth > 768) {
         window.onscroll = function() {
@@ -42,27 +42,34 @@ function toggleMobileMenu() {
     var mainMenu = document.getElementsByTagName('header')[0],
         mainContent = document.querySelector('.main'),
         theButton = document.getElementById('toggle-mobile-navigation'),
+        searchForm = document.querySelector('div.search-wrap'),
         theFooter = document.getElementsByTagName('footer')[0];
-    if (mainMenu.classList.contains('menu-open')) {
+    if (classie.has(mainMenu,'menu-open')) {
         console.log('Hello!');
-        mainMenu.classList.remove('menu-open');
-        mainContent.classList.remove('menu-open');
-        theFooter.classList.remove('menu-open');
-        theButton.classList.remove('menu-open');
+        classie.remove(mainMenu,'menu-open');
+        classie.remove(mainContent,'menu-open');
+        classie.remove(theFooter,'menu-open');
+        classie.remove(theButton, 'menu-open');
+        classie.remove(searchForm, 'menu-open');
         theButton.setAttribute('aria-expanded', 'false');
     } else {
-        mainMenu.classList.add('menu-open');
-        mainContent.classList.add('menu-open');
-        theFooter.classList.add('menu-open');
-        theButton.classList.add('menu-open');
+        classie.add(mainMenu,'menu-open');
+        classie.add(mainContent,'menu-open');
+        classie.add(theFooter,'menu-open');
+        classie.add(theButton,'menu-open');
+        classie.add(searchForm, 'menu-open');
         theButton.setAttribute('aria-expanded', 'true');
     }
 }
 //Toggle the full-screen search overlay
-function toggleOverlay() {
-    console.log("Hello!");
-    var overlay = document.querySelector('.search-form');
-    classie.toggle(overlay, 'open');
+function toggleSearch() {
+    console.log("Hello! " + Math.random());
+    var searchWrap = document.querySelector('.search-wrap'),
+    searchInput = document.getElementById('st-search-input');
+    classie.toggle(searchWrap, 'search-open');
+    if(!searchInput.activeElement){
+        searchInput.focus();
+    }
 }
 
 //PLAYING WITH BROWSER SNIFFING

@@ -1,7 +1,8 @@
 //MEDIA QUERY BREAKPOINTS
    
 $S:     480px;   
-$M:     768px;     
+$M:     768px;
+$MMAX:  $M;     
 $L:     800px;
 $XL:    1180px;
 
@@ -23,19 +24,25 @@ $logo-color:#3F7CAC;
 $header-background-color:#343A40;
 $header-anchor:white;
 $accent:#7C6C77;
-$button-color:$logo-color;
-$read-button-background-color:$button-color;
+$accent-button-color:$accent;
+$accent-button-color-hover:darken($accent-button-color,20%);
+$primary-button-color:$logo-color;
+$primary-button-color-hover:darken($primary-button-color,20%);
+
 
 //MAIN COMPONENT SIZES
 $logo-size:30px;
 $header-mplus-height:$logo-size * 1.5;
+$search-desktop-height:100vh;
+$search-desktop-width:50vw;
+$search-desktop-centering:(100 - $search-desktop-width) / 2;
 $footer-height:$header-mplus-height;
 $footer-background-color:$header-background-color;
 $footer-font-color:white;
 
 //Z-INDEX
 $body-z:0;
-$header-z:2;
+$header-z:4;
 $main:1;
 $main-article:1;
 $footer-z:2;
@@ -44,9 +51,13 @@ $main-z:3;
 $mobile-menu-icon-z:10;
 $highest:11;
 $button-and-badge:$highest * 1.5;
+$search-form-z:11;
+$search-input-z:99;
 
 //MOBILE MENU
 $mobile-menu-width:100%;
+$search-results-font-size-mobile:12px;
+$mobile-navigation-height:200px;
 
 /*BUTTONS*/
 $button-overlap:-.5em;
@@ -63,7 +74,8 @@ $home-article-titles:$sans-serif;
 $home-article-subtitles:$body-font-family;
 $home-title-block-opacity:0.9;
 $homepage-image-offset:$header-mplus-height / 2;
-$article-date-background-color:$accent;
+$article-date-background-color:$accent-button-color;
+$read-button-background-color:$primary-button-color;
 
 
 //SITE NAME:

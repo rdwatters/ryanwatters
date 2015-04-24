@@ -46,6 +46,7 @@
             }
         }
         .read-link {
+            @include transition(.4s);
             display: block;
             position: absolute;
             font-size: $base-font-size * 1.2;
@@ -59,6 +60,9 @@
             padding: .5em;
             background-color: $read-button-background-color;
             z-index: $button-and-badge;
+            &:hover{
+                background-color:$primary-button-color-hover;
+            }
             @include MQ(M) {
                 position: absolute;
                 margin: 0;
@@ -133,6 +137,7 @@
                 }
             }
             .read-link {
+                @include transition(.4s);
                 display: block;
                 font-size: $base-font-size;
                 color: $header-anchor;
@@ -141,6 +146,9 @@
                 width: 5em;
                 padding: .5em;
                 background-color: $read-button-background-color;
+                &:hover{
+                    background-color: $primary-button-color-hover;
+                }
             }
         }
         .article-date {
