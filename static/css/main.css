@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700);
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700);
 html {
   font-family: sans-serif;
   /* 1 */
@@ -453,7 +455,15 @@ picture {
   max-width: 100%;
 }
 
+.header .primary-navigation ul li a:hover {
+  border-bottom: 0px solid #333;
+}
+
 /*BUTTONS*/
+.header .primary-navigation ul li a:hover {
+  border-bottom: 5px solid #DC4C20;
+}
+
 html {
   box-sizing: border-box;
   height: 100%;
@@ -475,7 +485,7 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: #5C4727;
 }
 
 input[type="search"] {
@@ -495,7 +505,7 @@ input[type="search"]:active {
   #search-icon svg {
     display: block;
     position: absolute;
-    fill: white;
+    fill: #5C4727;
     margin: 0;
     padding: 0;
     top: 7.5px;
@@ -503,7 +513,7 @@ input[type="search"]:active {
     height: 30px;
   }
   #search-icon svg .magnifying-glass {
-    fill: white;
+    fill: #5C4727;
   }
 }
 
@@ -527,15 +537,20 @@ input[type="search"]:active {
   position: fixed;
   top: 45px;
   left: 0;
-  background-color: white;
+  background-color: #FCFBF1;
   width: 100%;
   height: 100%;
 }
 .search-wrap.search-open {
-  opacity: .9;
+  opacity: 0.9;
   z-index: 99;
 }
 .search-wrap #st-search-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -553,7 +568,8 @@ input[type="search"]:active {
   margin-top: 80px;
   outline: none;
   border: none;
-  border-bottom: 2px solid #3F7CAC;
+  background-color: #FCFBF1;
+  border-bottom: 2px solid #DC4C20;
 }
 .search-wrap #st-search-input::-webkit-input-placeholder {
   color: #242526;
@@ -586,11 +602,13 @@ input[type="search"]:active {
   z-index: 99;
 }
 
+#search-results {
+  overflow-y: scroll;
+}
 @media only screen and (max-width: 768px) {
   #search-results {
-    position: absolute !important;
+    position: absolute;
     top: 245px;
-    overflow-y: scroll;
   }
 }
 
@@ -614,7 +632,7 @@ input[type="search"]:active {
   width: 40px;
   height: 6px;
   margin-top: 12px;
-  background: #343A40;
+  background: #FCFBF1;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -625,7 +643,7 @@ input[type="search"]:active {
   z-index: -1;
   width: 40px;
   height: 6px;
-  background: #343A40;
+  background: #FCFBF1;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
 }
@@ -641,19 +659,19 @@ input[type="search"]:active {
 }
 .menu-open .menu-icon-inner::before, .menu-open .menu-icon-inner::after {
   top: 12px;
-  background: white;
+  background: #5C4727;
 }
 .menu-open .menu-icon-inner::before {
   -webkit-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
-  background: white;
+  background: #5C4727;
 }
 .menu-open .menu-icon-inner::after {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-  background: white;
+  background: #5C4727;
 }
 
 @media only screen and (min-width: 768px) {
@@ -715,17 +733,20 @@ input[type="search"]:active {
   position: relative;
   color: #242526;
   width: 100%;
+  border-radius: 0px;
   background-color: white;
   padding: 2vw;
   opacity: 0.9;
 }
 .featured-article .article-details .article-title-block .title {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: "Arvo", Georgia, serif;
+  font-weight: 400;
   font-size: 2.2em;
   margin-bottom: 0;
+  color: #5C4727;
 }
 .featured-article .article-details .article-title-block .subtitle {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 16px;
   padding-top: 0;
@@ -739,35 +760,36 @@ input[type="search"]:active {
   position: absolute;
   font-size: 19.2px;
   line-height: 24px;
-  color: white;
+  color: #5C4727;
   margin-right: 30%;
   margin-left: 30%;
   margin-top: -0.5em;
   width: 40%;
   max-width: 200px;
   padding: .5em;
-  background-color: #3F7CAC;
+  background-color: #f9b964;
   z-index: 16.5;
 }
 .featured-article .article-details .read-link:hover {
-  background-color: #244661;
+  background-color: #DC4C20;
 }
 @media only screen and (min-width: 768px) {
   .featured-article .article-details .read-link {
     position: absolute;
     margin: 0;
-    right: -0.5em;
-    bottom: -0.5em;
+    right: 0;
+    bottom: -43px;
+    border-bottom-right-radius: 0px;
   }
 }
 .featured-article .article-date {
-  color: white;
+  color: #5C4727;
   display: block;
   position: absolute;
   right: 0;
   bottom: 0;
   padding: .5em;
-  background-color: #7C6C77;
+  background-color: #E9B424;
 }
 @media only screen and (min-width: 768px) {
   .featured-article {
@@ -856,12 +878,12 @@ input[type="search"]:active {
   }
 }
 .recent-articles .recent-article .recent-article-details .article-title-block .title {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: "Arvo", Georgia, serif;
   font-size: 1.2em;
   margin-bottom: 0;
 }
 .recent-articles .recent-article .recent-article-details .article-title-block .subtitle {
-  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 16px;
   padding-top: 0;
@@ -873,24 +895,24 @@ input[type="search"]:active {
   transition: 0.4s;
   display: block;
   font-size: 16px;
-  color: white;
+  color: #5C4727;
   margin-right: auto;
   margin-left: auto;
   width: 5em;
   padding: .5em;
-  background-color: #3F7CAC;
+  background-color: #f9b964;
 }
 .recent-articles .recent-article .recent-article-details .read-link:hover {
-  background-color: #244661;
+  background-color: #DC4C20;
 }
 .recent-articles .recent-article .article-date {
-  color: white;
+  color: #5C4727;
   display: block;
   position: absolute;
   right: 0;
   bottom: 0;
   padding: .5em;
-  background-color: #7C6C77;
+  background-color: #E9B424;
 }
 @media only screen and (min-width: 768px) {
   .recent-articles .recent-article {
@@ -898,8 +920,28 @@ input[type="search"]:active {
   }
 }
 
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 body {
-  background-color: #95AFBA;
+  min-height: 100%;
+  width: 100%;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: #5C4727;
+  background-color: #FCFBF1;
   position: relative;
 }
 
@@ -908,7 +950,7 @@ body {
   z-index: 4;
   overflow-y: scroll;
   overflow-x: hidden;
-  background-color: #343A40;
+  background-color: #FCFBF1;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;
   transition: 0.4s;
@@ -934,7 +976,10 @@ body {
     display: inline-block;
     float: left;
     margin-left: 45px;
-    color: white;
+    color: #5C4727;
+  }
+  .header .site-name a:after {
+    content: "Healthy Children Blog";
   }
 }
 .header.menu-open {
@@ -994,9 +1039,9 @@ body {
   .header .primary-navigation ul li a {
     cursor: pointer;
     vertical-align: middle;
-    color: white;
+    color: #5C4727;
     font-size: 16px;
-    text-transform: uppercase;
+    text-transform: none;
     margin: 0;
     margin-right: 10px;
   }
@@ -1020,23 +1065,23 @@ body {
   text-align: center;
   width: 80px;
   height: 50px;
-  background-color: white;
+  background-color: #5C4727;
 }
 .toggle-mobile-menu:before {
   content: 'Menu';
 }
 .toggle-mobile-menu:hover {
-  background-color: #343A40;
+  background-color: #FCFBF1;
   outline: none;
   color: black;
 }
 .toggle-mobile-menu:active {
-  background-color: transparent !important;
+  background-color: transparent;
   outline: none;
 }
 .toggle-mobile-menu.menu-open {
   outline: none;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 @media only screen and (min-width: 768px) {
   .toggle-mobile-menu {
@@ -1064,17 +1109,17 @@ body {
   width: 30px;
   height: 30px;
   line-height: 30px;
-  color: white;
+  color: #5C4727;
   text-align: center;
   font-weight: bold;
   display: block;
-  background-color: #3F7CAC;
-  border-radius: 50%;
+  background-image: url("/static/images/hc-logo-no-tag.svg");
+  background-color: transparent;
+  border-radius: 10px;
 }
 .home-logo a:hover {
   cursor: pointer;
-  color: #3F7CAC;
-  background-color: white;
+  color: #DC4C20;
 }
 
 .main {
@@ -1125,7 +1170,7 @@ body {
   margin-bottom: 0px;
   padding-top: 0;
   padding-bottom: 0;
-  background-color: #343A40;
+  background-color: #FCFBF1;
   color: white;
   -webkit-transition: 0.4s;
   -moz-transition: 0.4s;

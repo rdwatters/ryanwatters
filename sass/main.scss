@@ -2,16 +2,37 @@
 @import "bourbon/bourbon";
 @import 'base/base';
 @import 'variables';
-@import 'hc';
+@import 'theme';
 @import 'layout';
 //SEARCH IS SEPARATE FOR SWIFTYPE STYLING 
 @import 'search';
 @import 'menu-icon';
 @import 'home';
+html {
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
+    min-height: 100%;
+    width: 100%;
+    z-index: $body-z;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family:$body-font-family;
     background-color: $body-background-color;
     position:relative;
 }
+
 /* HEADER */
 
 .header {
@@ -22,6 +43,9 @@ body {
             float: left;
             margin-left: $logo-size * 1.5;
             color: $header-anchor;
+            &:after{
+                content:$site-name;
+            }
         }
     }
     z-index: $header-z;
@@ -52,6 +76,9 @@ body {
                 a {
                     text-decoration: none;
                     margin: 10px;
+                    &:hover {
+                    @extend %primary-navigation-link-hover;
+                    }
                 }
             }
         }
@@ -91,7 +118,7 @@ body {
                         vertical-align: middle;
                         color: $header-anchor;
                         font-size: $base-font-size;
-                        text-transform: uppercase;
+                        text-transform: $primary-navigation-text-transform;
                         margin: 0;
                         margin-right: 10px;
                         &:hover:before {
@@ -107,7 +134,7 @@ body {
 
 .toggle-mobile-menu {
     @include transition(.4s);
-    color: $header-background-color;
+    color: $mobile-toggle-button-color;
     display: block;
     clear: both;
     position: absolute;
@@ -127,12 +154,12 @@ body {
         color: black;
     }
     &:active {
-        background-color: transparent!important;
+        background-color: transparent;
         outline: none;
     }
     &.menu-open {
         outline: none;
-        background-color: transparent!important;
+        background-color: transparent;
     }
     @include MQ(M) {
         display: none;
@@ -160,12 +187,13 @@ body {
         text-align: center;
         font-weight: bold;
         display: block;
-        background-color: $logo-color;
-        border-radius: 50%;
+        background-image:url('#{$home-logo-background-image}');
+        background-color: $home-logo-background-color;
+        border-radius: $home-logo-border-radius;
         &:hover {
             cursor: pointer;
             color: $logo-color;
-            background-color: $header-anchor;
+            // background-color: $home-logo-hover-background;
         }
     }
 }
@@ -230,3 +258,5 @@ body {
         opacity: 0.5;
     }
 }
+
+@import 'print';

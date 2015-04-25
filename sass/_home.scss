@@ -29,13 +29,16 @@
             position: relative;
             color: $base-font-color;
             width: 100%;
+            border-radius:$article-title-block-border-radius;
             background-color: $home-article-title-background-color;
             padding: 2vw;
             opacity: $home-title-block-opacity;
             .title {
                 font-family: $home-article-titles;
+                font-weight:$header-font-weight;
                 font-size: 2.2em;
                 margin-bottom: 0;
+                color:$home-header-color;
             }
             .subtitle {
                 font-family: $home-article-subtitles;
@@ -66,8 +69,9 @@
             @include MQ(M) {
                 position: absolute;
                 margin: 0;
-                right: $button-overlap;
-                bottom: $button-overlap;
+                right: $read-button-fixed-right;
+                bottom: $read-button-fixed-bottom;
+                border-bottom-right-radius: $read-button-border-bottom-right-radius;
             }
         }
     }
