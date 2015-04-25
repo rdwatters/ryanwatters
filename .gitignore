@@ -21,5 +21,6 @@ handy.txt
 
 /.build
 /.firebase.conf
+sass/_hc.scss
 
 
