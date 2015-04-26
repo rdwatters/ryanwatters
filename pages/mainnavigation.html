@@ -29,28 +29,24 @@
         {{ cms.mainnavigation.last_updated|date('F d Y') }}
       </li>
       <li>
-        <strong>Grid: </strong>
+        <strong>Main Navigation: </strong>
         {# Loop of your Repeatable Form items. Remember, you can sort the order in your CMS if you need. #}
         <ul>
-        {% for row in cms.mainnavigation.grid %}
+        {% for row in cms.mainnavigation.main_navigation %}
             <li>
-              <strong>Navigation Heading: </strong>
-              {{ row.navigation_heading }}
+              <strong>Title: </strong>
+              {{ row.title }}
             </li>
             <li>
-              <strong>Instructions: </strong>
-              {{ row.instructions }}
+              <strong>URL: </strong>
+              {{ row.url }}
             </li>
             <li>
-              <strong>Navigation URL: </strong>
-              {{ row.navigation_url }}
-            </li>
-            <li>
-              <strong>Submenu Items: </strong>
+              <strong>Submenu Link: </strong>
               {# Output tablular data. Note that it's up to you to output the thead manually. This just output the data. #}
                 <table>
                   <tbody>
-                    {% for key, row in row.submenu_items %}
+                    {% for key, row in row.submenu_link %}
                       <tr>
                         {% for key, cell in row %}
                           <td>
@@ -61,10 +57,6 @@
                     {% endfor%}
                   </tbody>
                 </table>
-            </li>
-            <li>
-              <strong>Tab Index: </strong>
-              {{ row.tab_index }}
             </li>
         {% endfor %}
         </ul>

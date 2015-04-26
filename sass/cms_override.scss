@@ -6,14 +6,7 @@ body {
 	color:#01589B;
 }
 
-.wh-markdown-preview {
-
-
-
-
-}
-
-span.icon-vim, span.icon-vim-toggle {
+span.icon-vim, span.icon-vim-togdgle {
 	display:none;
 	&:before {
 		display:none;
@@ -25,4 +18,14 @@ span.icon-vim, span.icon-vim-toggle {
 
 #ember407 {
 	background-color:#01589B;
+}
+
+.something{
+	color:blue;
+}
+
+.wh-logo{
+	background-image:url('/static/images/site-logo.svg')!important;
+	background-size:cover!important;
+	background-color:white!important;
 }

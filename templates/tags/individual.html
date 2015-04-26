@@ -1,6 +1,6 @@
 {# ------------------------------------------------------- #}
-{# INDIVIDUAL VIEW FOR EACH topics #}
-{# This page can use any data from http:localhost:2000/cms/#/form/topics/ #}
+{# INDIVIDUAL VIEW FOR EACH tags #}
+{# This page can use any data from http:localhost:2000/cms/#/form/tags/ #}
 {# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
 {# http://paularmstrong.github.io/swig/docs/tags/ #}
 {# Learn about calling data into Webhook pages here: #}
@@ -9,10 +9,10 @@
 {# Confused what extends and blocks do? Watch a primer: #}
 {# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
-{# This sets our page <title>. It will append this topics's name to the site title defined in base.html #}
+{# This sets our page <title>. It will append this tags's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
-  <p><a href="{{ url('topics') }}">View a list of all topics</a></p>
+  <p><a href="{{ url('tags') }}">View a list of all tags</a></p>
   <h1>{{ item.name }}</h1>
   <ul>
       <li>
@@ -35,8 +35,16 @@
         {{ item.publish_date|date('F d Y') }}
       </li>
       <li>
-        <strong>Instructions for Topics: </strong>
-        {{ item.instructions_for_topics }}
+        <strong>Tagging: </strong>
+        {{ item.tagging }}
+      </li>
+      <li>
+        <strong>Articles (Tags): </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.articles_tags %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
       </li>
       <li>
         <strong>Preview URL: </strong>
@@ -45,18 +53,6 @@
       <li>
         <strong>Slug: </strong>
         {{ item.slug }}
-      </li>
-      <li>
-        <strong>Articles (Topic): </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.articles_topic %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>Topic Description: </strong>
-        {{ item.topic_description }}
       </li>
   </ul>
 {% endblock %}

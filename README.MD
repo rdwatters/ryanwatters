@@ -1,10 +1,8 @@
-#Ryan Watters Portfolio Site
+## Webhook preprocessor theme
 
-Site currently being developed in the [webhoook CMS](http://www.webhook.com).
+This theme builds a grunt file and installs the needed
+Node modules to preprocess Sass, Less and Coffescript
+files.
 
-##Details
-
-###Open Graph Protocol
-
-
-   
+Once installed, you'll need your restart your Webhook
+runserver for the watch command to properly fire.

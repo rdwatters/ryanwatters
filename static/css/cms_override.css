@@ -6,18 +6,28 @@ body {
   color: #01589B;
 }
 
-span.icon-vim, span.icon-vim-toggle {
+span.icon-vim, span.icon-vim-togdgle {
   display: none;
 }
-span.icon-vim:before, span.icon-vim-toggle:before {
+span.icon-vim:before, span.icon-vim-togdgle:before {
   display: none;
 }
-span.icon-vim:after, span.icon-vim-toggle:after {
+span.icon-vim:after, span.icon-vim-togdgle:after {
   display: none;
 }
 
 #ember407 {
   background-color: #01589B;
+}
+
+.something {
+  color: blue;
+}
+
+.wh-logo {
+  background-image: url("/static/images/site-logo.svg") !important;
+  background-size: cover !important;
+  background-color: white !important;
 }
 
 /*# sourceMappingURL=cms_override.css.map */
