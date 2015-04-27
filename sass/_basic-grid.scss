@@ -44,4 +44,5 @@ $MMAX: 640px;
 
 @mixin hardware-accelerate {
   -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
 }

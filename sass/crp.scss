@@ -207,6 +207,7 @@ a {
     background-repeat: none;
     z-index: 0;
     .article-image {
+        @include hardware-accelerate;
         z-index: -10;
         bottom: 0;
         width: 100%;
