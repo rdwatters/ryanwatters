@@ -1,10 +1,15 @@
 <header class="header" role="header" data-swiftype-index='false'>
-    <span class="site-name"><a href="/"></a></span>
     <nav class="primary-navigation" role="navigation" aria-label="main navigation">
         <ul class="navigation">
             {% for row in cms.mainnavigation.main_navigation %}
             <li><a tabindex="{{- row.index -}}" href="{{- row.url -}}">{{- row.title -}}</a></li>
             {% endfor %}
+            <li>
+                <form class="search-form">
+                    <input type="search" autocomplete="false" id="search-input" role="search" aria-label="search input" placeholder="Search this site...">
+                </form>
+                <div id="search-results"></div>
+            </li>
             <li class="header-icon">
                 <a href="#" id="search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="magnifying-glass" class="magnifying-glass" x="0px" y="0px" width="50px" height="50px" viewBox="5.0 -10.0 100.0 135.0" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -15,15 +20,10 @@
         </ul>
     </nav>
 </header>
-<div class="search-wrap">
-    <form class="search-form">
-        <input type="search" autocomplete="false" id="search-input" role="search" aria-label="search input" placeholder="Search this site...">
-    </form>
-    <div id="search-results"></div>
-</div>
-<span class="home-logo"><a aria-label="Home Link" href="/" title="Return to the home page">RW</a></span>
+<span class="home-icon"><a aria-label="Home Link" href="/" title="Return to the home page">RW</a></span>
+<section class="mobile-header">This is the Mobile Header</section>
 <section class="mobile-navigation">
     <a id="mobile-menu-toggle" title="Main navigation toggle for mobile screens" class="menu-icon" aria-label="navigation menu" aria-controls="navigation" aria-expanded="false" role="button" href="#">
-        <div class="menu-icon-inner"></div>
+    <div class="menu-icon-inner"></div>
     </a>
 </section>

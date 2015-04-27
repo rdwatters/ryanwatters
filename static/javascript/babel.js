@@ -1,3 +1,4 @@
+window.addEventListener('scroll', changeMenu, false);
 //global variables for scroll on M+ screens
 var header = document.querySelector('.header'),
     wScrollCurrent = 0,
@@ -42,7 +43,6 @@ function toggleMobileMenu() {
     var mainMenu = document.getElementsByTagName('header')[0],
         mainContent = document.querySelector('.main'),
         theButton = document.getElementById('mobile-menu-toggle'),
-        searchForm = document.querySelector('div.search-wrap'),
         theFooter = document.getElementsByTagName('footer')[0];
     if (classie.has(mainMenu,'menu-open')) {
         console.log('Hello!');

@@ -7,6 +7,9 @@ input[type="search"]{
     &:active{
         outline:none;
     }
+    @include MQ(M){
+        display:none;
+    }
 }
 //BEGIN SWIFTYPE
 #search-icon svg {

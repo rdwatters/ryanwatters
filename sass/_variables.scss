@@ -1,3 +1,11 @@
+//HEALTHYCHILDREN COLORS
+$healthy-children-green:#AEC736;
+$healthy-children-red:#DC4C20;
+$healthy-children-peach:#f9b964;
+$healthy-children-yellow:#E9B424;
+$healthy-children-brown:#5C4727;
+$healthy-children-tan:#FCFBF1;
+
 //GRID
 $columns:12;
 
@@ -12,11 +20,12 @@ $primary-brand:#01589B;
 $logo-color:$primary-brand;
 $base-font-color:#333333;
 $header-background-color:#333333;
+$mobile-header-background-color:$header-background-color;
 $header-link-color:white;
 $footer-background-color:$header-background-color;
-$body-background-color:white;
+$body-background-color:$healthy-children-tan;
+$main-content-background-color:$body-background-color;
 $footer-font-color:$base-font-color;
-$mobile-toggle-button-color:black;
 $search-overlay-color:$header-background-color;
 $search-overlay-transparency:0.9;
 $anchor-color:$primary-brand;
@@ -25,12 +34,19 @@ $anchor-color:$primary-brand;
 
 //SIZES
 $site-logo-size:36px;
+$mobile-logo-size:$site-logo-size;
+$mobile-header-height:$site-logo-size*1.5;
 $header-height-non-mobile:$site-logo-size*1.5;
 $footer-height:$header-height-non-mobile;
 
 //MOBILE
 
 $mobile-menu-width:100%;
+$mobile-icon-height: 30px;
+$mobile-icon-width: 40px;
+$mobile-icon-layer__height: 6px;
+$mobile-icon-color: white;
+$mobile-icon-color-inner: $header-link-color;
 
 
 //Z-INDEXES
@@ -39,7 +55,7 @@ $body-z:0;
 $header-z:1;
 $main-content-z:2;
 $footer-z:1;
-$logo-z:10;
+$home-icon-z:10;
 $mobile-menu-icon-z:99;
 
 //GLOBAL FOR HEADER

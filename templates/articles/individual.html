@@ -43,6 +43,10 @@
         {% endfor %}
       </li>
       <li>
+        <strong>Featured: </strong>
+        {{ item.featured }}
+      </li>
+      <li>
         <strong>Title: </strong>
         {{ item.title }}
       </li>
@@ -62,6 +66,10 @@
         <strong>Most Recent Update: </strong>
         {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
         {{ item.most_recent_update|date('F d Y') }}
+      </li>
+      <li>
+        <strong>Allow Comments?: </strong>
+        {{ item.allow_comments }}
       </li>
       <li>
         <strong>Preview URL: </strong>

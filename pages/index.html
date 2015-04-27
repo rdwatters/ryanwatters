@@ -5,14 +5,14 @@
 
 <article class="list-of-posts" itemscope itemtype="http://schema.org/Blog">
 {% for article in articles %}
-	<section class="home-article-section" style="border:1px solid blue;">
-	    <img src="{{article.image|imageCrop(500,300)}}" alt="{{ article.image_description }}" itemprop="image">
+	<section class="home-article-section">
+	    <img src="{{article.image|imageCrop(500,300)}}" alt="{{ article.image_description }}" itemprop="image" class="article-list-image">
 	    <section class="article-information" itemprop="blogPost">
 	        <span class="publish-date" itemprop="datePublished">{{ article.publish_date|date('F d Y') }}</span>
 	        <span class="article-topic"><a href="{{url(article.topic[0])}}">{{ article.topic[0].name }}</a></span>
 	        <h1 class="home-article-title"><a href="{{ url(article) }}">{{ article.title }}</a></h1>
 	        <h2 class="home-article-subtitle">{{ article.subtitle }}</h2>
-	        <div class="author-image-small"><img src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt=""></div>
+	        <div class="author-photo"><img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="{{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}"></div>
 	        <span class="article-author" itemprop="author"><a href="{{ url(article.author[0]) }}">{{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}</a></span>
 	        <div class="article-tags" itemprop="tags"><strong>Tags: </strong> {% for tag in article.tags %}
 	            <span class="article-tag"><a href="{{url(tag)}}">{{ tag.name }}</a></span> {% endfor %}
