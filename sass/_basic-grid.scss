@@ -1,0 +1,47 @@
+$S: 480px;
+$M: 640px;
+$L: 760px;
+$XL: 960px;
+$MMAX: 640px;
+
+
+
+@mixin MQ($canvas) {
+  @if $canvas == S {
+   @media only screen and (min-width: $S) { @content; } 
+  }
+  @else if $canvas == M {
+   @media only screen and (min-width: $M) { @content; } 
+  }
+  @else if $canvas == MMAX {
+    @media only screen and (max-width: $MMAX) { @content; }
+  }
+  @else if $canvas == L {
+   @media only screen and (min-width: $L) { @content; } 
+  }
+  @else if $canvas == XL {
+    @media only screen and (min-width: $XL) { @content; }
+  }
+  @else if $canvas == retinaPortrait {
+    @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-device-width:375px),(max-device-width:736),(orientation: landscape) { @content }
+  }
+}
+
+
+@mixin column($percentage, $float-direction:left) {
+  width: 100% * $percentage;
+  float: $float-direction;
+}
+
+@mixin column($percentage, $float-direction:left) {
+  width: 100% * $percentage;
+  float: $float-direction;
+}
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin hardware-accelerate {
+  -webkit-transform: translate3d(0,0,0);
+}

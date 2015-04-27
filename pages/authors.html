@@ -33,6 +33,14 @@
         {{ cms.authors.author.first }} {{ cms.authors.author.last }}
       </li>
       <li>
+        <strong>Short Bio: </strong>
+        {{ cms.authors.short_bio }}
+      </li>
+      <li>
+        <strong>Long Bio: </strong>
+        {{ cms.authors.long_bio|markdown }}
+      </li>
+      <li>
         <strong>Email: </strong>
         {{ cms.authors.email }}
       </li>
@@ -55,6 +63,22 @@
       <li>
         <strong>Github: </strong>
         {{ cms.authors.github }}
+      </li>
+      <li>
+        <strong>Preview URL: </strong>
+        {{ cms.authors.preview_url }}
+      </li>
+      <li>
+        <strong>Slug: </strong>
+        {{ cms.authors.slug }}
+      </li>
+      <li>
+        <strong>Articles (Author): </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in cms.authors.articles_author %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
       </li>
   </ul>
 {% endblock %}

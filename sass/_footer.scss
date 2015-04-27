@@ -1,0 +1,17 @@
+footer {
+    .footer-navigation {
+        @include display(flex);
+        @include flex-direction(row);
+        @include justify-content(flex-end);
+        position: absolute;
+        bottom: 0;
+        background-color: $header-background-color;
+        width: 100%;
+        li{
+        	margin-left:10px;
+        	&:last-child{
+        		margin-right:10px;
+        	}
+        }
+    }
+}

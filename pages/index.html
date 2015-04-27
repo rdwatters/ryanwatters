@@ -1,41 +1,54 @@
-{# ------------------------------------------------------- #}
+{% extends "templates/partials/base.html" %} {% block title %}{% parent %}Homepage{% endblock %} {% block content %} 
+{% set articles = cms.articles|sort('publish_date', true) %}
+{% set authors = cms.authors %} 
+{% set articles = articles|slice(0,5) %} 
 
-{# YOUR HOMEPAGE #}
+<article class="list-of-posts" itemscope itemtype="http://schema.org/Blog">
+{% for article in articles %}
+	<section class="home-article-section" style="border:1px solid blue;">
+	    <img src="{{article.image|imageCrop(500,300)}}" alt="{{ article.image_description }}" itemprop="image">
+	    <section class="article-information" itemprop="blogPost">
+	        <span class="publish-date" itemprop="datePublished">{{ article.publish_date|date('F d Y') }}</span>
+	        <span class="article-topic"><a href="{{url(article.topic[0])}}">{{ article.topic[0].name }}</a></span>
+	        <h1 class="home-article-title"><a href="{{ url(article) }}">{{ article.title }}</a></h1>
+	        <h2 class="home-article-subtitle">{{ article.subtitle }}</h2>
+	        <div class="author-image-small"><img src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt=""></div>
+	        <span class="article-author" itemprop="author"><a href="{{ url(article.author[0]) }}">{{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}</a></span>
+	        <div class="article-tags" itemprop="tags"><strong>Tags: </strong> {% for tag in article.tags %}
+	            <span class="article-tag"><a href="{{url(tag)}}">{{ tag.name }}</a></span> {% endfor %}
+	        </div>
+	    </section>
+	</section>
+{% endfor %}
+</article>
+<aside>
+	{% set authors = cms.authors %}	
+	<section class="about-the-author">
+	{% for author in authors %}
+	<span class="author-name"><strong>About </strong>{{ author.full_name.first }} {{ author.full_name.last }}</span>
+	<div class="author-image">
+	    <img src="{{ author.author_photo|imageSize(200, 200) }}" />
+	</div>
+	<div class="author-bio-short">{{ author.short_bio }}</div>
+	<ul class="author-social">
+	    {% if author.github%}
+	    <li class="github"><a href="{{ author.github }}" target="_blank">Github</a></li>
+	    {% endif %} {% if author.twitter %}
+	    <li class="twitter"><a href="https://www.twitter.com/@{{ author.twitter }}" target="_blank">Twitter</a></li>
+	    {% endif %} {% if author.website %}
+	    <li class="author-website"><a href="{{ author.website }}">Website</a></li>
+	    {% endif %} {% if author.email %}
+	    <li class="email"><a href="mailto:{{ author.email }}">Email</a></li>
+	    {% endif %} {% if author.linkedin %}
+	    <li class="linkedin"><a href="{{ author.linkedin }}" target="_blank">LinkedIn</a></li>
+	    {% endif %}
+	</ul>
+	{% endfor %}
+	</section>
+</aside> 
 
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
 
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
 
-{# ------------------------------------------------------- #}
 
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
-{% extends "templates/partials/base.html" %}
-
-{# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
-{% block title %}{% parent %} - Homepage{% endblock %}
-
-{% block content %}
-
-  <h1>Hello world!</h1>
-
-  <p>This is your homepage, located at /pages/index.html.</p>
-
-  <p><a href="/cms/">Looking for the CMS?</a></p>
-
-  {# If you have at least content page type, we show a list. #}
-  {% if cms_types|size !== 0 %}
-
-    <h3>Content types you've created in the CMS so far.</h3>
-
-    <ul>
-    {% for type in cms_types %}
-      <li><a href="{{ url(type) }}">{{ type.name }}</a></li>
-    {% endfor %}
-    </ul>
-
-  {% endif %}
 
 {% endblock %}
