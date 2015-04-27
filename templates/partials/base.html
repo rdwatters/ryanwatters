@@ -39,9 +39,10 @@
     <meta property="st:updated_at" content="{% if item.most_recent_update %}{{ item.most_recent_update }}{% else %}{{ item.last_updated }}{%endif%}" />
     <meta property="st:section" content="{{item.description|default(getSetting('site_description'))}}">
     <!-- build:css /static/css/minified.css -->
-    <link rel="stylesheet" href="/static/css/main.css"/>
+    
     <link rel="stylesheet" href="/static/css/wysiwyg_figures.css"/>    
     <!-- endbuild -->
+    <!-- <link rel="stylesheet" href="/static/css/main.css"/> -->
     
 
     
