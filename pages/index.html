@@ -3,12 +3,13 @@
     {% for article in articles %}
     <section class="home-article-section">
         {% if article.related_video %}
-        <div class="video-wrapper">
-            {{ article.related_video.video.html|safe }}
+        <div class="video-thumbnail-wrapper">            
+                <img src="{{ article.related_video.video.thumbnail_url|imageCrop(560,315) }}" alt="{{ article.related_video.video.title}}">
+                <div class="play-button" role="button" data-videourl="{{ article.related_video.video.original_url }}"></div>
         </div>
         {% else %}
         <div class="article-list-image">
-        <img src="{{article.image|imageCrop(500,300)}}" alt="{{ article.image_description }}" itemprop="image"></div>
+            <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image"></div>
         {% endif %}
         <section class="article-information" itemprop="blogPost">
             <span class="publish-date" itemprop="datePublished">{{ article.publish_date|date('F d Y') }}</span>
