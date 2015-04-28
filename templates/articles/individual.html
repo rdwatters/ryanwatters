@@ -47,6 +47,10 @@
         {{ item.featured }}
       </li>
       <li>
+        <strong>Allow Comments?: </strong>
+        {{ item.allow_comments }}
+      </li>
+      <li>
         <strong>Title: </strong>
         {{ item.title }}
       </li>
@@ -55,21 +59,35 @@
         {{ item.subtitle }}
       </li>
       <li>
+        <strong>Body: </strong>
+        {{ item.body|markdown }}
+      </li>
+      <li>
         <strong>Description: </strong>
         {{ item.description }}
       </li>
       <li>
-        <strong>Body: </strong>
-        {{ item.body|markdown }}
+        <strong>Image: </strong>
+        {# You can pull out a lot more information from the image property. Info here: #}
+        {# http://www.webhook.com/docs/widget-template-reference/#image #}
+        <img src="{{ item.image|imageSize(200, 200) }}" />
+      </li>
+      <li>
+        <strong>Image Description: </strong>
+        {{ item.image_description }}
+      </li>
+      <li>
+        <strong>Related Event: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.related_event %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
       </li>
       <li>
         <strong>Most Recent Update: </strong>
         {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
         {{ item.most_recent_update|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Allow Comments?: </strong>
-        {{ item.allow_comments }}
       </li>
       <li>
         <strong>Preview URL: </strong>
@@ -88,22 +106,20 @@
         {% endfor %}
       </li>
       <li>
+        <strong>Related Video: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {% for relation in item.related_video %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+      </li>
+      <li>
         <strong>Tags: </strong>
         {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
         {% for relation in item.tags %}
           {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
           <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
-      </li>
-      <li>
-        <strong>Image: </strong>
-        {# You can pull out a lot more information from the image property. Info here: #}
-        {# http://www.webhook.com/docs/widget-template-reference/#image #}
-        <img src="{{ item.image|imageSize(200, 200) }}" />
-      </li>
-      <li>
-        <strong>Image Description: </strong>
-        {{ item.image_description }}
       </li>
       <li>
         <strong>Image License : </strong>
@@ -117,5 +133,28 @@
         <strong>Image Attribution URL: </strong>
         {{ item.image_attribution_url }}
       </li>
+      <li><strong>THIS IS THE ITEM ID:</strong>{{ item._id }}</li>
   </ul>
+  <a href="https://www.pinterest.com/pin/create/button/
+        ?url={{url(item.image)}}" data-pin-do="buttonPin" data-pin-config="above">
+    <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+</a>
+
+  {# The following is taken from the Pinterest website's example for using Schema.org  data attributes in your makrup#}
+  <!-- <meta property="og:site_name" content="Example Site" />
+  <div itemscope itemtype="http://schema.org/Article">
+  <meta itemprop="url" content="http://www.example.com/2013/10/article.html" />
+  <span itemprop="name" content="Article Title" />
+  by <span itemprop="author" content="Johh Doe" />
+  <img itemprop="image" src="http://www.example.com/2013/article_image.png" alt="
+  Moon and Saturn"  />
+  <span itemprop="description">A description or summary of the article.</span>
+  <div itemprop="relatedItem" itemscope itemtype="http://schema.org/Article">
+  <a itemprop="url" href="http://www.example.com/2013/09/older_article.html">
+  </div>
+  <div itemprop="realatedItem" itemscope itemtype="http://schema.org/Article">
+  <a itemprop="url" href="http://www.example.com/2013/08/different_article.html">
+  </div> -->
+
+</div>
 {% endblock %}
