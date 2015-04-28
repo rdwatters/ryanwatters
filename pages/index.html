@@ -2,7 +2,14 @@
 <article class="list-of-posts" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
     <section class="home-article-section">
-        <img src="{{article.image|imageCrop(500,300)}}" alt="{{ article.image_description }}" itemprop="image" class="article-list-image">
+        {% if article.related_video %}
+        <div class="video-wrapper">
+            {{ article.related_video.video.html|safe }}
+        </div>
+        {% else %}
+        <div class="article-list-image">
+        <img src="{{article.image|imageCrop(500,300)}}" alt="{{ article.image_description }}" itemprop="image"></div>
+        {% endif %}
         <section class="article-information" itemprop="blogPost">
             <span class="publish-date" itemprop="datePublished">{{ article.publish_date|date('F d Y') }}</span>
             <span class="article-topic"><a href="{{url(article.topic[0])}}">{{ article.topic[0].name }}</a></span>
@@ -55,5 +62,4 @@
     }
 }(document, 'script', 'twitter-wjs');
 </script>
-
 {% endblock %}
