@@ -1,0 +1,43 @@
+{# ------------------------------------------------------- #}
+{# ONE OFF VIEW videolibrary #}
+{# This page can use any data from http:localhost:2000/cms/#/form/videolibrary/ #}
+{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
+{# http://paularmstrong.github.io/swig/docs/tags/ #}
+{# Learn about calling data into Webhook pages here: #}
+{# http://www.webhook.com/docs/template-rules-and-filters/ #}
+{# ------------------------------------------------------- #}
+{# Confused what extends and blocks do? Watch a primer: #}
+{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
+{% extends "templates/partials/base.html" %}
+{# This sets our page <title>. It will append this videolibrary's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ cms.videolibrary.name }}{% endblock %}
+{% block content %}
+  <h1>{{ cms.videolibrary.name }}</h1>
+        <strong>Video Library: </strong>
+      {% for row in cms.videolibrary.list %}
+        {% if loop.first %}
+        <section class="video-library-featured-video" itemscope itemtype="http://schema.org/VideoObject">
+          <img src="{{ row.video.video.thumbnail_url|imageCrop(560,315) }}" alt="{{ row.video.video.title}}" class="video-thumbnail"/>
+          <div class="play-button" role="button" data-videourl="{{ row.video.video.original_url }}"></div>
+          {% if row.alternative_title %}
+          <h3 class="video-library-featured-title">{{ row.alternative_title }}</h3>
+          {% else %}
+          <h3 class="video-library-featured-title">{{ row.video.video_title }}</h3>
+          {% endif %}
+        </section>
+        <!-- use itemprop="video" for the video added via javascript -->
+        {% else %}
+        <div class="video-library-video">
+          <img src="{{ row.video.video.thumbnail_url|imageCrop(560,315) }}" alt="{{ row.video.video.title}}"/>
+          <div class="play-button" role="button" data-videourl="{{ row.video.video.original_url }}"></div>
+          {% if row.alternative_title %}
+          <h3 class="video-library-title">{{ row.alternative_title }}</h3>
+          {% else %}
+          <h3 class="video-library-title">{{ row.video.video_title }}</h3>
+          {% endif %}
+        </div>
+        {% endif %}
+      {% endfor %}
+{% endblock %}
+
+

@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                     // We used the expanded style because Webhook already minifies CSS when it deploys your site.
                     // Uncomment the "sourcemap" line when pushing to production if including crp.html to improve pagespeed. Otherwise, the browser will throw an error for a missing crap.html.map file
                     // sourcemap: 'none',
-                    style: 'expanded'
+                    style: 'compact'
                     // Uncomment the below line to include outside directories as well.
                     // loadPath: ['location/of/other/sass']
                 },
@@ -28,13 +28,14 @@ module.exports = function(grunt) {
                     dest: 'static/css',
                     ext: '.css'
                 }
-                // ,{ Can be used to create a crp.html file for inlining above-fold style for mobile
-                //     expand: true,
-                //     cwd: 'sass',
-                //     src: ['crp.scss'],
-                //     dest: 'templates/partials',
-                //     ext: '.html'
-                // }
+                // You can uncomment the follow to include a separate crp.html partial that will be embedded in the page head for critical render path and improved pagespeed insights performance.
+                ,{ 
+                    expand: true,
+                    cwd: 'sass',
+                    src: ['crp.scss'],
+                    dest: 'templates/partials',
+                    ext: '.html'
+                }
                 ]
             }
         },

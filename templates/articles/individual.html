@@ -12,47 +12,65 @@
 {# This sets our page <title>. It will append this articles's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
-  <p><a href="{{ url('articles') }}">View a list of all articles</a></p>
-  <h1>{{ item.name }}</h1>
-  <ul>
-      <li>
-        <strong>Name: </strong>
-        {{ item.name }}
-      </li>
-      <li>
-        <strong>Create Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.create_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Last Updated: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.last_updated|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Publish Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.publish_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Author: </strong>
+<p><a href="{{ url('articles') }}">Back to the full list of articles</a></p>
+<aside class="single-article-share-bar" data-swiftype-index='false'>SHARE</aside>
+<article class="single-article-full-length" itemscope itemtype ="http://schema.org/Blog" data-swiftype-index='true'>  
+  {# ARTICLE VIDEO Check to see if there is a related video for the article - if yes, the video thumbnail will be written to the page rather than the iFrame; a relatd video also supercedes an article image for both the full-text article and the summary view on list pages.#}
+  {% if item.related_video %}
+        <section itemprop="video">
+          <img src="{{item.related_video.video.thumbnail_url|imageCrop(560,315) }}" alt="{{item.related_video.video.title}}">
+          <div class="play-button" role="button" data-videourl="{{ item.related_video.video.original_url }}">Play Video</div>
+          <a href="{{ url(item.related_video) }}">{{ item.related_video.name }}</a>
+        </section>
+  {% else %}
+  <strong>Image: </strong>
+        {# You can pull out a lot more information from the image property. Info here: #}
+        {# http://www.webhook.com/docs/widget-template-reference/#image #}
+        <img src="{{ item.image|imageSize(200, 200) }}" />
+
+        <strong>Image Description: </strong>
+        {{ item.image_description }} <br>
+        <strong>Image License : </strong>
+        {{ item.image_license_ }} <br>
+         <strong>Image Attribution: </strong>
+        {{ item.image_attribution }} <br>
+        <strong>Image Attribution URL: </strong>
+        <a href="{{ item.image_attribution_url }}">{{ item.image_attribution }}</a> <br>
+  {% endif %}
+  {# END ARTICLE IMAGE AND/OR VIDEO #}
+
+  <div class="single-article-topic"><strong>Topic: </strong>
         {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.author %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+        {% for relation in item.topic %}
+        {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+        <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+  </div>
+
+  <h1>{{ item.title }}</h1>
+
+  <h2>{{ item.subtitle }}</h2>
+
+  <div class="single-article-author" itemprop="author">{% for relation in item.author %}
+        {# You can output more than just the name. Feel free to output more fields from the CMS. #}
           <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
-      </li>
+  </div>
+    <section class="single-article-date-published">
+    {% if item.most_recent_update %}
+    <span class="month">{{- item.most_recent_update|date('F') -}}</span>
+    <span class="day">{{- item.most_recent_update|date('d') -}}</span>
+    <span class="year">{{- item.most_recent_update|date('Y') -}}</span>
+    {% else %}
+    <span class="month">{{- item.publish_date|date('F') -}}</span>
+    <span class="day">{{- item.publish_date|date('d') -}}</span>
+    <span class="year">{{- item.publish_date|date('Y') -}}</span> 
+    {% endif %}
+    </section>
+  <ul>
       <li>
         <strong>Featured: </strong>
         {{ item.featured }}
-      </li>
-      <li>
-        <strong>Allow Comments?: </strong>
-        {{ item.allow_comments }}
-      </li>
-      <li>
-        <strong>Title: </strong>
-        {{ item.title }}
       </li>
       <li>
         <strong>Subtitle: </strong>
@@ -67,16 +85,6 @@
         {{ item.description }}
       </li>
       <li>
-        <strong>Image: </strong>
-        {# You can pull out a lot more information from the image property. Info here: #}
-        {# http://www.webhook.com/docs/widget-template-reference/#image #}
-        <img src="{{ item.image|imageSize(200, 200) }}" />
-      </li>
-      <li>
-        <strong>Image Description: </strong>
-        {{ item.image_description }}
-      </li>
-      <li>
         <strong>Related Event: </strong>
         {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
         {% for relation in item.related_event %}
@@ -84,77 +92,28 @@
           <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
       </li>
-      <li>
-        <strong>Most Recent Update: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.most_recent_update|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Preview URL: </strong>
-        {{ item.preview_url }}
-      </li>
-      <li>
-        <strong>Slug: </strong>
-        {{ item.slug }}
-      </li>
-      <li>
-        <strong>Topic: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.topic %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>Related Video: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.related_video %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>Tags: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.tags %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>Image License : </strong>
-        {{ item.image_license_ }}
-      </li>
-      <li>
-        <strong>Image Attribution: </strong>
-        {{ item.image_attribution }}
-      </li>
-      <li>
-        <strong>Image Attribution URL: </strong>
-        {{ item.image_attribution_url }}
-      </li>
-      <li><strong>THIS IS THE ITEM ID:</strong>{{ item._id }}</li>
   </ul>
-  <a href="https://www.pinterest.com/pin/create/button/
-        ?url={{url(item.image)}}" data-pin-do="buttonPin" data-pin-config="above">
-    <img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-</a>
+</article>
+{# Pull the additional globals content type from the CMS and assign it to the globals variable #}
+{% set globals = cms.additionalglobals %}
+{# Check if both conditions are met. If "true", write the disqus embed code to the page #}
+{% if globals.add_disqus_comments && item.allow_comments %}
+{% set shortname = cms.additionalglobals.disqus_shortname %}
+<section class="article-comments">
+<div id="disqus_thread" data-swiftype-index='false'></div>
+  <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = '{{shortname}}';
+      
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+{% endif %}
 
-  {# The following is taken from the Pinterest website's example for using Schema.org  data attributes in your makrup#}
-  <!-- <meta property="og:site_name" content="Example Site" />
-  <div itemscope itemtype="http://schema.org/Article">
-  <meta itemprop="url" content="http://www.example.com/2013/10/article.html" />
-  <span itemprop="name" content="Article Title" />
-  by <span itemprop="author" content="Johh Doe" />
-  <img itemprop="image" src="http://www.example.com/2013/article_image.png" alt="
-  Moon and Saturn"  />
-  <span itemprop="description">A description or summary of the article.</span>
-  <div itemprop="relatedItem" itemscope itemtype="http://schema.org/Article">
-  <a itemprop="url" href="http://www.example.com/2013/09/older_article.html">
-  </div>
-  <div itemprop="realatedItem" itemscope itemtype="http://schema.org/Article">
-  <a itemprop="url" href="http://www.example.com/2013/08/different_article.html">
-  </div> -->
-
-</div>
 {% endblock %}

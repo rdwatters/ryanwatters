@@ -1,6 +1,6 @@
 @import 'normalize';
 @import 'bourbon/bourbon';
-@import 'neat/neat';
+@import 'base/base';
 @import 'basic-grid';
 @import 'variables';
 @import 'search';
@@ -57,8 +57,8 @@ a {
         @include transform(translateX(0px));
     }
     .primary-navigation {
-        @include MQ(MMAX){
-            padding-top:$mobile-header-height;
+        @include MQ(MMAX) {
+            padding-top: $mobile-header-height;
         }
         ul {
             width: 100%;
@@ -118,10 +118,10 @@ a {
 
 .mobile-header {
     width: 100vw;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
     height: $mobile-header-height;
-    color:$header-link-color;
+    color: $header-link-color;
     padding-top: 0;
     padding-bottom: 0;
     margin-top: 0;
@@ -139,12 +139,16 @@ a {
     left: $site-logo-size/4;
     height: $site-logo-size;
     width: $site-logo-size;
-    display: block;
+    display: inline-block;
     padding: auto;
     vertical-align: middle;
     font-size: $site-logo-size/3;
     background-color: black;
     border-radius: 50%;
+    &:after {
+        display: inline-block;
+        content: $site-name;
+    }
     &:hover {
         cursor: pointer;
     }
@@ -164,7 +168,7 @@ a {
         &:hover {
             cursor: pointer;
             color: $logo-color;
-            // background-color: $home-logo-hover-background;
+            background-color: $home-logo-hover-background-color;
         }
     }
 }
@@ -223,4 +227,71 @@ a {
             font-size: $base-font-size*2;
         }
     }
+}
+
+
+.list-article-video {
+    width:100%;
+    max-width:500px;
+}
+
+.youtube-container {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+.youtube-player {
+    display: block;
+    width: 100%;
+    /* assuming that the video has a 16:9 ratio */    
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: hand;
+    cursor: pointer;
+    display: block;
+}
+
+img.youtube-thumb {
+    @include hardware-accelerate;
+    bottom: 0;
+    display: block;
+    left: 0;
+    margin: auto;
+    max-width: 100%;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: auto;
+}
+
+//PLAY BUTTON FOR VIDEO LIBRARY AND FOR VIDEOS INCLUDED IN INDIVIDUAL POSTS
+.play-button {
+    display: block;
+    height: $video-player-play-button-size;
+    width: $video-player-play-button-size;
+    left: (100% - $video-player-play-button-size) / 2;
+    top: (100% - $video-player-play-button-size) / 2;
+    position: absolute;
+}
+
+#play-button-svg {
+    @include transition(.4s);
+    fill:$video-player-play-button-color;
+    &:hover{
+        fill:$video-player-play-button-color-hover;
+    }
+}
+
+#youtube-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
