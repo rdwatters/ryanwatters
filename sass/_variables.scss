@@ -11,8 +11,8 @@ $columns:12;
 
 //TYPOGRAPHY
 $base-font-size:16px;
-$header-font-family:'Adelle','Caslon Pro',Georgia,serif;
-$body-font-family:Arial,Helvetica,sans-serif;
+$header-font-family:'Museo Slab',Georgia,serif;
+$body-font-family:'Proxima Nova',Arial,Helvetica,sans-serif;
 $mobile-header-width:200px;
 
 //COLORS
@@ -21,10 +21,11 @@ $primary-brand:#01589B;
 $logo-color:$primary-brand;
 $base-font-color:#333333;
 $header-background-color:#333333;
+$accent-color:desaturate(#DD2922,10%);
 $mobile-header-background-color:$header-background-color;
 $header-link-color:white;
 $footer-background-color:$header-background-color;
-$body-background-color:$healthy-children-tan;
+$body-background-color:white;
 $main-content-background-color:$body-background-color;
 $footer-font-color:$base-font-color;
 $search-overlay-color:$header-background-color;
@@ -67,8 +68,10 @@ $home-logo-border-radius:50%;
 
 
 //VIDEO OPTIONS
-$video-player-play-button:"/static/images/play-button.png";
-//Only use percentages for 
-$video-player-play-button-size:20%;
-$video-player-play-button-color:black;
+//Only use percentages for the size of the play button
+$video-player-play-button-size:30%;
+$video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
+//You can turn off the hover animation for the play button here by setting the value to false
+$video-player-play-button-hover-animation: true;
+

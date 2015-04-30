@@ -36,6 +36,16 @@ a {
         color: darken($anchor-color, 20%);
     }
 }
+h1,h2,h3,h4,h5,h6{
+    font-family:$header-font-family;
+}
+h1 {
+    font-size:1.4em;
+}
+
+img {
+    @include filter(grayscale(100%));
+}
 /* HEADER */
 
 .header {
@@ -139,14 +149,14 @@ a {
     left: $site-logo-size/4;
     height: $site-logo-size;
     width: $site-logo-size;
-    display: inline-block;
+    display: block;
     padding: auto;
     vertical-align: middle;
     font-size: $site-logo-size/3;
     background-color: black;
     border-radius: 50%;
     &:after {
-        display: inline-block;
+        display: block;
         content: $site-name;
     }
     &:hover {
@@ -276,7 +286,7 @@ img.youtube-thumb {
     height: $video-player-play-button-size;
     width: $video-player-play-button-size;
     left: (100% - $video-player-play-button-size) / 2;
-    top: (100% - $video-player-play-button-size) / 2;
+    top: (100% - $video-player-play-button-size) / (2 * 16/9);
     position: absolute;
 }
 
@@ -294,4 +304,15 @@ img.youtube-thumb {
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.success {
+    color: green;
+    font-size: 1.2em;
+}
+
+.error {
+    font-weight: bold;
+    color: red;
+    font-size: 1.2em;
 }

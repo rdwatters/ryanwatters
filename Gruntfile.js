@@ -8,8 +8,8 @@ module.exports = function(grunt) {
                 options: {
                     // We used the expanded style because Webhook already minifies CSS when it deploys your site.
                     // Uncomment the "sourcemap" line when pushing to production if including crp.html to improve pagespeed. Otherwise, the browser will throw an error for a missing crap.html.map file
-                    // sourcemap: 'none',
-                    style: 'compact'
+                    sourcemap: 'none',
+                    style: 'compressed'
                     // Uncomment the below line to include outside directories as well.
                     // loadPath: ['location/of/other/sass']
                 },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    "static/javascript/main.js": "static/javascript/babel.js"
+                    "static/javascript/esnext.js": "static/javascript/babel.js"
                 }
             }
         },
