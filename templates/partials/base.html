@@ -62,9 +62,7 @@
       {% block footer %}
         {% include "templates/partials/footer.html" %}
       {% endblock %}
-          
           <!-- build:css /static/css/minified.css -->
-          
           <link rel="stylesheet" href="/static/css/wysiwyg_figures.css"/>    
           <!-- endbuild -->
           <!-- <link rel="stylesheet" href="/static/css/main.css"/> -->
@@ -85,13 +83,14 @@
         s.parentNode.insertBefore(g,s)}(document,'script'));
       </script>
     {% endblock %}
-    <script type="text/javascript" async>
-    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-    })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+    <!-- <script src="/static/javascript/swiftypeinstall.min.js" async></script>  --> 
+      <script type="text/javascript" async>
+      (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+      })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
 
-    _st('install','iwMDg2nDWUgtQXzLwkSd');
+      _st('install','iwMDg2nDWUgtQXzLwkSd');
     </script>
   </body>
 </html>

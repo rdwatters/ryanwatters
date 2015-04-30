@@ -11,8 +11,8 @@ $columns:12;
 
 //TYPOGRAPHY
 $base-font-size:16px;
-$header-font-family:'Museo Slab',Georgia,serif;
-$body-font-family:'Proxima Nova',Arial,Helvetica,sans-serif;
+$header-font-family:Georgia,serif;
+$body-font-family:'Arvo',Arial,Helvetica,sans-serif;
 $mobile-header-width:200px;
 
 //COLORS
@@ -34,6 +34,8 @@ $anchor-color:$primary-brand;
 
 //SIZES
 $site-logo-size:36px;
+$header-link-font-size:$site-logo-size/2;
+$search-icon-size:$header-link-font-size * 1.5;
 $mobile-logo-size:$site-logo-size;
 $mobile-header-height:$site-logo-size*1.5;
 $header-height-non-mobile:$site-logo-size*1.5;

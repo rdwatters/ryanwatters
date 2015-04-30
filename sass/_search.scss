@@ -15,14 +15,17 @@ input[type="search"]{
 #search-icon svg {
     display: none;
     @include MQ(M) {
-        display: block;
-        position: absolute;
+        display: inline-block;
+        // position: absolute;
+        vertical-align:middle;
         fill: $header-link-color;
         margin: 0;
         padding: 0;
-        top: $site-logo-size/4;
-        right: $site-logo-size/4;
-        height: $site-logo-size;
+        // top: $site-logo-size/4;
+        // right: $site-logo-size/4;
+        line-height: $site-logo-size;
+        height: $search-icon-size;
+        width: $search-icon-size;
         .magnifying-glass {
             fill: $header-link-color;
         }
