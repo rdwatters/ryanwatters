@@ -1,0 +1,34 @@
+@import 'bourbon/bourbon';
+@import 'basic-grid';
+@import 'variables';
+// @import 'theme';
+@import 'home';
+@import 'search';
+// @import 'article';
+@import 'footer';
+// @import 'social'; 
+
+// MOBILE MENU CLICKED STATE - FOR BASE STYLES, SEE MENU-ICON.SCSS
+.menu-open {
+  .menu-icon-inner {
+    background: none;
+    &::before, &::after {
+      top: $mobile-icon-layer-height * 2;
+      background:$mobile-icon-color-inner; 
+    }
+    &::before {
+      -webkit-transform: rotate(-45deg); 
+      -ms-transform: rotate(-45deg); 
+      transform: rotate(-45deg);
+      background:$mobile-icon-color-inner;
+    }
+    &::after {
+      -webkit-transform: rotate(45deg); 
+      -ms-transform: rotate(45deg); 
+      transform: rotate(45deg);
+      background:$mobile-icon-color-inner;
+    }
+  } 
+}
+
+

@@ -5,12 +5,11 @@
 {% set articles = cms.articles|sort('publish_date', true) %}
 {% set authors = cms.authors %} 
 {% set articles = articles|slice(0,5) %}
-{% set videolibrary = cms.videolibrary %}
 {% set tweets = cms.tweet|sort('publish_date', true)|first %}
 
-<!--     <strong>{{ tweets.name }}</strong><br>
-    <strong>{{ tweets.tweet_url}}</strong><br>
-    <strong>{{ tweets.tweet_body }}</strong> -->
+    <strong>{{ tweets.name }}</strong><br>
+    <strong><a href="{{ tweets.tweet_url}}" target="_blank">Here is the tweet</a></strong><br>
+    <strong>{{ tweets.tweet_body }}</strong>
 
 
 <a href="{{ url(videolibrary )}}">Video Library</a>

@@ -10,32 +10,32 @@ module.exports = function(grunt) {
                     // Uncomment the "sourcemap" line when pushing to production if including crp.html to improve pagespeed. Otherwise, the browser will throw an error for a missing crap.html.map file
                     sourcemap: 'none',
                     style: 'compressed'
-                    // Uncomment the below line to include outside directories as well.
-                    // loadPath: ['location/of/other/sass']
+                        // Uncomment the below line to include outside directories as well.
+                        // loadPath: ['location/of/other/sass']
                 },
                 files: [{
-                    // Files in the /sass/ directory will go to /static/css/ when processed.
-                    expand: true,
-                    cwd: 'sass',
-                    src: ['main.scss'],
-                    dest: 'static/css',
-                    ext: '.css'
-                }, { // Files to override the Markdown Preview in the CMS
-                    //Goes to an override file of the same name
-                    expand: true,
-                    cwd: 'sass',
-                    src: ['cms_override.scss'],
-                    dest: 'static/css',
-                    ext: '.css'
-                }
-                // You can uncomment the follow to include a separate crp.html partial that will be embedded in the page head for critical render path and improved pagespeed insights performance.
-                ,{ 
-                    expand: true,
-                    cwd: 'sass',
-                    src: ['crp.scss'],
-                    dest: 'templates/partials',
-                    ext: '.html'
-                }
+                        // Files in the /sass/ directory will go to /static/css/ when processed.
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['below-the-fold.scss'],
+                        dest: 'static/css',
+                        ext: '.css'
+                    }, { // Files to override the Markdown Preview in the CMS
+                        //Goes to an override file of the same name
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['cms_override.scss'],
+                        dest: 'static/css',
+                        ext: '.css'
+                    }
+                    // You can uncomment the follow to include a separate crp.html partial that will be embedded in the page head for critical render path and improved pagespeed insights performance.
+                    , {
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['crp.scss'],
+                        dest: 'templates/partials',
+                        ext: '.html'
+                    }
                 ]
             }
         },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    "static/javascript/esnext.js": "static/javascript/babel.js"
+                    "static/javascript/main.js": "static/javascript/babel.js"
                 }
             }
         },

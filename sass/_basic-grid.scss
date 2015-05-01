@@ -1,9 +1,3 @@
-$S: 480px;
-$M: 640px;
-$L: 760px;
-$XL: 960px;
-$MMAX: 640px;
-
 @mixin MQ($canvas) {
   @if $canvas == S {
    @media only screen and (min-width: $S) { @content; } 
@@ -24,22 +18,11 @@ $MMAX: 640px;
     @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-device-width:375px),(max-device-width:736),(orientation: landscape) { @content }
   }
 }
-
-
+//very basic columns
 @mixin column($percentage, $float-direction:left) {
   width: 100% * $percentage;
   float: $float-direction;
 }
-
-@mixin column($percentage, $float-direction:left) {
-  width: 100% * $percentage;
-  float: $float-direction;
-}
-@mixin font-smoothing {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 @mixin hardware-accelerate {
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);

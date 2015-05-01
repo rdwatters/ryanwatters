@@ -53,19 +53,17 @@
       {% block header %}
       {% include "templates/partials/header.html" %}
       {% endblock %}
-
       {# By default, your inner pages will load into this block. #}
       <main class="main" role="main">
       {% block content %}{% endblock %}
       </main>
-
       {% block footer %}
         {% include "templates/partials/footer.html" %}
       {% endblock %}
           <!-- build:css /static/css/minified.css -->
-          <link rel="stylesheet" href="/static/css/wysiwyg_figures.css"/>    
-          <!-- endbuild -->
-          <!-- <link rel="stylesheet" href="/static/css/main.css"/> -->
+          <link rel="stylesheet" href="/static/css/wysiwyg_figures.css"/>
+          <link rel="stylesheet" href="/static/css/below-the-fold.css"/>
+          <!-- endbuild -->          
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" async></script>
       {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #}
       {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
@@ -89,7 +87,6 @@
       (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
       e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
       })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
-
       _st('install','iwMDg2nDWUgtQXzLwkSd');
     </script>
   </body>

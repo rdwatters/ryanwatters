@@ -1,11 +1,10 @@
+@import 'variables';
 body {
-	background-color:#01589B!important;
+	background-color:$cms-background-color;
 }
-
 #ember980 > div > h2 {
 	color:#01589B;
 }
-
 span.icon-vim, span.icon-vim-togdgle {
 	display:none;
 	&:before {
@@ -15,17 +14,14 @@ span.icon-vim, span.icon-vim-togdgle {
 		display:none;
 	}
 }
-
 #ember407 {
 	background-color:#01589B;
 }
-
 .something{
 	color:blue;
 }
-
 .wh-logo{
-	background-image:url('/static/images/site-logo.svg')!important;
+	background-image:url('/static/images/touch-icon.png')!important;
 	background-size:cover!important;
 	background-color:white!important;
 }

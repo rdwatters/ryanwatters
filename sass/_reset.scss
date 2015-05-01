@@ -1,5 +1,4 @@
 html {
-    -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -8,11 +7,17 @@ html {
     margin: 0;
     padding: 0;
 }
-
 body {
+    font-size: $base-font-size;
+    min-height: 100%;
+    width: 100%;
+    z-index: 0;
     margin: 0;
     padding: 0;
-    font-size: 16px;
+    overflow-x: hidden;
+    font-family: $body-font-family;
+    background-color: $body-background-color;
+    position: relative;
 }
 
 *,
@@ -21,39 +26,39 @@ body {
     box-sizing: inherit;
 }
 
-h1,
-h2,
-h3,
-h4,
-p,
-blockquote,
-figure,
-ol,
-ul {
+h1,h2,h3,h4,p,blockquote,figure,ol,ul {
     margin: 0;
     padding: 0;
     list-style: none outside none;
 }
-
 li {
     display: block;
 }
+h1,h2,h3,h4 {
+    font-family: $heading-font-family;
+}
+h1 {
+    font-size: $heading-one-font-size;
+}
+h2 {
+    font-size: $heading-two-font-size;
+}
+h3{
+    font-size: $heading-three-font-size;
+}
 
-h1,
-h2,
-h3,
-h4 {
-    font-size: inherit;
+h4{
+    font-size: $heading-four-font-size;
 }
 
 a {
+    color:$anchor-color;
     text-decoration: none;
     color: inherit;
     -webkit-transition: .3s;
     -moz-transition: .3s;
     transition: .3s;
 }
-
 img {
     max-width: 100%;
     height: auto;

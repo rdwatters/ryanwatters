@@ -3,6 +3,9 @@
   top:10px;
   right:50px;
   z-index:$mobile-menu-icon-z;
+  @include MQ(M){
+    display:none;
+  }
 }
 // Structure
 .menu-icon {
@@ -12,12 +15,11 @@
   height: $mobile-icon-width;
   z-index: 2;
 }
-
 .menu-icon-inner { 
   display: block;
   width: $mobile-icon-width;
-  height: $mobile-icon-layer__height; 
-  margin-top: $mobile-icon-layer__height * 2;
+  height: $mobile-icon-layer-height; 
+  margin-top: $mobile-icon-layer-height * 2;
   background: $mobile-icon-color;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
@@ -28,7 +30,7 @@
     content: "";
     z-index: -1;
     width: $mobile-icon-width; 
-    height: $mobile-icon-layer__height; 
+    height: $mobile-icon-layer-height; 
     background: $mobile-icon-color;
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out; 
@@ -37,36 +39,7 @@
     top: 0;
   }
   &::after {
-    top: $mobile-icon-layer__height * 4;
+    top: $mobile-icon-layer-height * 4;
   }
 }
-
-// Clicked State
-.menu-open {
-  .menu-icon-inner {
-    background: none;
-
-    &::before, &::after {
-      top: $mobile-icon-layer__height * 2;
-      background:$mobile-icon-color-inner; 
-    }
-    &::before {
-      -webkit-transform: rotate(-45deg); 
-      -ms-transform: rotate(-45deg); 
-      transform: rotate(-45deg);
-      background:$mobile-icon-color-inner;
-    }
-    &::after {
-      -webkit-transform: rotate(45deg); 
-      -ms-transform: rotate(45deg); 
-      transform: rotate(45deg);
-      background:$mobile-icon-color-inner;
-    }
-  } 
-}
-
-@include MQ(M){
-  .mobile-navigation{
-    display:none;
-  }
-}
+//!!!CLICKED STATE FOR MENU ICON IS INCLUDED IN THE BELOW-THE-FOLD CONTENT!!!

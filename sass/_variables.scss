@@ -1,22 +1,47 @@
-//HEALTHYCHILDREN COLORS
+//GRID
+$S: 480px;
+$M: 640px;
+$L: 760px;
+$XL: 960px;
+$MMAX: 640px;
+
+//HEALTHYCHILDREN COLORS & FONTS
 $healthy-children-green:#AEC736;
 $healthy-children-red:#DC4C20;
 $healthy-children-peach:#f9b964;
 $healthy-children-yellow:#E9B424;
 $healthy-children-brown:#5C4727;
 $healthy-children-tan:#FCFBF1;
+$healthy-children-heading-font-family:'Arvo',georgia,serif;
+$healthy-children-body-font-family:'Helvetica Neue',helvetica,arial,sans-serif;
+
+//AAP.ORG COLORS
+//numbers (one, two, three) run from darkest to lightest
+$aap-blue-one:#01589B;
+$aap-blue-two:#048BC9;
+$aap-blue-three:#99D8F2;
+$aap-red:#D94E17;
+$aap-yellow:#F5AA09;
+$aap-brown:#453329;
+$aap-gray-one:#333333;
+$aap-gray-two:#949494;
+$aap-gray-three:#D4D4D4;
+$aap-heading-font-family:'Museo',serif;
+$aap-body-font-family:helvetica,arial, sans-serif;
 
 //GRID
 $columns:12;
 
 //TYPOGRAPHY
 $base-font-size:16px;
-$header-font-family:Georgia,serif;
-$body-font-family:'Arvo',Arial,Helvetica,sans-serif;
-$mobile-header-width:200px;
+$body-font-family: Helvetica,Arial,sans-serif;
+$heading-font-family:'bitterbold',Georgia,serif;
+$heading-one-font-size: $base-font-size * 1.75; //h1
+$heading-two-font-size: $base-font-size * 1.5; //h2
+$heading-three-font-size: $base-font-size * 1.25; //h3
+$heading-four-font-size: $base-font-size * 1.1; //h4
 
 //COLORS
-
 $primary-brand:#01589B;
 $logo-color:$primary-brand;
 $base-font-color:#333333;
@@ -27,10 +52,17 @@ $header-link-color:white;
 $footer-background-color:$header-background-color;
 $body-background-color:white;
 $main-content-background-color:$body-background-color;
-$footer-font-color:$base-font-color;
+$footer-font-color:white;
 $search-overlay-color:$header-background-color;
 $search-overlay-transparency:0.9;
-$anchor-color:$primary-brand;
+//anchor color in reset.scss
+$anchor-color:$accent-color;
+//$body-anchor-underline can be used for wired.com style anchor links
+$body-anchor-underline:3px solid $primary-brand;
+
+//OPACITY
+$header-opacity:0.9;
+$footer-opacity:$header-opacity;
 
 //SIZES
 $site-logo-size:36px;
@@ -38,23 +70,23 @@ $header-link-font-size:$site-logo-size/2;
 $search-icon-size:$header-link-font-size * 1.5;
 $mobile-logo-size:$site-logo-size;
 $mobile-header-height:$site-logo-size*1.5;
+//if you increase the header height considerably, you will end up with an equally large footer with the default settings.
 $header-height-non-mobile:$site-logo-size*1.5;
 $footer-height:$header-height-non-mobile;
 
-//MOBILE
 
+//MOBILE
 $mobile-menu-width:100%;
 $mobile-icon-height: 30px;
 $mobile-icon-width: 40px;
-$mobile-icon-layer__height: 6px;
+$mobile-icon-layer-height: 6px;
 $mobile-icon-color: white;
 $mobile-icon-color-inner: $header-link-color;
 
 
 //Z-INDEXES
-
 $body-z:0;
-$header-z:1;
+$header-z:5;
 $main-content-z:2;
 $footer-z:1;
 $home-icon-z:10;
@@ -62,6 +94,7 @@ $mobile-menu-icon-z:99;
 
 //GLOBAL FOR HEADER
 $home-logo-background-image: '/static/images/favicon.png';
+$header-main-logo-background-image: '/static/images/favicon.png';
 $home-logo-background-color:$primary-brand;
 $home-logo-hover-background-color:white;
 $site-name:'Ryan Watters';
@@ -76,4 +109,11 @@ $video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
 //You can turn off the hover animation for the play button here by setting the value to false
 $video-player-play-button-hover-animation: true;
+
+
+//CMS OVERRIDES
+$cms-background-color:$base-font-color;
+
+//IMAGES
+$author-image-small-radius:50%;
 

@@ -1,43 +1,15 @@
-// @import 'normalize';
-@import 'arvowoff';
+// WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports
+// @import 'arvowoff';
+// @import 'fjord';
+// @import 'lorabold';
+@import 'bitterbold';
+// @import 'ralewaybold';
+@import 'variables';
+@import 'basic-grid';
 @import 'reset';
 @import 'bourbon/bourbon';
-// @import 'base/base';
-@import 'basic-grid';
-@import 'variables';
-@import 'search';
 @import 'menu-icon';
 
-
-
-body {
-    min-height: 100%;
-    width: 100%;
-    z-index: 0;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    font-family: $body-font-family;
-    background-color: $body-background-color;
-    position: relative;
-}
-
-a {
-    color: $anchor-color;
-    &:hover {
-        color: darken($anchor-color, 20%);
-    }
-}
-h1,h2,h3,h4,h5,h6{
-    font-family:$header-font-family;
-}
-h1 {
-    font-size:1.4em;
-}
-
-img {
-    @include filter(grayscale(100%));
-}
 /* HEADER */
 
 .header {
@@ -118,8 +90,9 @@ img {
     }
 }
 
-.mobile-header {
+.header-main-logo-image {
     width: 100vw;
+    z-index:999;
     top: 0;
     left: 0;
     height: $mobile-header-height;
@@ -171,6 +144,12 @@ img {
     }
 }
 
+.header-main-logo-image {
+    background-image: $header-main-logo-background-image;
+    position:fixed;
+    z-index:$header-z;
+}
+
 .main {
     z-index: $main-content-z;
     @include transition(.4s);
@@ -196,8 +175,14 @@ img {
     }
 }
 
+article.video-library,
+article.single-article-full-length {
+    width: 90%;
+    max-width: $M;
+}
+
 .author-image-small {
-    border-radius: 50%;
+    border-radius: $author-image-small-radius;
 }
 
 .home-article-section {
@@ -227,23 +212,16 @@ img {
     }
 }
 
-
 .list-article-video {
-    width:100%;
-    max-width:500px;
-}
-
-.youtube-container {
-    display: block;
-    margin: 20px auto;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
 .youtube-player {
     display: block;
     width: 100%;
-    /* assuming that the video has a 16:9 ratio */    
+    /* assuming that the video has a 16:9 ratio */
+    
     padding-bottom: 56.25%;
     overflow: hidden;
     position: relative;
@@ -274,17 +252,18 @@ img.youtube-thumb {
     height: $video-player-play-button-size;
     width: $video-player-play-button-size;
     left: (100% - $video-player-play-button-size) / 2;
-    top: (100% - $video-player-play-button-size) / (2 * 16/9);
+    top: (100% - $video-player-play-button-size) / (2 * 16/9); //Assume 16:9 ratio for YouTube videos
     position: absolute;
 }
 
 #play-button-svg {
     @include transition(.4s);
-    fill:$video-player-play-button-color;
-    &:hover{
-        fill:$video-player-play-button-color-hover;
+    fill: $video-player-play-button-color;
+    &:hover {
+        fill: $video-player-play-button-color-hover;
     }
 }
+
 
 #youtube-iframe {
     width: 100%;
