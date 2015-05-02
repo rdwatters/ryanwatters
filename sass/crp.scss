@@ -215,13 +215,14 @@ article.single-article-full-length {
 .list-article-video {
     width: 100%;
     max-width: 500px;
+    display:block;
+    margin:10px;
 }
 
-.youtube-player {
+.video-player-youtube, .video-player-vimeo {
     display: block;
     width: 100%;
-    /* assuming that the video has a 16:9 ratio */
-    
+    /* assuming that the video has a 16:9 ratio */   
     padding-bottom: 56.25%;
     overflow: hidden;
     position: relative;
@@ -230,16 +231,17 @@ article.single-article-full-length {
     cursor: hand;
     cursor: pointer;
     display: block;
+    margin:10px;
 }
 
-img.youtube-thumb {
+img.youtube-thumb, img.vimeo-thumb {
     @include hardware-accelerate;
     bottom: 0;
     display: block;
     left: 0;
     margin: auto;
-    max-width: 100%;
-    width: 100%;
+    max-width: 50vw;
+    width: 50vw;
     position: absolute;
     right: 0;
     top: 0;
@@ -256,7 +258,7 @@ img.youtube-thumb {
     position: absolute;
 }
 
-#play-button-svg {
+.play-button-svg {
     @include transition(.4s);
     fill: $video-player-play-button-color;
     &:hover {
@@ -265,7 +267,7 @@ img.youtube-thumb {
 }
 
 
-#youtube-iframe {
+.video-iframe {
     width: 100%;
     height: 100%;
     position: absolute;

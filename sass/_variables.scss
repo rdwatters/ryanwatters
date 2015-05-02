@@ -72,7 +72,7 @@ $mobile-logo-size:$site-logo-size;
 $mobile-header-height:$site-logo-size*1.5;
 //if you increase the header height considerably, you will end up with an equally large footer with the default settings.
 $header-height-non-mobile:$site-logo-size*1.5;
-$footer-height:$header-height-non-mobile;
+$footer-height:100px;
 
 
 //MOBILE
@@ -104,7 +104,7 @@ $home-logo-border-radius:50%;
 
 //VIDEO OPTIONS
 //Only use percentages for the size of the play button
-$video-player-play-button-size:30%;
+$video-player-play-button-size:20%;
 $video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
 //You can turn off the hover animation for the play button here by setting the value to false

@@ -5,32 +5,47 @@ var mobileOS = false;
 if (navigator.userAgent.match(/iphone/gi) || navigator.userAgent.match(/ipad/gi) || navigator.userAgent.match(/android/gi)) {
     mobileOS = true;
 }
+/*Dont' attach scroll for fading menu with mobile users.*/
 if (!mobileOS) {
-    console.log("You are not using a mobile phone right now.");
+    window.addEventListener("scroll", changeMenu, false);
 }
 /*Remove static image from video players and replace with embedded YouTube video*/
 //Modified considerably from http://www.labnol.org/internet/light-youtube-embeds/27941/
 (function () {
     //get all youtube wrappers
-    var youTubeWrappers = document.getElementsByClassName("youtube-player");
+    var youtubeWrappers = document.getElementsByClassName("video-player-youtube");
+    var vimeoWrappers = document.getElementsByClassName("video-player-vimeo");
     //iterate over yt wrappers
-    for (var n = 0; n < youTubeWrappers.length; n++) {
-        var childrenElements = youTubeWrappers[n].childNodes;
+    for (var n = 0; n < youtubeWrappers.length; n++) {
+        var childrenElements = youtubeWrappers[n].childNodes;
         var playButtonDiv = childrenElements[childrenElements.length - 2];
-        playButtonDiv.onclick = labnolIframe;
+        playButtonDiv.onclick = replaceVideoWithIframe;
+    }
+    for (var n = 0; n < vimeoWrappers.length; n++) {
+        var childrenElements = vimeoWrappers[n].childNodes;
+        var playButtonDiv = childrenElements[childrenElements.length - 2];
+        console.log(playButtonDiv);
+        playButtonDiv.onclick = replaceVideoWithIframe;
     }
 })();
 
-function labnolIframe() {
+function replaceVideoWithIframe() {
+    var streamingService = this.parentNode.className;
+    console.log(streamingService);
     var iframe = document.createElement("iframe");
+    if (streamingService == "video-player-youtube") {
+        iframe.setAttribute("src", "//www.youtube.com/embed/" + this.parentNode.dataset.youtubeid + "?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0");
+    } else {
+        iframe.setAttribute("src", "//player.vimeo.com/video/" + this.parentNode.dataset.vimeoid + "?autoplay=1");
+    }
+
     //The parameters for the video embed are set to show the controls but disallow related information at the video's end.
-    iframe.setAttribute("src", "//www.youtube.com/embed/" + this.parentNode.dataset.youtubeid + "?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0");
+
     iframe.setAttribute("frameborder", "0");
-    iframe.setAttribute("id", "youtube-iframe");
+    iframe.setAttribute("class", "video-iframe");
     this.parentNode.replaceChild(iframe, this);
 }
 
-window.addEventListener("scroll", changeMenu, false);
 //global variables for scroll on M+ screens
 var header = document.querySelector(".header"),
     wScrollCurrent = 0,
@@ -68,14 +83,13 @@ function changeMenu() {
     wScrollBefore = wScrollCurrent;
 }
 
-//toggle the mobile menu as well as modify ARIA attributes
+//Toggle the mobile menu as well as modify ARIA attributes
 function toggleMobileMenu() {
     var mainMenu = document.getElementsByTagName("header")[0],
         mainContent = document.querySelector(".main"),
         theButton = document.getElementById("mobile-menu-toggle"),
         theFooter = document.getElementsByTagName("footer")[0];
     if (classie.has(mainMenu, "menu-open")) {
-        console.log("Hello!");
         classie.remove(mainMenu, "menu-open");
         classie.remove(mainContent, "menu-open");
         classie.remove(theFooter, "menu-open");
@@ -93,7 +107,6 @@ function toggleMobileMenu() {
 }
 //Toggle the full-screen search overlay
 function toggleSearch() {
-    console.log("Hello! " + Math.random());
     var searchWrap = document.querySelector(".search-wrap"),
         searchInput = document.getElementById("st-search-input");
     classie.toggle(searchWrap, "search-open");
