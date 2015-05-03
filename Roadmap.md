@@ -8,21 +8,23 @@
 - [ ] Google Plus Badges - https://developers.google.com/+/web/badge/
 - [ ] XML Sitemap
 - [ ] SEO-friendly alternative titles and descriptions in article content type
+- [ ] Social links for each respective article entry
 
 ###Site Search: 
 
-- [ ] Swiftype Meta Tags - https://swiftype.com/documentation/meta_tags
-- [ ] Swiftype faceted search and custom styles - https://swiftype.com/documentation/tutorials/jquery
+- [ ] Swiftype Meta Tags - [https://swiftype.com/documentation/meta_tags](https://swiftype.com/documentation/meta_tags)
+- [ ] Swiftype faceted search and custom styles - [https://swiftype.com/documentation/tutorials/jquery](https://swiftype.com/documentation/tutorials/jquery)
 
 ###Syndication:
 
 - [ ] RSS
-- [ ] ATOM
+- [ ] ATOM (?)
 
 ###Content-first Publishing
 
 - [ ] Cron Job and Free Cloud Syncing
-- [ ] Pandoc - http://johnmacfarlane.net/pandoc/
+- [ ] Creation of JSON/JSONP for all article types
+- [ ] Pandoc - [http://johnmacfarlane.net/pandoc/](http://johnmacfarlane.net/pandoc/)
 
 ###Accessibility
 

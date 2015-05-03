@@ -8,14 +8,17 @@
     {% for article in articles %}
     <div class="list-article-wrapper">
     <section class="list-article-section">
-        {# Article Topic #} 
+        {# Social Media Icon Section #}
+        <section class="list-article-social-buttons">
+        {% include "templates/partials/socialmediaicons.html" %}
+        </section> 
         {% if article.related_video %}
             {% set video = article.related_video %}
             {% set ss = video.streaming_service %}
                 {% if ss == "YouTube"%}
                     {% set videoId = video.video.original_url.split('v=')[1] %}
                     <section class="list-article-video">
-                        <section class="list-article-topic"><a href="{{ url(article.topic) }}">{{ article.topic.name}}</a></section>
+                        
                         <div class="video-player-youtube" data-youtubeid="{{videoId}}">
                                 {% if video.thumbnail_override %}
                                     <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}">
@@ -35,7 +38,6 @@
                 {% elseif ss == "Vimeo" %}
                 {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
                     <section class="list-article-video">
-                        <section class="list-article-topic"><a href="{{ url(article.topic) }}">{{ article.topic.name}}</a></section>
                         <div class="video-player-vimeo" data-vimeoid="{{video.video.original_url.split('vimeo.com/')[1]}}">
                         {% if row.video.thumbnail_override %}
                             <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}">
@@ -58,7 +60,6 @@
                 {% endif %}        
         {% else %}
                     <section class="list-article-image">
-                        <section class="list-article-topic"><a href="{{ url(article.topic) }}">{{ article.topic.name}}</a></section>
                         <div class="article-image">
                             <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image">
                         <section class="list-publish-date">
@@ -73,7 +74,7 @@
                         <h1 class="list-article-title">
                             <a href="{{ url(article) }}">{{ article.title }}</a>
                         </h1>
-                        <p class="list-article-description">{{ article.description }}</p>
+                        <p class="list-article-description">{{ article.description }} <span class="read-more"><a href="{{ url(article) }}">Read more...</a></span></p>
                         <div class="author-and-tags-container">
                             <a href="{{ url(article.author[0]) }}">
                                 <div class="author-photo">

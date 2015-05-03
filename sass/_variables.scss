@@ -37,8 +37,8 @@ $columns:12;
 
 //TYPOGRAPHY
 $base-font-size:16px;
-$body-font-family: 'Proxima Nova',Helvetica,Arial,sans-serif;
-$heading-font-family:'Adelle';
+$body-font-family: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
+$heading-font-family:'Arvo','Adelle',Georgia,sans-serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
@@ -49,13 +49,13 @@ $primary-brand:#01589B;
 $logo-color:$primary-brand;
 $base-font-color:#333333;
 $header-background-color:#333333;
-$accent-color:desaturate(#DD2922,10%);
+$accent-color:desaturate(#DD2922,20%);
 $white:#FBFAF5;
+$header-link-color:#ffffff;
 $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
-$header-link-color:white;
 $footer-background-color:$header-background-color;
-$body-background-color:$white;
+$body-background-color:lighten($primary-brand,60%);
 $main-content-background-color:$body-background-color;
 $footer-font-color:white;
 $search-overlay-color:$header-background-color;
@@ -66,8 +66,13 @@ $anchor-color:$accent-color;
 $body-anchor-underline:3px solid $primary-brand;
 //for home page list view
 $publish-date-background-color:$darker-white;
-$topic-background-color:$publish-date-background-color;
-$tags-color:$publish-date-background-color;
+$social-icons-background-color:transparent;
+$home-article-tags-color:$publish-date-background-color;
+//$article-list-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
+$article-list-home-page-max-width-m-plus:65%;
+$home-about-widget-max-width: 100% - $article-list-home-page-max-width-m-plus - 3%;
+//This is for the list view of the blog posts (e.g. on the home page);
+$list-article-information-background-color:#ffffff;
 
 //OPACITY
 $header-opacity:0.9;
@@ -75,13 +80,14 @@ $footer-opacity:$header-opacity;
 
 //SIZES
 $site-logo-size:36px;
+$header-height-base: $site-logo-size * 1.5;
 $header-link-font-size:$site-logo-size/2;
 $search-icon-size:$header-link-font-size * 1.5;
 $mobile-logo-size:$site-logo-size;
-$mobile-header-height:$site-logo-size*1.5;
-//if you increase the header height considerably, you will end up with an equally large footer with the default settings.
-$header-height-non-mobile:$site-logo-size*1.5;
-$footer-height:100px;
+$mobile-header-height:$header-height-base;
+//if you increase the header height considerably, you will end up with an equally large footer with the way these values are set up, so I've added a separate variable below if you don't want your footer and header to be the same height.
+$header-height-non-mobile:$header-height-base;
+$footer-height:$header-height-base;
 
 
 //MOBILE

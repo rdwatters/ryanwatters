@@ -172,49 +172,47 @@
 }
 
 .list-of-articles {
+    display: inline-block;
     width: 90%;
-    margin-right:auto;
-    margin-left:auto;
+    margin-right: auto;
+    margin-left: 5%;
     padding: 0;
 }
 
 .list-article-wrapper {
-    display:inline-block;
-    position:relative;
+    display: inline-block;
+    position: relative;
+    @include MQ(M) {
+        display: inline-block;
+        max-width: $article-list-home-page-max-width-m-plus;
+        height: 100%;
+    }
 }
 
 .list-article-section {
     display: inline-block;
-    max-width:100%;
-    height:100%;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+    background-color: $list-article-information-background-color;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
     -moz-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
     box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
     margin-bottom: 15px;
-    @include MQ(M){
-        max-width:50%;
-        height:100%;
-        &:nth-child(even){
-            padding:0px;
-            margin:0px;
-            position:absolute;
-            top:0;
-        }
-    }
 }
 
-.list-article-topic {
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1;
-    font-size:2em;
-    padding: 5px;;
-    background-color:$topic-background-color;
-    font-family:$heading-font-family;
+.list-article-social-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    font-size: 2em;
+    padding: 5px;
+    ;
+    background-color: $social-icons-background-color;
+    font-family: $heading-font-family;
 }
-
-
 
 .list-article-video {
     width: 100%;
@@ -223,7 +221,6 @@
     padding-left: 0px;
     margin-left: 0px;
 }
-
 
 .video-player-youtube,
 .video-player-vimeo {
@@ -302,24 +299,27 @@
 
 .list-article-image {
     position: relative;
-    width:100%;
-    height:100%;
-    padding:0px;
-    margin:0px;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
     .list-publish-date {
-        bottom:5px;
+        bottom: 5px;
     }
     .article-image img {
-        width:100%;
-        height:100%;
+        width: 100%;
+        height: 100%;
         padding: 0px;
         margin: 0px;
     }
 }
 
-.list-article-title{
-    font-size:$base-font-size * 2;
-    text-align:center;
+.list-article-title {
+    font-size: $base-font-size *1.5;
+    text-align: center;
+    @include MQ(M) {
+        font-size: $base-font-size * 2;
+    }
 }
 
 .author-photo {
@@ -339,20 +339,28 @@
     border-radius: $author-image-small-radius;
     height: 50px;
 }
-.list-article-information{
-    height:100%;
-    padding-top:10px;
-    width:90%;
-    margin-right:auto;
-    margin-left:auto;
+
+.list-article-information {
+    height: 100%;
+    padding-top: 10px;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+.read-more {
+    color: #01589B;
+    font-weight: bold;
+}
+
 .author-and-tags-container {
-    margin-top:5px;
-    margin-bottom:5px;
-    display:block;
-    width:100%;
-    clear:both;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+    clear: both;
 }
+
 .article-tags {
     display: inline-block;
     float: right;
@@ -363,14 +371,35 @@
 
 .article-tag {
     @include transition(.3s);
-    padding:4px;
-    background-color:$tags-color;
+    padding: 4px;
+    background-color: $home-article-tags-color;
     &:hover {
-        background-color:darken($tags-color,20%);
+        background-color: darken($home-article-tags-color, 20%);
     }
 }
 
-//TESTING CLASSES FOR SWIG TEMPLATING - SHOULD BE REMOVED FOR PRODUCTION
+aside {
+    .home-about-rail-widget {
+        display: block;
+        width: 100%;
+        @include MQ(M) {
+            float: right;
+            position: fixed;
+            right: 0;
+            top: $header-height-non-mobile + 40px;
+            display: inline-block;
+            max-width: $home-about-widget-max-width;
+        }
+    }
+    .author-image img{
+        display:block;
+        border-radius:10px;
+        margin-right:auto;
+        margin-left:auto;
+    }
+}
+
+//TESTING CLASSES FOR SWIG TEMPLATING - YOU WILL PROBABLY WANT TO REMOVE THIS FOR PRODUCTION
 .success {
     color: green;
     font-weight: bold;
@@ -381,10 +410,4 @@
     color: red;
     font-weight: bold;
     font-size: 1.5em;
-}
-
-aside .home-about-rail-widget {
-    display: block;
-    clear: both;
-    width:100%;
 }

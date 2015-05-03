@@ -55,7 +55,7 @@ function init() {
         searchButton = document.getElementById("search-icon");
     mobileButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearch;
-    //do not initialize the header transition on M & larger screens
+    //do not initialize the header transition (headerFadeOnScroll) on M & larger screens
     if (window.outerWidth < 768) {
         window.onscroll = function () {
             headerFadeOnScroll();
@@ -63,7 +63,7 @@ function init() {
     }
 }
 
-//HEADER FADES IN AND OUT ON SCROLL
+//HEADER FADES IN AND OUT ON SCROLL - SEE function init to check if
 function headerFadeOnScroll() {
     var theHeader = document.getElementsByTagName("header")[0],
         headerHeight = parseInt(theHeader.clientHeight);
@@ -79,7 +79,7 @@ function headerFadeOnScroll() {
     wScrollBefore = wScrollCurrent;
 }
 
-//Toggle the mobile menu as well as modify ARIA attributes
+//TOGGLE MOBILE MENU ON CLICK AS WELL AS CHANGE ARIA ATTRIBUTES ON MOBILE MENU FOR ACCESSIBILITY
 function toggleMobileMenu() {
     var mainMenu = document.getElementsByTagName("header")[0],
         mainContent = document.querySelector(".main"),
