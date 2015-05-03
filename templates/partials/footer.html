@@ -1,16 +1,10 @@
 <footer data-swiftype-index="false" class="footer">
+{% set footer = cms.footer %}
     <ul class="footer-navigation">
+        {% for row in footer.grid %}
         <li>
-            <a href="#">Footer Link</a>
+            <a href="{{ row.url }}">{{ row.title }}</a>
         </li>
-        <li>
-            <a href="#">Footer Link</a>
-        </li>
-        <li>
-            <a href="#">Footer Link</a>
-        </li>
-        <li>
-            <a href="#">Footer Link</a>
-        </li>
+        {% endfor %}
     </ul>
 </footer>

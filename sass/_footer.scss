@@ -23,6 +23,10 @@
     }
     .footer-navigation {
         @include display(flex);
+        @include MQ(MMAX){
+            @include flex-direction(row);
+            @include justify-content(center);
+        }
         @include flex-direction(row);
         @include justify-content(flex-end);
         @include align-items(center);

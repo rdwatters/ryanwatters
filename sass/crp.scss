@@ -1,15 +1,14 @@
 // WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports
-// @import 'arvowoff';
+@import 'arvowoff';
 // @import 'fjord';
 // @import 'lorabold';
-@import 'bitterbold';
+// @import 'bitterbold';
 // @import 'ralewaybold';
 @import 'variables';
 @import 'basic-grid';
 @import 'reset';
 @import 'bourbon/bourbon';
 @import 'menu-icon';
-
 /* HEADER */
 
 .header {
@@ -53,7 +52,7 @@
         top: 0;
         left: 0;
         width: 100%;
-        max-width: 100vw;
+        width: 100vw;
         height: $header-height-non-mobile;
         line-height: $header-height-non-mobile;
         padding-top: 0;
@@ -92,7 +91,7 @@
 
 .header-main-logo-image {
     width: 100vw;
-    z-index:999;
+    z-index: 999;
     top: 0;
     left: 0;
     height: $mobile-header-height;
@@ -107,6 +106,7 @@
     }
 }
 
+//icon or link in the top left to the header. The main logo, which is optional, is in the center of the header and is described below.
 .home-icon {
     z-index: $home-icon-z;
     position: fixed;
@@ -119,7 +119,7 @@
     vertical-align: middle;
     font-size: $site-logo-size/3;
     background-color: black;
-    border-radius: 50%;
+    border-radius: $home-logo-border-radius;
     &:hover {
         cursor: pointer;
     }
@@ -135,7 +135,6 @@
         font-weight: bold;
         display: block;
         background-size: contain;
-        border-radius: $home-logo-border-radius;
         &:hover {
             cursor: pointer;
             color: $logo-color;
@@ -144,10 +143,11 @@
     }
 }
 
+//The main logo is different than the home logo/icon. The former is all the way to the left in the site header.
 .header-main-logo-image {
     background-image: $header-main-logo-background-image;
-    position:fixed;
-    z-index:$header-z;
+    position: fixed;
+    z-index: $header-z;
 }
 
 .main {
@@ -157,7 +157,8 @@
     margin-right: auto;
     margin-left: auto;
     background-color: $main-content-background-color;
-    width: 95%;
+    width: 100%;
+    max-width: $XXL;
     &.menu-open {
         @include transform(translateX(-$mobile-menu-width));
         opacity: 0.5;
@@ -166,83 +167,89 @@
         top: 0;
         bottom: 0;
     }
-    padding: {
-        top: 0;
-        bottom: 50px;
-    }
-    @include MQ(M) {
-        padding-top: $header-height-non-mobile;
-    }
+    padding-top: $header-height-non-mobile + 40px;
+    padding-bottom: $footer-height;
 }
 
-article.video-library,
-article.single-article-full-length {
+.list-of-articles {
     width: 90%;
-    max-width: $M;
+    margin-right:auto;
+    margin-left:auto;
+    padding: 0;
 }
 
-.author-image-small {
-    border-radius: $author-image-small-radius;
+.list-article-wrapper {
+    display:inline-block;
+    position:relative;
 }
 
-.home-article-section {
-    @include display(flex);
-    @include flex-direction(column);
-    @include align-items(center);
-    position: relative;
-    background-size: cover;
-    background-repeat: none;
-    z-index: 0;
-    .article-image {
-        @include hardware-accelerate;
-        z-index: -10;
-        bottom: 0;
-        width: 100%;
-    }
-    .article-information {
-        background-color: white;
-        width: 100%;
-        opacity: .9;
-        z-index: 2;
-        position: absolute;
-        top: 0;
-        .article-title {
-            font-size: $base-font-size*2;
+.list-article-section {
+    display: inline-block;
+    max-width:100%;
+    height:100%;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+    margin-bottom: 15px;
+    @include MQ(M){
+        max-width:50%;
+        height:100%;
+        &:nth-child(even){
+            padding:0px;
+            margin:0px;
+            position:absolute;
+            top:0;
         }
     }
 }
 
-.list-article-video {
-    width: 100%;
-    max-width: 500px;
-    display:block;
-    margin:10px;
+.list-article-topic {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1;
+    font-size:2em;
+    padding: 5px;;
+    background-color:$topic-background-color;
+    font-family:$heading-font-family;
 }
 
-.video-player-youtube, .video-player-vimeo {
+
+
+.list-article-video {
+    width: 100%;
+    display: block;
+    position: relative;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+
+.video-player-youtube,
+.video-player-vimeo {
     display: block;
     width: 100%;
-    /* assuming that the video has a 16:9 ratio */   
+    /* assuming that the video has a 16:9 ratio */
+    
     padding-bottom: 56.25%;
     overflow: hidden;
     position: relative;
     width: 100%;
     height: 100%;
+    padding-left: 0;
+    margin-left: 0;
     cursor: hand;
     cursor: pointer;
     display: block;
-    margin:10px;
 }
 
-img.youtube-thumb, img.vimeo-thumb {
+.video-thumb {
     @include hardware-accelerate;
-    bottom: 0;
-    display: block;
-    left: 0;
-    margin: auto;
-    max-width: 50vw;
-    width: 50vw;
     position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
     right: 0;
     top: 0;
     height: auto;
@@ -253,8 +260,8 @@ img.youtube-thumb, img.vimeo-thumb {
     display: block;
     height: $video-player-play-button-size;
     width: $video-player-play-button-size;
-    left: (100% - $video-player-play-button-size) / 2;
-    top: (100% - $video-player-play-button-size) / (2 * 16/9); //Assume 16:9 ratio for YouTube videos
+    left: $video-player-play-button-left-padding;
+    top: 35%; //Assume 16:9 ratio for YouTube videos
     position: absolute;
 }
 
@@ -266,7 +273,7 @@ img.youtube-thumb, img.vimeo-thumb {
     }
 }
 
-
+//this class is set by the main.js javascript
 .video-iframe {
     width: 100%;
     height: 100%;
@@ -275,13 +282,109 @@ img.youtube-thumb, img.vimeo-thumb {
     left: 0;
 }
 
-.success {
-    color: green;
-    font-size: 1.2em;
+.list-publish-date {
+    display: inline-block;
+    width: 60px;
+    text-align: center;
+    background-color: $publish-date-background-color;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    .month, .year {
+        display: block;
+        font-size: 1em;
+    }
+    .day {
+        display: block;
+        font-size: 3em;
+    }
 }
 
-.error {
+.list-article-image {
+    position: relative;
+    width:100%;
+    height:100%;
+    padding:0px;
+    margin:0px;
+    .list-publish-date {
+        bottom:5px;
+    }
+    .article-image img {
+        width:100%;
+        height:100%;
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+.list-article-title{
+    font-size:$base-font-size * 2;
+    text-align:center;
+}
+
+.author-photo {
+    display: inline-block;
+    float: left;
+}
+
+.article-author {
+    display: inline-block;
+    padding-left: 5px;
+    float: left;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.author-image-small {
+    border-radius: $author-image-small-radius;
+    height: 50px;
+}
+.list-article-information{
+    height:100%;
+    padding-top:10px;
+    width:90%;
+    margin-right:auto;
+    margin-left:auto;
+}
+.author-and-tags-container {
+    margin-top:5px;
+    margin-bottom:5px;
+    display:block;
+    width:100%;
+    clear:both;
+}
+.article-tags {
+    display: inline-block;
+    float: right;
+    z-index: 10;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.article-tag {
+    @include transition(.3s);
+    padding:4px;
+    background-color:$tags-color;
+    &:hover {
+        background-color:darken($tags-color,20%);
+    }
+}
+
+//TESTING CLASSES FOR SWIG TEMPLATING - SHOULD BE REMOVED FOR PRODUCTION
+.success {
+    color: green;
     font-weight: bold;
+    font-size: 1.5em;
+}
+
+.failure {
     color: red;
-    font-size: 1.2em;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+aside .home-about-rail-widget {
+    display: block;
+    clear: both;
+    width:100%;
 }

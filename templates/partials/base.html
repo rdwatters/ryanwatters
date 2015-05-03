@@ -17,7 +17,7 @@
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{item.title|default(getSetting('site_name'))}}</title>
+    <title>{% block title %}{{getSetting('site_name')}}{% endblock %}</title>
     <link rel="author" href="{{ url(item.author)|default('Ryan D Watters') }}"> {# Standard Metadata #}
     <meta name="description" content="{{ item.description|default(getSetting('site_description')) }}">
     <meta name="keywords" content="{% if item.tags%}{% for keyword in item.tags %}{{ keyword.name }}{% if not loop.last %}, {% endif %}{% endfor %}{% else %}{{getSetting('site_keywords')}}{% endif %}" /> 
@@ -46,7 +46,8 @@
         {% include "templates/partials/crp.html" %}
     </style>     
     {# Useful block for loading outside scripts in other pages. #}
-    {% block head_extra %}{% endblock %}
+    {% block head_extra %}
+    {% endblock %}
   </head>
   <body>
       {% block body %}
@@ -67,11 +68,14 @@
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" async></script>
       {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #}
       {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
-       {% block scripts_extra %}{% endblock %}
+      
       <!-- build:js /static/javascript/minified.js -->
+      <script src="/static/javascript/jquery-2.1.3.js" asyn></script>
       <script src="/static/javascript/classie.js"></script>
       <script src="/static/javascript/main.js"></script>
       <!-- endbuild -->
+      {% block scripts_extra %}
+      {% endblock %}
      
       {# Google Analytics code. Feel free to remove. #}
       <script async>

@@ -3,10 +3,7 @@ var mobileOS = false;
 if (navigator.userAgent.match(/iphone/gi) || navigator.userAgent.match(/ipad/gi) || navigator.userAgent.match(/android/gi)) {
     mobileOS = true;
 }
-/*Dont' attach scroll for fading menu with mobile users.*/
-if (!mobileOS) {
-    window.addEventListener('scroll', changeMenu, false);
-}
+
 /*Remove static image from video players and replace with embedded YouTube video*/
 //Modified considerably from http://www.labnol.org/internet/light-youtube-embeds/27941/
 (function() {
@@ -17,23 +14,22 @@ if (!mobileOS) {
     for (var n = 0; n < youtubeWrappers.length; n++) {
         var childrenElements = youtubeWrappers[n].childNodes;
         var playButtonDiv = childrenElements[childrenElements.length - 2];
-        playButtonDiv.onclick = replaceVideoWithIframe;
+        playButtonDiv.onclick = replaceThumbnailWithIframe;
     }
     for (var n = 0; n < vimeoWrappers.length; n++) {
         var childrenElements = vimeoWrappers[n].childNodes;
         var playButtonDiv = childrenElements[childrenElements.length - 2];
-        console.log(playButtonDiv);
-        playButtonDiv.onclick = replaceVideoWithIframe;
+        playButtonDiv.onclick = replaceThumbnailWithIframe;
     }
 })();
 
-function replaceVideoWithIframe() {
+function replaceThumbnailWithIframe() {
     var streamingService = this.parentNode.className;
     console.log(streamingService);
     var iframe = document.createElement("iframe");
     if (streamingService == "video-player-youtube") {
         iframe.setAttribute("src", "//www.youtube.com/embed/" + this.parentNode.dataset.youtubeid + "?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0");
-    }else{
+    }else if (streamingService == "video-player-vimeo") {
         iframe.setAttribute("src", "//player.vimeo.com/video/" + this.parentNode.dataset.vimeoid + "?autoplay=1");
     }
 
@@ -54,20 +50,20 @@ window.onload = init;
 
 function init() {
     //mobile menu toggle (off-canvas)
-    var mobileButton = document.getElementById('mobile-menu-toggle');
-    var searchButton = document.getElementById('search-icon');
+    var mobileButton = document.getElementById('mobile-menu-toggle'),
+    searchButton = document.getElementById('search-icon');
     mobileButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearch;
-    //do not initialize the header transition on M & smaller screens
-    if (window.outerWidth > 768) {
+    //do not initialize the header transition on M & larger screens
+    if (window.outerWidth < 768) {
         window.onscroll = function() {
-            changeMenu();
+            headerFadeOnScroll();
         };
     }
 }
 
 //HEADER FADES IN AND OUT ON SCROLL
-function changeMenu() {
+function headerFadeOnScroll() {
     var theHeader = document.getElementsByTagName('header')[0],
         headerHeight = parseInt(theHeader.clientHeight);
     wScrollCurrent = window.pageYOffset | document.body.scrollTop;

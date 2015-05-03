@@ -3,6 +3,8 @@ $S: 480px;
 $M: 640px;
 $L: 760px;
 $XL: 960px;
+//XXL is al the max-width that will be used by the <main> content on large screens.
+$XXL: 1200px;
 $MMAX: 640px;
 
 //HEALTHYCHILDREN COLORS & FONTS
@@ -14,6 +16,7 @@ $healthy-children-brown:#5C4727;
 $healthy-children-tan:#FCFBF1;
 $healthy-children-heading-font-family:'Arvo',georgia,serif;
 $healthy-children-body-font-family:'Helvetica Neue',helvetica,arial,sans-serif;
+$healthy-children-title-color:$healthy-children-brown;
 
 //AAP.ORG COLORS
 //numbers (one, two, three) run from darkest to lightest
@@ -34,8 +37,8 @@ $columns:12;
 
 //TYPOGRAPHY
 $base-font-size:16px;
-$body-font-family: Helvetica,Arial,sans-serif;
-$heading-font-family:'bitterbold',Georgia,serif;
+$body-font-family: 'Proxima Nova',Helvetica,Arial,sans-serif;
+$heading-font-family:'Adelle';
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
@@ -47,10 +50,12 @@ $logo-color:$primary-brand;
 $base-font-color:#333333;
 $header-background-color:#333333;
 $accent-color:desaturate(#DD2922,10%);
+$white:#FBFAF5;
+$darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
 $header-link-color:white;
 $footer-background-color:$header-background-color;
-$body-background-color:white;
+$body-background-color:$white;
 $main-content-background-color:$body-background-color;
 $footer-font-color:white;
 $search-overlay-color:$header-background-color;
@@ -59,6 +64,10 @@ $search-overlay-transparency:0.9;
 $anchor-color:$accent-color;
 //$body-anchor-underline can be used for wired.com style anchor links
 $body-anchor-underline:3px solid $primary-brand;
+//for home page list view
+$publish-date-background-color:$darker-white;
+$topic-background-color:$publish-date-background-color;
+$tags-color:$publish-date-background-color;
 
 //OPACITY
 $header-opacity:0.9;
@@ -86,11 +95,11 @@ $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES
 $body-z:0;
-$header-z:5;
+$header-z:99;
 $main-content-z:2;
 $footer-z:1;
-$home-icon-z:10;
-$mobile-menu-icon-z:99;
+$home-icon-z:100;
+$mobile-menu-icon-z:999;
 
 //GLOBAL FOR HEADER
 $home-logo-background-image: '/static/images/favicon.png';
@@ -100,15 +109,18 @@ $home-logo-hover-background-color:white;
 $site-name:'Ryan Watters';
 $primary-navigation-text-transform:capitalize;
 $home-logo-border-radius:50%;
+$home-button-icon-radius:50%;
 
 
-//VIDEO OPTIONS
-//Only use percentages for the size of the play button
+//VIDEO PLAYER OPTIONS
+//Only use percentages for the size of the play button, and to keep the svg (currently square-shaped), only change the first variable ($video-player-play-button-size)
 $video-player-play-button-size:20%;
 $video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
+$video-player-play-button-left-padding:(100% - $video-player-play-button-size) / 2;
+$video-player-play-button-top-padding:$video-player-play-button-left-padding * 1.7777;
 //You can turn off the hover animation for the play button here by setting the value to false
-$video-player-play-button-hover-animation: true;
+// $video-player-play-button-hover-animation: true;
 
 
 //CMS OVERRIDES
