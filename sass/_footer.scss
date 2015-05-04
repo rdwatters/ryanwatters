@@ -6,9 +6,7 @@
     width: 100%;
     width:100vw;
     height: $footer-height;
-    right: 0;
     bottom: 0;
-    left: 0;
     margin-top:50px;
     margin-bottom:0;
     padding-top:0;
@@ -16,7 +14,6 @@
     background-color:$footer-background-color;
     color:$footer-font-color;
     @include transition(.4s);
-    display: block;
     overflow-x:hidden;
     &.menu-open {
         @include transform(translateX(-$mobile-menu-width));

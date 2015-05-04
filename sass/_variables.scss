@@ -38,14 +38,16 @@ $columns:12;
 //TYPOGRAPHY
 $base-font-size:16px;
 $body-font-family: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
-$heading-font-family:'Arvo','Adelle',Georgia,sans-serif;
+$heading-font-family:'Adelle',Georgia,sans-serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
 $heading-four-font-size: $base-font-size * 1.1; //h4
+$publish-date-font-family:$heading-font-family;
 
 //COLORS
 $primary-brand:#01589B;
+$secondary-brand:lighten($primary-brand,25%);
 $logo-color:$primary-brand;
 $base-font-color:#333333;
 $header-background-color:#333333;
@@ -55,7 +57,7 @@ $header-link-color:#ffffff;
 $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
 $footer-background-color:$header-background-color;
-$body-background-color:lighten($primary-brand,60%);
+$body-background-color:white;
 $main-content-background-color:$body-background-color;
 $footer-font-color:white;
 $search-overlay-color:$header-background-color;
@@ -65,14 +67,18 @@ $anchor-color:$accent-color;
 //$body-anchor-underline can be used for wired.com style anchor links
 $body-anchor-underline:3px solid $primary-brand;
 //for home page list view
-$publish-date-background-color:$darker-white;
+$publish-date-background-color:lighten($secondary-brand,40%);
 $social-icons-background-color:transparent;
 $home-article-tags-color:$publish-date-background-color;
-//$article-list-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
-$article-list-home-page-max-width-m-plus:65%;
-$home-about-widget-max-width: 100% - $article-list-home-page-max-width-m-plus - 3%;
 //This is for the list view of the blog posts (e.g. on the home page);
 $list-article-information-background-color:#ffffff;
+//This is for the right rail/widget deal that you see when you arrive on the home page
+$home-about-rail-widget-background-color:#ffffff;
+//For the "read more" button on the list view
+$read-more-font-color:white;
+$read-more-background-color:$accent-color;
+$read-more-background-color-hover:darken($read-more-background-color,20%);
+
 
 //OPACITY
 $header-opacity:0.9;
@@ -85,9 +91,14 @@ $header-link-font-size:$site-logo-size/2;
 $search-icon-size:$header-link-font-size * 1.5;
 $mobile-logo-size:$site-logo-size;
 $mobile-header-height:$header-height-base;
-//if you increase the header height considerably, you will end up with an equally large footer with the way these values are set up, so I've added a separate variable below if you don't want your footer and header to be the same height.
+//if you increase the header height considerably, you will end up with an equally large footer with the way these default values, so I've added a separate variable below if you don't want your footer and header to be the same height.
 $header-height-non-mobile:$header-height-base;
 $footer-height:$header-height-base;
+//You can give your tags a rounded border by adjusting the following value
+$tag-border-radius:10px;
+//$article-list-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
+$article-list-home-page-max-width-m-plus:65%;
+$home-about-widget-max-width: 100% - $article-list-home-page-max-width-m-plus - 3%;
 
 
 //MOBILE
@@ -103,7 +114,7 @@ $mobile-icon-color-inner: $header-link-color;
 $body-z:0;
 $header-z:99;
 $main-content-z:2;
-$footer-z:1;
+$footer-z:3;
 $home-icon-z:100;
 $mobile-menu-icon-z:999;
 

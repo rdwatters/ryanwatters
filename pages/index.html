@@ -7,11 +7,7 @@
 <article class="list-of-articles" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
     <div class="list-article-wrapper">
-    <section class="list-article-section">
-        {# Social Media Icon Section #}
-        <section class="list-article-social-buttons">
-        {% include "templates/partials/socialmediaicons.html" %}
-        </section> 
+    <section class="list-article-section"> 
         {% if article.related_video %}
             {% set video = article.related_video %}
             {% set ss = video.streaming_service %}
@@ -70,11 +66,17 @@
                         </div>
                     </section>
         {% endif %}
+                {# Social Media Icon Buttons #}
+                    <section class="list-article-social-buttons">
+                            {% include "templates/partials/socialmediaicons.html" %}
+                        
+                    </section>
+                    <hr class="social">                    
                     <div class="list-article-information" itemprop="blogPost">
                         <h1 class="list-article-title">
                             <a href="{{ url(article) }}">{{ article.title }}</a>
                         </h1>
-                        <p class="list-article-description">{{ article.description }} <span class="read-more"><a href="{{ url(article) }}">Read more...</a></span></p>
+                        <p class="list-article-description">{{ article.description }}</p><div class="read-more" role="button"><a href="{{ url(article) }}">Read more...</a></div>
                         <div class="author-and-tags-container">
                             <a href="{{ url(article.author[0]) }}">
                                 <div class="author-photo">
@@ -92,30 +94,47 @@
         </section>
     </div>
     {% endfor %}
+
+<aside class="home-about-rail-widget">
+        <section class="home-about-content">
+            {% for author in authors %}
+            <span class="author-name">{{ author.full_name.first }} {{ author.full_name.last }}</span>
+            <div class="author-image">
+                <img src="{{ author.author_photo|imageCrop(100, 100) }}" />
+            </div>
+            <div class="author-bio-short">{{ author.short_bio }}</div>
+            <ul class="author-social">
+                {% if author.github%}
+                <li class="github"><a href="{{ author.github }}" target="_blank"></a></li>
+                {% endif %} {% if author.twitter %}
+                <li class="twitter"><a href="https://www.twitter.com/@{{ author.twitter }}" target="_blank"></a></li>
+                {% endif %} {% if author.website %}
+                <li class="author-website"><a href="{{ author.website }}"></a></li>
+                {% endif %} {% if author.email %}
+                <li class="email"><a href="mailto:{{ author.email }}"></a></li>
+                {% endif %} {% if author.linkedin %}
+                <li class="linkedin"><a href="{{ author.linkedin }}" target="_blank"></a></li>
+                {% endif %}
+            </ul>
+            {% endfor %}
+            <section class="most-recent-tweet">
+                {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
+                {% set tweet = cms.tweet|sort('publish_date',true)|first %}
+                {% set tweetBody = tweet.tweet_body.split('http')[0] %}
+                {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
+                <span><strong>{{ tweetBody }}</strong></span>
+                <span><strong><a href="http{{ tweetUrl }}">http{{ tweetUrl }}</a></strong></span>
+            </section>
+
+            {#Pull all 'tags' currently being used in the cms and add them to this section of the right rail #}
+            {% set tags = cms.tags|sort('name') %}
+            <section class="home-tag-listing">
+                {% for tag in tags %}
+                <span class="article-tag"><a href="{{ url(tag) }}">{{ tag.name|lower }}</a></span>
+                {% endfor %}
+            </section>
+        </section>
+    </aside>
 </article>
-<aside>
-    <section class="home-about-rail-widget">
-        {% for author in authors %}
-        <span class="author-name"><strong>About </strong>{{ author.full_name.first }} {{ author.full_name.last }}</span>
-        <div class="author-image">
-            <img src="{{ author.author_photo|imageSize(200, 200) }}" />
-        </div>
-        <div class="author-bio-short">{{ author.short_bio }}</div>
-        <ul class="author-social">
-            {% if author.github%}
-            <li class="github"><a href="{{ author.github }}" target="_blank"></a></li>
-            {% endif %} {% if author.twitter %}
-            <li class="twitter"><a href="https://www.twitter.com/@{{ author.twitter }}" target="_blank"></a></li>
-            {% endif %} {% if author.website %}
-            <li class="author-website"><a href="{{ author.website }}"></a></li>
-            {% endif %} {% if author.email %}
-            <li class="email"><a href="mailto:{{ author.email }}"></a></li>
-            {% endif %} {% if author.linkedin %}
-            <li class="linkedin"><a href="{{ author.linkedin }}" target="_blank"></a></li>
-            {% endif %}
-        </ul>
-        {% endfor %}
-    </section>
-</aside>
 
 {% endblock %}

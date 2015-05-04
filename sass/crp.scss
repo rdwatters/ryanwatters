@@ -156,8 +156,11 @@
     display: block;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: $footer-height;
     background-color: $main-content-background-color;
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
     max-width: $XXL;
     &.menu-open {
         @include transform(translateX(-$mobile-menu-width));
@@ -173,6 +176,7 @@
 
 .list-of-articles {
     display: inline-block;
+    float: left;
     width: 90%;
     margin-right: auto;
     margin-left: 5%;
@@ -203,15 +207,45 @@
 }
 
 .list-article-social-buttons {
-    position: absolute;
-    top: 0;
-    right: 0;
     z-index: 1;
+    @include display(flex);
+    @include flex-direction(row);
+    @include align-items(center);
+    @include justify-content(center);
+    width: 100%;
+    clear: both;
     font-size: 2em;
     padding: 5px;
-    ;
+    z-index: 3;
     background-color: $social-icons-background-color;
     font-family: $heading-font-family;
+    svg {
+        @include transition(.3s);
+        margin-left: 15px;
+    }
+    .pinterest-svg:hover {
+        fill: #cb2027;
+    }
+    .google-plus-svg:hover {
+        fill: #dd4b39;
+    }
+    .twitter-svg:hover {
+        fill: #00aced;
+    }
+    .linkedin-svg:hover {
+        fill: #007bb6;
+    }
+    .facebook-svg:hover {
+        fill: #3b5998;
+    }
+}
+
+hr.social {
+    display: block;
+    clear: both;
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .list-article-video {
@@ -282,12 +316,19 @@
 .list-publish-date {
     display: inline-block;
     width: 60px;
+    padding: {
+        top: 5px;
+        left: 5px;
+        bottom: 5px;
+    }
     text-align: center;
     background-color: $publish-date-background-color;
+    font-family:$publish-date-font-family;
     position: absolute;
     right: 0px;
-    bottom: 0px;
-    .month, .year {
+    top: 40%;
+    .month,
+    .year {
         display: block;
         font-size: 1em;
     }
@@ -303,9 +344,6 @@
     height: 100%;
     padding: 0px;
     margin: 0px;
-    .list-publish-date {
-        bottom: 5px;
-    }
     .article-image img {
         width: 100%;
         height: 100%;
@@ -349,13 +387,29 @@
 }
 
 .read-more {
-    color: #01589B;
+    color:$read-more-font-color;
     font-weight: bold;
+    font-size: 1.2em;
+    a {
+        padding:.2em;
+        background-color:$read-more-background-color;
+        width:120px;
+        text-align:center;
+        margin-right: auto;
+        margin-left: auto;
+        display: block;
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+        box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+        &:hover{
+            background-color:$read-more-background-color-hover;
+        }
+    }
 }
 
 .author-and-tags-container {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    position: relative;
     display: block;
     width: 100%;
     clear: both;
@@ -371,31 +425,48 @@
 
 .article-tag {
     @include transition(.3s);
-    padding: 4px;
+    padding: 5px;
+    border-radius: $tag-border-radius;
     background-color: $home-article-tags-color;
     &:hover {
         background-color: darken($home-article-tags-color, 20%);
     }
 }
 
-aside {
-    .home-about-rail-widget {
-        display: block;
-        width: 100%;
-        @include MQ(M) {
-            float: right;
-            position: fixed;
-            right: 0;
-            top: $header-height-non-mobile + 40px;
-            display: inline-block;
-            max-width: $home-about-widget-max-width;
-        }
+.home-about-rail-widget {
+    display: inline-block;
+    @include MQ(M) {
+        position: fixed;
+        float: right;
+        top: $header-height-non-mobile + 40px;
+        display: inline-block;
+        max-width: $home-about-widget-max-width;
     }
-    .author-image img{
-        display:block;
-        border-radius:10px;
-        margin-right:auto;
-        margin-left:auto;
+    .home-about-content {
+        width: 90%;
+        margin-left: 5%;
+        float: left;
+        @include MQ(M) {
+            max-width: 400px;
+        }
+        text-align: center;
+        display: block;
+        background-color: $home-about-rail-widget-background-color;
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+        -moz-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+        box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+    }
+    .author-image img {
+        display: block;
+        border-radius: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .home-tag-listing {
+        .article-tag {
+            display: inline-block;
+            margin: 3px;
+        }
     }
 }
 
