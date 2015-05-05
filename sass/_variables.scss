@@ -84,7 +84,9 @@ $social-icons-background-color:transparent;
 //This is for the list view of the blog posts (e.g. on the home page);
 $home-article-information-background-color:#ffffff;
 //This is for the right rail/widget on M+ screens
-$home-about-rail-widget-background-color:lighten(#333333,75%);
+$home-about-rail-widget-background-color:lighten(#333333,79%);
+$home-about-rail-widget-section-underline-width:2px;
+$home-about-rail-widget-section-underline: 1px solid $home-tags-heading-color;
 //For the "read more" button on the list view
 $read-more-font-color:white;
 $read-more-background-color:$accent-color;

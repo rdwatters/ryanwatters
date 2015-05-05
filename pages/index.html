@@ -93,9 +93,6 @@
                                     {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}
                                 </div>
                             </a>
-<!--                             <div class="article-tags" itemprop="keywords">{% for tag in article.tags %}
-                                <div class="article-tag"><a href="{{url(tag)}}">{{ tag.name|lower }}</a></div> {% endfor %}
-                            </div> -->
                         </div>
                     </div>
         </section>
@@ -103,27 +100,14 @@
     {% endfor %}
 
 <aside class="home-about-rail-widget">
-        <section class="home-about-content">
-            {% for author in authors %}
-            <span class="author-name">{{ author.full_name.first }} {{ author.full_name.last }}</span>
-            <div class="author-image">
-                <img src="{{ author.author_photo|imageCrop(100, 100) }}" />
-            </div>
-            <div class="author-bio-short">{{ author.short_bio }}</div>
-            <ul class="author-social">
-                {% if author.github%}
-                <li class="github"><a href="{{ author.github }}" target="_blank"></a></li>
-                {% endif %} {% if author.twitter %}
-                <li class="twitter"><a href="https://www.twitter.com/@{{ author.twitter }}" target="_blank"></a></li>
-                {% endif %} {% if author.website %}
-                <li class="author-website"><a href="{{ author.website }}"></a></li>
-                {% endif %} {% if author.email %}
-                <li class="email"><a href="mailto:{{ author.email }}"></a></li>
-                {% endif %} {% if author.linkedin %}
-                <li class="linkedin"><a href="{{ author.linkedin }}" target="_blank"></a></li>
-                {% endif %}
-            </ul>
+        <section class="home-about-content">            
+            {#Grab each of the categories and write them to the page with the total number of articles in each#}
+            <div class="categories">
+             <h4 class="categories-heading">CATEGORIES</h4>
+            {% for category in cms.categories %}
+                <div class="category-name">{{ category.name }}</div>           
             {% endfor %}
+            </div>
 
             {#Pull all 'tags' currently being used in the cms and add them to this section of the right rail #}
             {% set tags = cms.tags|sort('name') %}

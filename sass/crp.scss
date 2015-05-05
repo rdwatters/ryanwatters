@@ -218,12 +218,12 @@
         top: 0;
         bottom: 0;
     }
-    padding-top: $header-height-non-mobile + 40px;
+    padding-top: $header-height-non-mobile + 20px;
     padding-bottom: $footer-height;
 }
 
 .homepage-article-list {
-    display: inline-block;
+    display: block;
     float: left;
     width: 90%;
     margin-right: 5%;
@@ -231,13 +231,15 @@
     padding: 0;
     @include MQ(M) {
         float: right;
+        display:inline-block;
     }
 }
 
 .home-article-wrapper {
-    display: inline-block;
+    display: block;
     position: relative;
     margin-bottom: 15px;
+    width:100%;
     @include MQ(M) {
         display: inline-block;
         max-width: $article-home-home-page-max-width-m-plus;
@@ -562,13 +564,20 @@ hr.social {
         margin-right: auto;
         margin-left: auto;
     }
+    .categories {
+        text-align:left;
+        .categories-heading {
+            border-bottom: $home-about-rail-widget-section-underline;
+            color: $home-tags-heading-color;
+        }
+    }
     .home-tag-listing {
         text-align: left;
-        width:90%;
+        width:100%;
         max-width: 400px;
         margin: auto;
         .tags-heading {
-            border-bottom: 3px solid $home-tags-heading-color;
+            border-bottom: $home-about-rail-widget-section-underline;
             color: $home-tags-heading-color;
         }
         .article-tag {
@@ -583,7 +592,7 @@ hr.social {
         width: 100%;
         height: auto;
         border-radius: $most-recent-tweet-border-radius;
-        @include linear-gradient(white, lighten($twitter-blue,45%));
+        @include linear-gradient($home-about-rail-widget-background-color, lighten($twitter-blue,45%));
         .twitter-content-wrapper{
             display:block;
             width:90%;
