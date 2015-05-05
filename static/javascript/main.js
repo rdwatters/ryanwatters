@@ -1,4 +1,4 @@
-//Quick and dirty browser sniff for mobile devices:
+//Quick and dirty browser sniff for mobile devices (only iOS and android):
 "use strict";
 
 var mobileOS = false;
@@ -56,11 +56,11 @@ function init() {
     mobileButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearch;
     //do not initialize the header transition (headerFadeOnScroll) on M & larger screens
-    if (window.outerWidth < 768) {
-        window.onscroll = function () {
-            headerFadeOnScroll();
-        };
-    }
+    // if (window.outerWidth < 768) {
+    window.onscroll = function () {
+        headerFadeOnScroll();
+    };
+    // }
 }
 
 //HEADER FADES IN AND OUT ON SCROLL - SEE function init to check if

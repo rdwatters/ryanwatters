@@ -4,17 +4,19 @@
 {% set articles = cms.articles|sort('publish_date', true) %}
 {% set articles = articles|slice(0,5) %}
 {% set authors = cms.authors %}
-<article class="list-of-articles" itemscope itemtype="http://schema.org/Blog">
+<article class="homepage-article-list" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
-    <div class="list-article-wrapper">
-    <section class="list-article-section"> 
+    <div class="home-article-wrapper">
+    <section class="home-article-section"> 
         {% if article.related_video %}
             {% set video = article.related_video %}
             {% set ss = video.streaming_service %}
                 {% if ss == "YouTube"%}
                     {% set videoId = video.video.original_url.split('v=')[1] %}
-                    <section class="list-article-video">
-                        
+                    <section class="home-article-video">
+                    {% for relation in article.category%}
+                        <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                    {% endfor %}         
                         <div class="video-player-youtube" data-youtubeid="{{videoId}}">
                                 {% if video.thumbnail_override %}
                                     <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}">
@@ -25,7 +27,7 @@
                                 <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /><path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
                             </div>
                         </div>
-                        <section class="list-publish-date">
+                        <section class="home-publish-date">
                             <span class="month">{{- article.publish_date|date('F') -}}</span>
                             <span class="day">{{- article.publish_date|date('d') -}}</span>
                             <span class="year">{{- article.publish_date|date('Y') -}}</span>
@@ -33,7 +35,10 @@
                     </section>
                 {% elseif ss == "Vimeo" %}
                 {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
-                    <section class="list-article-video">
+                    <section class="home-article-video">
+                    {% for relation in article.category%}
+                        <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                    {% endfor %}
                         <div class="video-player-vimeo" data-vimeoid="{{video.video.original_url.split('vimeo.com/')[1]}}">
                         {% if row.video.thumbnail_override %}
                             <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}">
@@ -47,7 +52,7 @@
                                 </svg>
                             </div>
                         </div>
-                        <section class="list-publish-date">
+                        <section class="home-publish-date">
                             <span class="month">{{- article.publish_date|date('F') -}}</span>
                             <span class="day">{{- article.publish_date|date('d') -}}</span>
                             <span class="year">{{- article.publish_date|date('Y') -}}</span>
@@ -55,10 +60,13 @@
                     </section>
                 {% endif %}        
         {% else %}
-                    <section class="list-article-image">
+                    <section class="home-article-image">
+                    {% for relation in article.category%}
+                        <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                    {% endfor %}
                         <div class="article-image">
                             <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image">
-                        <section class="list-publish-date">
+                        <section class="home-publish-date">
                             <span class="month">{{- article.publish_date|date('F') -}}</span>
                             <span class="day">{{- article.publish_date|date('d') -}}</span>
                             <span class="year">{{- article.publish_date|date('Y') -}}</span>
@@ -67,16 +75,15 @@
                     </section>
         {% endif %}
                 {# Social Media Icon Buttons #}
-                    <section class="list-article-social-buttons">
-                            {% include "templates/partials/socialmediaicons.html" %}
-                        
+                    <section class="home-article-social-buttons">
+                            {% include "templates/partials/socialmediaicons.html" %}                       
                     </section>
                     <hr class="social">                    
-                    <div class="list-article-information" itemprop="blogPost">
-                        <h1 class="list-article-title">
+                    <div class="home-article-information" itemprop="blogPost">
+                        <h1 class="home-article-title">
                             <a href="{{ url(article) }}">{{ article.title }}</a>
                         </h1>
-                        <p class="list-article-description">{{ article.description }}</p><div class="read-more" role="button"><a href="{{ url(article) }}">Read more...</a></div>
+                        <p class="home-article-description">{{ article.description }}</p><div class="read-more" role="button"><a href="{{ url(article) }}">Read more...</a></div>
                         <div class="author-and-tags-container">
                             <a href="{{ url(article.author[0]) }}">
                                 <div class="author-photo">
@@ -86,9 +93,9 @@
                                     {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}
                                 </div>
                             </a>
-                            <div class="article-tags" itemprop="keywords">{% for tag in article.tags %}
-                                <span class="article-tag"><a href="{{url(tag)}}">{{ tag.name|lower }}</a></span> {% endfor %}
-                            </div>
+<!--                             <div class="article-tags" itemprop="keywords">{% for tag in article.tags %}
+                                <div class="article-tag"><a href="{{url(tag)}}">{{ tag.name|lower }}</a></div> {% endfor %}
+                            </div> -->
                         </div>
                     </div>
         </section>
@@ -117,24 +124,48 @@
                 {% endif %}
             </ul>
             {% endfor %}
-            <section class="most-recent-tweet">
-                {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
-                {% set tweet = cms.tweet|sort('publish_date',true)|first %}
-                {% set tweetBody = tweet.tweet_body.split('http')[0] %}
-                {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
-                <span><strong>{{ tweetBody }}</strong></span>
-                <span><strong><a href="http{{ tweetUrl }}">http{{ tweetUrl }}</a></strong></span>
-            </section>
 
             {#Pull all 'tags' currently being used in the cms and add them to this section of the right rail #}
             {% set tags = cms.tags|sort('name') %}
             <section class="home-tag-listing">
+                <h4 class="tags-heading">TAGS</h4>
                 {% for tag in tags %}
                 <span class="article-tag"><a href="{{ url(tag) }}">{{ tag.name|lower }}</a></span>
                 {% endfor %}
             </section>
+            
+        </section>
+        <section class="most-recent-tweet">
+                {% set twitterHandle = getSetting('site_twitter') %}
+                <div class="twitter-content-wrapper">
+                <div class="twitter-header">
+                    <span class="twitter-handle">
+                        <a href="https://www.twitter.com/@{{twitterHandle}}">@{{ twitterHandle }}</a>
+                    </span>
+                    {# SMALL TWITTER SVG IN RIGHT WIDGET#}
+                    <svg version="1.0"
+                        id="twitter-mini" class="twitter-svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="130.9 12.4 31.7 25.8"
+                        enable-background="new 130.9 12.4 31.7 25.8" xml:space="preserve" height="15px">
+                        <g id="layer1" transform="translate(-282.32053,-396.30734)">
+                        <path id="path5" d="M444.9,411.8c-1.2,0.5-2.4,0.9-3.7,1c1.3-0.8,2.4-2.1,2.9-3.6c-1.3,0.7-2.6,1.3-4.1,1.6
+                        c-1.2-1.3-2.9-2.1-4.7-2.1c-3.6,0-6.5,2.9-6.5,6.5c0,0.5,0.1,1,0.2,1.5c-5.4-0.3-10.2-2.9-13.4-6.8c-0.6,1-0.9,2.1-0.9,3.3
+                        c0,2.3,1.1,4.2,2.9,5.4c-1.1,0-2.1-0.3-2.9-0.8c0,0,0,0.1,0,0.1c0,3.2,2.2,5.8,5.2,6.4c-0.5,0.1-1.1,0.2-1.7,0.2
+                        c-0.4,0-0.8,0-1.2-0.1c0.8,2.6,3.2,4.5,6.1,4.5c-2.2,1.7-5,2.8-8.1,2.8c-0.5,0-1,0-1.6-0.1c2.9,1.8,6.3,2.9,10,2.9
+                        c12,0,18.5-9.9,18.5-18.5c0-0.3,0-0.6,0-0.8C443,414.2,444.1,413.1,444.9,411.8L444.9,411.8z"/>
+                    </g>
+                    </svg>
+                </div>
+                
+                {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
+                {% set tweet = cms.tweet|sort('publish_date',true)|first %}
+                {% set tweetBody = tweet.tweet_body.split('http')[0] %}
+                {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
+                <p class="tweet-body">{{ tweetBody }} <a href="http{{ tweetUrl }}" class="tweet-url">http{{ tweetUrl }}</a></p>
+                <p><span class="tweet-time"><time datetime="tweet.tweet_time">Published on <a href="https://www.twitter.com/{{twitterHandle}}/status/{{ tweet.name }}" target="_blank">{{ tweet.tweet_time|date('F d Y. g:i a') }}</a></time></span></p>
+                </div>
+                
         </section>
     </aside>
 </article>
-
 {% endblock %}

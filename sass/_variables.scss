@@ -38,54 +38,71 @@ $columns:12;
 //TYPOGRAPHY
 $base-font-size:16px;
 $body-font-family: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
-$heading-font-family:'Adelle',Georgia,sans-serif;
+$heading-font-family:'Merriweather',Georgia,sans-serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
 $heading-four-font-size: $base-font-size * 1.1; //h4
-$publish-date-font-family:$heading-font-family;
+$publish-date-font-family:$heading-font-family; //for the publish date; e.g. on the list view of articles on the home page
 
 //COLORS
-$primary-brand:#01589B;
+$primary-brand:darken(#01589B,10%);
 $secondary-brand:lighten($primary-brand,25%);
 $logo-color:$primary-brand;
-$base-font-color:#333333;
-$header-background-color:#333333;
+$logo-font-color:white;
+$dark:#333333;
+$base-font-color:$dark;
+$header-background-color:white;
 $accent-color:desaturate(#DD2922,20%);
 $white:#FBFAF5;
-$header-link-color:#ffffff;
+$header-link-color:$base-font-color;
+$header-link-underline-color:$logo-color;
+$header-link-underline-thickness:5px;
 $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
-$footer-background-color:$header-background-color;
+$footer-background-color:white;
+$footer-font-color:$base-font-color;
 $body-background-color:white;
 $main-content-background-color:$body-background-color;
-$footer-font-color:white;
 $search-overlay-color:$header-background-color;
 $search-overlay-transparency:0.9;
+$category-button-background-color:#333333;
+$category-button-background-color-hover:$accent-color;
+$home-tags-heading-color:#333333;
+$tags-font-color:white;
+$tags-background-color:black;
+$tags-background-hover:$primary-brand;
+//Social buttons are set up to transition to their respective brand color on hover
+$social-buttons-color:black;
 //anchor color in reset.scss
-$anchor-color:$accent-color;
+$anchor-color:$primary-brand;
 //$body-anchor-underline can be used for wired.com style anchor links
 $body-anchor-underline:3px solid $primary-brand;
-//for home page list view
-$publish-date-background-color:lighten($secondary-brand,40%);
+//publish date on the list view of 
+$publish-date-background-color:white;
 $social-icons-background-color:transparent;
-$home-article-tags-color:$publish-date-background-color;
 //This is for the list view of the blog posts (e.g. on the home page);
-$list-article-information-background-color:#ffffff;
-//This is for the right rail/widget deal that you see when you arrive on the home page
-$home-about-rail-widget-background-color:#ffffff;
+$home-article-information-background-color:#ffffff;
+//This is for the right rail/widget on M+ screens
+$home-about-rail-widget-background-color:lighten(#333333,75%);
 //For the "read more" button on the list view
 $read-more-font-color:white;
 $read-more-background-color:$accent-color;
 $read-more-background-color-hover:darken($read-more-background-color,20%);
+//END HOME PAGE LIST VIEW COLORS
+//You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
+$twitter-blue:#00aced;
+$twitter-mini-color:$twitter-blue;
+$most-recent-tweet-background-color:white;
+$most-recent-tweet-border-radius:0px;
 
 
 //OPACITY
 $header-opacity:0.9;
 $footer-opacity:$header-opacity;
 
-//SIZES
-$site-logo-size:36px;
+//SIZES && SHAPES
+$site-logo-size:32px;
 $header-height-base: $site-logo-size * 1.5;
 $header-link-font-size:$site-logo-size/2;
 $search-icon-size:$header-link-font-size * 1.5;
@@ -95,27 +112,26 @@ $mobile-header-height:$header-height-base;
 $header-height-non-mobile:$header-height-base;
 $footer-height:$header-height-base;
 //You can give your tags a rounded border by adjusting the following value
-$tag-border-radius:10px;
-//$article-list-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
-$article-list-home-page-max-width-m-plus:65%;
-$home-about-widget-max-width: 100% - $article-list-home-page-max-width-m-plus - 3%;
+$tags-border-radius:0px;
+//$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
+$article-home-home-page-max-width-m-plus:65%;
+$home-about-widget-max-width: 100% - $article-home-home-page-max-width-m-plus - 3%;
 
 
 //MOBILE
 $mobile-menu-width:100%;
-$mobile-icon-height: 30px;
-$mobile-icon-width: 40px;
-$mobile-icon-layer-height: 6px;
-$mobile-icon-color: white;
+$mobile-icon-height: 20px;
+$mobile-icon-width: 30px;
+$mobile-icon-layer-height: 4px;
+$mobile-icon-color: $logo-color;
 $mobile-icon-color-inner: $header-link-color;
-
 
 //Z-INDEXES
 $body-z:0;
 $header-z:99;
 $main-content-z:2;
 $footer-z:3;
-$home-icon-z:100;
+$home-icon-z:998;
 $mobile-menu-icon-z:999;
 
 //GLOBAL FOR HEADER
@@ -124,7 +140,7 @@ $header-main-logo-background-image: '/static/images/favicon.png';
 $home-logo-background-color:$primary-brand;
 $home-logo-hover-background-color:white;
 $site-name:'Ryan Watters';
-$primary-navigation-text-transform:capitalize;
+$primary-navigation-text-transform:uppercase;
 $home-logo-border-radius:50%;
 $home-button-icon-radius:50%;
 

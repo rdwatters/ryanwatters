@@ -1,4 +1,4 @@
-//Quick and dirty browser sniff for mobile devices:
+//Quick and dirty browser sniff for mobile devices (only iOS and android):
 var mobileOS = false;
 if (navigator.userAgent.match(/iphone/gi) || navigator.userAgent.match(/ipad/gi) || navigator.userAgent.match(/android/gi)) {
     mobileOS = true;
@@ -46,7 +46,7 @@ var header = document.querySelector('.header'),
     wScrollCurrent = 0,
     wScrollBefore = 0,
     wScrollDiff = 0;
-window.onload = init;
+    window.onload = init;
 
 function init() {
     //mobile menu toggle (off-canvas)
@@ -55,11 +55,11 @@ function init() {
     mobileButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearch;
     //do not initialize the header transition (headerFadeOnScroll) on M & larger screens
-    if (window.outerWidth < 768) {
-        window.onscroll = function() {
-            headerFadeOnScroll();
-        };
-    }
+    // if (window.outerWidth < 768) {
+    window.onscroll = function() {
+    headerFadeOnScroll();
+    };
+    // }
 }
 
 //HEADER FADES IN AND OUT ON SCROLL - SEE function init to check if 
