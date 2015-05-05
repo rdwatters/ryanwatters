@@ -17,10 +17,11 @@ npm-debug.log
 temp_code.md
 node_modules
 bower_components
-author_notes.md
-handy.txt
-www.cssigniter.com
 
+#My notes, etc used for development
+author_notes.md
+dummytext.md
+handy.txt
 
 /.build
 /.firebase.conf
