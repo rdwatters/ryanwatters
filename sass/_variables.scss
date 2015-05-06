@@ -93,6 +93,9 @@ $read-more-font-color-hover:white;
 $read-more-background-color-hover:$accent-color;
 $read-more-border:2px solid $accent-color;
 //END HOME PAGE LIST VIEW COLORS
+//ARTICLE PAGES
+$full-length-article-anchor-underline-color:lighten($primary-brand,40%);
+//END ARTICLE PAGES
 //You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
 $twitter-blue:#00aced;
 $twitter-mini-color:$twitter-blue;

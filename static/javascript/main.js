@@ -114,29 +114,25 @@ function toggleSearch() {
 /*
 Looks at all images in an article page and pulls the image class from the alt text.
  */
-window.onload = modifyAlt;
+// window.onload = modifyAlt;
 
-function modifyAlt() {
-    //assumes img in md widget are in <article>
-    // var theImages = document.getElementsByTagName('img') | null;
-    // if (theImages) {
-    //     for (var i = 0; i < theImages.length; i++) {
-    //         var theImage = theImages[i];
-    //         var currentAltTexts = theImage.alt.split(' ');
-    //         var getCssValue = currentAltTexts.splice(currentAltTexts.length - 1);
-    //         //assigns image css class to last word in alt text
-    //         theImage.className = getCssValue;
-    //         //reassigns alt text to truncated alt text w/out presentational class
-    //         theImage.alt = currentAltTexts.join(' ');
-    //     }
-    // }else{
-    //     console.log("no dice yo!");
-    // }
-    var theImages = $("p > img");
-    theImages.each(function () {
-        var getClass = $(this).attr("alt").split(".")[1];
-        var theAltText = $(this).attr("alt").split(".")[0];
-        $(this).addClass(getClass).attr("alt", theAltText);
-    });
-}
+// function modifyAlt() {
+//     var theImages = $('p > img');
+//     theImages.each(function() {
+//         var getClass = $(this).attr('alt').split('.')[1];
+//         var theAltText = $(this).attr('alt').split('.')[0];
+//         $(this).addClass(getClass).attr('alt', theAltText);
+//     });
+// }
+// $(function() {
+//     var headerHeight = $('header').height() + 10;
+//     console.log(headerHeight);
+//     $(window).on('scroll', function() {
+//         if ($(this).scrollTop() > headerHeight) {
+//             $('social-media-icons-bar').addClass('sticky-social');
+//         } else {
+//             $('social-media-icons-bar').removeClass('sticky-social');
+//         }
+//     });
+// });
 //# sourceMappingURL=main.js.map
