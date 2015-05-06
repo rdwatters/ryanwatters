@@ -110,4 +110,33 @@ function toggleSearch() {
         searchInput.focus();
     }
 }
+
+/*
+Looks at all images in an article page and pulls the image class from the alt text.
+ */
+window.onload = modifyAlt;
+
+function modifyAlt() {
+    //assumes img in md widget are in <article>
+    // var theImages = document.getElementsByTagName('img') | null;
+    // if (theImages) {
+    //     for (var i = 0; i < theImages.length; i++) {
+    //         var theImage = theImages[i];
+    //         var currentAltTexts = theImage.alt.split(' ');
+    //         var getCssValue = currentAltTexts.splice(currentAltTexts.length - 1);
+    //         //assigns image css class to last word in alt text
+    //         theImage.className = getCssValue;
+    //         //reassigns alt text to truncated alt text w/out presentational class
+    //         theImage.alt = currentAltTexts.join(' ');
+    //     }
+    // }else{
+    //     console.log("no dice yo!");
+    // }
+    var theImages = $("p > img");
+    theImages.each(function () {
+        var getClass = $(this).attr("alt").split(".")[1];
+        var theAltText = $(this).attr("alt").split(".")[0];
+        $(this).addClass(getClass).attr("alt", theAltText);
+    });
+}
 //# sourceMappingURL=main.js.map

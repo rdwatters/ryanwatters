@@ -24,13 +24,15 @@
                                     <img class="video-thumb" src="{{ video.video.thumbnail_url|imageCrop(560,315) }}" alt="{{ video.video_title}}" class="video-thumbnail">
                                 {% endif %}
                             <div class="play-button" role="button">
-                                <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve"><path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /><path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
+                                <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                                <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
+                                <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
                             </div>
                         </div>
                         <section class="home-publish-date">
-                            <span class="month">{{- article.publish_date|date('F') -}}</span>
-                            <span class="day">{{- article.publish_date|date('d') -}}</span>
-                            <span class="year">{{- article.publish_date|date('Y') -}}</span>
+                            <div class="month">{{- article.publish_date|date('F') -}}</div>
+                            <div class="day">{{- article.publish_date|date('d') -}}</div>
+                            <div class="year">{{- article.publish_date|date('Y') -}}</div>
                         </section>
                     </section>
                 {% elseif ss == "Vimeo" %}
@@ -47,15 +49,15 @@
                         {% endif %}
                             <div class="play-button" role="button">
                                 <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                                <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" />
+                                <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
                                 <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
                                 </svg>
                             </div>
                         </div>
                         <section class="home-publish-date">
-                            <span class="month">{{- article.publish_date|date('F') -}}</span>
-                            <span class="day">{{- article.publish_date|date('d') -}}</span>
-                            <span class="year">{{- article.publish_date|date('Y') -}}</span>
+                            <div class="month">{{- article.publish_date|date('F') -}}</div>
+                            <div class="day">{{- article.publish_date|date('d') -}}</div>
+                            <div class="year">{{- article.publish_date|date('Y') -}}</div>
                         </section>
                     </section>
                 {% endif %}        
@@ -65,35 +67,40 @@
                         <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
                     {% endfor %}
                         <div class="article-image">
-                            <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image">
+                            <img src="{{article.image|imageCrop(560,185)}}" alt="{{ article.image_description }}" itemprop="image">
                         <section class="home-publish-date">
-                            <span class="month">{{- article.publish_date|date('F') -}}</span>
-                            <span class="day">{{- article.publish_date|date('d') -}}</span>
-                            <span class="year">{{- article.publish_date|date('Y') -}}</span>
+                            <div class="month">{{- article.publish_date|date('F') -}}</div>
+                            <div class="day">{{- article.publish_date|date('d') -}}</div>
+                            <div class="year">{{- article.publish_date|date('Y') -}}</div>
                         </section>
                         </div>
                     </section>
         {% endif %}
-                {# Social Media Icon Buttons #}
-                    <section class="home-article-social-buttons">
-                            {% include "templates/partials/socialmediaicons.html" %}                       
-                    </section>
-                    <hr class="social">                    
+                {# Social Media Icon Buttons #}                   
                     <div class="home-article-information" itemprop="blogPost">
-                        <h1 class="home-article-title">
-                            <a href="{{ url(article) }}">{{ article.title }}</a>
-                        </h1>
-                        <p class="home-article-description">{{ article.description }}</p><div class="read-more" role="button"><a href="{{ url(article) }}">Read more...</a></div>
-                        <div class="author-and-tags-container">
-                            <a href="{{ url(article.author[0]) }}">
-                                <div class="author-photo">
-                                    <img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="Photograph of the author: {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}">
-                                </div>                        
-                                <div class="article-author" itemprop="author">
-                                    {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}
+                        <section class="home-article-social-buttons">
+                                {% include "templates/partials/socialmediaicons.html" %}                       
+                        </section>
+                        <section class="home-article-title-and-description">
+                            <h1 class="home-article-title">
+                                <a href="{{ url(article) }}">{{ article.title }}</a>
+                            </h1>
+                            <p class="home-article-description">{{ article.description }}</p>
+                            <div class="home-article-read-more-and-article-author">
+                                <div class="read-more" role="button">
+                                    <a href="{{ url(article) }}">Read more...</a>
                                 </div>
-                            </a>
-                        </div>
+                                    <a href="{{ url(article.author[0]) }}">
+                                        <div class="author-photo">
+                                            <img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="Photograph of the author: {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}">
+                           
+                                            <div class="article-author" itemprop="author">
+                                                {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}
+                                            </div>
+                                        </div> 
+                                    </a>
+                            </div>
+                        </section>
                     </div>
         </section>
     </div>
@@ -103,10 +110,13 @@
         <section class="home-about-content">            
             {#Grab each of the categories and write them to the page with the total number of articles in each#}
             <div class="categories">
-             <h4 class="categories-heading">CATEGORIES</h4>
-            {% for category in cms.categories %}
-                <div class="category-name">{{ category.name }}</div>           
-            {% endfor %}
+                <h4 class="categories-heading">CATEGORIES</h4>
+                    {% for category in cms.categories %}
+                        <div class="category-name">
+                            <a href="{{ url(category) }}">{{ category.name }}</a>
+                            <span class="category-article-total">({{ category.articles.length }})</span>
+                        </div>           
+                    {% endfor %}
             </div>
 
             {#Pull all 'tags' currently being used in the cms and add them to this section of the right rail #}
@@ -117,9 +127,7 @@
                 <span class="article-tag"><a href="{{ url(tag) }}">{{ tag.name|lower }}</a></span>
                 {% endfor %}
             </section>
-            
-        </section>
-        <section class="most-recent-tweet">
+            <section class="most-recent-tweet">
                 {% set twitterHandle = getSetting('site_twitter') %}
                 <div class="twitter-content-wrapper">
                 <div class="twitter-header">
@@ -147,8 +155,8 @@
                 {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
                 <p class="tweet-body">{{ tweetBody }} <a href="http{{ tweetUrl }}" class="tweet-url">http{{ tweetUrl }}</a></p>
                 <p><span class="tweet-time"><time datetime="tweet.tweet_time">Published on <a href="https://www.twitter.com/{{twitterHandle}}/status/{{ tweet.name }}" target="_blank">{{ tweet.tweet_time|date('F d Y. g:i a') }}</a></time></span></p>
-                </div>
-                
+                </div>    
+            </section>
         </section>
     </aside>
 </article>

@@ -1,0 +1,209 @@
+.header {
+    z-index: $header-z;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: $header-background-color;
+    @include transition(.4s);
+    display: block;
+    position: fixed;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+    flex-direction: column;
+    width: $mobile-menu-width;
+    order: 2;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    @include transform(translateX($mobile-menu-width));
+    &.menu-open {
+        @include transform(translateX(0px));
+    }
+    .primary-navigation {
+        @include MQ(MMAX) {
+            padding-top: $mobile-header-height;
+            -webkit-transition: none;
+            transition: none;
+        }
+        ul {
+            width: 100%;
+            padding-left: -5px;
+            margin: 0;
+            li {
+                margin-bottom: 10px;
+                &:first-child {}
+                a {
+                    text-decoration: none;
+                    margin: 10px;
+                    text-transform: $primary-navigation-text-transform;
+                }
+            }
+        }
+    }
+    //BEGIN HEADER FOR MEDIUM+ SCREENS
+    @include MQ(M) {
+        top: 0;
+        left: 0;
+        width: 100%;
+        width: 100vw;
+        height: $header-height-non-mobile;
+        line-height: $header-height-non-mobile;
+        padding-top: 0;
+        @include transform(translateX(0px));
+        &.hide-header {
+            opacity: 0;
+        }
+        .primary-navigation {
+            float: right;
+            ul {
+                li {
+                    display: inline-block;
+                    // margin-bottom:32px;
+                    padding: 0;
+                    &:last-child {
+                        padding-right: $site-logo-size/3;
+                    }
+                    a {
+                        cursor: pointer;
+                        vertical-align: middle;
+                        color: $header-link-color;
+                        font-size: $header-link-font-size;
+                        margin: 0;
+                        position: relative;
+                        width: 100%;
+                        margin-right: 10px;
+                        &:hover:before {
+                            padding-bottom: 0;
+                            margin-bottom: 0;
+                        }
+                    }
+                    a:before {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: $header-link-underline-thickness;
+                        margin-top: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background-color: $header-link-underline-color;
+                        visibility: hidden;
+                        -webkit-transform: scaleX(0);
+                        -ms-transform: scaleX(0);
+                        transform: scaleX(0);
+                        @include transition(.3s);
+                    }
+                    a:hover:before {
+                        visibility: visible;
+                        @include transform(scaleX(1));
+                    }
+                    a#search-icon:hover:before {
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header-main-logo-image {
+    width: 100vw;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+    box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
+    height: $mobile-header-height;
+    color: $header-link-color;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: $mobile-header-background-color;
+    @include MQ(M) {
+        display: none;
+    }
+}
+
+//icon or link in the top left to the header. The main logo, which is optional, is in the center of the header and is described below.
+.home-icon {
+    z-index: $home-icon-z;
+    position: fixed;
+    top: $site-logo-size/4;
+    left: $site-logo-size/4;
+    height: $site-logo-size;
+    width: $site-logo-size;
+    display: block;
+    padding: auto;
+    vertical-align: middle;
+    font-size: $site-logo-size/3;
+    background-color: $logo-color;
+    border-radius: $home-logo-border-radius;
+    &:hover {
+        cursor: pointer;
+    }
+    a {
+        @include transition(.4s);
+        cursor: pointer;
+        margin-bottom: 0;
+        width: $site-logo-size;
+        height: $site-logo-size;
+        line-height: $site-logo-size;
+        color: $logo-font-color;
+        text-align: center;
+        font-weight: bold;
+        display: block;
+        background-size: contain;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.site-name-mobile-only {
+    display: block;
+    position: fixed;
+    line-height: $header-link-font-size * 1.5;
+    top: $header-link-font-size/1.5;
+    left: 50px;
+    font-size: $header-link-font-size;
+    color: $logo-color;
+    z-index: 900;
+    &:after {
+        content: $site-name;
+    }
+    @include MQ(M) {
+        display: none;
+    }
+}
+
+//The main logo is different than the home logo/icon. The former is all the way to the left in the site header.
+.header-main-logo-image {
+    background-image: $header-main-logo-background-image;
+    position: fixed;
+    z-index: $header-z;
+}
+
+.main {
+    z-index: $main-content-z;
+    @include transition(.4s);
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: $footer-height;
+    background-color: $main-content-background-color;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    max-width: $XXL;
+    &.menu-open {
+        @include transform(translateX(-$mobile-menu-width));
+        opacity: 0.5;
+    }
+    margin: {
+        top: 0;
+        bottom: 0;
+    }
+    padding-top: $header-height-non-mobile + 20px;
+    padding-bottom: $footer-height;
+}

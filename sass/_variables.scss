@@ -46,7 +46,7 @@ $heading-four-font-size: $base-font-size * 1.1; //h4
 $publish-date-font-family:$heading-font-family; //for the publish date; e.g. on the list view of articles on the home page
 
 //COLORS
-$primary-brand:darken(#01589B,10%);
+$primary-brand:#203253;
 $secondary-brand:lighten($primary-brand,25%);
 $logo-color:$primary-brand;
 $logo-font-color:white;
@@ -60,8 +60,8 @@ $header-link-underline-color:$logo-color;
 $header-link-underline-thickness:5px;
 $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
-$footer-background-color:white;
-$footer-font-color:$base-font-color;
+$footer-background-color:#333333;
+$footer-font-color:white;
 $body-background-color:white;
 $main-content-background-color:$body-background-color;
 $search-overlay-color:$header-background-color;
@@ -70,7 +70,7 @@ $category-button-background-color:#333333;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:#333333;
 $tags-font-color:white;
-$tags-background-color:black;
+$tags-background-color:#333333;
 $tags-background-hover:$primary-brand;
 //Social buttons are set up to transition to their respective brand color on hover
 $social-buttons-color:black;
@@ -85,12 +85,13 @@ $social-icons-background-color:transparent;
 $home-article-information-background-color:#ffffff;
 //This is for the right rail/widget on M+ screens
 $home-about-rail-widget-background-color:lighten(#333333,79%);
-$home-about-rail-widget-section-underline-width:2px;
-$home-about-rail-widget-section-underline: 1px solid $home-tags-heading-color;
+$home-about-rail-widget-section-underline: 1px solid #cccccc;
 //For the "read more" button on the list view
-$read-more-font-color:white;
-$read-more-background-color:$accent-color;
-$read-more-background-color-hover:darken($read-more-background-color,20%);
+$read-more-font-color:$base-font-color;
+$read-more-background-color:white;
+$read-more-font-color-hover:white;
+$read-more-background-color-hover:$accent-color;
+$read-more-border:2px solid $accent-color;
 //END HOME PAGE LIST VIEW COLORS
 //You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
 $twitter-blue:#00aced;
@@ -117,7 +118,7 @@ $footer-height:$header-height-base;
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
 $article-home-home-page-max-width-m-plus:65%;
-$home-about-widget-max-width: 100% - $article-home-home-page-max-width-m-plus - 3%;
+$home-about-widget-max-width: 30%;
 
 
 //MOBILE

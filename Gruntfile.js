@@ -27,12 +27,19 @@ module.exports = function(grunt) {
                         src: ['cms_override.scss'],
                         dest: 'static/css',
                         ext: '.css'
-                    }
+                    },
                     // You can uncomment the follow to include a separate crp.html partial that will be embedded in the page head for critical render path and improved pagespeed insights performance.
-                    , {
+                    {
                         expand: true,
                         cwd: 'sass',
-                        src: ['crp.scss'],
+                        src: ['crp-homepage.scss'],
+                        dest: 'templates/partials',
+                        ext: '.html'
+                    }, 
+                    {
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['crp-article.scss'],
                         dest: 'templates/partials',
                         ext: '.html'
                     }

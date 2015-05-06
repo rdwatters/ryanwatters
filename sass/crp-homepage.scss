@@ -1,0 +1,497 @@
+// WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports
+// @import 'arvowoff';
+// @import 'fjord';
+// @import 'lorabold';
+// @import 'bitterbold';
+// @import 'ralewaybold';
+@import 'merriweather';
+@import 'variables';
+@import 'basic-grid';
+@import 'normalize';
+@import 'bourbon/bourbon';
+@import 'menu-icon';
+@import 'header-and-main';
+/*BEGIN HOMEPAGE STYLES*/
+
+.homepage-article-list {
+    display: block;
+    float: left;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+    padding: 0;
+    @include MQ(M) {
+        float: right;
+        display: inline-block;
+        clear: both;
+    }
+}
+
+.home-article-wrapper {
+    display: block;
+    position: relative;
+    margin-bottom: 15px;
+    width: 100%;
+    @include MQ(M) {
+        display: inline-block;
+        max-width: $article-home-home-page-max-width-m-plus;
+        height: 100%;
+    }
+}
+
+.home-article-section {
+    display: inline-block;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+    background-color: $home-article-information-background-color;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    margin-bottom: 15px;
+}
+
+.home-article-category {
+    @include transition(.3s);
+    position: absolute;
+    top: 0;
+    left: 35px;
+    color: white;
+    font-size: 16px;
+    line-height: 28px;
+    border: 3px solid $body-background-color;
+    background-color: $category-button-background-color;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 5;
+    @include transform(translateY(-12px));
+    a {
+        z-index: 10;
+    }
+    &:hover {
+        background-color: $category-button-background-color-hover;
+    }
+    .category-article-total{
+        float:right;
+    }
+}
+
+.home-article-social-buttons {
+    z-index: 1;
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(center);
+    @include justify-content(center);
+    float: left;
+    min-width: 55px;
+    padding-right: 3px;
+    border-right: 1px solid #cccccc;
+    // width: 100%;
+    font-size: 2em;
+    z-index: 3;
+    background-color: $social-icons-background-color;
+    font-family: $heading-font-family;
+    svg {
+        @include transition(.3s);
+        display: block;
+        clear: both;
+        fill: $social-buttons-color;
+        margin: 10px 20px 10px 20px;
+    }
+    .pinterest-svg:hover {
+        fill: #cb2027;
+    }
+    .google-plus-svg:hover {
+        fill: #dd4b39;
+    }
+    .twitter-svg:hover {
+        fill: #00aced;
+    }
+    .linkedin-svg:hover {
+        fill: #007bb6;
+    }
+    .facebook-svg:hover {
+        fill: #3b5998;
+    }
+}
+
+#twitter-mini {
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+    fill: $twitter-mini-color;
+}
+
+.home-article-video {
+    width: 100%;
+    display: block;
+    position: relative;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.video-player-youtube,
+.video-player-vimeo {
+    display: block;
+    width: 100%;
+    /* assuming that the video has a 16:9 ratio */
+    
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    margin-left: 0;
+    cursor: hand;
+    cursor: pointer;
+    display: block;
+}
+
+.video-thumb {
+    @include hardware-accelerate;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    right: 0;
+    top: 0;
+    height: auto;
+}
+
+//PLAY BUTTON FOR VIDEO LIBRARY AND FOR VIDEOS INCLUDED IN INDIVIDUAL POSTS
+.play-button {
+    display: block;
+    height: $video-player-play-button-size;
+    width: $video-player-play-button-size;
+    left: $video-player-play-button-left-padding;
+    top: 35%; //Assume 16:9 ratio for YouTube videos
+    position: absolute;
+}
+
+.play-button-svg {
+    @include transition(.4s);
+    fill: $video-player-play-button-color;
+    &:hover {
+        fill: $video-player-play-button-color-hover;
+    }
+}
+
+//this class is set by the main.js javascript
+.video-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.home-publish-date {
+    @include display(flex);
+    @include justify-content(flex-end);
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    padding: 5px;
+    text-align: left;
+    background-color: $publish-date-background-color;
+    font-family: $publish-date-font-family;
+    position: absolute;
+    right: 0px;
+    top: 30%;
+    .month, .year {
+        font-size: $base-font-size;
+        color: lighten($base-font-color, 25%);
+    }
+    .day {
+        font-size: 3em;
+    }
+}
+
+.home-article-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    .article-image img {
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+}
+
+.home-article-title {
+    font-size: $base-font-size *1.5;
+    display: block;
+    width: 100%;
+    text-align: left;
+    @include MQ(M) {
+        font-size: $base-font-size * 2;
+        a {
+            cursor: pointer;
+            vertical-align: middle;
+            margin: 0;
+            position: relative;
+            width: 100%;
+        }
+    }
+}
+
+.home-article-information {
+    @include display(flex);
+    @include flex-direction(row);
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    .home-article-title-and-description {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.home-article-description {
+    margin-bottom: 10px;
+}
+
+.home-article-read-more-and-article-author {
+    display: block;
+    vertical-align: middle;
+}
+
+.read-more {
+    color: $read-more-font-color;
+    font-size: 1em;
+    display: inline-block;
+    text-transform: uppercase;
+    line-height: 50px;
+    a {
+        padding: .2em 1em .2em 1em;
+        background-color: $read-more-background-color;
+        border: $read-more-border;
+        width: 120px;
+        text-align: center;
+        &:hover {
+            background-color: $read-more-background-color-hover;
+            color: $read-more-font-color-hover;
+        }
+    }
+}
+
+.author-photo {
+    display: inline-block;
+    line-height: 50px;
+    float: right;
+}
+
+.article-author {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 50px;
+}
+
+.author-image-small {
+    border-radius: $author-image-small-radius;
+    height: 50px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.article-tags {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    float: right;
+    z-index: 10;
+    vertical-align: middle;
+    line-height: $base-font-size * 1.5;
+}
+
+.article-tag {
+    @include transition(.3s);
+    display: inline-block;
+    line-height: $base-font-size * 1.5;
+    vertical-align: middle;
+    padding: 5px;
+    color: $tags-font-color;
+    border-radius: $tags-border-radius;
+    background-color: $tags-background-color;
+    &:hover {
+        background-color: $tags-background-hover;
+    }
+}
+
+.home-about-rail-widget {
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+    box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+    @include display(flex);
+    @include flex-direction(column);
+    @include MQ(M) {
+        overflow-y: scroll;
+        position: fixed;
+        right: 0;
+        height: 100%;
+        // height: 100vh;
+        top: 0;
+        display: inline-block;
+        clear: both;
+        padding-top: $header-height-non-mobile + 10px;
+        max-width: $home-about-widget-max-width;
+        background-color: $home-about-rail-widget-background-color;
+    }
+    @include MQ(Q) {
+        max-width: 400px;
+    }
+    .home-about-content {
+        width: 100%;
+        height: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        @include MQ(M) {
+            width: 100%;
+            position: relative;
+        }
+        text-align: center;
+        display: block;
+        // background-color: $home-about-rail-widget-background-color;
+    }
+    .author-image img {
+        display: block;
+        border-radius: 10px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .categories {
+        text-align: left;
+        .categories-heading {
+            border-bottom: $home-about-rail-widget-section-underline;
+            color: $home-tags-heading-color;
+            font-size: $base-font-size;
+            font-weight:300;
+        }
+        @include MQ(M) {
+            width: 90%;
+            margin-left: 5%;
+        }
+    }
+    .home-tag-listing {
+        text-align: left;
+        width: 90%;
+        max-width: 400px;
+        margin: auto;
+        .tags-heading {
+            border-bottom: $home-about-rail-widget-section-underline;
+            color: $home-tags-heading-color;
+            font-size:$base-font-size;
+            font-weight:300;
+        }
+        .article-tag {
+            display: inline-block;
+            margin: 3px;
+        }
+    }
+    .most-recent-tweet {
+        display: block;
+        padding-top: 5%;
+        padding-bottom: 5%;
+        width: 100%;
+        height: auto;
+        // border-radius: $most-recent-tweet-border-radius;
+        @include MQ(M) {
+            position: absolute;
+            bottom: 0;
+        }
+        .twitter-content-wrapper {
+            border-top:1px solid #cccccc;
+            display: block;
+            width: 90%;
+            max-width: 400px;
+            margin-right: auto;
+            padding-top:10px;
+            margin-left: auto;
+        }
+        .tweet-url:hover ~ #twitter-mini{
+            color:red;
+        }
+    }
+}
+
+.twitter-header {
+    clear: both;
+    width: 100%;
+}
+
+.twitter-handle {
+    float: left;
+    margin-bottom: 5px;
+    color: $primary-brand;
+    font-weight: bold;
+}
+
+.tweet-body {
+    display: block;
+    clear: both;
+}
+
+#twitter-mini {
+    display: inline-block;
+    float: right;
+    fill: $twitter-mini-color;
+}
+
+.tweet-url {
+    color: $twitter-mini-color;
+}
+
+.tweet-time {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    a {
+        color: $anchor-color;
+        font-weight: bold;
+    }
+}
+
+//Can be moved out of CRP - 
+.primary-navigation {
+    @include MQ(MMAX) {
+        margin-top: 10px;
+        ul {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            li:after {
+                width: 50%;
+                display: block;
+                margin-right: auto;
+                margin-left: auto;
+                border-bottom: 1px solid #cccccc;
+            }
+        }
+    }
+}
+
+//TESTING CLASSES FOR SWIG TEMPLATING - YOU WILL PROBABLY WANT TO REMOVE THIS FOR PRODUCTION
+.success {
+    color: green;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.failure {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5em;
+}

@@ -1,19 +1,25 @@
-{# ------------------------------------------------------- #}
-{# INDIVIDUAL VIEW FOR EACH articles #}
-{# This page can use any data from http:localhost:2000/cms/#/form/articles/ #}
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-{# ------------------------------------------------------- #}
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
-{# This sets our page <title>. It will append this articles's name to the site title defined in base.html #}
+{% block crp_block %}
+      <style>
+          {% include "templates/partials/crp-article.html" %}
+      </style>
+
+{% endblock %}
+
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
+
+<article class="full-length-article">
+<img class="full-length-article-main-image" src="{{ item.image|imageCrop(1100, 250)}}" />
   <p><a href="{{ url('articles') }}">View a list of all articles</a></p>
-  <h1>{{ item.name }}</h1>
+  <section class="social-media-icons-bar">
+  {% set article = item %}
+  {% include "templates/partials/socialmediaicons.html" %}
+
+  </section>
+  <h1 class="article-title">{{ item.title }}</h1>
+  {{ item.body|markdown }}
+  
   <ul>
       <li>
         <strong>Name: </strong>
@@ -58,15 +64,12 @@
         <strong>Description: </strong>
         {{ item.description }}
       </li>
-      <li>
-        <strong>Body: </strong>
-        {{ item.body|markdown }}
-      </li>
+        
       <li>
         <strong>Image: </strong>
         {# You can pull out a lot more information from the image property. Info here: #}
         {# http://www.webhook.com/docs/widget-template-reference/#image #}
-        <img src="{{ item.image|imageSize(200, 200) }}" />
+        
       </li>
       <li>
         <strong>Image Description: </strong>
@@ -128,4 +131,10 @@
         {{ item.image_attribution_url }}
       </li>
   </ul>
+  </article>
+  
+{% endblock %}
+{% block scripts_extra %}
+{% parent %}
+<script src="/static/javascript/jquery.blast.min.js" async></script>
 {% endblock %}
