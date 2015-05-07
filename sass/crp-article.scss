@@ -11,15 +11,98 @@
 @import 'bourbon/bourbon';
 @import 'menu-icon';
 @import 'header-and-main';
-img.full-length-article-main-image {
+
+.home-article-video {
+    width: 100%;
+    display: block;
+    position: relative;
+    padding-left: 0px;
+    margin-left: 0px;
+}
+
+.video-player-youtube,
+.video-player-vimeo {
+    display: block;
+    width: 100%;
+    /* assuming that the video has a 16:9 ratio */
+    
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    margin-left: 0;
+    cursor: hand;
+    cursor: pointer;
+    display: block;
+}
+
+.video-thumb {
+    @include hardware-accelerate;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    right: 0;
+    top: 0;
+    height: auto;
+}
+
+//PLAY BUTTON FOR VIDEO LIBRARY AND FOR VIDEOS INCLUDED IN INDIVIDUAL POSTS
+.play-button {
+    display: block;
+    height: $video-player-play-button-size;
+    width: $video-player-play-button-size;
+    left: $video-player-play-button-left-padding;
+    top: 35%; //Assume 16:9 ratio for YouTube videos
+    position: absolute;
+}
+
+.play-button-svg {
+    @include transition(.4s);
+    fill: $video-player-play-button-color;
+    &:hover {
+        fill: $video-player-play-button-color-hover;
+    }
+}
+
+//this class is set by the main.js javascript
+.video-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+img.article-main-image {
     z-index: 1;
     left: 0;
     width: 100vw;
     height: auto;
 }
 
+.article-publish-date{
+    display:block;
+    float:right;
+}
+
+.article-updated-date{
+    display:block;
+    float:right;
+    color:$accent-color;
+    font-weight:bold;
+}
+
+.publish-date {
+    color:$base-font-color;
+}
+
 .full-length-article {
     background-color: $body-background-color;
+    font-size: $base-font-size * 1.3;
     width: 90%;
     z-index: 3;
     position: relative;
@@ -69,13 +152,20 @@ img.full-length-article-main-image {
         font-size: $base-font-size * 1.8;
     }
     p {
-        font-size: $base-font-size * 1.3;
         line-height: ($base-font-size * 1.3) * 1.5;
         margin-bottom: $base-font-size;
     }
     h3,
     h4 {
         margin-top: 20px;
+    }
+    //Article Heading
+    h3 {
+        font-size:$base-font-size * 1.7;
+    }
+    //Article Subheading
+    h4 {
+        font-size:$base-font-size * 1.5;
     }
     a {
         -webkit-transition: border .4s ease-in-out;
@@ -88,7 +178,7 @@ img.full-length-article-main-image {
     }
 }
 
-img.left {
+img[alt$="left"] {
     width: 100%;
     @include MQ(M) {
         width: 40%;
@@ -102,7 +192,7 @@ img.left {
     }
 }
 
-img.right {
+img[alt$="right"] {
     width: 100%;
     @include MQ(M) {
         width: 40%;
@@ -112,15 +202,15 @@ img.right {
         border-radius: 5%;
     }
     @include MQ(L) {
-        margin: 0 -150px 1em 0;
+        margin: 0 -150px 0 1em;
     }
 }
 
-img.center {
+img[alt$="center"] {
     border-radius: 0px;
 }
 
-img.full {
+img[alt$="full"] {
     width: 100%;
     width: 100vw;
 }

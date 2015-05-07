@@ -199,7 +199,10 @@
     font-family: $publish-date-font-family;
     position: absolute;
     right: 0px;
-    top: 30%;
+    top: 0%;
+    @include MQ(M){
+        top:30%;
+    }
     .month, .year {
         font-size: $base-font-size;
         color: lighten($base-font-color, 25%);
@@ -334,6 +337,9 @@
     -webkit-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
     -moz-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
     box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+    @include MQ(MMAX){
+        margin-bottom:$footer-height;
+    }
     @include display(flex);
     @include flex-direction(column);
     @include MQ(M) {

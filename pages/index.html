@@ -109,14 +109,16 @@
 <aside class="home-about-rail-widget">
         <section class="home-about-content">            
             {#Grab each of the categories and write them to the page with the total number of articles in each#}
-            <div class="categories">
+            <div class="categories" role="navigation" aria-label="Secondary">
                 <h4 class="categories-heading">CATEGORIES</h4>
+                <ul class="category-listing">
                     {% for category in cms.categories %}
-                        <div class="category-name">
+                        <li class="category-name">
                             <a href="{{ url(category) }}">{{ category.name }}</a>
                             <span class="category-article-total">({{ category.articles.length }})</span>
-                        </div>           
+                        </li>           
                     {% endfor %}
+                </ul>
             </div>
 
             {#Pull all 'tags' currently being used in the cms and add them to this section of the right rail #}
