@@ -50,6 +50,8 @@
                 <img class="article-main-image" src="{{ item.image|imageCrop(1100, 250)}}" />
       {% endif %}
 <article class="full-length-article">
+  {% set prev = prevItem(item, 'publish_date', true) %}
+  {% set next = nextItem(item, 'publish_date', true) %}
   {# BEGIN BODY COPY #}    
   <p><a href="{{ url('articles') }}">View a list of all articles</a></p>          
   <section class="social-media-icons-bar">
@@ -79,6 +81,12 @@
           <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
   {% endfor %}
   </section>
+  {% if prev %}
+    <a href="{{ url(prev) }}">Previous Article</a>
+  {% endif %}
+  {% if next %}
+    <a href="{{ url(next) }}">Next Article</a>
+  {% endif %}')
   
 </article>
 {% if article.allow_comments && cms.additionalglobals.add_disqus_comments %}
@@ -104,5 +112,16 @@
 {% endblock %}
 {% block scripts_extra %}
 {% parent %}
-<!-- <script src="/static/javascript/jquery.blast.min.js" async></script> -->
+<script async>
+window.onload = function(){
+  document.write('
+  {% if prev %}
+    <link rel="prefetch" href="{{ url(prev) }}" />
+  {% endif %}
+  {% if next %}
+    <link rel="prefetch" href="{{ url(next) }}" />
+  {% endif %}')
+}
+  
+</script>
 {% endblock %}

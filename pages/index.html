@@ -93,7 +93,7 @@
                                 </div>
                                     <a href="{{ url(article.author[0]) }}">
                                         <div class="author-photo">
-                                            <img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="Photograph of the author: {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}">
+                                            <img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="Photograph of the author: {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}" width="50" height="50">
                            
                                             <div class="article-author" itemprop="author">
                                                 {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}

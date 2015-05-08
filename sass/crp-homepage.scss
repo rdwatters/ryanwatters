@@ -183,6 +183,7 @@
 .play-button-svg {
     @include transition(.4s);
     fill: $video-player-play-button-color;
+    opacity:0.8;
     &:hover {
         fill: $video-player-play-button-color-hover;
     }
