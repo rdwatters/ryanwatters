@@ -2,12 +2,12 @@
 $S: 480px;
 $M: 640px;
 $L: 760px;
-$XL: 960px;
+$XL: 1050px;
 //XXL is al the max-width that will be used by the <main> content on large screens.
 $XXL: 1200px;
 $MMAX: 640px;
 
-//HEALTHYCHILDREN COLORS & FONTS
+//HEALTHYCHILDREN
 $healthy-children-green:#AEC736;
 $healthy-children-red:#DC4C20;
 $healthy-children-peach:#f9b964;
@@ -17,8 +17,9 @@ $healthy-children-tan:#FCFBF1;
 $healthy-children-heading-font-family:'Arvo',georgia,serif;
 $healthy-children-body-font-family:'Helvetica Neue',helvetica,arial,sans-serif;
 $healthy-children-title-color:$healthy-children-brown;
+$healthy-children-logo-location:url('/static/images/hc-logo.svg');
 
-//AAP.ORG COLORS
+//AAP.ORG
 //numbers (one, two, three) run from darkest to lightest
 $aap-blue-one:#01589B;
 $aap-blue-two:#048BC9;
@@ -37,7 +38,7 @@ $columns:12;
 
 //TYPOGRAPHY
 $base-font-size:16px;
-$body-font-family: 'Adelle Sans','Proxima Nova','Helvetica Neue',Arial,sans-serif;
+$body-font-family: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
 $heading-font-family:'Adelle','Merriweather',Georgia,sans-serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
@@ -45,7 +46,10 @@ $heading-three-font-size: $base-font-size * 1.25; //h3
 $heading-four-font-size: $base-font-size * 1.1; //h4
 $publish-date-font-family:$heading-font-family; //for the publish date; e.g. on the list view of articles on the home page
 
-//COLORS
+//LOGO LOCATION
+$my-logo-location:url('/static/images/rw-logo.svg');
+
+//MY COLORS
 $primary-brand:#203253;
 $secondary-brand:lighten($primary-brand,25%);
 $logo-color:$primary-brand;
@@ -57,7 +61,7 @@ $accent-color:desaturate(#DD2922,20%);
 $white:#FBFAF5;
 $header-link-color:$base-font-color;
 $header-link-underline-color:$logo-color;
-$header-link-underline-thickness:5px;
+$header-link-underline-thickness:2px;
 $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
 $footer-background-color:#333333;
@@ -141,14 +145,14 @@ $home-icon-z:998;
 $mobile-menu-icon-z:999;
 
 //GLOBAL FOR HEADER
-$home-logo-background-image: '/static/images/favicon.png';
 $header-main-logo-background-image: '/static/images/favicon.png';
-$home-logo-background-color:$primary-brand;
+$home-logo-background-color:$header-background-color;
 $home-logo-hover-background-color:white;
 $site-name:'Ryan Watters';
 $primary-navigation-text-transform:uppercase;
 $home-logo-border-radius:50%;
 $home-button-icon-radius:50%;
+$home-button-background-image:$my-logo-location;
 
 
 //VIDEO PLAYER OPTIONS
@@ -163,7 +167,10 @@ $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1
 
 
 //CMS OVERRIDES
-$cms-background-color:$base-font-color;
+$login-background-color:$base-font-color;
+$cms-logo-background-image:$my-logo-location;
+$hide-updates: true;
+
 
 //IMAGES
 $author-image-small-radius:50%;

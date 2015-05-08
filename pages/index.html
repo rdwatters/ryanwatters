@@ -2,7 +2,7 @@
 {% block title %}{% parent %} - Home{% endblock %} 
 {% block content %} 
 {% set articles = cms.articles|sort('publish_date', true) %}
-{% set articles = articles|slice(0,5) %}
+{% set articles = articles|slice(0,10) %}
 {% set authors = cms.authors %}
 <article class="homepage-article-list" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
@@ -19,9 +19,9 @@
                     {% endfor %}         
                         <div class="video-player-youtube" data-youtubeid="{{videoId}}">
                                 {% if video.thumbnail_override %}
-                                    <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}">
+                                    <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315">
                                 {% else %}
-                                    <img class="video-thumb" src="{{ video.video.thumbnail_url|imageCrop(560,315) }}" alt="{{ video.video_title}}" class="video-thumbnail">
+                                    <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315">
                                 {% endif %}
                             <div class="play-button" role="button">
                                 <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -42,10 +42,10 @@
                         <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
                     {% endfor %}
                         <div class="video-player-vimeo" data-vimeoid="{{video.video.original_url.split('vimeo.com/')[1]}}">
-                        {% if row.video.thumbnail_override %}
-                            <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}">
+                        {% if video.thumbnail_override %}
+                            <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}" width="560" height="315">
                         {% else %}
-                            <img class="video-thumb" src="{{video.video.thumbnail_url|imageCrop(560,315)}}" alt="{{row.video.video_title}}" >             
+                            <img class="video-thumb" src="{{video.video.thumbnail_url}}" alt="{{row.video.video_title}}" width="560" height="315">             
                         {% endif %}
                             <div class="play-button" role="button">
                                 <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -67,7 +67,7 @@
                         <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
                     {% endfor %}
                         <div class="article-image">
-                            <img src="{{article.image|imageCrop(560,185)}}" alt="{{ article.image_description }}" itemprop="image">
+                            <img src="{{article.image|imageCrop(560,185)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="185">
                         <section class="home-publish-date">
                             <div class="month">{{- article.publish_date|date('F') -}}</div>
                             <div class="day">{{- article.publish_date|date('d') -}}</div>
@@ -76,9 +76,10 @@
                         </div>
                     </section>
         {% endif %}
-                {# Social Media Icon Buttons #}                   
+                                  
                     <div class="home-article-information" itemprop="blogPost">
                         <section class="home-article-social-buttons">
+                            {# Social Media Icon Buttons #} 
                                 {% include "templates/partials/socialmediaicons.html" %}                       
                         </section>
                         <section class="home-article-title-and-description">
@@ -105,6 +106,7 @@
         </section>
     </div>
     {% endfor %}
+</article>
 
 <aside class="home-about-rail-widget">
         <section class="home-about-content">            
@@ -161,5 +163,5 @@
             </section>
         </section>
     </aside>
-</article>
+
 {% endblock %}

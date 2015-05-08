@@ -11,6 +11,10 @@
 @import 'bourbon/bourbon';
 @import 'menu-icon';
 @import 'header-and-main';
+
+.main {
+    padding-top:20px;
+}
 /*BEGIN HOMEPAGE STYLES*/
 
 .homepage-article-list {
@@ -21,7 +25,7 @@
     margin-left: 5%;
     padding: 0;
     @include MQ(M) {
-        float: right;
+        width:60%;
         display: inline-block;
         clear: both;
     }
@@ -33,15 +37,20 @@
     margin-bottom: 15px;
     width: 100%;
     @include MQ(M) {
-        display: inline-block;
+        display: block;
+        clear:both;
+        margin-right:auto;
+        margin-left:auto;
+        float:none;
         max-width: $article-home-home-page-max-width-m-plus;
         height: 100%;
+        max-width:600px;
     }
 }
 
 .home-article-section {
-    display: inline-block;
-    max-width: 100%;
+    display: block;
+    width: 100%;
     margin-right: auto;
     margin-left: auto;
     height: 100%;
@@ -227,12 +236,12 @@
 }
 
 .home-article-title {
-    font-size: $base-font-size *1.5;
+    font-size: $base-font-size *1.2;
     display: block;
     width: 100%;
     text-align: left;
     @include MQ(M) {
-        font-size: $base-font-size * 2;
+        font-size: $base-font-size * 1.5;
         a {
             cursor: pointer;
             vertical-align: middle;

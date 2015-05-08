@@ -76,26 +76,35 @@ function headerFadeOnScroll() {
 
 /*TOGGLE MOBILE MENU ON CLICK AS WELL AS CHANGE ARIA ATTRIBUTES ON MOBILE MENU FOR ACCESSIBILITY*/
 function toggleMobileMenu() {
-    var mainMenu = document.getElementsByTagName('header')[0],
-        mainContent = document.querySelector('.main'),
-        theButton = document.getElementById('mobile-menu-toggle'),
-        theFooter = document.getElementsByTagName('footer')[0];
-    if (classie.has(mainMenu, 'menu-open')) {
-        classie.remove(mainMenu, 'menu-open');
-        classie.remove(mainContent, 'menu-open');
-        classie.remove(theFooter, 'menu-open');
-        classie.remove(theButton, 'menu-open');
-        classie.remove(searchForm, 'menu-open');
-        theButton.setAttribute('aria-expanded', 'false');
-    } else {
-        classie.add(mainMenu, 'menu-open');
-        classie.add(mainContent, 'menu-open');
-        classie.add(theFooter, 'menu-open');
-        classie.add(theButton, 'menu-open');
-        classie.add(searchForm, 'menu-open');
-        theButton.setAttribute('aria-expanded', 'true');
-    }
+    var mainMenu = document.getElementsByTagName('header')[0].classList,
+        mainContent = document.querySelector('.main').classList,
+        theButton = document.getElementById('mobile-menu-toggle').classList,
+        theFooter = document.getElementsByTagName('footer')[0].classList,
+        theSearchOverlay = document.querySelector('.search-wrapper').classList;
+        mainMenu.toggle('menu-open');
+        mainContent.toggle('menu-open');
+        theButton.toggle('menu-open');
+        theFooter.toggle('menu-open');
+        theSearchOverlay.toggle('menu-open');
+    //IF YOU WANT TO SUPPORT IE9, INCLUDE THE CLASSIE.JS SCRIPT TAG IN BASE.HTML. YOU CAN THEN USE THE FOLLOWING COMMENTED CODE TO REPLACE THE ABOVE FOUR STATEMENTS (mainmenu.toggle -> theFotter.toggle)
+    // if (classie.has(mainMenu, 'menu-open')) {
+    //     classie.remove(mainMenu, 'menu-open');
+    //     classie.remove(mainContent, 'menu-open');
+    //     classie.remove(theFooter, 'menu-open');
+    //     classie.remove(theButton, 'menu-open');
+    //     classie.remove(searchForm, 'menu-open');
+    //     theButton.setAttribute('aria-expanded', 'false');
+    // } else {
+    //     classie.add(mainMenu, 'menu-open');
+    //     classie.add(mainContent, 'menu-open');
+    //     classie.add(theFooter, 'menu-open');
+    //     classie.add(theButton, 'menu-open');
+    //     classie.add(searchForm, 'menu-open');
+    //     theButton.setAttribute('aria-expanded', 'true');
+    // }
 }
+var headerClassList = document.querySelector('header').classList;
+console.log(headerClassList);
 
 // TOGGLE SEARCH OVERLAY
 function toggleSearch() {

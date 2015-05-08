@@ -1,6 +1,6 @@
 @import 'variables';
 body {
-	background-color:$cms-background-color;
+	background-color:$login-background-color;
 }
 #ember980 > div > h2 {
 	color:#01589B;
@@ -20,8 +20,30 @@ span.icon-vim, span.icon-vim-togdgle {
 .something{
 	color:blue;
 }
-.wh-logo{
-	background-image:url('/static/images/touch-icon.png')!important;
-	background-size:cover!important;
-	background-color:white!important;
+
+.wh-login {
+	background-color:$login-background-color;
+}
+
+.wh-lang-select + .wy-text-center.wy-text-small{
+	display:none;
+}
+
+.wh-logo {
+	background-image:$cms-logo-background-image;
+	background-size:contain;
+	background-color:white;
+	&:after {
+		display:inline-block;
+		margin-left:55px;
+		clear:both;
+		color:white;
+		content:$site-name;
+	}
+}
+
+.wh-updates {
+	@if $hide-updates == true {
+		display:none;
+	}
 }

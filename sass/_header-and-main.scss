@@ -137,7 +137,8 @@
     padding: auto;
     vertical-align: middle;
     font-size: $site-logo-size/3;
-    background-color: $logo-color;
+    background-color: $home-logo-background-color;
+    background-image: $home-button-background-image;
     border-radius: $home-logo-border-radius;
     &:hover {
         cursor: pointer;
@@ -195,7 +196,6 @@
     width: 100%;
     height: 100%;
     overflow-y: auto;
-    max-width: $XXL;
     &.menu-open {
         @include transform(translateX(-$mobile-menu-width));
         opacity: 0.5;
@@ -204,6 +204,6 @@
         top: 0;
         bottom: 0;
     }
-    padding-top: $header-height-non-mobile + 20px;
+    margin-top: $header-height-non-mobile;
     padding-bottom: $footer-height;
 }

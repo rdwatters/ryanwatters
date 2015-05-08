@@ -9,7 +9,6 @@
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
 {% set article = item %}
-<article class="full-length-article">
       {% if article.related_video %}
             {% set video = article.related_video %}
             {% set ss = video.streaming_service %}
@@ -20,7 +19,7 @@
                                 {% if video.thumbnail_override %}
                                     <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}">
                                 {% else %}
-                                    <img class="video-thumb" src="{{ video.video.thumbnail_url|imageCrop(560,315) }}" alt="{{ video.video_title}}" class="video-thumbnail">
+                                    <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumbnail">
                                 {% endif %}
                             <div class="play-button" role="button">
                                 <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -36,7 +35,7 @@
                         {% if row.video.thumbnail_override %}
                             <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}">
                         {% else %}
-                            <img class="video-thumb" src="{{video.video.thumbnail_url|imageCrop(560,315)}}" alt="{{row.video.video_title}}" >             
+                            <img class="video-thumb" src="{{video.video.thumbnail_url}}" alt="{{row.video.video_title}}" >             
                         {% endif %}
                             <div class="play-button" role="button">
                                 <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -50,6 +49,7 @@
       {% else %}
                 <img class="article-main-image" src="{{ item.image|imageCrop(1100, 250)}}" />
       {% endif %}
+<article class="full-length-article">
   {# BEGIN BODY COPY #}    
   <p><a href="{{ url('articles') }}">View a list of all articles</a></p>          
   <section class="social-media-icons-bar">
@@ -61,6 +61,11 @@
           {% if not loop.last %} & {% endif %}
           </div>
   {% endfor %}
+  <div class="article-category">
+        {% for relation in item.category %}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+        {% endfor %}
+  </div>
   {% if item.most_recent_update %}
     <time class="article-updated-date" datetime="{{ item.most_recent_update }}"><span class="date-span">Updated: </span><span class="publish-date">{{ item.most_recent_update|date('F d Y') }}</span></time>
   {% else %}
@@ -68,48 +73,31 @@
   {% endif %}
   {# BEGIN PAGE BODY MARKDOWN CONTENT #}
   {{ item.body|markdown }}
+  <section class="full-article-tags">
+  {% for relation in item.tags %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+  {% endfor %}
+  </section>
   
-  <ul>
-      <li>
-        <strong>Most Recent Update: </strong>
-        <strong>
-
-        </strong>
-      </li>
-      <li>
-        <strong>Allow Comments?: </strong>
-        {{ item.allow_comments }}
-      </li>
-      <li>
-        <strong>Title: </strong>
-        {{ item.title }}
-      </li>
-      <li>
-        <strong>Subtitle: </strong>
-        {{ item.subtitle }}
-      </li>
-      <li>
-        <strong>Description: </strong>
-        {{ item.description }}
-      </li>  
-      <li>
-        <strong>Category: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.category %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>Tags: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.tags %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>   
-    </ul>
 </article>
+{% if article.allow_comments && cms.additionalglobals.add_disqus_comments %}
+  {% set disqusName = cms.additionalglobals.disqus_shortname %}
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      /* * * CONFIGURATION VARIABLES * * */
+      var disqus_shortname = '{{disqusName}}';
+      
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+{% endif %}
+
   
 
   
