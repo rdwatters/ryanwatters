@@ -1,19 +1,11 @@
-// WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports
-// @import 'arvowoff';
-// @import 'fjord';
-// @import 'lorabold';
-// @import 'bitterbold';
-// @import 'ralewaybold';
-@import 'merriweather';
 @import 'variables';
 @import 'basic-grid';
 @import 'normalize';
 @import 'bourbon/bourbon';
 @import 'menu-icon';
 @import 'header-and-main';
-
 .main {
-    padding-top:20px;
+    padding-top: 20px;
 }
 /*BEGIN HOMEPAGE STYLES*/
 
@@ -25,7 +17,7 @@
     margin-left: 5%;
     padding: 0;
     @include MQ(M) {
-        width:60%;
+        width: 60%;
         display: inline-block;
         clear: both;
     }
@@ -38,13 +30,136 @@
     width: 100%;
     @include MQ(M) {
         display: block;
-        clear:both;
-        margin-right:auto;
-        margin-left:auto;
-        float:none;
-        max-width: $article-home-home-page-max-width-m-plus;
+        clear: both;
+        margin-right: auto;
+        margin-left: auto;
+        float: none;
+        max-width: $article-home-page-max-width-m-plus;
         height: 100%;
-        max-width:600px;
+        max-width: 600px;
+    }
+}
+
+//special styles for article listing for XL+ screens
+@include MQ(XL) {
+    .home-article-wrapper {
+        max-width: 100%;
+        margin: 0;
+        @include display(flex);
+    }
+    .home-article-section {
+        @include display(flex);
+        height: auto;
+        padding: 0;
+        background-color: #333333;
+    }
+    .home-article-video,
+    .home-article-image {
+        height: auto;
+        @include align-items(center);
+        @include display(flex);
+        @include flex-direction(column);
+        max-width: 45%;
+        float: left;
+        .home-article-category {
+            @include transform(translateY(0));
+            width: 100%;
+            position: relative;
+            margin: 0;
+            left: 0;
+            top: 0;
+            @include order(1);
+            border: 0px;
+        }
+        .article-image,
+        .video-thumb {
+            @include order(2);
+            img {
+                margin: 0px;
+                padding: 0px;
+                height: 100%;
+            }
+        }
+        .article-image {
+            img{
+                @include order(1);
+            }
+            .home-publish-date {
+                //The negative margin is to account for a small gap between the article image and the article publish that seems to show up in Retina on Chrome
+                margin-top: -5px;
+                z-index: 5;
+                @include order(2);
+            }
+        }
+        .home-publish-date {
+            @include display(flex);
+            @include flex-direction(row);
+            @include justify-content(center);
+            @include align-items(center);
+            @include align-self(flex-end);
+            @include order(3);
+            height: $base-font-size *2;
+            background-color: $publish-date-background-color-large;
+            position: relative;
+            color: $publish-date-font-color-large;
+            vertical-align: auto;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            text-align: center;
+            margin-right: auto;
+            margin-left: auto;
+            .day, .month, .year {
+                margin-right: 5px;
+                font-size: $base-font-size;
+                vertical-align: middle;
+                color: $publish-date-font-color-large;
+                font-family: $publish-date-font-family-large-screen;
+            }
+            .day:after {
+                content: ', ';
+            }
+        }
+    }
+    .home-article-information {
+        max-width: 55%;
+        height: auto;
+        @include order(1);
+        .home-article-title-and-description {
+            @include display(flex);
+            @include flex-direction(column);
+            @include align-items(flex-start);
+            .home-article-title {
+                @include order(1);
+            }
+            .home-article-description {
+                @include order(2);
+            }
+            .home-article-read-more-and-article-author {
+                @include order(3);
+                width: 100%;
+                @include display(flex);
+                @include flex-direction(row);
+                @include justify-content(space-around);
+                .read-more {
+                    display: block;
+                    float: left;
+                    @include align-self(flex-start);
+                }
+                .author-photo {
+                    display: block;
+                    float: right;
+                }
+            }
+        }
+    }
+    .home-article-social-buttons {
+        order: 2;
+        margin-top: auto;
+        margin-bottom: auto;
+        border-left: $social-buttons-border;
+        @include align-items(center);
     }
 }
 
@@ -81,8 +196,8 @@
     &:hover {
         background-color: $category-button-background-color-hover;
     }
-    .category-article-total{
-        float:right;
+    .category-article-total {
+        float: right;
     }
 }
 
@@ -95,7 +210,7 @@
     float: left;
     min-width: 55px;
     padding-right: 3px;
-    border-right: 1px solid #cccccc;
+    border-right: $social-buttons-border;
     // width: 100%;
     font-size: 2em;
     z-index: 3;
@@ -153,8 +268,6 @@
     height: 100%;
     padding-left: 0;
     margin-left: 0;
-    cursor: hand;
-    cursor: pointer;
     display: block;
 }
 
@@ -178,12 +291,13 @@
     left: $video-player-play-button-left-padding;
     top: 35%; //Assume 16:9 ratio for YouTube videos
     position: absolute;
+    cursor: pointer;
 }
 
 .play-button-svg {
     @include transition(.4s);
     fill: $video-player-play-button-color;
-    opacity:0.8;
+    opacity: 0.8;
     &:hover {
         fill: $video-player-play-button-color-hover;
     }
@@ -200,8 +314,8 @@
 
 .home-publish-date {
     @include display(flex);
-    @include justify-content(flex-end);
     @include flex-direction(column);
+    @include justify-content(flex-end);
     @include align-items(flex-start);
     padding: 5px;
     text-align: left;
@@ -210,10 +324,12 @@
     position: absolute;
     right: 0px;
     top: 0%;
-    @include MQ(M){
-        top:30%;
+    @include MQ(M) {
+        //spaces the publish date more evenly within the image/video caption for medium-size screens, but will revert to fixed position up top for L & XL screens
+        top: 30%;
     }
-    .month, .year {
+    .month,
+    .year {
         font-size: $base-font-size;
         color: lighten($base-font-color, 25%);
     }
@@ -287,7 +403,7 @@
         padding: .2em 1em .2em 1em;
         background-color: $read-more-background-color;
         border: $read-more-border;
-        width: 120px;
+        width: 100px;
         text-align: center;
         &:hover {
             background-color: $read-more-background-color-hover;
@@ -341,14 +457,17 @@
 }
 
 .home-about-rail-widget {
-    display: inline-block;
+    display: block;
+    clear: both;
+    width: 90%;
     margin-right: auto;
     margin-left: auto;
-    -webkit-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
-    -moz-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
-    box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
-    @include MQ(MMAX){
-        margin-bottom:$footer-height;
+    background-color: white;
+    @include MQ(MMAX) {
+        margin-bottom: $footer-height;
+        -webkit-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+        -moz-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+        box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
     }
     @include display(flex);
     @include flex-direction(column);
@@ -364,9 +483,6 @@
         padding-top: $header-height-non-mobile + 10px;
         max-width: $home-about-widget-max-width;
         background-color: $home-about-rail-widget-background-color;
-    }
-    @include MQ(Q) {
-        max-width: 400px;
     }
     .home-about-content {
         width: 100%;
@@ -389,27 +505,24 @@
     }
     .categories {
         text-align: left;
+        width: 90%;
+        margin: 10px auto;
         .categories-heading {
             border-bottom: $home-about-rail-widget-section-underline;
             color: $home-tags-heading-color;
             font-size: $base-font-size;
-            font-weight:300;
-        }
-        @include MQ(M) {
-            width: 90%;
-            margin-left: 5%;
+            font-weight: 300;
         }
     }
     .home-tag-listing {
         text-align: left;
         width: 90%;
-        max-width: 400px;
         margin: auto;
         .tags-heading {
             border-bottom: $home-about-rail-widget-section-underline;
             color: $home-tags-heading-color;
-            font-size:$base-font-size;
-            font-weight:300;
+            font-size: $base-font-size;
+            font-weight: 300;
         }
         .article-tag {
             display: inline-block;
@@ -422,22 +535,16 @@
         padding-bottom: 5%;
         width: 100%;
         height: auto;
-        // border-radius: $most-recent-tweet-border-radius;
-        @include MQ(M) {
-            position: absolute;
-            bottom: 0;
-        }
         .twitter-content-wrapper {
-            border-top:1px solid #cccccc;
+            border-top: 1px solid #cccccc;
             display: block;
             width: 90%;
-            max-width: 400px;
             margin-right: auto;
-            padding-top:10px;
+            padding-top: 10px;
             margin-left: auto;
         }
-        .tweet-url:hover ~ #twitter-mini{
-            color:red;
+        .tweet-url:hover ~ #twitter-mini {
+            color: red;
         }
     }
 }

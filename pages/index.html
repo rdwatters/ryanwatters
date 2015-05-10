@@ -7,104 +7,109 @@
 <article class="homepage-article-list" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
     <div class="home-article-wrapper">
-    <section class="home-article-section"> 
-        {% if article.related_video %}
-            {% set video = article.related_video %}
-            {% set ss = video.streaming_service %}
-                {% if ss == "YouTube"%}
-                    {% set videoId = video.video.original_url.split('v=')[1] %}
-                    <section class="home-article-video">
-                    {% for relation in article.category%}
-                        <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
-                    {% endfor %}         
-                        <div class="video-player-youtube" data-youtubeid="{{videoId}}">
-                                {% if video.thumbnail_override %}
-                                    <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315">
-                                {% else %}
-                                    <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315">
-                                {% endif %}
-                            <div class="play-button" role="button">
-                                <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                                <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
-                                <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
-                            </div>
-                        </div>
-                        <section class="home-publish-date">
-                            <div class="month">{{- article.publish_date|date('F') -}}</div>
-                            <div class="day">{{- article.publish_date|date('d') -}}</div>
-                            <div class="year">{{- article.publish_date|date('Y') -}}</div>
-                        </section>
-                    </section>
-                {% elseif ss == "Vimeo" %}
-                {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
-                    <section class="home-article-video">
-                    {% for relation in article.category%}
-                        <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
-                    {% endfor %}
-                        <div class="video-player-vimeo" data-vimeoid="{{video.video.original_url.split('vimeo.com/')[1]}}">
-                        {% if video.thumbnail_override %}
-                            <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}" width="560" height="315">
-                        {% else %}
-                            <img class="video-thumb" src="{{video.video.thumbnail_url}}" alt="{{row.video.video_title}}" width="560" height="315">             
-                        {% endif %}
-                            <div class="play-button" role="button">
-                                <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                                <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
-                                <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <section class="home-publish-date">
-                            <div class="month">{{- article.publish_date|date('F') -}}</div>
-                            <div class="day">{{- article.publish_date|date('d') -}}</div>
-                            <div class="year">{{- article.publish_date|date('Y') -}}</div>
-                        </section>
-                    </section>
-                {% endif %}        
-        {% else %}
-                    <section class="home-article-image">
-                    {% for relation in article.category%}
-                        <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
-                    {% endfor %}
-                        <div class="article-image">
-                            <img src="{{article.image|imageCrop(560,185)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="185">
-                        <section class="home-publish-date">
-                            <div class="month">{{- article.publish_date|date('F') -}}</div>
-                            <div class="day">{{- article.publish_date|date('d') -}}</div>
-                            <div class="year">{{- article.publish_date|date('Y') -}}</div>
-                        </section>
-                        </div>
-                    </section>
-        {% endif %}
-                                  
-                    <div class="home-article-information" itemprop="blogPost">
-                        <section class="home-article-social-buttons">
-                            {# Social Media Icon Buttons #} 
-                                {% include "templates/partials/socialmediaicons.html" %}                       
-                        </section>
-                        <section class="home-article-title-and-description">
-                            <h1 class="home-article-title">
-                                <a href="{{ url(article) }}">{{ article.title }}</a>
-                            </h1>
-                            <p class="home-article-description">{{ article.description }}</p>
-                            <div class="home-article-read-more-and-article-author">
-                                <div class="read-more" role="button">
-                                    <a href="{{ url(article) }}">Read more...</a>
+        <section class="home-article-section"> 
+            {% if article.related_video %}
+                {% set video = article.related_video %}
+                {% set ss = video.streaming_service %}
+                    {% if ss == "YouTube"%}
+                        {% set videoId = video.video.original_url.split('v=')[1] %}
+                        <section class="home-article-video">
+                        {% for relation in article.category%}
+                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                        {% endfor %}         
+                            <div class="video-player-youtube" data-youtubeid="{{videoId}}">
+                                    {% if video.thumbnail_override %}
+                                        <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315">
+                                    {% else %}
+                                        <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315">
+                                    {% endif %}
+                                <div class="play-button" role="button">
+                                    <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                                    <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
+                                    <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
                                 </div>
-                                    <a href="{{ url(article.author[0]) }}">
-                                        <div class="author-photo">
-                                            <img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="Photograph of the author: {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}" width="50" height="50">
-                           
-                                            <div class="article-author" itemprop="author">
-                                                {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}
-                                            </div>
-                                        </div> 
-                                    </a>
                             </div>
+                            <section class="home-publish-date">
+                                <div class="month">{{- article.publish_date|date('F') -}}</div>
+                                <div class="day">{{- article.publish_date|date('d') -}}</div>
+                                <div class="year">{{- article.publish_date|date('Y') -}}</div>
+                            </section>
                         </section>
-                    </div>
-        </section>
-    </div>
+                    {% elseif ss == "Vimeo" %}
+                    {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
+                        <section class="home-article-video">
+                        {% for relation in article.category%}
+                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                        {% endfor %}
+                            <div class="video-player-vimeo" data-vimeoid="{{video.video.original_url.split('vimeo.com/')[1]}}">
+                            {% if video.thumbnail_override %}
+                                <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}" width="560" height="315">
+                            {% else %}
+                                <img class="video-thumb" src="{{video.video.thumbnail_url}}" alt="{{row.video.video_title}}" width="560" height="315">             
+                            {% endif %}
+                                <div class="play-button" role="button">
+                                    <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                                    <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
+                                    <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <section class="home-publish-date">
+                                <div class="month">{{- article.publish_date|date('F') -}}</div>
+                                <div class="day">{{- article.publish_date|date('d') -}}</div>
+                                <div class="year">{{- article.publish_date|date('Y') -}}</div>
+                            </section>
+                        </section>
+                    {% endif %}        
+            {% else %}
+                        <section class="home-article-image">
+                        {% for relation in article.category%}
+                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                        {% endfor %}
+                            <div class="article-image">
+                                <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">
+                                
+                            </div>
+                            <section class="home-publish-date">
+                                <div class="month">{{- article.publish_date|date('F') -}}</div>
+                                <div class="day">{{- article.publish_date|date('d') -}}</div>
+                                <div class="year">{{- article.publish_date|date('Y') -}}</div>
+                            </section>
+                        </section>
+            {% endif %}
+                                      
+                        <section class="home-article-information" itemprop="blogPost">
+                            <section class="home-article-social-buttons">
+                                {# Social Media Icon Buttons #} 
+                                    {% include "templates/partials/socialmediaicons.html" %}                       
+                            </section>
+                            <section class="home-article-title-and-description">
+                                <h1 class="home-article-title">
+                                    <a href="{{ url(article) }}">{{ article.title }}</a>
+                                </h1>
+                                {% if article.description.length > 250 %}
+                                <p class="home-article-description">{{ article.description.substring(0,247) }} ...</p>
+                                {% else %}
+                                <p class="home-article-description">{{ article.description }}</p>
+                                {% endif %}
+                                <div class="home-article-read-more-and-article-author">
+                                    <div class="read-more" role="button">
+                                        <a href="{{ url(article) }}">Read more</a>
+                                    </div>
+                                        <a href="{{ url(article.author[0]) }}">
+                                            <div class="author-photo">
+                                                <img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="Photograph of the author: {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}" width="50" height="50">
+                               
+                                                <div class="article-author" itemprop="author">
+                                                    {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}
+                                                </div>
+                                            </div> 
+                                        </a>
+                                </div>
+                            </section>
+                        </section>
+            </section>
+        </div>
     {% endfor %}
 </article>
 

@@ -1,11 +1,13 @@
 //GRID
 $S: 480px;
 $M: 640px;
-$L: 760px;
-$XL: 1050px;
-//XXL is al the max-width that will be used by the <main> content on large screens.
-$XXL: 1200px;
+$L: 960px;
+$XL: 1200px;
+// Althought these are the same values as above, I've set up the following maximum valuese to make them easier to read within each sass module
+$LMAX: 760px;
 $MMAX: 640px;
+$SMAX: 480px;
+
 
 //HEALTHYCHILDREN
 $healthy-children-green:#AEC736;
@@ -36,15 +38,25 @@ $aap-body-font-family:helvetica,arial, sans-serif;
 //GRID
 $columns:12;
 
-//TYPOGRAPHY
+//TYPOGRAPHY & FONTS
+// WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports
+// @import 'arvowoff';
+// @import 'fjord';
+// @import 'lorabold';
+// @import 'bitterbold';
+// @import 'ralewaybold';
+@import 'merriweather';
 $base-font-size:16px;
-$body-font-family: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
-$heading-font-family:'Adelle','Merriweather',Georgia,sans-serif;
+$serif: 'Adelle','Merriweather',Georgia,sans-serif;
+$sans-serif: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
+$body-font-family: $sans-serif;
+$heading-font-family: $serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
 $heading-four-font-size: $base-font-size * 1.1; //h4
-$publish-date-font-family:$heading-font-family; //for the publish date; e.g. on the list view of articles on the home page
+$publish-date-font-family:$body-font-family; //for the publish date; e.g. on the list view of articles on the home page
+$publish-date-font-family-large-screen:$body-font-family;
 
 //LOGO LOCATION
 $my-logo-location:url('/static/images/rw-logo.svg');
@@ -66,7 +78,7 @@ $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
 $footer-background-color:#333333;
 $footer-font-color:white;
-$body-background-color:white;
+$body-background-color:#DADFE1;
 $main-content-background-color:$body-background-color;
 $search-overlay-color:$header-background-color;
 $search-overlay-transparency:0.9;
@@ -84,7 +96,10 @@ $anchor-color:$primary-brand;
 $body-anchor-underline:3px solid $primary-brand;
 //publish date on the list view of 
 $publish-date-background-color:white;
+$publish-date-background-color-large:#333333;
+$publish-date-font-color-large:white;
 $social-icons-background-color:transparent;
+$social-buttons-border:1px solid #cccccc;
 //This is for the list view of the blog posts (e.g. on the home page);
 $home-article-information-background-color:#ffffff;
 //This is for the right rail/widget on M+ screens
@@ -95,7 +110,7 @@ $read-more-font-color:$base-font-color;
 $read-more-background-color:white;
 $read-more-font-color-hover:white;
 $read-more-background-color-hover:$accent-color;
-$read-more-border:2px solid $accent-color;
+$read-more-border:1px solid $accent-color;
 //END HOME PAGE LIST VIEW COLORS
 //ARTICLE PAGES
 $full-length-article-anchor-underline-color:lighten($primary-brand,40%);
@@ -124,7 +139,7 @@ $footer-height:$header-height-base;
 //You can give your tags a rounded border by adjusting the following value
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
-$article-home-home-page-max-width-m-plus:65%;
+$article-home-page-max-width-m-plus:90%;
 $home-about-widget-max-width: 30%;
 
 
@@ -169,7 +184,7 @@ $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1
 //CMS OVERRIDES
 $login-background-color:$base-font-color;
 $cms-logo-background-image:$my-logo-location;
-$hide-updates: true;
+$hide-updates: false;
 
 
 //IMAGES
