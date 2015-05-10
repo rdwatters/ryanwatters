@@ -22,7 +22,7 @@
     .footer-social-buttons {
         @include display(flex);
         @include flex-direction(row);
-        @include justify-content(center);
+        @include justify-content(space-around);
         @include align-items(center);
         @include MQ(M) {
             @include flex-direction(row);

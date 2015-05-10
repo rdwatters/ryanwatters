@@ -16,6 +16,9 @@
 					</svg>
             </a>
         </li>
+        
+        {% set facebook = getSetting('site_facebook') %}
+        {% if facebook.length > 2 %}
         <li>
         		<a class="footer-facebook" href="{{getSetting('site_facebook')}}" target="_blank">
         			<svg version="1.1" id="footer-facebook" class="facebook-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
@@ -30,6 +33,7 @@
 
         		</a>
         </li>
+        {% endif %}
         {% if cms.additionalglobals.add_googleplus %}
 				<li>
 					<a class="footer-googleplus" href="{{cms.additionalglobal.googleplus_profile}}">

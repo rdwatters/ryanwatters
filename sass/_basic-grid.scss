@@ -14,6 +14,9 @@
   @else if $canvas == XL {
     @media only screen and (min-width: $XL) { @content; }
   }
+  @else if $canvas == HUGE {
+    @media only screen and (min-width: $HUGE) { @content; }
+  }
   @else if $canvas == retinaPortrait {
     @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi),(min-device-width:375px),(max-device-width:736),(orientation: landscape) { @content }
   }
