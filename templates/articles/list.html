@@ -6,7 +6,7 @@
   {% set data = data|sort('publish_date', true) %}
 
   {# This is how you set pagination. It's always important to do this after your sort. #}
-  {% set data = paginate(data, 20) %}
+  {% set data = paginate(data, 5) %}
 
   <h1>List of articles</h1>
 

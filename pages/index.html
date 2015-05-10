@@ -2,9 +2,9 @@
 {% block title %}{% parent %} - Home{% endblock %} 
 {% block content %} 
 {% set articles = cms.articles|sort('publish_date', true) %}
-{% set articles = articles|slice(0,10) %}
+{% set articles = paginate(articles, 4) %}
 {% set authors = cms.authors %}
-<article class="homepage-article-list" itemscope itemtype="http://schema.org/Blog">
+<article class="homepage-article-list js-paginate" itemscope itemtype="http://schema.org/Blog" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true">
     {% for article in articles %}
     <div class="home-article-wrapper">
         <section class="home-article-section"> 
@@ -88,7 +88,7 @@
                                     <a href="{{ url(article) }}">{{ article.title }}</a>
                                 </h1>
                                 {% if article.description.length > 250 %}
-                                <p class="home-article-description">{{ article.description.substring(0,247) }} ...</p>
+                                <p class="home-article-description">{{ article.description.substring(0,247) }} [...]</p>
                                 {% else %}
                                 <p class="home-article-description">{{ article.description }}</p>
                                 {% endif %}
@@ -111,7 +111,9 @@
             </section>
         </div>
     {% endfor %}
+    {# include "templates/partials/paginator.html" #}
 </article>
+
 
 <aside class="home-about-rail-widget">
         <section class="home-about-content">            
@@ -121,8 +123,9 @@
                 <ul class="category-listing">
                     {% for category in cms.categories %}
                         <li class="category-name">
-                            <a href="{{ url(category) }}">{{ category.name }}</a>
-                            <span class="category-article-total">({{ category.articles.length }})</span>
+                            <a href="{{ url(category) }}">{{ category.name }}
+                                <span class="category-article-total">({{ category.articles.length }})</span>
+                            </a>
                         </li>           
                     {% endfor %}
                 </ul>
@@ -168,5 +171,109 @@
             </section>
         </section>
     </aside>
+    <div class="svg-spinner-wrapper">
+    <svg id="js-spinner" width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="15" cy="15" r="15">
+            <animate attributeName="r" from="15" to="15"
+                     begin="0s" dur="0.8s"
+                     values="15;9;15" calcMode="linear"
+                     repeatCount="indefinite" />
+            <animate attributeName="fill-opacity" from="1" to="1"
+                     begin="0s" dur="0.8s"
+                     values="1;.5;1" calcMode="linear"
+                     repeatCount="indefinite" />
+        </circle>
+        <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+            <animate attributeName="r" from="9" to="9"
+                     begin="0s" dur="0.8s"
+                     values="9;15;9" calcMode="linear"
+                     repeatCount="indefinite" />
+            <animate attributeName="fill-opacity" from="0.5" to="0.5"
+                     begin="0s" dur="0.8s"
+                     values=".5;1;.5" calcMode="linear"
+                     repeatCount="indefinite" />
+        </circle>
+        <circle cx="105" cy="15" r="15">
+            <animate attributeName="r" from="15" to="15"
+                     begin="0s" dur="0.8s"
+                     values="15;9;15" calcMode="linear"
+                     repeatCount="indefinite" />
+            <animate attributeName="fill-opacity" from="1" to="1"
+                     begin="0s" dur="0.8s"
+                     values="1;.5;1" calcMode="linear"
+                     repeatCount="indefinite" />
+        </circle>
+            </svg>
+    </div>
+{% endblock %}
+{% block scripts_extra %}
+{# INFINITE SCROLL - FROM https://github.com/webhook/webhook-theme-solo/blob/master/static/javascript/infinite-scroll.js. Only active on site home page.#}
 
+<script async>
+    $(document).ready(function() {
+      var hasContainer = $('.js-paginate').length > 0;
+
+      if(!hasContainer) {
+        return;
+      }
+
+      var nextPage = $('.js-paginate').attr('data-next-page');
+      var maxPage = $('.js-paginate').attr('data-max-page');
+      var removeFirst = $('.js-paginate').attr('data-remove-first');
+
+      if(maxPage === window.location.pathname) {
+        return;
+      }
+
+  var finishedLoading = false;
+  var loading = false;
+  $(window).scroll( function() {
+    if(loading || finishedLoading) {
+      return;
+    }
+
+    var container = $('.js-paginate');
+    var bottomOfContainer = container.position().top + container.outerHeight(true);
+    var scrollBottom = $(window).scrollTop() + $(window).height();
+    if(scrollBottom > bottomOfContainer)
+    {
+      loading = true;
+      $('#js-spinner').show();
+
+      $.ajax({
+        url: nextPage,
+        success: function(html)
+        {
+            if(html) {
+                var targetHtml = $(html).find('.js-paginate');
+
+                if(nextPage === maxPage) {
+                  finishedLoading = true;
+                }
+
+                nextPage = targetHtml.attr('data-next-page');
+
+                if(nextPage) {
+                  if(removeFirst)
+                    targetHtml.find('li').first().remove();
+
+                  $(".js-paginate").append(targetHtml.html());
+                } else {
+                  finishedLoading = true;
+                }
+
+                $('#js-spinner').hide();
+            } else {
+                finishedLoading = true;
+                $('#js-spinner').hide();
+            }
+
+            loading = false;
+        }
+      });
+    }
+  });
+});    
+
+</script> 
 {% endblock %}

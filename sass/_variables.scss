@@ -78,6 +78,7 @@ $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
 $footer-background-color:#333333;
 $footer-font-color:white;
+$footer-svgs:$footer-font-color;
 $body-background-color:#DADFE1;
 $main-content-background-color:$body-background-color;
 $search-overlay-color:$header-background-color;
@@ -88,6 +89,7 @@ $home-tags-heading-color:#333333;
 $tags-font-color:white;
 $tags-background-color:#333333;
 $tags-background-hover:$primary-brand;
+$svg-spinner-color:$primary-brand;
 //Social buttons are set up to transition to their respective brand color on hover
 $social-buttons-color:black;
 //anchor color in reset.scss

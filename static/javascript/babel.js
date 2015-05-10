@@ -5,9 +5,10 @@ var header = document.querySelector('.header'),
     wScrollDiff = 0;
 window.onload = init;
 function init () {
-    var mobileToggleButton = document.getElementById('mobile-menu-toggle');
+    var mobileToggleButton = document.getElementById('mobile-menu-toggle'),
+    searchButton = document.getElementById('search-icon');
     mobileToggleButton.onclick = toggleMobileMenu;
-    window.onscroll = headerFadeOnScroll;
+    searchButton.onclick = toggleSearchOverlay;
 }
 function browserSniff() {
     // //MINI BROWSER SNIFF (ONLY IOS AND ANDROID)
@@ -57,23 +58,6 @@ function replaceThumbnailWithIframe() {
     this.parentNode.replaceChild(iframe, this);
 }
 
-/*HEADER FADES IN AND OUT ON SCROLL - SEE function init to check if */
-
-function headerFadeOnScroll() {
-    var theHeader = document.getElementsByTagName('header')[0],
-        headerHeight = parseInt(theHeader.clientHeight);
-    wScrollCurrent = window.pageYOffset | document.body.scrollTop;
-    wScrollDiff = wScrollBefore - wScrollCurrent;
-    if (wScrollCurrent <= headerHeight) {
-        theHeader.classList.remove('hide-header');
-    } else if (wScrollDiff > 0) {
-        theHeader.classList.remove('hide-header');
-    } else if (wScrollDiff < 0) {
-        theHeader.classList.add('hide-header');
-    }
-    wScrollBefore = wScrollCurrent;
-}
-
 /*TOGGLE MOBILE MENU ON CLICK AS WELL AS CHANGE ARIA ATTRIBUTES ON MOBILE MENU FOR ACCESSIBILITY*/
 function toggleMobileMenu() {
     var mainMenu = document.getElementsByTagName('header')[0].classList,
@@ -103,14 +87,11 @@ function toggleMobileMenu() {
     //     theButton.setAttribute('aria-expanded', 'true');
     // }
 }
-var headerClassList = document.querySelector('header').classList;
-console.log(headerClassList);
-
 // TOGGLE SEARCH OVERLAY
-function toggleSearch() {
-    var searchWrap = document.querySelector('.search-wrap'),
-        searchInput = document.getElementById('st-search-input');
-    classie.toggle(searchWrap, 'search-open');
+function toggleSearchOverlay() {
+    var searchWrap = document.querySelector('.search-wrapper').classList,
+        searchInput = document.getElementById('search-input');
+    searchWrap.toggle('search-open');
     if (!searchInput.activeElement) {
         searchInput.focus();
     }
