@@ -9,7 +9,7 @@
 }
 /*BEGIN HOMEPAGE STYLES*/
 
-.homepage-article-list {
+.home-article-list {
     display: block;
     float: left;
     width: 90%;
@@ -17,9 +17,14 @@
     margin-left: 5%;
     padding: 0;
     @include MQ(M) {
-        width: 60%;
+        //allow 5% auto-margin on the home-article-list
+        max-width: 90% - $home-about-widget-width;
         display: inline-block;
         clear: both;
+    }
+    @include MQ(L) {
+        width: 63%;
+        max-width: 63%;
     }
 }
 
@@ -36,17 +41,17 @@
         float: none;
         max-width: $article-home-page-max-width-m-plus;
         height: 100%;
-        max-width: 600px;
+        // max-width: 600px;
+    }
+    @include MQ(XL) {
+        max-width: 100%;
+        margin: 0;
+        @include display(flex);
     }
 }
 
 //Styles for article listing for XL+ screens (ie, "rows" intstead of "cards")
 @include MQ(XL) {
-    .home-article-wrapper {
-        max-width: 100%;
-        margin: 0;
-        @include display(flex);
-    }
     .home-article-section {
         @include display(flex);
         height: auto;
@@ -74,11 +79,11 @@
         .article-image,
         .video-thumb {
             @include order(2);
-            width:100%;
+            width: 100%;
             img {
                 margin: 0px;
                 padding: 0px;
-                width:100%;
+                width: 100%;
             }
         }
         .home-publish-date {
@@ -137,18 +142,7 @@
             .home-article-read-more-and-article-author {
                 @include order(3);
                 width: 100%;
-                @include display(flex);
-                @include flex-direction(row);
-                @include justify-content(space-around);
-                .read-more {
-                    display: block;
-                    float: left;
-                    @include align-self(flex-start);
-                }
-                .author-photo {
-                    display: block;
-                    float: right;
-                }
+                margin-top: $base-font-size;
             }
         }
     }
@@ -365,7 +359,7 @@
             width: 100%;
         }
     }
-    @include MQ(HUGE){
+    @include MQ(HUGE) {
         font-size: $base-font-size * 2;
     }
 }
@@ -387,61 +381,85 @@
 
 .home-article-description {
     margin-bottom: 10px;
-    @include MQ(HUGE){
-        font-size:$base-font-size * 1.5;
-        line-height:1.5;
+    @include MQ(HUGE) {
+        font-size: $base-font-size * 1.5;
+        line-height: 1.5;
     }
-}
-
-.home-article-read-more-and-article-author {
-    display: block;
-    vertical-align: middle;
 }
 
 .read-more {
     color: $read-more-font-color;
     font-size: $base-font-size;
-    display: inline-block;
+    display: block;
+    clear: both;
+    width: 100%;
     text-transform: uppercase;
     line-height: 1.5;
-    @include MQ(HUGE){
-        font-size:$base-font-size * 1.5;
-        line-height:1.5;
+    @include MQ(M) {
+        width: 140px;
     }
     a {
+        display: block;
         padding: .2em 1em .2em 1em;
         background-color: $read-more-background-color;
         border: $read-more-border;
-        width: 100px;
+        margin: 15px auto 15px auto;
+        width: 140px;
         text-align: center;
         &:hover {
             background-color: $read-more-background-color-hover;
             color: $read-more-font-color-hover;
         }
+        @include MQ(M) {
+            display: inline-block;
+            float: left;
+        }
     }
-}
-
-.author-photo {
-    display: inline-block;
-    line-height: 50px;
-    float: right;
+    @include MQ(HUGE) {
+        font-size: $base-font-size * 1.5;
+        line-height: 1.5;
+    }
 }
 
 .article-author {
     display: inline-block;
-    vertical-align: middle;
     line-height: 50px;
-    @include MQ(HUGE){
-        font-size:$base-font-size * 1.5;
-        line-height:1.5;
+    float: right;
+    a.article-list-author-link {
+        display:block;
+        .author-image-small {
+            border-radius: $author-image-small-radius;
+            height: 50px;
+            vertical-align: middle;
+            display: none;
+            @include MQ(M) {
+                margin-right:auto;
+                margin-left:auto;
+            }
+        }
+        .article-author-name {
+            display: block;
+            float: left;
+            vertical-align: middle;
+            line-height: 50px;
+            font-weight: bold;
+            &:before {
+                content: 'By ';
+            }
+            @include MQ(M) {
+                margin-right:auto;
+                margin-left:auto;
+                text-align:center;
+                &:before {
+                    content: '';
+                }
+            }
+            @include MQ(HUGE) {
+                font-size: $base-font-size * 1.5;
+                line-height: 1.5;
+            }
+        }
     }
-}
-
-.author-image-small {
-    border-radius: $author-image-small-radius;
-    height: 50px;
-    vertical-align: middle;
-    display: inline-block;
 }
 
 .article-tags {
@@ -494,11 +512,13 @@
         display: inline-block;
         clear: both;
         padding-top: $header-height-non-mobile + 10px;
+        width: $home-about-widget-width;
         max-width: $home-about-widget-max-width;
         background-color: $home-about-rail-widget-background-color;
     }
     @include MQ(XL) {
-        max-width: 400px;
+        width: $home-about-widget-width;
+        max-width: $home-about-widget-max-width;
     }
     .home-about-content {
         width: 100%;
@@ -530,7 +550,7 @@
             font-weight: 300;
         }
         .category-name {
-            margin:20px 20px 20px 0px;
+            margin: 20px 20px 20px 0px;
         }
     }
     .home-tag-listing {
@@ -602,25 +622,5 @@
     a {
         color: $anchor-color;
         font-weight: bold;
-    }
-}
-
-//Can be moved out of CRP - 
-.primary-navigation {
-    @include MQ(MMAX) {
-        margin-top: 10px;
-        ul {
-            display: block;
-            margin-right: auto;
-            margin-left: auto;
-            text-align: center;
-            li:after {
-                width: 50%;
-                display: block;
-                margin-right: auto;
-                margin-left: auto;
-                border-bottom: 1px solid #cccccc;
-            }
-        }
     }
 }

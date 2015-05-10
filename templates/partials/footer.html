@@ -1,7 +1,7 @@
 <footer data-swiftype-index="false" class="footer">
-    <ul class="footer-social-buttons">
+    <ul class="footer-social-buttons" role="footer navigation">
         <li>
-            <a class="footer-twitter" href="https://www.twitter.com/@{{ getSetting('site_twitter') }}" target="_blank">
+            <a class="footer-twitter" href="https://www.twitter.com/@{{ getSetting('site_twitter') }}" target="_blank" title="Follow this site on Twitter">
 						<svg version="1.0"
 						 id="footer-twitter" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
 						 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="130.9 12.4 31.7 25.8"
@@ -20,7 +20,7 @@
         {% set facebook = getSetting('site_facebook') %}
         {% if facebook.length > 2 %}
         <li>
-        		<a class="footer-facebook" href="{{getSetting('site_facebook')}}" target="_blank">
+        		<a class="footer-facebook" href="{{getSetting('site_facebook')}}" target="_blank" title="Facebook page">
         			<svg version="1.1" id="footer-facebook" class="facebook-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 									y="0px" width="30px" height="30px" viewBox="-9 11 30 30" enable-background="new -9 11 30 30" xml:space="preserve">
 							<g>
@@ -36,7 +36,7 @@
         {% endif %}
         {% if cms.additionalglobals.add_googleplus %}
 				<li>
-					<a class="footer-googleplus" href="{{cms.additionalglobal.googleplus_profile}}">
+					<a class="footer-googleplus" href="{{cms.additionalglobal.googleplus_profile}}" title="Google Plus Page">
 						<svg version="1.1" id="footer-googleplus" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="96.669px" height="96.669px" viewBox="0 0 96.669 96.669" style="enable-background:new 0 0 96.669 96.669;"
 					 xml:space="preserve">
@@ -62,7 +62,7 @@
         {% endif %}
         {% if cms.additionalglobals.add_linkedin %}
         <li>
-        	<a class="footer-linkedin" href="{{cms.additionalglobals.linkedin_profile}}" target="_blank">
+        	<a class="footer-linkedin" href="{{cms.additionalglobals.linkedin_profile}}" target="_blank" title="LinkedIn Profile">
         		<svg version="1.1" id="footer-linkedin" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 						 y="0px" viewBox="10.1 10.1 29.8 29.8" enable-background="new 10.1 10.1 29.8 29.8" xml:space="preserve">
 					<path id="linkedin-square-rounded-icon" d="M36.3,10.1H13.7c-2,0-3.6,1.6-3.6,3.6v22.6c0,2,1.6,3.6,3.6,3.6h22.6
@@ -75,7 +75,7 @@
         {% endif %}
         {% if cms.additionalglobals.add_github %}
         <li>
-        	<a class="footer-github" href="{{cms.additionalglobals.github_profile }}">
+        	<a class="footer-github" href="{{cms.additionalglobals.github_profile }}" title="GitHub Profile">
         		<svg version="1.0" id="footer-github" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 						 viewBox="0 0 32.6 31.8" enable-background="new 0 0 32.6 31.8" xml:space="preserve">
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.3,0C7.3,0,0,7.3,0,16.3c0,7.2,4.7,13.3,11.1,15.5
@@ -90,7 +90,7 @@
         {% endif %}
         {% if cms.additionalglobals.add_pinterest%}
         <li>
-        	<a href="{{ cms.additionalglobals.pinterest_url }}" target="_blank">
+        	<a href="{{ cms.additionalglobals.pinterest_url }}" target="_blank" title="Pinterest Page">
         		<svg version="1.1" id="footer-pinterest" class="pinterest-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 viewBox="0 0 543.906 543.906" style="enable-background:new 0 0 543.906 543.906;" xml:space="preserve">
 					<g>

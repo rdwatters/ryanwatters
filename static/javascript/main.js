@@ -12,17 +12,6 @@ function init() {
     mobileToggleButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearchOverlay;
 }
-function browserSniff() {
-    // //MINI BROWSER SNIFF (ONLY IOS AND ANDROID)
-    var mobileOS = false;
-    if (navigator.userAgent.match(/iphone/gi) || navigator.userAgent.match(/ipad/gi) || navigator.userAgent.match(/android/gi)) {
-        mobileOS = true;
-    } else {
-        mobileOS = false;
-    }
-    return mobileOS;
-}
-
 /*Remove static image from video players and replace with embedded YouTube video*/
 //Modified considerably from http://www.labnol.org/internet/light-youtube-embeds/27941/
 (function () {

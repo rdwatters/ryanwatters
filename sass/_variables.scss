@@ -40,7 +40,9 @@ $aap-body-font-family:helvetica,arial, sans-serif;
 $columns:12;
 
 //TYPOGRAPHY & FONTS
-// WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports
+// These are WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports. You will need to use them according to the way they are spelled in the module, eg ->
+// font-family: 'arvowoff',Georgia, serif;
+// 
 // @import 'arvowoff';
 // @import 'fjord';
 // @import 'lorabold';
@@ -48,7 +50,7 @@ $columns:12;
 // @import 'ralewaybold';
 @import 'merriweather';
 $base-font-size:16px;
-$serif: 'Adelle','Merriweather',Georgia,sans-serif;
+$serif: 'Adelle','Merriweather',Georgia,serif;
 $sans-serif: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
 $body-font-family: $sans-serif;
 $heading-font-family: $serif;
@@ -142,11 +144,12 @@ $footer-height:$header-height-base;
 //You can give your tags a rounded border by adjusting the following value
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
-$article-home-page-max-width-m-plus:90%;
-$home-about-widget-max-width: 30%;
+$article-home-page-max-width-m-plus:100%;
+$home-about-widget-width:28%;
+$home-about-widget-max-width: 400px;
 
 
-//MOBILE
+//MOBILE-MENU
 $mobile-menu-width:100%;
 $mobile-icon-height: 20px;
 $mobile-icon-width: 30px;
@@ -192,4 +195,12 @@ $hide-updates: false;
 
 //IMAGES
 $author-image-small-radius:50%;
+
+//PAGINATION-BUTTONS
+$pagination-button-width:40px;
+$pagination-button-height: 30px;
+$pagination-button-background-color: white;
+$pagination-button-background-color-active: $accent-color;
+$pagination-button-background-color-hover:#cccccc;
+$pagination-button-border-radius:10px;
 
