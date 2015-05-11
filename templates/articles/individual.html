@@ -52,10 +52,11 @@
   {# BEGIN BODY COPY #}
   <section class="social-media-icons-bar">
       {% include "templates/partials/socialmediaicons.html" %}
-  </section>    
+  </section>
+  <h1 class="article-title">{{ item.title }}</h1>    
   <p class="all-articles"><a href="{{ url('articles') }}">All articles</a></p>          
   
-  <h1 class="article-title">{{ item.title }}</h1>
+  
   {% for relation in item.author %}
           <div class="article-author"><a href="{{ url(relation) }}">{{ relation.name }}</a>
           {% if not loop.last %} & {% endif %}
@@ -123,15 +124,33 @@
 {% block scripts_extra %}
 {% parent %}
 <script async>
-window.onload = function(){
-  document.write('
-  {% if prev %}
-    <link rel="prefetch" href="{{ url(prev) }}" />
-  {% endif %}
-  {% if next %}
-    <link rel="prefetch" href="{{ url(next) }}" />
-  {% endif %}')
-}
+$(function(){
+  var headerHeight = $('.header').height() + 10,
+    socialBar = $('.social-media-icons-bar'),
+    socialBarWidth = socialBar.width(),
+    socialBarOffset = socialBar.offset(),
+    socialBarY = socialBarOffset.top,
+    socialBarX = socialBarOffset.left,
+    socialBarHeaderDiff = (socialBarY - headerHeight);
+    // socialBarXpositionFixed = socialBarX - 
+  $(window).scroll(function(){   
+    if($(window).scrollTop() >= socialBarHeaderDiff ){
+      console.log('it is registering!');
+      socialBar.css({
+        'position':'fixed',
+        'top': headerHeight,
+        'left': socialBarX
+      });
+    }else{
+      socialBar.css({
+      'position':'',
+      'top':'',
+      'left':''
+    });
+    }
+  });
+
+});
   
 </script>
 {% endblock %}

@@ -133,6 +133,7 @@ $category-text-transform:uppercase;
 //END HOME PAGE LIST VIEW COLORS
 //ARTICLE PAGES
 $full-length-article-anchor-underline-color:lighten($primary-brand,40%);
+$social-bar-vertical-width:30px;
 //END ARTICLE PAGES
 //You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
 $twitter-blue:#00aced;
@@ -146,14 +147,14 @@ $footer-opacity:$header-opacity;
 
 //SIZES && SHAPES
 $site-logo-size:32px;
-$header-height-base: $site-logo-size * 1.5;
+$header-height: $site-logo-size * 1.5;
 $header-link-font-size:$site-logo-size/2;
 $search-icon-size:$header-link-font-size * 1.5;
 $mobile-logo-size:$site-logo-size;
-$mobile-header-height:$header-height-base;
+$mobile-header-height:$header-height;
 //if you increase the header height considerably, you will end up with an equally large footer with the way these default values, so I've added a separate variable below if you don't want your footer and header to be the same height.
-$header-height-non-mobile:$header-height-base;
-$footer-height:$header-height-base;
+$header-height-non-mobile:$header-height;
+$footer-height:$header-height;
 //You can give your tags a rounded border by adjusting the following value
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page

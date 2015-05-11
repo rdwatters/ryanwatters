@@ -151,11 +151,13 @@ img.article-main-image {
         a {
             border: none;
         }
-        @include MQ(M){
+        @include MQ(L){
             @include flex-direction(column);
             position:absolute;
-
+            max-width:$social-bar-vertical-width;
+            left:-$social-bar-vertical-width - 15px;
         }
+
     }
     h1.article-title {
         font-size: $base-font-size * 1.8;
