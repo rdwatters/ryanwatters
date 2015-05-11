@@ -1,0 +1,57 @@
+.video-player-youtube,
+.video-player-vimeo {
+    display: block;
+    width: 100%;
+    /* assuming that the video has a 16:9 ratio */
+    
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-left: 0;
+    margin-left: 0;
+    display: block;
+}
+
+.video-thumb {
+    @include hardware-accelerate;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    right: 0;
+    top: 0;
+    height: auto;
+}
+
+//PLAY BUTTON FOR VIDEO LIBRARY AND FOR VIDEOS INCLUDED IN INDIVIDUAL POSTS
+.play-button {
+    display: block;
+    height: $video-player-play-button-size;
+    width: $video-player-play-button-size;
+    left: $video-player-play-button-left-padding;
+    top: 35%; //Assume 16:9 ratio for YouTube videos
+    position: absolute;
+    cursor: pointer;
+}
+
+.play-button-svg {
+    @include transition(.4s);
+    fill: $video-player-play-button-color;
+    opacity: $video-player-play-button-opacity;
+    &:hover {
+        fill: $video-player-play-button-color-hover;
+        opacity:$video-player-play-button-opacity-hover;
+    }
+}
+
+//this class is set by the main.js javascript
+.video-iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

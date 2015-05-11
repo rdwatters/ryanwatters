@@ -1,6 +1,6 @@
 //SEARCH
 .search-wrapper {
-    @include transition(.4s);
+    @include transition($base-transition);
     z-index: 9999;
     overflow-y: scroll;
     display: block;
@@ -47,27 +47,8 @@
     }
 }
 
-//BEGIN SWIFTYPE
-#search-icon svg {
-    display: none;
-    @include MQ(M) {
-        display: inline-block;
-        // position: absolute;
-        vertical-align: middle;
-        fill: $header-link-color;
-        margin: 0;
-        padding: 0;
-        // top: $site-logo-size/4;
-        // right: $site-logo-size/4;
-        line-height: $site-logo-size;
-        height: $search-icon-size;
-        width: $search-icon-size;
-        .magnifying-glass {
-            fill: $header-link-color;
-        }
-    }
-}
-
+//BEGIN SWIFTYPE STYLES
+//NOTE: The search icon is not included in the following styles. As part of the critical render path, it is included in the _header_and_main.scss file.
 #search-input {
     border-radius: 0;
     outline: 0;
@@ -79,7 +60,7 @@
 }
 
 .search-wrap {
-    @include transition(.4s);
+    @include transition($base-transition);
     display: block;
     z-index: -1;
     opacity: 0;

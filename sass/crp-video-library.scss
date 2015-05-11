@@ -1,0 +1,10 @@
+//BEGIN BASE CRP
+@import 'variables';
+@import 'basic-grid';
+@import 'normalize';
+@import 'bourbon/bourbon';
+@import 'menu-icon';
+@import 'header-and-main';
+//END BASE CRP
+/*BEGIN VIDEO LIBRARY STYLES*/
+@import 'video-player';

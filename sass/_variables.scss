@@ -4,11 +4,10 @@ $M: 640px;
 $L: 960px;
 $XL: 1200px;
 $HUGE: 1600px;
-// Althought these are the same values as above, I've set up the following maximum valuese to make them easier to read within each sass module
+// Same as above, but handy for setting max values.
 $LMAX: 760px;
 $MMAX: 640px;
 $SMAX: 480px;
-
 
 //HEALTHYCHILDREN
 $healthy-children-green:#AEC736;
@@ -36,36 +35,41 @@ $aap-gray-three:#D4D4D4;
 $aap-heading-font-family:'Museo',serif;
 $aap-body-font-family:helvetica,arial, sans-serif;
 
-//GRID
-$columns:12;
-
 //TYPOGRAPHY & FONTS
 // These are WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports. You will need to use them according to the way they are spelled in the module, eg ->
 // font-family: 'arvowoff',Georgia, serif;
 // 
-// @import 'arvowoff';
-// @import 'fjord';
-// @import 'lorabold';
-// @import 'bitterbold';
-// @import 'ralewaybold';
-@import 'merriweather';
+// @import 'woff-fonts/arvowoff';
+// @import 'woff-fonts/bitterbold';
+// @import 'woff-fonts/fjord';
+// @import 'woff-fonts/latolight';
+// @import 'woff-fonts/lorabold';
+// @import 'woff-fonts/merriweather';
+// @import 'woff-fonts/montserrat.scss';
+// @import 'woff-fonts/opensans-semibold';
+// @import 'woff-fonts/quicksandlight';
+// @import 'woff-fonts/ralewaybold';
+// @import 'woff-fonts/ralewayregular';
+// @import 'woff-fonts/rs';
+
 $base-font-size:16px;
-$serif: 'Adelle','Merriweather',Georgia,serif;
-$sans-serif: 'Proxima Nova','Helvetica Neue',Arial,sans-serif;
+$serif: 'Raleway',Georgia,serif;
+$sans-serif: 'Lato','Helvetica Neue',Arial,sans-serif;
 $body-font-family: $sans-serif;
 $heading-font-family: $serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
 $heading-four-font-size: $base-font-size * 1.1; //h4
-$publish-date-font-family:$body-font-family; //for the publish date; e.g. on the list view of articles on the home page
+$publish-date-font-family:$heading-font-family; //for the publish date; e.g. on the list view of articles on the home page
 $publish-date-font-family-large-screen:$body-font-family;
 
 //LOGO LOCATION
 $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
-$primary-brand:#203253;
+$primary-brand:lighten(#203253,10%);
+// $primary-brand:#39BBE7;
 $secondary-brand:lighten($primary-brand,25%);
 $logo-color:$primary-brand;
 $logo-font-color:white;
@@ -82,40 +86,50 @@ $mobile-header-background-color:$header-background-color;
 $footer-background-color:#333333;
 $footer-font-color:white;
 $footer-svgs:$footer-font-color;
-$body-background-color:#DADFE1;
+$footer-svg-color:$footer-font-color;
+$body-background-color:#cccccc;
 $main-content-background-color:$body-background-color;
 $search-overlay-color:$header-background-color;
 $search-overlay-transparency:0.9;
 $category-button-background-color:#333333;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:#333333;
-$tags-font-color:white;
+$tags-font-color:darken(white,20%);
+$tags-font-color-hover:white;
 $tags-background-color:#333333;
-$tags-background-hover:$primary-brand;
+$tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
 //Social buttons are set up to transition to their respective brand color on hover
 $social-buttons-color:black;
-//anchor color in reset.scss
+//Sets the default anchor color (reset.scss)
 $anchor-color:$primary-brand;
-//$body-anchor-underline can be used for wired.com style anchor links
-$body-anchor-underline:3px solid $primary-brand;
-//publish date on the list view of 
+//PUBLISH DATE ON THE HOMEPAGE ARTICLE LIST
 $publish-date-background-color:white;
 $publish-date-background-color-large:#333333;
 $publish-date-font-color-large:white;
 $social-icons-background-color:transparent;
 $social-buttons-border:1px solid #cccccc;
-//This is for the list view of the blog posts (e.g. on the home page);
+//This is the section to the right of the article image on XL and under the article image/video on everything else
 $home-article-information-background-color:#ffffff;
-//This is for the right rail/widget on M+ screens
-$home-about-rail-widget-background-color:lighten(#333333,79%);
+//This is for the right rail/widget (right on M+ screens; bottom of list on mobile )
+$home-about-rail-widget-background-color:white;
 $home-about-rail-widget-section-underline: 1px solid #cccccc;
-//For the "read more" button on the list view
-$read-more-font-color:$base-font-color;
-$read-more-background-color:white;
-$read-more-font-color-hover:white;
-$read-more-background-color-hover:$accent-color;
-$read-more-border:1px solid $accent-color;
+$right-rail-widget-background-color:white;
+$right-rail-widget-section-underline: 1px solid #cccccc;
+//"Read more" button on homepage list view
+$read-more-font-color:white;
+$read-more-font-weight:300;
+$read-more-background-color:$primary-brand;
+$read-more-font-color-hover:$base-font-color;
+$read-more-background-color-hover:white;
+$read-more-border:1px solid $primary-brand;
+$read-more-button-width:140px;
+$read-more-button-height:$base-font-size * 1.5;
+$read-more-button-font-size:$base-font-size * 1.2;
+$read-more-text-transform:uppercase;
+$home-article-author-name-underline:1px solid $primary-brand;
+$category-font-weight:300;
+$category-text-transform:uppercase;
 //END HOME PAGE LIST VIEW COLORS
 //ARTICLE PAGES
 $full-length-article-anchor-underline-color:lighten($primary-brand,40%);
@@ -125,7 +139,6 @@ $twitter-blue:#00aced;
 $twitter-mini-color:$twitter-blue;
 $most-recent-tweet-background-color:white;
 $most-recent-tweet-border-radius:0px;
-
 
 //OPACITY
 $header-opacity:0.9;
@@ -147,6 +160,8 @@ $tags-border-radius:0px;
 $article-home-page-max-width-m-plus:100%;
 $home-about-widget-width:28%;
 $home-about-widget-max-width: 400px;
+$right-rail-widget-width:28%;
+$right-rail-widget-max-width: 400px;
 
 
 //MOBILE-MENU
@@ -170,17 +185,18 @@ $header-main-logo-background-image: '/static/images/favicon.png';
 $home-logo-background-color:$header-background-color;
 $home-logo-hover-background-color:white;
 $site-name:'Ryan Watters';
-$primary-navigation-text-transform:uppercase;
+$primary-navigation-text-transform:capitalize;
 $home-logo-border-radius:50%;
 $home-button-icon-radius:50%;
 $home-button-background-image:$my-logo-location;
 
-
 //VIDEO PLAYER OPTIONS
-//Only use percentages for the size of the play button, and to keep the svg (currently square-shaped), only change the first variable ($video-player-play-button-size)
+//Only use percentages for the size of the play button. To keep the svg (currently square-shaped), only change the first variable ($video-player-play-button-size)
 $video-player-play-button-size:20%;
 $video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
+$video-player-play-button-opacity:0.8;
+$video-player-play-button-opacity-hover:1;
 $video-player-play-button-left-padding:(100% - $video-player-play-button-size) / 2;
 $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1.7777;
 //You can turn off the hover animation for the play button here by setting the value to false
@@ -203,4 +219,7 @@ $pagination-button-background-color: white;
 $pagination-button-background-color-active: $accent-color;
 $pagination-button-background-color-hover:#cccccc;
 $pagination-button-border-radius:10px;
+
+//TRANSITIONS
+$base-transition:0.2s;
 

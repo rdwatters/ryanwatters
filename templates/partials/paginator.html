@@ -8,7 +8,7 @@
 <ul class="pagination" aria-hidden="true">
 
   {% if curPage > 1 %}
-  <li><a href="{{ getPageUrl(curPage - 1) }}">&laquo;</a></li>
+  <li><a aria-label="Previous Page" href="{{ getPageUrl(curPage - 1) }}">&laquo;</a></li>
   {% endif %}
 
   <li {% if curPage == 1%}class="active"{% endif %}><a href="{{ getPageUrl(1) }}">1</a></li>
@@ -42,7 +42,7 @@
   <li {% if curPage == maxPage %}class="active"{% endif %}><a href="{{ getPageUrl(maxPage) }}">{{maxPage}}</a></li>
 
   {% if curPage < maxPage %}
-  <li><a href="{{ getPageUrl(curPage + 1) }}">&raquo;</a></li>
+  <li><a aria-label="Next Page" href="{{ getPageUrl(curPage + 1) }}">&raquo;</a></li>
   {% endif %}
 
 

@@ -42,6 +42,13 @@ module.exports = function(grunt) {
                         src: ['crp-article.scss'],
                         dest: 'templates/partials',
                         ext: '.html'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['crp-video-library.scss'],
+                        dest: 'templates/partials',
+                        ext: '.html'
                     }
                 ]
             }
@@ -71,7 +78,7 @@ module.exports = function(grunt) {
     });
     grunt.registerTask("default", ["babel"]);
     // THIS LOADS THE TASKS WE NEED ABOVE IN FROM OUR NPM
-    // Note, that we need to have these installed through the package.json file as well
+    // Note that we need to have these installed through the package.json file as well
     grunt.loadNpmTasks('grunt-contrib-sass');
     // NEVER REMOVE THESE LINES, OR ELSE YOUR PROJECT MAY NOT WORK
     require('./options/generatorOptions.js')(grunt);

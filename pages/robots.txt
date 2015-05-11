@@ -1,2 +1,3 @@
 User-Agent: *
 Disallow: *
+Sitemap: http://www.ryanwatters.me/sitemap.xml

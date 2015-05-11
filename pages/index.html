@@ -4,6 +4,8 @@
 {% set articles = cms.articles|sort('publish_date', true) %}
 {% set articles = paginate(articles, 4) %}
 {% set authors = cms.authors %}
+
+{# INFINITE SCROLL LIST ON HOMEPAGE #}
 <article class="home-article-list js-paginate" itemscope itemtype="http://schema.org/Blog" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true">
     {% for article in articles %}
     <div class="home-article-wrapper">
@@ -15,7 +17,7 @@
                         {% set videoId = video.video.original_url.split('v=')[1] %}
                         <section class="home-article-video">
                         {% for relation in article.category%}
-                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
                         {% endfor %}         
                             <div class="video-player-youtube" data-youtubeid="{{videoId}}">
                                     {% if video.thumbnail_override %}
@@ -25,7 +27,6 @@
                                     {% endif %}
                                 <div class="play-button" role="button">
                                     <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                                    <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
                                     <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
                                 </div>
                             </div>
@@ -39,17 +40,16 @@
                     {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
                         <section class="home-article-video">
                         {% for relation in article.category%}
-                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
                         {% endfor %}
                             <div class="video-player-vimeo" data-vimeoid="{{video.video.original_url.split('vimeo.com/')[1]}}">
                             {% if video.thumbnail_override %}
-                                <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}" width="560" height="315">
+                                <img class="video-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="This is only a placeholder image for the video - {{video.video_title}}" width="560" height="315">
                             {% else %}
-                                <img class="video-thumb" src="{{video.video.thumbnail_url}}" alt="{{row.video.video_title}}" width="560" height="315">             
+                                <img class="video-thumb" src="{{video.video.thumbnail_url}}" alt="This is only a placeholder image for the video - {{video.video_title}}" width="560" height="315">             
                             {% endif %}
                                 <div class="play-button" role="button">
                                     <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                                    <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
                                     <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
                                     </svg>
                                 </div>
@@ -64,7 +64,7 @@
             {% else %}
                         <section class="home-article-image">
                         {% for relation in article.category%}
-                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|upper }}</a></div>
+                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
                         {% endfor %}
                             <div class="article-image">
                                 <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">
@@ -92,33 +92,28 @@
                                 {% else %}
                                 <p class="home-article-description">{{ article.description }}</p>
                                 {% endif %}
-                                <div class="home-article-read-more-and-article-author">
+                                <div class="read-button-and-author">
                                     <div class="read-more" role="button">
-                                        <a href="{{ url(article) }}">Read more</a>
+                                        <a role="button" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
+                                    </div>                          
+                                    <div class="article-author-name" itemprop="author" role="button">
+                                        <a role="button" aria-label="Find out more about the author, {{article.author[0].full_name.first}} {{article.author[0].full_name.last }}"href="{{ url(article.author[0]) }}" class="article-author-link" title="Find out more about the author, {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}">Author: {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
+                                        </a>
                                     </div>
-                                    <a href="{{ url(article.author[0]) }}" class="article-list-author-link">
-                                        <div class="article-author">
-                                            <img class="author-image-small" src="{{article.author[0].author_photo|imageCrop(50,50)}}" alt="Photograph of the author: {{ article.author[0].full_name.first }} {{ article.author[0].full_name.last }}" width="50" height="50">
-                           
-                                            <div class="article-author-name" itemprop="author">
-                                                {{ article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
-                                            </div>
-                                        </div> 
-                                    </a>
                                 </div>
                             </section>
                         </section>
             </section>
         </div>
     {% endfor %}
-    <nav class="article-pagination">
+    <nav role="menu" aria-label="Pagination" class="article-pagination">
         {% include "templates/partials/paginator.html" %}
     </nav>
 </article>
 
-
-<aside class="home-about-rail-widget">
-        <section class="home-about-content">            
+{# RIGHT RAIL WIDGET #}
+<aside class="right-rail-widget">
+        <section class="right-rail-content">            
             {#Grab each of the categories and write them to the page with the total number of articles in each#}
             <div class="categories" role="navigation" aria-label="Secondary">
                 <h4 class="categories-heading">CATEGORIES</h4>
@@ -163,50 +158,53 @@
                     </svg>
                 </div>
                 
-                {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
-                {% set tweet = cms.tweet|sort('publish_date',true)|first %}
-                {% set tweetBody = tweet.tweet_body.split('http')[0] %}
-                {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
-                <p class="tweet-body">{{ tweetBody }} <a href="http{{ tweetUrl }}" class="tweet-url">http{{ tweetUrl }}</a></p>
-                <p><span class="tweet-time"><time datetime="tweet.tweet_time">Published on <a href="https://www.twitter.com/{{twitterHandle}}/status/{{ tweet.name }}" target="_blank">{{ tweet.tweet_time|date('F d Y. g:i a') }}</a></time></span></p>
-                </div>    
-            </section>
+            {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
+            {% set tweet = cms.tweet|sort('publish_date',true)|first %}
+            {% set tweetBody = tweet.tweet_body.split('http')[0] %}
+            {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
+            <p class="tweet-body">{{ tweetBody }} <a href="http{{ tweetUrl }}" class="tweet-url">http{{ tweetUrl }}</a></p>
+            <p><span class="tweet-time"><time datetime="tweet.tweet_time">Published on <a href="https://www.twitter.com/{{twitterHandle}}/status/{{ tweet.name }}" target="_blank">{{ tweet.tweet_time|date('F d Y. g:i a') }}</a></time></span></p>
+            </div>    
         </section>
-    </aside>
-    <div class="svg-spinner-wrapper">
-    <svg id="spinner" width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="15" cy="15" r="15">
-            <animate attributeName="r" from="15" to="15"
-                     begin="0s" dur="0.8s"
-                     values="15;9;15" calcMode="linear"
-                     repeatCount="indefinite" />
-            <animate attributeName="fill-opacity" from="1" to="1"
-                     begin="0s" dur="0.8s"
-                     values="1;.5;1" calcMode="linear"
-                     repeatCount="indefinite" />
-        </circle>
-        <circle cx="60" cy="15" r="9" fill-opacity="0.3">
-            <animate attributeName="r" from="9" to="9"
-                     begin="0s" dur="0.8s"
-                     values="9;15;9" calcMode="linear"
-                     repeatCount="indefinite" />
-            <animate attributeName="fill-opacity" from="0.5" to="0.5"
-                     begin="0s" dur="0.8s"
-                     values=".5;1;.5" calcMode="linear"
-                     repeatCount="indefinite" />
-        </circle>
-        <circle cx="105" cy="15" r="15">
-            <animate attributeName="r" from="15" to="15"
-                     begin="0s" dur="0.8s"
-                     values="15;9;15" calcMode="linear"
-                     repeatCount="indefinite" />
-            <animate attributeName="fill-opacity" from="1" to="1"
-                     begin="0s" dur="0.8s"
-                     values="1;.5;1" calcMode="linear"
-                     repeatCount="indefinite" />
-        </circle>
-            </svg>
-    </div>
+    </section>
+</aside>
+{# SPINNER FOR INFINITE SCROLL #}
+
+<div class="svg-spinner-wrapper">
+<svg id="spinner" width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="15" cy="15" r="15">
+        <animate attributeName="r" from="15" to="15"
+                 begin="0s" dur="0.8s"
+                 values="15;9;15" calcMode="linear"
+                 repeatCount="indefinite" />
+        <animate attributeName="fill-opacity" from="1" to="1"
+                 begin="0s" dur="0.8s"
+                 values="1;.5;1" calcMode="linear"
+                 repeatCount="indefinite" />
+    </circle>
+    <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+        <animate attributeName="r" from="9" to="9"
+                 begin="0s" dur="0.8s"
+                 values="9;15;9" calcMode="linear"
+                 repeatCount="indefinite" />
+        <animate attributeName="fill-opacity" from="0.5" to="0.5"
+                 begin="0s" dur="0.8s"
+                 values=".5;1;.5" calcMode="linear"
+                 repeatCount="indefinite" />
+    </circle>
+    <circle cx="105" cy="15" r="15">
+        <animate attributeName="r" from="15" to="15"
+                 begin="0s" dur="0.8s"
+                 values="15;9;15" calcMode="linear"
+                 repeatCount="indefinite" />
+        <animate attributeName="fill-opacity" from="1" to="1"
+                 begin="0s" dur="0.8s"
+                 values="1;.5;1" calcMode="linear"
+                 repeatCount="indefinite" />
+    </circle>
+        </svg>
+</div>
+
 {% endblock %}
 {% block scripts_extra %}
 {# INFINITE SCROLL - Modified slightly from https://github.com/webhook/webhook-theme-solo/blob/master/static/javascript/infinite-scroll.js. Only active on site home page.#}

@@ -3,7 +3,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: $header-background-color;
-    @include transition(.4s);
+    @include transition($base-transition);
     display: block;
     position: fixed;
     height: 100%;
@@ -90,7 +90,7 @@
                         -webkit-transform: scaleX(0);
                         -ms-transform: scaleX(0);
                         transform: scaleX(0);
-                        @include transition(.3s);
+                        @include transition($base-transition);
                     }
                     a:hover:before {
                         visibility: visible;
@@ -145,7 +145,7 @@
         cursor: pointer;
     }
     a {
-        @include transition(.4s);
+        @include transition($base-transition);
         cursor: pointer;
         margin-bottom: 0;
         width: $site-logo-size;
@@ -174,9 +174,6 @@
     &:after {
         content: $site-name;
     }
-    @include MQ(M) {
-        display: none;
-    }
 }
 
 //The main logo is different than the home logo/icon. The former is all the way to the left in the site header.
@@ -185,10 +182,27 @@
     position: fixed;
     z-index: $header-z;
 }
+//Search icon: note that the rest of the search styles are not included in CRP files and can be found in _search.scss
+#search-icon svg {
+    display: none;
+    @include MQ(M) {
+        display: inline-block;
+        vertical-align: middle;
+        fill: $header-link-color;
+        margin: 0;
+        padding: 0;
+        line-height: $site-logo-size;
+        height: $search-icon-size;
+        width: $search-icon-size;
+        .magnifying-glass {
+            fill: $header-link-color;
+        }
+    }
+}
 
 .main {
     z-index: $main-content-z;
-    @include transition(.4s);
+    @include transition($base-transition);
     display: block;
     margin-right: auto;
     margin-left: auto;

@@ -1,13 +1,17 @@
+//BEGIN BASE CRP
 @import 'variables';
 @import 'basic-grid';
 @import 'normalize';
 @import 'bourbon/bourbon';
 @import 'menu-icon';
 @import 'header-and-main';
+//END BASE CRP
+/*BEGIN HOMEPAGE STYLES*/
+
+@import 'video-player';
 .main {
     padding-top: 20px;
 }
-/*BEGIN HOMEPAGE STYLES*/
 
 .home-article-list {
     display: block;
@@ -18,7 +22,7 @@
     padding: 0;
     @include MQ(M) {
         //allow 5% auto-margin on the home-article-list
-        max-width: 90% - $home-about-widget-width;
+        max-width: 90% - $right-rail-widget-width;
         display: inline-block;
         clear: both;
     }
@@ -73,8 +77,19 @@
             margin: 0;
             left: 0;
             top: 0;
+            font-size: $base-font-size * 1.2;
+            line-height: $base-font-size *2.5;
+            height: $base-font-size * 2.5;
+            vertical-align: middle;
             @include order(1);
             border: 0px;
+            a {
+                
+                font-weight: $category-font-weight;
+            }
+            @include MQ(HUGE) {
+                font-size: $base-font-size * 1.8;
+            }
         }
         .article-image,
         .video-thumb {
@@ -111,6 +126,7 @@
                 vertical-align: middle;
                 color: $publish-date-font-color-large;
                 font-family: $publish-date-font-family-large-screen;
+                @include align-self(center);
             }
             .day:after {
                 content: ', ';
@@ -139,8 +155,10 @@
             .home-article-description {
                 @include order(2);
             }
-            .home-article-read-more-and-article-author {
+            .read-button-and-author {
                 @include order(3);
+                display: block;
+                vertical-align: middle;
                 width: 100%;
                 margin-top: $base-font-size;
             }
@@ -169,21 +187,22 @@
 }
 
 .home-article-category {
-    @include transition(.3s);
+    @include transition($base-transition);
     position: absolute;
     top: 0;
     left: 35px;
     color: white;
-    font-size: 16px;
+    font-size: $base-font-size;
     line-height: 28px;
     border: 3px solid $body-background-color;
     background-color: $category-button-background-color;
     padding-right: 10px;
     padding-left: 10px;
     z-index: 5;
-    @include transform(translateY(-12px));
+    @include transform(translateY(-$read-more-button-height / 1.5));
     a {
         z-index: 10;
+        text-transform: $category-text-transform;
     }
     &:hover {
         background-color: $category-button-background-color-hover;
@@ -191,6 +210,14 @@
     .category-article-total {
         float: right;
     }
+}
+
+.home-article-video {
+    width: 100%;
+    display: block;
+    position: relative;
+    padding-left: 0px;
+    margin-left: 0px;
 }
 
 .home-article-social-buttons {
@@ -203,17 +230,19 @@
     min-width: 55px;
     padding-right: 3px;
     border-right: $social-buttons-border;
-    // width: 100%;
     font-size: 2em;
     z-index: 3;
     background-color: $social-icons-background-color;
     font-family: $heading-font-family;
     svg {
-        @include transition(.3s);
-        display: block;
+        @include transition($base-transition);
+        // display: block;
         clear: both;
         fill: $social-buttons-color;
         margin: 10px 20px 10px 20px;
+        @include MQ(M) {
+            max-width: 20px;
+        }
     }
     .pinterest-svg:hover {
         fill: #cb2027;
@@ -239,71 +268,6 @@
     fill: $twitter-mini-color;
 }
 
-.home-article-video {
-    width: 100%;
-    display: block;
-    position: relative;
-    padding-left: 0px;
-    margin-left: 0px;
-}
-
-.video-player-youtube,
-.video-player-vimeo {
-    display: block;
-    width: 100%;
-    /* assuming that the video has a 16:9 ratio */
-    
-    padding-bottom: 56.25%;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding-left: 0;
-    margin-left: 0;
-    display: block;
-}
-
-.video-thumb {
-    @include hardware-accelerate;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: block;
-    right: 0;
-    top: 0;
-    height: auto;
-}
-
-//PLAY BUTTON FOR VIDEO LIBRARY AND FOR VIDEOS INCLUDED IN INDIVIDUAL POSTS
-.play-button {
-    display: block;
-    height: $video-player-play-button-size;
-    width: $video-player-play-button-size;
-    left: $video-player-play-button-left-padding;
-    top: 35%; //Assume 16:9 ratio for YouTube videos
-    position: absolute;
-    cursor: pointer;
-}
-
-.play-button-svg {
-    @include transition(.4s);
-    fill: $video-player-play-button-color;
-    opacity: 0.8;
-    &:hover {
-        fill: $video-player-play-button-color-hover;
-    }
-}
-
-//this class is set by the main.js javascript
-.video-iframe {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .home-publish-date {
     @include display(flex);
     @include flex-direction(column);
@@ -324,6 +288,7 @@
     .year {
         font-size: $base-font-size;
         color: lighten($base-font-color, 25%);
+        @include align-self(flex-end);
     }
     .day {
         font-size: 3em;
@@ -346,11 +311,14 @@
 
 .home-article-title {
     font-size: $base-font-size *1.2;
+    line-height:1.2;
+    font-weight: 700;
     display: block;
     width: 100%;
     text-align: left;
+    margin-bottom:5px;
     @include MQ(M) {
-        font-size: $base-font-size * 1.5;
+        font-size: $base-font-size * 1.3;
         a {
             cursor: pointer;
             vertical-align: middle;
@@ -389,22 +357,25 @@
 
 .read-more {
     color: $read-more-font-color;
-    font-size: $base-font-size;
+    font-size: $read-more-button-font-size;
+    font-weight: $read-more-font-weight;
     display: block;
     clear: both;
     width: 100%;
-    text-transform: uppercase;
+    text-transform: $read-more-text-transform;
     line-height: 1.5;
-    @include MQ(M) {
-        width: 140px;
+    @include MQ(L) {
+        display: inline-block;
+        width: $read-more-button-width;
+        height: $read-more-button-height;
     }
     a {
         display: block;
-        padding: .2em 1em .2em 1em;
+        vertical-align: middle;
         background-color: $read-more-background-color;
         border: $read-more-border;
         margin: 15px auto 15px auto;
-        width: 140px;
+        width: $read-more-button-width;
         text-align: center;
         &:hover {
             background-color: $read-more-background-color-hover;
@@ -418,46 +389,41 @@
     @include MQ(HUGE) {
         font-size: $base-font-size * 1.5;
         line-height: 1.5;
+        a {
+            padding-right: 10px;
+            padding-left: 10px;
+            width: $read-more-button-width * 1.4;
+        }
     }
 }
 
-.article-author {
-    display: inline-block;
-    line-height: 50px;
+.read-button-and-author {
+    display: block;
+    clear: both;
+    margin-bottom: 20px;
+}
+
+.article-author-name {
     float: right;
-    a.article-list-author-link {
-        display:block;
-        .author-image-small {
-            border-radius: $author-image-small-radius;
-            height: 50px;
-            vertical-align: middle;
-            display: none;
-            @include MQ(M) {
-                margin-right:auto;
-                margin-left:auto;
-            }
+    padding-top: $read-more-button-height / 2;
+    line-height: $read-more-button-height;
+    border-bottom: $home-article-author-name-underline;
+    vertical-align: middle;
+    display: block;
+    @include MQ(L) {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .article-author-link {
+        font-weight: bold;
+        line-height: $read-more-button-height;
+        @include MQ(L) {
+            display: inline-block;
+            float: right;
         }
-        .article-author-name {
-            display: block;
-            float: left;
-            vertical-align: middle;
-            line-height: 50px;
-            font-weight: bold;
-            &:before {
-                content: 'By ';
-            }
-            @include MQ(M) {
-                margin-right:auto;
-                margin-left:auto;
-                text-align:center;
-                &:before {
-                    content: '';
-                }
-            }
-            @include MQ(HUGE) {
-                font-size: $base-font-size * 1.5;
-                line-height: 1.5;
-            }
+        @include MQ(HUGE) {
+            font-size: $base-font-size * 1.5;
+            line-height: 1.5;
         }
     }
 }
@@ -474,7 +440,7 @@
 }
 
 .article-tag {
-    @include transition(.3s);
+    @include transition($base-transition);
     display: inline-block;
     line-height: $base-font-size * 1.5;
     vertical-align: middle;
@@ -484,10 +450,11 @@
     background-color: $tags-background-color;
     &:hover {
         background-color: $tags-background-hover;
+        color: $tags-font-color-hover;
     }
 }
 
-.home-about-rail-widget {
+.right-rail-widget {
     display: block;
     clear: both;
     width: 90%;
@@ -512,15 +479,15 @@
         display: inline-block;
         clear: both;
         padding-top: $header-height-non-mobile + 10px;
-        width: $home-about-widget-width;
-        max-width: $home-about-widget-max-width;
-        background-color: $home-about-rail-widget-background-color;
+        width: $right-rail-widget-width;
+        max-width: $right-rail-widget-max-width;
+        background-color: $right-rail-widget-background-color;
     }
     @include MQ(XL) {
-        width: $home-about-widget-width;
-        max-width: $home-about-widget-max-width;
+        width: $right-rail-widget-width;
+        max-width: $right-rail-widget-max-width;
     }
-    .home-about-content {
+    .right-rail-content {
         width: 100%;
         height: 100%;
         margin-right: auto;
@@ -531,7 +498,6 @@
         }
         text-align: center;
         display: block;
-        // background-color: $home-about-rail-widget-background-color;
     }
     .author-image img {
         display: block;
@@ -544,13 +510,13 @@
         width: 90%;
         margin: 10px auto;
         .categories-heading {
-            border-bottom: $home-about-rail-widget-section-underline;
+            border-bottom: $right-rail-widget-section-underline;
             color: $home-tags-heading-color;
             font-size: $base-font-size;
-            font-weight: 300;
+            font-weight: $category-font-weight;
         }
         .category-name {
-            margin: 20px 20px 20px 0px;
+            margin: 24px 24px 24px 0px;
         }
     }
     .home-tag-listing {
@@ -558,7 +524,7 @@
         width: 90%;
         margin: auto;
         .tags-heading {
-            border-bottom: $home-about-rail-widget-section-underline;
+            border-bottom: $right-rail-widget-section-underline;
             color: $home-tags-heading-color;
             font-size: $base-font-size;
             font-weight: 300;

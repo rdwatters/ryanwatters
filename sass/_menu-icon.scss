@@ -1,7 +1,7 @@
 .mobile-navigation {
   position:fixed;
-  top:10px;
-  right:50px;
+  top:$site-logo-size / 2;
+  right:$site-logo-size * 1.25;
   z-index:$mobile-menu-icon-z;
   @include MQ(M){
     display:none;

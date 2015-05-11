@@ -3,9 +3,7 @@
       <style>
           {% include "templates/partials/crp-article.html" %}
       </style>
-
 {% endblock %}
-
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
 {% set article = item %}
@@ -50,13 +48,13 @@
                 <img class="article-main-image" src="{{ item.image|imageCrop(1100, 250)}}" />
       {% endif %}
 <article class="full-length-article">
-  {% set prev = prevItem(item, 'publish_date', true) %}
-  {% set next = nextItem(item, 'publish_date', true) %}
-  {# BEGIN BODY COPY #}    
-  <p><a href="{{ url('articles') }}">View a list of all articles</a></p>          
+  
+  {# BEGIN BODY COPY #}
   <section class="social-media-icons-bar">
       {% include "templates/partials/socialmediaicons.html" %}
-  </section>
+  </section>    
+  <p class="all-articles"><a href="{{ url('articles') }}">All articles</a></p>          
+  
   <h1 class="article-title">{{ item.title }}</h1>
   {% for relation in item.author %}
           <div class="article-author"><a href="{{ url(relation) }}">{{ relation.name }}</a>
@@ -68,6 +66,12 @@
           <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
   </div>
+    <section class="full-article-tags">
+  {% for relation in item.tags %}
+          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+  {% endfor %}
+  </section>
   {% if item.most_recent_update %}
     <time class="article-updated-date" datetime="{{ item.most_recent_update }}"><span class="date-span">Updated: </span><span class="publish-date">{{ item.most_recent_update|date('F d Y') }}</span></time>
   {% else %}
@@ -75,20 +79,26 @@
   {% endif %}
   {# BEGIN PAGE BODY MARKDOWN CONTENT #}
   {{ item.body|markdown }}
-  <section class="full-article-tags">
-  {% for relation in item.tags %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-  {% endfor %}
-  </section>
-  {% if prev %}
-    <a href="{{ url(prev) }}">Previous Article</a>
-  {% endif %}
-  {% if next %}
-    <a href="{{ url(next) }}">Next Article</a>
-  {% endif %}')
   
 </article>
+  {% set prev = prevItem(item, 'publish_date', true) %}
+  {% set next = nextItem(item, 'publish_date', true) %}
+  {% if prev %}
+  <div class="previous-article">
+    <a href="{{ url(prev) }}">
+      <div class="previous">Previous Article</div>
+    </a>
+  </div>
+  {% endif %}
+  {% if next %}
+  <div class="next-article">
+    <a href="{{ url(next) }}">
+      <div class="next">Next Article</div>
+    </a>
+  </div>
+  {% endif %}
+
+{# DISQUS COMMENTS #}
 {% if article.allow_comments && cms.additionalglobals.add_disqus_comments %}
   {% set disqusName = cms.additionalglobals.disqus_shortname %}
   <div id="disqus_thread"></div>
