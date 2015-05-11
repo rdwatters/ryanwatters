@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+  
+  {# Grab the title and description from the CMS general settings. #}
+  {% set site_title = getSetting('site_name')%}
+  {% set site_description = getSetting('site_description')%}
+
+  <head>
+    {# the icons.html should house all of your favicons for browsers, mobile, touch, Windows, etc. I'd recommend checking out http://realfavicongenerator.net/#}
+    {% include "templates/partials/icons.html" %}
+    {# YOU CAN USE THE TYPOGRAPHY PARTIAL TO ADD FONTS FROM GOOGLE FONTS OR OTHER EXTERNAL RESOURCES (TYPEKIT, ETC) #} 
+    {% include "templates/partials/typography.html" %}
+    {# Standard Metadata #}
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{% block title %}{{getSetting('site_name')}}{% endblock %}</title>
+    <link rel="author" href="{{ url(item.author)|default('Ryan D Watters') }}"> {# Standard Metadata #}
+    <meta name="description" content="{{ item.description|default(getSetting('site_description')) }}">
+    <meta name="keywords" content="{% if item.tags%}{% for keyword in item.tags %}{{ keyword.name }}{% if not loop.last %}, {% endif %}{% endfor %}{% else %}{{getSetting('site_keywords')}}{% endif %}" />
+    {# SOCIAL MEDIA - if you are looking for better ways to create social media links within an article page, I recommend checking out #} 
+    {#Open Graph Protocol for Facebook and Pinterest#}
+    <meta property="og:site_name" content="{{ getSetting('site_name') }}">
+    <meta property="og:title" content="{{ item.title|default(getSetting('site_name')) }}" />
+    <meta property="og:type" content="{% if item._type === 'articles' %}article{% else %}Blog{%endif%}" />
+    <meta property="og:url" content="{{ url(item) }}">
+    <meta property="article:published_time" content="{{item.publish_date}}">
+    <meta property="article:modified_time" content="{% if item.most_recent_update %}{{ item.most_recent_update }}{% else %}{{ item.last_updated }}{%endif%}">
+    <meta property="og:description" content="{{item.description|default(getSetting('site_description'))}}" /> 
+    {#Twitter - this will default to using a twitter image if you do not have a video added to your article #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@{{ getSetting('site_twitter') }}">
+    <meta name="twitter:creator" content="@{{ getSetting('site_twitter') }}">
+    <meta name="twitter:title" content="{{item.title|default(getSetting('site_name'))}}">
+    <meta name="twitter:description" content="{{item.description|default(getSetting('site_description'))}}">
+    <meta name="twitter:image:src" content="{% if item.image %}{{- getSetting('site_url') -}}{{ item.image.url -}}{% else %}/static/images/site_logo.png{% endif %}">
+      {% if item.related_video %}
+      <meta name="twitter:player" content="{{ item.related_video.video.original_url }}">
+      <meta name="twitter:player:width" content="560">
+      <meta name="twitter:player:height" content="315"> 
+      {% endif %}
+    {#Swiftype - use settings depending on desired faceted search. See https://swiftype.com/documentation/meta_tags for meta tagging#}
+    <meta property="st:image" content="{% if item.image %}{{- item.image.url -}}{% else %}/static/images/site_logo.png{% endif %}">
+    <meta property="st:published_at" content="{{item.publish_date}}" />
+    <meta property="st:updated_at" content="{% if item.most_recent_update %}{{ item.most_recent_update }}{% else %}{{ item.last_updated }}{%endif%}" />
+    <meta property="st:section" content="{{item.description|default(getSetting('site_description'))}}">
+    {% block crp_block %}
+      <style>
+          {% include "templates/partials/crp-homepage.html" %}
+      </style>
+    {% endblock %}     
+    {# Useful block for loading outside scripts in other pages. #}
+    {% block head_extra %}
+    {% endblock %}
+  </head>
+  <body>
+      {% block body %}
+        {% block header %}
+          {% include "templates/partials/header.html" %}
+        {% endblock %}
+      {# By default, your inner pages will load into this block. #}
+      <main class="main" role="main">
+        {% block content %}
+
+
+        {% endblock %}
+      </main>
+        {% block footer %}
+          {% include "templates/partials/footer.html" %}
+        {% endblock %}
+
+      {# BELOW-THE-FOLD CSS #}
+      <link rel="stylesheet" href="/static/css/b952595b.minified.css"/>
+
+      {# JQUERY CDN. OPTIONAL. NOTE: MAY CONFLICT WITH METHODS PROVIDED BY CLASSIE.JS! #}
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      
+      <!-- <script src="/static/javascript/2f71f562.classie.js"></script> -->
+      {# JS BUILD FILES - CONCAT/MIN ON DEPLOYMENT#}      
+      <script src="/static/javascript/34129838.minified.js"></script>
+           
+      {# GOOGLE ANALYTICS#}
+        <script async>
+          var _gaq=[['_setAccount','{{ getSetting('analytics_id') }}'],['_trackPageview']];
+          (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+          g.src='//www.google-analytics.com/ga.js';
+          s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+      {% endblock %} 
+        <script type="text/javascript" async>
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+        _st('install','iwMDg2nDWUgtQXzLwkSd');
+        </script>
+    {% block scripts_extra %}
+    {% endblock %}
+  </body>
+</html>

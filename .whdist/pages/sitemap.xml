@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+{% for object in cms.articles %}
+<url>
+  <loc>{{ getSetting('site_url') }}{{ url(object) }}</loc>
+  <lastmod>{{ object.last_updated }}</lastmod>
+</url>
+{% endfor %}
+{% for object in cms.videos %}
+<video:video>
+  <video:content_loc>{{ url(object) }}</video:content_loc>
+  <video:title>{{ object.video_title }}</video:title>
+  <video:description>{{ object.video_description }}</video:description>
+</video:video>  
+{% endfor %}
+</urlset>
