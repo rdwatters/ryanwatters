@@ -3,7 +3,7 @@ body {
 	background-color:$login-background-color;
 }
 #ember980 > div > h2 {
-	color:#01589B;
+	color:$primary-brand;
 }
 span.icon-vim, span.icon-vim-togdgle {
 	display:none;
@@ -15,7 +15,7 @@ span.icon-vim, span.icon-vim-togdgle {
 	}
 }
 #ember407 {
-	background-color:#01589B;
+	background-color:$login-background-color;
 }
 .something{
 	color:blue;

@@ -45,7 +45,7 @@ $aap-body-font-family:helvetica,arial, sans-serif;
 // @import 'woff-fonts/fjord';
 // @import 'woff-fonts/latolight';
 // @import 'woff-fonts/latobold'; 
-// @import 'woff-fonts/latoregular';
+@import 'woff-fonts/latoregular';
 // @import 'woff-fonts/lorabold';
 // @import 'woff-fonts/merriweatherlight';
 // @import 'woff-fonts/merriweatherregular';
@@ -56,8 +56,8 @@ $aap-body-font-family:helvetica,arial, sans-serif;
 $base-font-size:16px;
 $serif: 'adobe-caslon-pro',Georgia,'Times New Roman',serif;
 $sans-serif: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-$body-font-family: 'Proxima Nova','ralewayregular',helvetica,Arial,sans-serif;;
-$heading-font-family: 'Lato',Arial,helvetica,sans-serif;
+$body-font-family: Helvetica,helvetica,Arial,sans-serif;;
+$heading-font-family: 'latoregular',Arial,helvetica,sans-serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3

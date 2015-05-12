@@ -2,13 +2,13 @@
 {% block title %}{% parent %} - Home{% endblock %} 
 {% block content %} 
 {% set articles = cms.articles|sort('publish_date', true) %}
-{% set articles = paginate(articles, 4) %}
+{% set articles = paginate(articles, 4) %}d
 {% set authors = cms.authors %}
 
 {# INFINITE SCROLL LIST ON HOMEPAGE #}
-<article class="home-article-list js-paginate" itemscope itemtype="http://schema.org/Blog" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+<ul class="home-article-list js-paginate" itemscope itemtype="http://schema.org/Blog" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
     {% for article in articles %}
-    <div class="home-article-wrapper">
+    <li class="home-article-wrapper">
         <section class="home-article-section"> 
             {% if article.related_video %}
                 {% set video = article.related_video %}
@@ -85,13 +85,14 @@
                             </section>
                         </section>
             </section>
-        </div>
+        </li>
     {% endfor %}
     {# Pagination #}
-    <nav role="menu" aria-label="Pagination" aria-hidden="true" class="article-pagination">
+    
+</ul>
+<nav role="menu" aria-label="Pagination" aria-hidden="true" class="article-pagination">
         {% include "templates/partials/paginator.html" %}
-    </nav>
-</article>
+</nav>
 
 {# RIGHT RAIL WIDGET #}
 <aside class="right-rail-widget" data-swiftype-index="false">
