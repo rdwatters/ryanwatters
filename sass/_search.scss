@@ -3,7 +3,7 @@
 //             <input type="search" autocomplete="false" id="search-input" role="search" aria-label="search input" placeholder="Search this site...">
 //             <div id="search-results"></div>
 //         </form>
-//     </div>
+// </div>
 //SEARCH
 .search-wrapper {
     @include MQ(M) {
@@ -52,6 +52,7 @@
                 margin-bottom: -36px;
                 cursor: pointer;
                 font-size: 36px;
+                font-weight:300;
                 display: block;
                 float: right;
                 text-align: center;
@@ -75,7 +76,7 @@
             }
             font-size:1.5em;
             @include MQ(M) {
-                font-size: 2em;
+                font-size: $base-font-size * 2.5;
             }
             width:100%;
             outline: none;
@@ -157,15 +158,20 @@
 }
 
 .swiftype-widget .autocomplete ul li.active {
-    background-color: $header-background-color;
-    color: $base-font-color;
+    background-image:none;
+    background-color:$base-font-color;
+    color: white;
     border-top: 0px;
     border-bottom: 1px solid $base-font-color;
     -webkit-box-shadow: none!important;
     -moz-box-shadow: none!important;
     box-shadow: none!important;
     p.title {
-        color: $base-font-color;
+        color: $secondary-brand;
+        em{
+            color:white;
+            font-style:italic;
+        }
     }
 }
 
