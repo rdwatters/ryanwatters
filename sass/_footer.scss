@@ -39,9 +39,13 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 svg {
+                    @include transition($base-transition);
                     width: 30px;
                     fill:$footer-svg-color;
                     height: $footer-height/2;
+                    &:hover{
+                        fill:$footer-svg-color-hover;
+                    }
                 }
                 #footer-twitter{
                     padding:2px;

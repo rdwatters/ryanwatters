@@ -57,36 +57,36 @@
       {% else %}
                 <img class="article-main-image" src="{{ item.image|imageCrop(1100, 250)}}" />
       {% endif %}
-<article class="full-length-article">
+<article class="full-length-article" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting">
   
   {# BEGIN BODY COPY #}
-  <section class="social-media-icons-bar">
+  <section class="social-media-icons-bar" data-swiftype-index="false">
       {% include "templates/partials/socialmediaicons.html" %}
   </section>
   <h1 class="article-title">{{ item.title }}</h1>    
-  <p class="all-articles"><a href="{{ url('articles') }}">All articles</a></p>          
+  <p class="all-articles" data-swiftype-index="false"><a href="{{ url('articles') }}">All articles</a></p>          
   
   
   {% for relation in item.author %}
-          <div class="article-author"><a href="{{ url(relation) }}">{{ relation.name }}</a>
+          <div class="article-author" itemprop="author" itemprop="accountablePerson"><a href="{{ url(relation) }}">{{ relation.name }}</a>
           {% if not loop.last %} & {% endif %}
           </div>
   {% endfor %}
-  <div class="article-category">
+  <div class="article-category" itemprop="about">
         {% for relation in item.category %}
           <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
   </div>
-    <section class="full-article-tags">
+    <ul class="full-article-tags" itemprop="keywords">
   {% for relation in item.tags %}
           {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
+          <li><a href="{{ url(relation) }}">{{ relation.name }}</a></li>{% if not loop.last %},{% endif %}
   {% endfor %}
-  </section>
+  </ul>
   {% if item.most_recent_update %}
-    <time class="article-updated-date" datetime="{{ item.most_recent_update }}"><span class="date-span">Updated: </span><span class="publish-date">{{ item.most_recent_update|date('F d Y') }}</span></time>
+    <time class="article-updated-date" itemprop="dateModified" datetime="{{ item.most_recent_update }}"><span class="date-span">Updated: </span><span class="publish-date">{{ item.most_recent_update|date('F d Y') }}</span></time>
   {% else %}
-    <time class="article-publish-date" datetime="{{ item.publish_date }}"><span class="update-span">Published: </span><span class="publish-date">{{ item.publish_date|date('F d Y') }}</span></time>
+    <time class="article-publish-date" itemprop="datePublished" datetime="{{ item.publish_date }}"><span class="update-span">Published: </span><span class="publish-date">{{ item.publish_date|date('F d Y') }}</span></time>
   {% endif %}
   {# BEGIN PAGE BODY MARKDOWN CONTENT #}
   {{ item.body|markdown }}

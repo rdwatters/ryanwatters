@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-{% for object in cms.articles|sort('publish_date', true) %}
-  <url>
-    <loc>{{ getSetting('site_url') }}{{ url(object) }}</loc>
-    <lastmod>{{ object.publish_date }}</lastmod> 
-  </url>
-{% endfor %}
-</urlset>

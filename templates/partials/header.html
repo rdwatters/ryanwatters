@@ -12,19 +12,23 @@
                 </a>
             </li>
         </ul>
-    </nav>
-    <div class="search-wrapper">
+    </nav>   
+</header>
+<div class="search-wrapper">
         <form class="search-form">
+            <div class="close-search-wrapper">
+                <a id="search-close-button" title="Close the search overlay" href="#" role="button" aria-hidden="true">X</a>
+            </div>
             <input type="search" autocomplete="false" id="search-input" role="search" aria-label="search input" placeholder="Search this site...">
+
             <div id="search-results"></div>
         </form>
-    </div>    
-</header>
+</div> 
 
 <span class="home-icon"><a aria-label="Home Link" href="/" title="Return to the home page"></a></span>
 <div class="site-name-mobile-only"><a href="/"></a></div>
 <section class="header-main-logo-image"></section>
-<section class="mobile-navigation">
-<a id="mobile-menu-toggle" title="Main navigation toggle for mobile screens" class="menu-icon" aria-label="navigation menu" aria-controls="navigation" aria-expanded="false" role="button" href="#">
+<section class="mobile-navigation" data-swiftype-index="false">
+<a id="mobile-menu-toggle" title="Main navigation toggle button for mobile screens" class="menu-icon" aria-label="navigation menu" aria-controls="navigation" aria-expanded="false" role="button" href="#">
 <div class="menu-icon-inner"></div>
 </a></section>

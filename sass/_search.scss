@@ -1,23 +1,38 @@
+// <div class="search-wrapper">
+//         <form class="search-form">
+//             <input type="search" autocomplete="false" id="search-input" role="search" aria-label="search input" placeholder="Search this site...">
+//             <div id="search-results"></div>
+//         </form>
+//     </div>
 //SEARCH
 .search-wrapper {
+    @include MQ(M) {
+        display: none;
+        &.search-open {
+            display: block;
+        }
+    }
     @include transition($base-transition);
     z-index: 9999;
     overflow-y: scroll;
     display: block;
-    position:absolute;
-    top:150px;
+    width: 100%;
+    position: fixed;
+    top: $search-input-y-offset-mobile;
     background-color: white;
     @include transform(translateX(100%));
     &.menu-open {
         @include transform(translateX(0px));
     }
     @include MQ(M) {
+        @include transform(translateX(0px));
+        position: absolute;
         width: 100%;
         height: 100%;
         left: 0;
         top: 0;
-        opacity: 0.95;
-    }    
+        opacity: $search-overlay-transparency;
+    }
     .search-form {
         display: block;
         overflow-y: scroll;
@@ -28,13 +43,40 @@
         max-width: 750px;
         margin-right: auto;
         margin-left: auto;
-        padding-top: 50px;
+        padding-top: $header-height + 10px;
+        .close-search-wrapper a {
+            display: none;
+            @include MQ(M) {
+                @include transition($base-transition);
+                font-weight: bold;
+                margin-bottom: -36px;
+                cursor: pointer;
+                font-size: 36px;
+                display: block;
+                float: right;
+                text-align: center;
+                vertical-align: middle;
+                right: 0px;
+                width: 48px;
+                height: 48px;
+                line-height: 48px;
+                border-radius: 50%;
+                background-color: $base-font-color;
+                color: white;
+            }
+            &:hover {
+                background-color: $primary-brand;
+            }
+        }
         input[type="search"] {
             display: block;
             @include placeholder {
                 color: black;
             }
             font-size:1.5em;
+            @include MQ(M) {
+                font-size: 2em;
+            }
             width:100%;
             outline: none;
             &:focus {
@@ -46,69 +88,95 @@
         }
     }
 }
-
 //BEGIN SWIFTYPE STYLES
 //NOTE: The search icon is not included in the following styles. As part of the critical render path, it is included in the _header_and_main.scss file.
 #search-input {
     border-radius: 0;
     outline: 0;
     border: 0;
+    @include appearance(none);
 }
 
 #search-input:focus {
     outline: 0;
 }
 
-.search-wrap {
-    @include transition($base-transition);
-    display: block;
-    z-index: -1;
-    opacity: 0;
-    position: fixed;
-    top: $header-height-non-mobile;
-    left: 0;
-    background-color: $search-overlay-color;
-    width: 100%;
-    height: 100%;
-    &.search-open {
-        opacity: $search-overlay-transparency;
-        z-index: 99;
-    }
-    #search-input {
-        @include appearance(none);
-        @include placeholder {
-            color: $base-font-color;
-            opacity: .7;
+.swiftype-widget {
+    width: 90%!important;
+    margin-right: auto;
+    margin-left: auto;
+    .auto-complete {
+        width: 100%!important;
+        >ul {
+            display: block!important;
+            width: 100%!important;
+            li {
+                display: block!important;
+                width: 100%!important;
+                .title {
+                    width: 100%!important;
+                    em {}
+                }
+            }
         }
-        @include appearance(none);
-        @include backface-visibility(hidden);
-        z-index:99;
-        display:block;
-        font-size:2em;
-        width:60%;
-        min-width:600px;
-        margin-right:auto;
-        margin-left:auto;
-        margin-top:80px;
-        outline:none;
-        border:none;
-        background-color: $search-overlay-color;
-        border-bottom:2px solid $logo-color;
-        &:focus {
-            outline: 0px solid transparent;
-            @include appearance(none);
-            @include backface-visibility(hidden);
-        }
-    }
-    &.search-open {
-        opacity: .9;
-        z-index: 99;
     }
 }
 
 #search-results {
+    z-index: 9999;
     overflow-y: scroll;
-    @include MQ(MMAX) {
-        position: absolute;
+    color: $base-font-color;
+}
+
+.swiftype-widget .autocomplete ul li {
+    border-radius: 0px!important;
+}
+
+.swiftype-widget,
+.swiftype-widget .autocomplete,
+.swiftype-widget .autocomplete ul {
+    border-radius: none!important;
+    background-color: #cccccc;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.swiftype-widget .autocomplete ul li p.title {
+    color: $primary-brand;
+    font-weight: bold;
+}
+
+@include MQ(M) {
+    .swiftype-widget {
+        margin-bottom: 0px;
+        .autocomplete {
+            margin-top: 0px;
+        }
     }
+}
+
+.swiftype-widget .autocomplete ul li.active {
+    background-color: $header-background-color;
+    color: $base-font-color;
+    border-top: 0px;
+    border-bottom: 1px solid $base-font-color;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;
+    p.title {
+        color: $base-font-color;
+    }
+}
+
+.st-result-listing a {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.4em;
+    color: $primary-brand;
+}
+
+.st-snippet em {
+    font-size: 1.2em;
+    font-weight: bold;
 }

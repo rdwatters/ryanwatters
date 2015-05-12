@@ -39,24 +39,25 @@ $aap-body-font-family:helvetica,arial, sans-serif;
 // These are WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports. You will need to use them according to the way they are spelled in the module, eg ->
 // font-family: 'arvowoff',Georgia, serif;
 // 
-// @import 'woff-fonts/arvowoff';
+// @import 'woff-fonts/abrilfatfaceregular';
+// @import 'woff-fonts/arvobold';
 // @import 'woff-fonts/bitterbold';
 // @import 'woff-fonts/fjord';
 // @import 'woff-fonts/latolight';
+// @import 'woff-fonts/latobold'; 
+// @import 'woff-fonts/latoregular';
 // @import 'woff-fonts/lorabold';
-// @import 'woff-fonts/merriweather';
-// @import 'woff-fonts/montserrat.scss';
-// @import 'woff-fonts/opensans-semibold';
-// @import 'woff-fonts/quicksandlight';
-// @import 'woff-fonts/ralewaybold';
+// @import 'woff-fonts/merriweatherlight';
+// @import 'woff-fonts/merriweatherregular';
+// @import 'woff-fonts/montserrat';
 // @import 'woff-fonts/ralewayregular';
 // @import 'woff-fonts/rs';
 
 $base-font-size:16px;
-$serif: 'Raleway',Georgia,serif;
-$sans-serif: 'Lato','Helvetica Neue',Arial,sans-serif;
-$body-font-family: $sans-serif;
-$heading-font-family: $serif;
+$serif: 'adobe-caslon-pro',Georgia,'Times New Roman',serif;
+$sans-serif: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+$body-font-family: 'Proxima Nova','ralewayregular',helvetica,Arial,sans-serif;;
+$heading-font-family: 'Lato',Arial,helvetica,sans-serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
@@ -69,8 +70,7 @@ $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
 $primary-brand:lighten(#203253,10%);
-// $primary-brand:#39BBE7;
-$secondary-brand:lighten($primary-brand,25%);
+$secondary-brand:#39BBE7;
 $logo-color:$primary-brand;
 $logo-font-color:white;
 $dark:#333333;
@@ -85,12 +85,20 @@ $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
 $footer-background-color:#333333;
 $footer-font-color:white;
-$footer-svgs:$footer-font-color;
-$footer-svg-color:$footer-font-color;
-$body-background-color:#cccccc;
+$footer-svg-color:rgba(255,255,255,0.4);
+$footer-svg-color-hover:rgba(255,255,255,1);
+$body-background-color:#E2E8F2;
 $main-content-background-color:$body-background-color;
+/**********SEARCH*************/
+
+//mobile
+$search-input-y-offset-mobile:200px;
 $search-overlay-color:$header-background-color;
-$search-overlay-transparency:0.9;
+
+//tablet & desktop
+$search-overlay-transparency:1.0;
+
+
 $category-button-background-color:#333333;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:#333333;
@@ -99,7 +107,7 @@ $tags-font-color-hover:white;
 $tags-background-color:#333333;
 $tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
-//Social buttons are set up to transition to their respective brand color on hover
+/* SOCIAL */
 $social-buttons-color:black;
 //Sets the default anchor color (reset.scss)
 $anchor-color:$primary-brand;
@@ -111,6 +119,7 @@ $social-icons-background-color:transparent;
 $social-buttons-border:1px solid #cccccc;
 //This is the section to the right of the article image on XL and under the article image/video on everything else
 $home-article-information-background-color:#ffffff;
+$home-article-description-font-color: rgba(0,0,0,0.54);
 //This is for the right rail/widget (right on M+ screens; bottom of list on mobile )
 $home-about-rail-widget-background-color:white;
 $home-about-rail-widget-section-underline: 1px solid #cccccc;
@@ -134,6 +143,9 @@ $category-text-transform:uppercase;
 //ARTICLE PAGES
 $full-length-article-anchor-underline-color:lighten($primary-brand,40%);
 $social-bar-vertical-width:30px;
+$border-radius-right-and-left-body-images:0;
+$right-and-left-body-images-border-radius:0;
+$right-and-left-body-images-max-width:300px;
 //END ARTICLE PAGES
 //You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
 $twitter-blue:#00aced;
@@ -192,7 +204,7 @@ $home-button-icon-radius:50%;
 $home-button-background-image:$my-logo-location;
 
 //VIDEO PLAYER OPTIONS
-//Only use percentages for the size of the play button. To keep the svg (currently square-shaped), only change the first variable ($video-player-play-button-size)
+//Use % only for play button; only change $video-player-play-button-size to keep proportions
 $video-player-play-button-size:20%;
 $video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
@@ -223,4 +235,7 @@ $pagination-button-border-radius:10px;
 
 //TRANSITIONS
 $base-transition:0.2s;
+
+
+// @import 'theme';
 

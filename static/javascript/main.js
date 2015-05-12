@@ -1,4 +1,4 @@
-/*GLOBALS VARS FOR HEADER FADE ON SCROLL */
+/*GLOBAL VARS FOR HEADER FADE ON SCROLL */
 'use strict';
 
 var header = document.querySelector('.header'),
@@ -6,11 +6,14 @@ var header = document.querySelector('.header'),
     wScrollBefore = 0,
     wScrollDiff = 0;
 window.onload = init;
+
 function init() {
     var mobileToggleButton = document.getElementById('mobile-menu-toggle'),
+        searchCloseX = document.getElementById('search-close-button'),
         searchButton = document.getElementById('search-icon');
     mobileToggleButton.onclick = toggleMobileMenu;
     searchButton.onclick = toggleSearchOverlay;
+    searchCloseX.onclick = toggleSearchOverlay;
 }
 /*Remove static image from video players and replace with embedded YouTube video*/
 //Modified considerably from http://www.labnol.org/internet/light-youtube-embeds/27941/
@@ -61,22 +64,6 @@ function toggleMobileMenu() {
     theButton.toggle('menu-open');
     theFooter.toggle('menu-open');
     theSearchOverlay.toggle('menu-open');
-    //IF YOU WANT TO SUPPORT IE9, INCLUDE THE CLASSIE.JS SCRIPT TAG IN BASE.HTML. YOU CAN THEN USE THE FOLLOWING COMMENTED CODE TO REPLACE THE ABOVE FOUR STATEMENTS (mainmenu.toggle -> theFotter.toggle)
-    // if (classie.has(mainMenu, 'menu-open')) {
-    //     classie.remove(mainMenu, 'menu-open');
-    //     classie.remove(mainContent, 'menu-open');
-    //     classie.remove(theFooter, 'menu-open');
-    //     classie.remove(theButton, 'menu-open');
-    //     classie.remove(searchForm, 'menu-open');
-    //     theButton.setAttribute('aria-expanded', 'false');
-    // } else {
-    //     classie.add(mainMenu, 'menu-open');
-    //     classie.add(mainContent, 'menu-open');
-    //     classie.add(theFooter, 'menu-open');
-    //     classie.add(theButton, 'menu-open');
-    //     classie.add(searchForm, 'menu-open');
-    //     theButton.setAttribute('aria-expanded', 'true');
-    // }
 }
 // TOGGLE SEARCH OVERLAY
 function toggleSearchOverlay() {
