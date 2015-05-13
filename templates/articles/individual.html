@@ -9,9 +9,11 @@
   {% set next = nextItem(item, 'publish_date', true) %}
   {% if prev %}
     <link rel="prefetch" href="{{ url(prev) }}" />
+    <link rel="prerender" href="{{ url(prev) }}" />
   {% endif %}
   {% if next %}
     <link rel="prefetch" href="{{ url(next) }}" />
+    <link rel="prerender" href="{{ url(next) }}" />
   {% endif %}
 {% endblock %}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
