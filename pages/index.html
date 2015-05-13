@@ -2,13 +2,13 @@
 {% block title %}{% parent %} - Home{% endblock %} 
 {% block content %} 
 {% set articles = cms.articles|sort('publish_date', true) %}
-{% set articles = paginate(articles, 4) %}d
+{% set articles = paginate(articles, 4) %}
 {% set authors = cms.authors %}
 
 {# INFINITE SCROLL LIST ON HOMEPAGE #}
 <ul class="home-article-list js-paginate" itemscope itemtype="http://schema.org/Blog" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
     {% for article in articles %}
-    <li class="home-article-wrapper">
+    <li class="post">
         <section class="home-article-section"> 
             {% if article.related_video %}
                 {% set video = article.related_video %}
@@ -192,7 +192,7 @@
 
 {% endblock %}
 {% block scripts_extra %}
-{# INFINITE SCROLL - Modified slightly from https://github.com/webhook/webhook-theme-solo/blob/master/static/javascript/infinite-scroll.js. Only active on site home page.#}
+{# INFINITE SCROLL - Modified slightly from https://github.com/webhook/webhook-theme-solo/blob/master/static/javascript/infinite-scroll.js. Only active on site home page. Infinite scroll is disable on mobile device and replaced with pagination buttons to prevent jank. #}
 
 <script async>
     $(document).ready(function() {

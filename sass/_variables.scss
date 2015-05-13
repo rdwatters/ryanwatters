@@ -45,19 +45,19 @@ $aap-body-font-family:helvetica,arial, sans-serif;
 // @import 'woff-fonts/fjord';
 // @import 'woff-fonts/latolight';
 // @import 'woff-fonts/latobold'; 
-@import 'woff-fonts/latoregular';
+// @import 'woff-fonts/latoregular';
 // @import 'woff-fonts/lorabold';
 // @import 'woff-fonts/merriweatherlight';
 // @import 'woff-fonts/merriweatherregular';
 // @import 'woff-fonts/montserrat';
-// @import 'woff-fonts/ralewayregular';
-// @import 'woff-fonts/rs';
+@import 'woff-fonts/ralewayregular';
+// @import 'woff-fonts/robotoslab';
 
 $base-font-size:16px;
 $serif: 'adobe-caslon-pro',Georgia,'Times New Roman',serif;
 $sans-serif: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-$body-font-family: Helvetica,helvetica,Arial,sans-serif;;
-$heading-font-family: 'latoregular',Arial,helvetica,sans-serif;
+$body-font-family: 'ralewayregular',Helvetica,helvetica,Arial,sans-serif;
+$heading-font-family: 'Raleway','ralewayregular',Arial,helvetica,sans-serif;
 $heading-one-font-size: $base-font-size * 1.75; //h1
 $heading-two-font-size: $base-font-size * 1.5; //h2
 $heading-three-font-size: $base-font-size * 1.25; //h3
@@ -74,7 +74,8 @@ $secondary-brand:#39BBE7;
 $logo-color:$primary-brand;
 $logo-font-color:white;
 $dark:#333333;
-$base-font-color:$dark;
+$base-font-color:#2d3b44;
+$light-font-color:#4c6270;
 $header-background-color:white;
 $accent-color:desaturate(#DD2922,20%);
 $white:#FBFAF5;
@@ -83,11 +84,11 @@ $header-link-underline-color:$logo-color;
 $header-link-underline-thickness:2px;
 $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
-$footer-background-color:#333333;
+$footer-background-color:$dark;
 $footer-font-color:white;
 $footer-svg-color:rgba(255,255,255,0.4);
 $footer-svg-color-hover:rgba(255,255,255,1);
-$body-background-color:#E2E8F2;
+$body-background-color:#f1f1f1;
 $main-content-background-color:$body-background-color;
 /**********SEARCH*************/
 
@@ -108,7 +109,7 @@ $tags-background-color:#333333;
 $tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
 /* SOCIAL */
-$social-buttons-color:black;
+$social-buttons-color:$base-font-color;
 //Sets the default anchor color (reset.scss)
 $anchor-color:$primary-brand;
 //PUBLISH DATE ON THE HOMEPAGE ARTICLE LIST
@@ -134,7 +135,7 @@ $read-more-background-color-hover:white;
 $read-more-border:1px solid $primary-brand;
 $read-more-button-width:140px;
 $read-more-button-height:$base-font-size * 1.5;
-$read-more-button-font-size:$base-font-size * 1.2;
+$read-more-button-font-size:$base-font-size;
 $read-more-text-transform:uppercase;
 $home-article-author-name-underline:1px solid $primary-brand;
 $category-font-weight:300;
@@ -142,10 +143,16 @@ $category-text-transform:uppercase;
 //END HOME PAGE LIST VIEW COLORS
 //ARTICLE PAGES
 $full-length-article-anchor-underline-color:lighten($primary-brand,40%);
-$social-bar-vertical-width:30px;
+$social-bar-vertical-width:50px;
 $border-radius-right-and-left-body-images:0;
 $right-and-left-body-images-border-radius:0;
 $right-and-left-body-images-max-width:300px;
+$article-full-length-background-color:white;
+$article-title-font:700 #{$base-font-size*2.8}#{100%} $heading-font-family;
+$article-subtitle-font: 100 #{$base-font-size*1.8}/#{150%} $heading-font-family;
+$article-metadata-font-weight:100;
+$article-previous-date-width:50px;
+
 //END ARTICLE PAGES
 //You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
 $twitter-blue:#00aced;
@@ -189,7 +196,7 @@ $mobile-icon-color-inner: $header-link-color;
 $body-z:0;
 $header-z:99;
 $main-content-z:2;
-$footer-z:3;
+$footer-z:6;
 $home-icon-z:998;
 $mobile-menu-icon-z:999;
 

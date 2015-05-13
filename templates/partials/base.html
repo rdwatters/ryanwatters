@@ -7,8 +7,10 @@
   <head>
     {# the icons.html should house all of your favicons for browsers, mobile, touch, Windows, etc. I'd recommend checking out http://realfavicongenerator.net/#}
     {% include "templates/partials/icons.html" %}
-    {# YOU CAN USE THE TYPOGRAPHY PARTIAL TO ADD FONTS FROM GOOGLE FONTS OR OTHER EXTERNAL RESOURCES (TYPEKIT, ETC) #} 
+    {# YOU CAN USE THE TYPOGRAPHY PARTIAL TO ADD FONTS FROM GOOGLE FONTS OR OTHER EXTERNAL RESOURCES (TYPEKIT, ETC) #}
+    {% block typography_extra %} 
     {% include "templates/partials/typography.html" %}
+    {% endblock %}
     {# Standard Metadata #}
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
@@ -81,6 +83,9 @@
       <!-- build:js /static/javascript/minified.js -->     
       <script src="/static/javascript/main.js" async></script>
       <!-- endbuild -->
+      {# Useful for adding extra javascript to the body's bottom. #}
+    {% block scripts_extra %}
+    {% endblock %}
            
       {# GOOGLE ANALYTICS#}
         <script async>
@@ -97,7 +102,6 @@
         })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
         _st('install','iwMDg2nDWUgtQXzLwkSd');
         </script>
-    {% block scripts_extra %}
-    {% endblock %}
+  
   </body>
 </html>

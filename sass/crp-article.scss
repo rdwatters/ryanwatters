@@ -32,24 +32,49 @@ img.article-main-image {
     margin-top: 0px;
 }
 
-.article-publish-date {
-    display: block;
-    float: right;
+.article-metadata {
+    text-align: center;
+    font-weight: 100;
+    color: $light-font-color;
+    margin: 0 auto;
+    .article-updated-date {
+        font-weight: bold;
+        span.date-span {
+            color: $accent-color;
+        }
+    }
+    .publish-date {
+        font-weight: bold;
+    }
 }
 
-.article-updated-date {
+ul.article-tags {
     display: block;
-    float: right;
-    color: $accent-color;
-    font-weight: bold;
-}
-
-.publish-date {
-    color: $base-font-color;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    z-index: 10;
+    vertical-align: middle;
+    font-size: $base-font-size/1.2;
+    .article-tag {
+        display: inline;
+        line-height: $base-font-size/1.2 * 1.5;
+        float: right;
+        margin-left: 10px;
+        vertical-align: middle;
+        padding: 5px;
+        color: $tags-font-color;
+        border-radius: $tags-border-radius;
+        background-color: $tags-background-color;
+        &:hover {
+            background-color: $tags-background-hover;
+            color: $tags-font-color-hover;
+        }
+    }
 }
 
 .full-length-article {
-    background-color: white;
+    background-color: $article-full-length-background-color;
     font-size: $base-font-size * 1.3;
     width: 90%;
     z-index: 3;
@@ -57,10 +82,15 @@ img.article-main-image {
     max-width: 750px;
     margin-right: auto;
     margin-left: auto;
+    color: $base-font-color;
     .social-media-icons-bar {
         width: 100%;
-        margin-top: 10px;
-        z-index: -1;
+        padding: {
+            top: .5em;
+            bottom: .5em;
+        }
+        // z-index: -1;
+        background-color: $article-full-length-background-color;
         @include display(flex);
         @include flex-direction(row);
         @include justify-content(space-around);
@@ -69,44 +99,60 @@ img.article-main-image {
             &:hover {
                 border: none;
             }
-        }
-        svg {
-            @include transition(.3s);
-            margin-bottom: 15px;
-            @include transition(.3s);
-            display: block;
-            clear: both;
-            fill: $social-buttons-color;
-        }
-        .pinterest-svg:hover {
-            fill: #cb2027;
-        }
-        .google-plus-svg:hover {
-            fill: #dd4b39;
-        }
-        .twitter-svg:hover {
-            fill: #00aced;
-        }
-        .linkedin-svg:hover {
-            fill: #007bb6;
-        }
-        .facebook-svg:hover {
-            fill: #3b5998;
-        }
-        a {
-            border: none;
+            @include MQ(M) {
+                min-width: 50px;
+            }
+            svg {
+                @include transition(.3s);
+                margin-bottom: 15px;
+                @include transition(.3s);
+                display: block;
+                clear: both;
+                fill: $social-buttons-color;
+                @include MQ(L) {
+                    margin: .5em;
+                }
+            }
+            .pinterest-svg:hover {
+                fill: #cb2027;
+            }
+            .google-plus-svg:hover {
+                fill: #dd4b39;
+            }
+            .twitter-svg:hover {
+                fill: #00aced;
+            }
+            .linkedin-svg:hover {
+                fill: #007bb6;
+            }
+            .facebook-svg:hover {
+                fill: #3b5998;
+            }
         }
         @include MQ(L) {
             @include flex-direction(column);
             position: absolute;
             max-width: $social-bar-vertical-width;
-            left: -$social-bar-vertical-width - 15px;
+            left: -$social-bar-vertical-width - 25px;
         }
     }
     h1.article-title {
-        background:transparent;
-        padding-top: .5em;
-        font-size: $base-font-size * 3.8;
+        background: transparent;
+        display: block;
+        clear: both;
+        font: $article-title-font;
+        margin-top: 0px;
+        margin-bottom: .5em;
+        @include MQ(M) {
+            font-size: $base-font-size * 3.2;
+            margin-top: .5em;
+        }
+        text-align:center;
+    }
+    h2.article-subtitle {
+        color: $light-font-color;
+        font: $article-subtitle-font;
+        text-align: center;
     }
     p {
         line-height: ($base-font-size * 1.3) * 1.5;
@@ -118,16 +164,15 @@ img.article-main-image {
     }
     h3,
     h4 {
-        margin-top: 20px;
+        font-weight: bold;
     }
     //Article Heading
     h3 {
-        font-size: $base-font-size * 1.7;
-        font-weight: normal;
+        font-size: $base-font-size * 2;
     }
     //Article Subheading
     h4 {
-        font-size: $base-font-size * 1.5;
+        font-size: $base-font-size * 1.3;
     }
     a {
         -webkit-transition: border .4s ease-in-out;
@@ -181,28 +226,100 @@ img[alt$="full"] {
 
 .next-article,
 .previous-article {
-    display: block;
+    @include display(flex);
+    @include flex-direction(column);
     width: 50%;
     width: 50vw;
     text-align: center;
     font-size: $base-font-size;
-    height: $base-font-size * 2;
-    line-height: $base-font-size * 2;
-    background-color: $primary-brand;
     height: 100%;
+    line-height: $base-font-size * 1.5;
+    background-color: $base-font-color;
+    color: white;
+    z-index: 5;
+    @include MQ(L) {
+        display: block;
+        width: 100%;
+        width: 100vw;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+        @include transition(.5s);
+        position: fixed;
+        height: 80px;
+        max-width: auto;
+        .publish-date {
+            z-index: 5;
+            display: block;
+            height: 80px;
+            line-height: 1;
+            .month, .day, .year {
+                display: block;
+                padding: 0;
+                margin: 0;
+                line-height: 1;
+                clear: both;
+            }
+            .day {
+                font-size: 2em;
+                font-weight: bold;
+            }
+        }
+        .article-title {
+            z-index: 99;
+            line-height: 1;
+            font-size: $base-font-size * 1.5;
+            position: relative;
+            text-align: center;
+            padding-top:$base-font-size;
+            .article-author {
+                display: block;
+                text-transform: uppercase;
+                font-size: 12px;
+                margin-top: $base-font-size/2;
+            }
+        }
+        &:hover {
+            max-width: 100%;
+            z-index:10;
+        }
+        &:hover > .article-title {
+            display: block;
+            @include transform(translateX(0));
+        }
+    }
 }
 
 .previous-article {
     float: left;
     border-right: 1px solid white;
-    a {
-        color: white;
+    @include MQ(L) {
+        top: 300px;
+        left: 0;
+        padding:0;
+        margin:0;
+        max-width: 50px;
+        .publish-date {
+            float: left;
+            padding: 8px 0px 0px 5px;
+        }
+        .article-title {
+            @include transform(translateX(-100%));
+        }
     }
 }
 
 .next-article {
     float: right;
-    a {
-        color: white;
+    @include MQ(L) {
+        top: 300px;
+        right: 0;
+        max-width: 50px;
+        .publish-date {
+            float: right;
+            padding: 8px 5px;
+        }
+        .article-title {
+            @include transform(translateX(100%));
+        }
     }
 }

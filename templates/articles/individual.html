@@ -47,7 +47,6 @@
                         {% endif %}
                             <div class="play-button" role="button">
                                 <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                                <!-- <path id="play-button-outer-circle" d="M52.883,5.869c-23.782,0-43.061,19.279-43.061,43.061c0,23.783,19.279,43.062,43.061,43.062  c23.781,0,43.06-19.279,43.06-43.062C95.942,25.148,76.664,5.869,52.883,5.869z M52.883,89.738  c-22.538,0-40.807-18.27-40.807-40.809c0-22.537,18.27-40.807,40.807-40.807c22.537,0,40.807,18.27,40.807,40.807  C93.689,71.469,75.42,89.738,52.883,89.738z" /> -->
                                 <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
                                 </svg>
                             </div>
@@ -63,104 +62,138 @@
   <section class="social-media-icons-bar" data-swiftype-index="false">
       {% include "templates/partials/socialmediaicons.html" %}
   </section>
-  <h1 class="article-title">{{ item.title }}</h1>    
-  <p class="all-articles" data-swiftype-index="false"><a href="{{ url('articles') }}">All articles</a></p>          
-  
-  
-  {% for relation in item.author %}
-          <div class="article-author" itemprop="author" itemprop="accountablePerson"><a href="{{ url(relation) }}">{{ relation.name }}</a>
-          {% if not loop.last %} & {% endif %}
-          </div>
-  {% endfor %}
-  <div class="article-category" itemprop="about">
-        {% for relation in item.category %}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-  </div>
-    <ul class="full-article-tags" itemprop="keywords">
-  {% for relation in item.tags %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <li><a href="{{ url(relation) }}">{{ relation.name }}</a></li>{% if not loop.last %},{% endif %}
-  {% endfor %}
+  <ul class="article-tags" itemprop="keywords">
+      {% for relation in item.tags %}
+        <li class="article-tag"><a href="{{ url(relation) }}">{{ relation.name }}</a></li>
+      {% endfor %}
   </ul>
-  {% if item.most_recent_update %}
-    <time class="article-updated-date" itemprop="dateModified" datetime="{{ item.most_recent_update }}"><span class="date-span">Updated: </span><span class="publish-date">{{ item.most_recent_update|date('F d Y') }}</span></time>
-  {% else %}
-    <time class="article-publish-date" itemprop="datePublished" datetime="{{ item.publish_date }}"><span class="update-span">Published: </span><span class="publish-date">{{ item.publish_date|date('F d Y') }}</span></time>
-  {% endif %}
+  <h1 class="article-title">{{ item.title }}</h1> 
+  <h2 class="article-subtitle">{{ item.subtitle }}</h2>   
+            
+        <p class="article-metadata" itemprop="author" itemprop="accountablePerson">by 
+          {% for relation in item.author %}
+            <a href="{{ url(relation) }}">
+              <span class="author-name" itemprop="author">{{ relation.name }}</span>
+            </a> &mdash;  
+            {% if not loop.last %} & {% endif %}
+          {% endfor %} posted in
+          {% for relation in item.category %}
+            <a href="{{ url(relation) }}">
+              <span class="article-category" itemprop="about">{{ relation.name }}</span>
+            </a>
+            {% if not loop.last %} & {% endif %}
+          {% endfor %}
+          {% if item.most_recent_update %}
+          <time class="article-updated-date" itemprop="dateModified" datetime="{{ item.most_recent_update }}"><span class="date-span"> Updated </span>
+              <span class="publish-date">{{ item.most_recent_update|date('F d, Y') }}</span>
+          </time>
+          {% else %}
+            <time class="article-publish-date" itemprop="datePublished" datetime="{{ item.publish_date }}">on 
+              <span class="publish-date">{{ item.publish_date|date('F d, Y') }}</span>
+            </time>
+          {% endif %}
+        </p>
+    
+
+  
   {# BEGIN PAGE BODY MARKDOWN CONTENT #}
   {{ item.body|markdown }}
-  
+  <p class="all-articles" data-swiftype-index="false"><a href="{{ url('articles') }}">See all articles...</a></p>
 </article>
   {% set prev = prevItem(item, 'publish_date', true) %}
   {% set next = nextItem(item, 'publish_date', true) %}
   {% if prev %}
-  <div class="previous-article">
     <a href="{{ url(prev) }}">
-      <div class="previous">Previous Article</div>
+      <div class="previous-article">
+        <div class="publish-date" datetime="{{prev.publish_date}}">
+          <span class="month">{{prev.publish_date|date('M')}}</span>
+          <span class="day">{{prev.publish_date|date('d')}}</span>
+          <span class="year">{{prev.publish_date|date('Y')}}</span>
+        </div>
+      <div class="article-title">{{prev.title}}<span class="article-author"> by 
+      {{prev.author[0].full_name.first}} {{prev.author[0].full_name.last}}</span></div>
+      </div>
     </a>
-  </div>
   {% endif %}
   {% if next %}
-  <div class="next-article">
     <a href="{{ url(next) }}">
-      <div class="next">Next Article</div>
+      <div class="next-article">
+      <div class="publish-date" datetime="{{next.publish_date}}">
+        <span class="month">{{next.publish_date|date('M')}}</span>
+        <span class="day">{{next.publish_date|date('d')}}</span>
+        <span class="year">{{next.publish_date|date('Y')}}</span>
+      </div>
+      <div class="article-title">{{next.title}}<span class="article-author"> by 
+      {{next.author[0].full_name.first}} {{next.author[0].full_name.last}}</span></div>
+      </div>
     </a>
-  </div>
   {% endif %}
 
-{# DISQUS COMMENTS #}
-{% if article.allow_comments && cms.additionalglobals.add_disqus_comments %}
-  {% set disqusName = cms.additionalglobals.disqus_shortname %}
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = '{{disqusName}}';
-      
-      /* * * DON'T EDIT BELOW THIS LINE * * */
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-{% endif %}
-
-  
-
-  
+  {# DISQUS COMMENTS #}
+  {% if article.allow_comments && cms.additionalglobals.add_disqus_comments %}
+    {% set disqusName = cms.additionalglobals.disqus_shortname %}
+    <div id="disqus_thread" itemscope "https://schema.org/UserComments"></div>
+      <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES * * */
+        var disqus_shortname = '{{disqusName}}';
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  {% endif %}  
 {% endblock %}
+
 {% block scripts_extra %}
-{% parent %}
-<script async>
-$(function(){
-  var headerHeight = $('.header').height() + 10,
-    socialBar = $('.social-media-icons-bar'),
-    socialBarWidth = socialBar.width(),
-    socialBarOffset = socialBar.offset(),
-    socialBarY = socialBarOffset.top,
-    socialBarX = socialBarOffset.left,
-    socialBarHeaderDiff = (socialBarY - headerHeight);
-    // socialBarXpositionFixed = socialBarX - 
-  $(window).scroll(function(){   
-    if($(window).scrollTop() >= socialBarHeaderDiff ){
-      console.log('it is registering!');
-      socialBar.css({
-        'position':'fixed',
-        'top': headerHeight,
-        'left': socialBarX
-      });
-    }else{
-      socialBar.css({
-      'position':'',
-      'top':'',
-      'left':''
-    });
+<script>
+console.log("HELLO!");
+window.onscroll = headerFadeOnScroll;
+/*HEADER FADES IN AND OUT ON SCROLL - SEE function init to check if */
+
+function headerFadeOnScroll() {
+    var theHeader = document.getElementsByTagName('header')[0],
+        headerHeight = parseInt(theHeader.clientHeight);
+    wScrollCurrent = window.pageYOffset | document.body.scrollTop;
+    wScrollDiff = wScrollBefore - wScrollCurrent;
+    if (wScrollCurrent <= headerHeight) {
+        theHeader.classList.remove('hide-header');
+    } else if (wScrollDiff > 0) {
+        theHeader.classList.remove('hide-header');
+    } else if (wScrollDiff < 0) {
+        theHeader.classList.add('hide-header');
     }
-  });
+    wScrollBefore = wScrollCurrent;
+}
+
+$(function() {
+    var headerHeight = $('.header').height() + 10,
+        socialBar = $('.social-media-icons-bar'),
+        socialBarWidth = socialBar.width(),
+        socialBarOffset = socialBar.offset(),
+        socialBarY = socialBarOffset.top,
+        socialBarX = socialBarOffset.left,
+        socialBarHeaderDiff = (socialBarY - headerHeight);
+    // socialBarXpositionFixed = socialBarX - 
+    $(window).scroll(function() {
+        if ($(window).scrollTop() >= socialBarHeaderDiff) {
+            console.log('it is registering!');
+            socialBar.css({
+                'position': 'fixed',
+                'top': headerHeight,
+                'left': socialBarX
+            });
+        } else {
+            socialBar.css({
+                'position': '',
+                'top': '',
+                'left': ''
+            });
+        }
+    });
 
 });
-  
 </script>
 {% endblock %}
