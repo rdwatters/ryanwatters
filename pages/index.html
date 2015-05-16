@@ -45,7 +45,7 @@
             {% else %}
                         <section class="home-article-image">
                         {% for relation in article.category%}
-                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
+                            <div class="home-article-category"><a title="See other articles in the category {{relation.name}}" href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
                         {% endfor %}
                             <div class="article-image">
                                 <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">
@@ -103,7 +103,7 @@
                 <ul class="category-listing">
                     {% for category in cms.categories %}
                         <li class="category-name">
-                            <a href="{{ url(category) }}">{{ category.name }}
+                            <a href="{{ url(category) }}" title="See other article written in the {{category.name}} category">{{ category.name }}
                                 <span class="category-article-total">({{ category.articles.length }})</span>
                             </a>
                         </li>           
@@ -192,6 +192,7 @@
 
 {% endblock %}
 {% block scripts_extra %}
+{% parent %}
 {# INFINITE SCROLL - Modified slightly from https://github.com/webhook/webhook-theme-solo/blob/master/static/javascript/infinite-scroll.js. Only active on site home page. Infinite scroll is disable on mobile device and replaced with pagination buttons to prevent jank. #}
 
 <script async>
@@ -212,6 +213,7 @@
         $(window).unbind('scroll');
         return;
       }
+      //Basic wh pagination
       var nextPage = $('.js-paginate').attr('data-next-page');
       var maxPage = $('.js-paginate').attr('data-max-page');
       var removeFirst = $('.js-paginate').attr('data-remove-first');

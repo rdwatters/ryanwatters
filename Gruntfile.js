@@ -35,15 +35,13 @@ module.exports = function(grunt) {
                         src: ['crp-homepage.scss'],
                         dest: 'templates/partials',
                         ext: '.html'
-                    }, 
-                    {
+                    }, {
                         expand: true,
                         cwd: 'sass',
                         src: ['crp-article.scss'],
                         dest: 'templates/partials',
                         ext: '.html'
-                    },
-                    {
+                    }, {
                         expand: true,
                         cwd: 'sass',
                         src: ['crp-video-library.scss'],
@@ -54,29 +52,30 @@ module.exports = function(grunt) {
             }
         },
         //Use babel.js for ES6 Transpilation
-        "babel": {
-            options: {
-                sourceMap: true
-            },
-            dist: {
-                files: {
-                    "static/javascript/main.js": "static/javascript/babel.js"
-                }
-            }
-        },
+        // ,"babel": {
+        //     options: {
+        //         sourceMap: true
+        //     },
+        //     dist: {
+        //         files: {
+        //             "static/javascript/main.js": "static/javascript/babel.js"
+        //         }
+        //     }
+        // },
         // WHEN FILES CHANGE, RUN THE ABOVE TASKS ALONG WITH BUILD
         watch: {
             sass: {
                 files: ['sass/**/*.scss'],
                 tasks: ['sass', 'build']
-            },
-            babel: {
-                files: ['static/javascript/babel.js'],
-                tasks: ['babel', 'build']
             }
+
+            // ,babel: {
+            //     files: ['static/javascript/babel.js'],
+            //     tasks: ['babel', 'build']
+            // }
         }
     });
-    grunt.registerTask("default", ["babel"]);
+    grunt.registerTask("default", ["sass"]);
     // THIS LOADS THE TASKS WE NEED ABOVE IN FROM OUR NPM
     // Note that we need to have these installed through the package.json file as well
     grunt.loadNpmTasks('grunt-contrib-sass');

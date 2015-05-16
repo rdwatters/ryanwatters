@@ -44,7 +44,7 @@
     <meta property="st:image" content="{% if item.image %}{{- item.image.url -}}{% else %}/static/images/site_logo.png{% endif %}">
     <meta property="st:published_at" content="{{item.publish_date}}" />
     <meta property="st:updated_at" content="{% if item.most_recent_update %}{{ item.most_recent_update }}{% else %}{{ item.last_updated }}{%endif%}" />
-    <meta property="st:section" content="{{item.description|default(getSetting('site_description'))}}">
+    <meta class="swiftype" name="description" data-type="string" content="{{item.description|default(getSetting('site_description'))}}" />
     {% block crp_block %}
       <style>
           {% include "templates/partials/crp-homepage.html" %}
@@ -60,7 +60,7 @@
           {% include "templates/partials/header.html" %}
         {% endblock %}
       {# By default, your inner pages will load into this block. #}
-      <main class="main" role="main">
+      <main class="main" role="main" id="main">
         {% block content %}
 
 
@@ -78,13 +78,19 @@
       {# JQUERY CDN. OPTIONAL. NOTE: MAY CONFLICT WITH METHODS PROVIDED BY CLASSIE.JS! #}
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
       
+      <!-- <script src="/static/javascript/jquery.smoothState.min.js"></script> -->
+      
       <!-- <script src="/static/javascript/classie.js"></script> -->
       {# JS BUILD FILES - CONCAT/MIN ON DEPLOYMENT#}      
       <!-- build:js /static/javascript/minified.js -->     
-      <script src="/static/javascript/main.js" async></script>
+      <script src="/static/javascript/main.js"></script>
+      <script src="/static/javascript/jquery.pjax.min.js"></script>
       <!-- endbuild -->
       {# Useful for adding extra javascript to the body's bottom. #}
     {% block scripts_extra %}
+    <script async>
+      $(document).pjax('a[data-pjax]', '#main');  
+    </script>
     {% endblock %}
            
       {# GOOGLE ANALYTICS#}

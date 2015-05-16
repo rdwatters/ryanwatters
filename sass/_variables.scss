@@ -69,7 +69,7 @@ $publish-date-font-family-large-screen:$body-font-family;
 $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
-$primary-brand:lighten(#203253,10%);
+$primary-brand:#203253;
 $secondary-brand:#39BBE7;
 $logo-color:$primary-brand;
 $logo-font-color:white;
@@ -88,18 +88,19 @@ $footer-background-color:$dark;
 $footer-font-color:white;
 $footer-svg-color:rgba(255,255,255,0.4);
 $footer-svg-color-hover:rgba(255,255,255,1);
-$body-background-color:#f1f1f1;
+$body-background-color:#f3f3f3;
 $main-content-background-color:$body-background-color;
-/**********SEARCH*************/
+$full-article-main-element-background-color:white;
+//Sets the default anchor color (in the reset/normalize)
+$anchor-color:$primary-brand;
 
-//mobile
+
+/************************************* SEARCH ********************************/
+//mobile search
 $search-input-y-offset-mobile:200px;
 $search-overlay-color:$header-background-color;
-
-//tablet & desktop
+//tablet & desktop search
 $search-overlay-transparency:1.0;
-
-
 $category-button-background-color:#333333;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:#333333;
@@ -108,24 +109,33 @@ $tags-font-color-hover:white;
 $tags-background-color:#333333;
 $tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
-/* SOCIAL */
+
+/***************************** SOCIAL MEDIA ************************************************/
+//icons are inlined svg xml so can be styled directly 
 $social-buttons-color:$base-font-color;
-//Sets the default anchor color (reset.scss)
-$anchor-color:$primary-brand;
-//PUBLISH DATE ON THE HOMEPAGE ARTICLE LIST
+$article-social-buttons-background-mobile:#cccccc;
+$article-social-buttons-background-desktop:white;
+//publish date on the article list/summary view
 $publish-date-background-color:white;
 $publish-date-background-color-large:#333333;
 $publish-date-font-color-large:white;
 $social-icons-background-color:transparent;
 $social-buttons-border:1px solid #cccccc;
-//This is the section to the right of the article image on XL and under the article image/video on everything else
+$twitter-blue:#00aced;
+$twitter-mini-color:$twitter-blue;
+$most-recent-tweet-background-color:white;
+$most-recent-tweet-border-radius:0px;
+
+//List information block -> this is to to the right of the article image on XL screens and under the article image/video on everything else
 $home-article-information-background-color:#ffffff;
 $home-article-description-font-color: rgba(0,0,0,0.54);
+
 //This is for the right rail/widget (right on M+ screens; bottom of list on mobile )
 $home-about-rail-widget-background-color:white;
 $home-about-rail-widget-section-underline: 1px solid #cccccc;
 $right-rail-widget-background-color:white;
 $right-rail-widget-section-underline: 1px solid #cccccc;
+
 //"Read more" button on homepage list view
 $read-more-font-color:white;
 $read-more-font-weight:300;
@@ -140,8 +150,9 @@ $read-more-text-transform:uppercase;
 $home-article-author-name-underline:1px solid $primary-brand;
 $category-font-weight:300;
 $category-text-transform:uppercase;
-//END HOME PAGE LIST VIEW COLORS
-//ARTICLE PAGES
+
+
+/**************************************ARTICLE PAGES****************************************/
 $full-length-article-anchor-underline-color:lighten($primary-brand,40%);
 $social-bar-vertical-width:50px;
 $border-radius-right-and-left-body-images:0;
@@ -150,16 +161,16 @@ $right-and-left-body-images-max-width:300px;
 $article-full-length-background-color:white;
 $article-main-image-fade-in-height:100px;
 $article-title-font:700 #{$base-font-size*2.8}#{100%} $heading-font-family;
+$read-time-color:$primary-brand;
 $article-subtitle-font: 100 #{$base-font-size*1.8}/#{150%} $heading-font-family;
 $article-metadata-font-weight:100;
 $article-previous-date-width:50px;
 
-//END ARTICLE PAGES
+
+
+
 //You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
-$twitter-blue:#00aced;
-$twitter-mini-color:$twitter-blue;
-$most-recent-tweet-background-color:white;
-$most-recent-tweet-border-radius:0px;
+
 
 //OPACITY
 $header-opacity:0.9;
@@ -172,12 +183,12 @@ $header-link-font-size:$site-logo-size/2;
 $search-icon-size:$header-link-font-size * 1.5;
 $mobile-logo-size:$site-logo-size;
 $mobile-header-height:$header-height;
-//if you increase the header height considerably, you will end up with an equally large footer with the way these default values, so I've added a separate variable below if you don't want your footer and header to be the same height.
+//if you increase the header height considerably, you will end up with an equally large footer with these default values. You can change that here.
 $header-height-non-mobile:$header-height;
 $footer-height:$header-height;
-//You can give your tags a rounded border by adjusting the following value
+//tags
 $tags-border-radius:0px;
-//$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page
+//$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page on desktop+ screens
 $article-home-page-max-width-m-plus:100%;
 $home-about-widget-width:28%;
 $home-about-widget-max-width: 400px;
@@ -201,7 +212,7 @@ $footer-z:6;
 $home-icon-z:998;
 $mobile-menu-icon-z:999;
 
-//GLOBAL FOR HEADER
+/********************************HEADER GLOBALS******************************************/
 $header-main-logo-background-image: '/static/images/favicon.png';
 $home-logo-background-color:$header-background-color;
 $home-logo-hover-background-color:white;
@@ -211,12 +222,12 @@ $home-logo-border-radius:50%;
 $home-button-icon-radius:50%;
 $home-button-background-image:$my-logo-location;
 
-//VIDEO PLAYER OPTIONS
+/*****************************VIDEO PLAYER OPTIONS****************************/
 //Use % only for play button; only change $video-player-play-button-size to keep proportions
 $video-player-play-button-size:20%;
 $video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
-$video-player-play-button-opacity:0.8;
+$video-player-play-button-opacity:1;
 $video-player-play-button-opacity-hover:1;
 $video-player-play-button-left-padding:(100% - $video-player-play-button-size) / 2;
 $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1.7777;
@@ -224,16 +235,13 @@ $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1
 // $video-player-play-button-hover-animation: true;
 
 
-//CMS OVERRIDES
+/******************************CMS STYLE OVERRIDES****************************/
 $login-background-color:$base-font-color;
 $cms-logo-background-image:$my-logo-location;
+$login-font-color:white;
 $hide-updates: false;
 
-
-//IMAGES
-$author-image-small-radius:50%;
-
-//PAGINATION-BUTTONS
+/*******************************PAGINATION-BUTTONS****************************/
 $pagination-button-width:40px;
 $pagination-button-height: 30px;
 $pagination-button-background-color: white;
@@ -241,7 +249,7 @@ $pagination-button-background-color-active: $accent-color;
 $pagination-button-background-color-hover:#cccccc;
 $pagination-button-border-radius:10px;
 
-//TRANSITIONS
+/*******************************TRANSITIONS***********************************/
 $base-transition:0.2s;
 
 

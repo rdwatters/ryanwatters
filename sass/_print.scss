@@ -1,0 +1,14 @@
+@media print{
+	.header, .footer{
+		display:none!important;
+	}
+	*{
+		display:none;
+	}
+	.main*{
+		display:block!important;
+		width:90%;
+		margin-right:auto;
+		margin-left:auto;
+	}
+}

@@ -23,7 +23,15 @@ span.icon-vim, span.icon-vim-togdgle {
 
 .wh-login {
 	background-color:$login-background-color;
+	form label{
+		color:$login-font-color;
+	}
+	.btn-small{
+		color:$login-font-color;
+	}
 }
+
+
 
 .wh-lang-select + .wy-text-center.wy-text-small{
 	display:none;
@@ -31,15 +39,9 @@ span.icon-vim, span.icon-vim-togdgle {
 
 .wh-logo {
 	background-image:$cms-logo-background-image;
-	background-size:contain;
+	background-size:cover;
 	background-color:white;
-	&:after {
-		display:inline-block;
-		margin-left:55px;
-		clear:both;
-		color:white;
-		content:$site-name;
-	}
+	border:0px;
 }
 
 .wh-updates {

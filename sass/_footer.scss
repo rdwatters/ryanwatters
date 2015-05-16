@@ -23,6 +23,7 @@
         @include display(flex);
         @include flex-direction(row);
         @include justify-content(space-around);
+        @include flex-wrap(wrap);
         @include align-items(center);
         @include MQ(M) {
             @include flex-direction(row);

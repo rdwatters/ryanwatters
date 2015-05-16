@@ -162,17 +162,20 @@
     }
 }
 
-.site-name-mobile-only {
+.site-name {
     display: block;
     position: fixed;
     line-height: $header-link-font-size * 1.5;
     top: $header-link-font-size/1.5;
-    left: $site-logo-size * 1.5;
+    left: 15px;
     font-size: $header-link-font-size;
     color: $logo-color;
     z-index: 900;
-    &:after {
-        content: $site-name;
+    border-bottom: 1px solid $primary-brand;
+    @include MQ(L) {
+        &.hide-header {
+            display: none;
+        }
     }
 }
 
@@ -182,6 +185,7 @@
     position: fixed;
     z-index: $header-z;
 }
+
 //Search icon: note that the rest of the search styles are not included in CRP files and can be found in _search.scss
 #search-icon svg {
     display: none;

@@ -5,7 +5,7 @@
 @import 'search';
 @import 'footer';
 @import 'pagination';
-
+@import 'print';
 //MOBILE-ONLY MAIN MENU/HEADER. NOT NEEDED IN CRP FOR MOBILE SCREENS
 .primary-navigation {
     @include MQ(MMAX) {
@@ -24,53 +24,56 @@
             }
         }
     }
-} 
+}
 
 // MOBILE MENU CLICKED STATE - FOR BASE STYLES, SEE MENU-ICON.SCSS
 .menu-open {
-  .menu-icon-inner {
-    background: none;
-    &::before, &::after {
-      top: $mobile-icon-layer-height * 2;
-      background:$mobile-icon-color-inner; 
+    .menu-icon-inner {
+        background: none;
+        &::before, &::after {
+            top: $mobile-icon-layer-height * 2;
+            background: $mobile-icon-color-inner;
+        }
+        &::before {
+            -webkit-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            background: $mobile-icon-color-inner;
+        }
+        &::after {
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background: $mobile-icon-color-inner;
+        }
     }
-    &::before {
-      -webkit-transform: rotate(-45deg); 
-      -ms-transform: rotate(-45deg); 
-      transform: rotate(-45deg);
-      background:$mobile-icon-color-inner;
-    }
-    &::after {
-      -webkit-transform: rotate(45deg); 
-      -ms-transform: rotate(45deg); 
-      transform: rotate(45deg);
-      background:$mobile-icon-color-inner;
-    }
-  } 
 }
 
 .svg-spinner-wrapper {
     width: 100%;
+    width:100vw;
     height: 100%;
+    height: 100vh;
     display: none;
     position: fixed;
-    svg#js-spinner {
-        position:fixed;
-        left:40%;
-        bottom:$footer-height + 20px;
-        width:10%;
+    z-index: 99999;
+    svg#spinner {
+        position: fixed;
+        left: 30%;
+        bottom: $footer-height + 20px;
+        width: 40%;
+        height:60px;
         z-index: 99999;
         fill: $svg-spinner-color;
     }
 }
 
-#disqus_thread{
-  width:90%;
-  margin-right:auto;
-  margin-left:auto;
-  max-width:750px;
+#disqus_thread {
+    width:100%;
+    padding-right:5%;
+    padding-left:5%;
+    z-index:99;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 750px;
 }
-
-
-
-
