@@ -77,6 +77,10 @@ $(document).ready(function() {
         if (videoBlock.attr('class') === "video-player-youtube") {
             iframe.setAttribute('src', '//www.youtube.com/embed/' + videoBlock.attr('data-youtubeid') + '?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0');
             $('div.play-button').remove();
+        } else if (videoBlock.attr('class') === "video-player-vimeo") {
+            iframe.setAttribute('src', '//player.vimeo.com/video/' + videoBlock.attr('data-vimeoid') + '?autoplay=1');
+        } else{
+            console.log("you are not gettting what you want!");
         }
         iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('class', 'video-iframe');

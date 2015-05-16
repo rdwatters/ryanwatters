@@ -8,11 +8,11 @@
 @import 'video-player';
 //END BASE CRP//
 //
-.main {
-    background-color: $full-article-main-element-background-color;
-    overflow-x: hidden;
-    max-width: 100%;
-}
+// .main {
+//     background-color: $full-article-main-element-background-color;
+//     overflow-x: hidden;
+//     max-width: 100%;
+// }
 
 .article-video {
     width: 100%;
@@ -60,7 +60,7 @@
         @include linear-gradient(transparent, $article-full-length-background-color);
         @include MQ(L) {
             display: block;
-            height: 250px;
+            height: 300px;
         }
     }
 }
@@ -132,6 +132,9 @@
         &.film-playing {
             @include transition($base-transition);
             @include transform(translateY(0px));
+            .play-button-small{
+                opacity:0;
+            }
         }
     }
     .article-publish-date {

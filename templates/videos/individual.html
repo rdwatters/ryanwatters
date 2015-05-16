@@ -56,6 +56,10 @@
         <strong>Video: </strong>
         {# Embed.ly content usually comes with more data. Info here: #}{# http://www.webhook.com/docs/widget-template-reference/#embedly #}{{ item.video.html|safe  }}      </li>
       <li>
+        <strong>Channel: </strong>
+        {{ item.channel }}
+      </li>
+      <li>
         <strong>Tags: </strong>
         {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
         {% for relation in item.tags %}
