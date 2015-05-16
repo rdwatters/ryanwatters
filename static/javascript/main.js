@@ -55,7 +55,6 @@ $(document).ready(function() {
         }
     });
     $('.play-button').click(function() {
-        console.log($(this).parent().attr('class'));
         $('.full-length-article').toggleClass('film-playing');
         var iframe = document.createElement('iframe');
         if ($(this).parent().attr('class') === 'video-player-youtube') {

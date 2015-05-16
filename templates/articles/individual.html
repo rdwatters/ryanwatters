@@ -41,12 +41,13 @@
                         <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
                     </div>
                 </div>
+                <div class="image-fade-block"></div>
             </section>
 {% else %}
-<div class="article-main-image">
-  <img class="main-image" src="{{ item.image|imageCrop(1000, 500)}}" />
-  <div class="image-fade-block"></div>           
-</div>
+  <div class="article-main-image">
+    <img class="main-image" src="{{ item.image|imageCrop(1000, 500)}}" />
+    <div class="image-fade-block"></div>           
+  </div>
 {% endif %}
 <article class="full-length-article" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting">
   <section class="social-media-icons-bar" id="social-media-icons-bar" data-swiftype-index="false">  
@@ -56,15 +57,16 @@
       <a href="#" role="button" title="Share this article through social media." class="share-button"><div class="share"> SHARE</div></a>
   </section>
   {% if item.most_recent_update %}
-      <time class="article-publish-date" itemprop="dateModified" datetime="{{ item.most_recent_update }}">
-          <div class="publish-date-updated"><strong class="updated"><small>UPDATED</small></strong> {{ item.most_recent_update|date('F d, Y') }} </div>
-      </time>
+    <time class="article-publish-date" itemprop="dateModified" datetime="{{ item.most_recent_update }}">
+        <div class="publish-date-updated"><strong class="updated"><small>UPDATED</small></strong> {{ item.most_recent_update|date('F d, Y') }} </div>
+    </time>
   {% else %}
-      <time class="article-publish-date" itemprop="datePublished" datetime="{{ item.publish_date }}"> 
-        <span class="publish-date">{{ item.publish_date|date('F d, Y') }}</span>
-      </time>
+    <time class="article-publish-date" itemprop="datePublished" datetime="{{ item.publish_date }}"> 
+      <span class="publish-date">{{ item.publish_date|date('F d, Y') }}</span>
+    </time>
   {% endif %} 
   {# BEGIN BODY COPY #}
+  <section class="article-information">
  
   <h1 class="article-title">{{ item.title }}</h1> 
   <h2 class="article-subtitle">{{ item.subtitle }}</h2>
@@ -84,25 +86,29 @@
             </a>
             {% if not loop.last %} & {% endif %}
           {% endfor %}
-          
-
-          
         </p>
         <div class="length-in-minutes">
           <span class="clock-icon">
-        <svg version="1.1" id="clock-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-          viewBox="-9.5 10.2 8.9 8.9" enable-background="new -9.5 10.2 8.9 8.9" xml:space="preserve" width="26px" height="26px">
-          <g>
-            <path d="M-5.1,19.1c2.5,0,4.4-2,4.4-4.4c0-2.5-2-4.4-4.4-4.4c-2.5,0-4.4,2-4.4,4.4C-9.5,17.1-7.5,19.1-5.1,19.1z M-5.1,11.1
-              c2,0,3.6,1.6,3.6,3.6c0,2-1.6,3.6-3.6,3.6s-3.6-1.6-3.6-3.6S-7,11.1-5.1,11.1z"/>
-            <path d="M-5.5,14.8C-5.5,14.8-5.5,14.8-5.5,14.8C-5.5,14.8-5.5,14.8-5.5,14.8c0,0.1,0,0.1,0,0.1c0,0,0,0,0,0c0,0,0,0,0.1,0.1
-              c0,0,0,0,0,0l1.8,1.8c0.2,0.2,0.5,0.2,0.6,0c0.2-0.2,0.2-0.5,0-0.6l-1.6-1.6v-1.8c0-0.2-0.2-0.4-0.4-0.4c-0.2,0-0.4,0.2-0.4,0.4
-              L-5.5,14.8C-5.5,14.7-5.5,14.7-5.5,14.8z"/>
-          </g>
-          </svg>
-          </span><span class="time">{{ lengthInMinutes }}-Minute Read</span>
-          </div>
-         
+            <svg version="1.1" id="clock-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              viewBox="-9.5 10.2 8.9 8.9" enable-background="new -9.5 10.2 8.9 8.9" xml:space="preserve" width="26px" height="26px">
+              <g>
+                <path d="M-5.1,19.1c2.5,0,4.4-2,4.4-4.4c0-2.5-2-4.4-4.4-4.4c-2.5,0-4.4,2-4.4,4.4C-9.5,17.1-7.5,19.1-5.1,19.1z M-5.1,11.1
+                  c2,0,3.6,1.6,3.6,3.6c0,2-1.6,3.6-3.6,3.6s-3.6-1.6-3.6-3.6S-7,11.1-5.1,11.1z"/>
+                <path d="M-5.5,14.8C-5.5,14.8-5.5,14.8-5.5,14.8C-5.5,14.8-5.5,14.8-5.5,14.8c0,0.1,0,0.1,0,0.1c0,0,0,0,0,0c0,0,0,0,0.1,0.1
+                  c0,0,0,0,0,0l1.8,1.8c0.2,0.2,0.5,0.2,0.6,0c0.2-0.2,0.2-0.5,0-0.6l-1.6-1.6v-1.8c0-0.2-0.2-0.4-0.4-0.4c-0.2,0-0.4,0.2-0.4,0.4
+                  L-5.5,14.8C-5.5,14.7-5.5,14.7-5.5,14.8z"/>
+              </g>
+            </svg>
+          </span>
+          <span class="time">{{ lengthInMinutes }}-Minute Read</span>
+        </div>
+        {% if article.related_video %}
+        <div class="play-button-small">
+          <svg class="play-button-svg-small" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+          <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
+        </div>
+        {% endif %}
+      </section>       
   <section class="body-content">
   
   {# BEGIN PAGE BODY MARKDOWN CONTENT #}
