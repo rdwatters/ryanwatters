@@ -32,7 +32,7 @@
             <section class="article-video">        
                 <div class="video-player-{{streaming}}" data-{{-streaming-}}id="{{videoId}}">
                         {% if video.thumbnail_override %}
-                                <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315">
+                                <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="1080" height="630">
                         {% else %}
                                 <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315">
                         {% endif %}
