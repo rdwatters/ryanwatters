@@ -6,51 +6,76 @@
 {% endblock %} 
 {% block title %}Video Library{% endblock %}
 {% block content %}
-{% set videolibrary = cms.videolibrary %}
-<article class="video-library">
-    <h1>{{ videolibrary.name }}</h1>
-    <section class="video-library-introduction">
-    {{ videolibrary.introduction|markdown }}
-    </section>
+{% set library = cms.videolibrary %}
+{% set videolibrary = library.list %}
+{% set videos = paginate(videolibrary, 5) %}
 
-{% for row in videolibrary.list %}
-    {% set ss = row.video.streaming_service %}
-    {% if ss == 'YouTube' %}
-    <article class="video-libary-section">
-        <section class="list-article-video">
-            <div class="video-player-youtube" data-youtubeid="{{row.video.video.original_url.split('v=')[1]}}">
-                {% if row.video.thumbnail_override %}
-                <img class="video-thumb" src="{{row.video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}"> 
-                {% else %}
-                <img class="video-thumb" src="{{row.video.video.thumbnail_url}}" alt="{{row.video.video_title}}"> 
-                {% endif %}
-                <div class="play-button" role="button">
-                    <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                        <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
-                    </svg>
-                </div>
-            </div>
-        </section>
-    </article>
+<article class="video-library">
+    <h1>{{ library.name }}</h1>
+    <section class="video-library-introduction">
+    {{ library.introduction|markdown }}
+    </section>
+<ul class="video-list js-paginate" itemscope itemtype="http://schema.org/Movie" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+    {% for video in videos %}
+        {% set video = video.video %}
+        {% set ss = video.streaming_service %}
+        {% if ss == 'YouTube' %}
+            {% set streaming = 'youtube' %}
+            {% set videoUrl = video.video.original_url %}
         {% elseif ss == 'Vimeo' %}
-    <article class="video-libary-section">
-        <section class="list-article-video">
-            <div class="video-player-vimeo" data-vimeoid="{{row.video.video.original_url.split('vimeo.com/')[1]}}">
-                {% if row.video.thumbnail_override %}
-                <img class="video-thumb" src="{{row.video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}">
-                {% else %}
-                <img class="video-thumb" src="{{row.video.video.thumbnail_url}}" alt="{{row.video.video_title}}" >              
-                {% endif %}
-                <div class="play-button" role="button">
-                    <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                        <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
-                    </svg>
-                </div>
-            </div>
-        </section>
-    </article>
-    {% endif %}
-{% endfor %} 
+            {% set streaming = 'vimeo' %}
+            {% set videoUrl = video.video.original_url %}
+        {% endif %}
+        {% if loop.first %}
+            <li class="video featured-video">
+            <span class="featured">Featured</span>
+        {% else %}
+            <li class="video">
+        {% endif %}
+                    <a class="swipebox-video" rel="{{streaming}}" href="{{videoUrl}}">
+                        <div class="video-head">
+                        {% if video.thumbnail_override %}
+                            <img class="video-library-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}"> 
+                            {% else %}
+                            <img class="video-library-thumb" src="{{video.thumbnail_url}}" alt="{{video.video_title}}"> 
+                            {% endif %}
+                            
+                                <div class="video-library-play-button" role="button">
+                                    <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                                        <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" />
+                                    </svg>
+                                </div>
+                        </div>
+                    </a>
+                <section class="video-information">
+                    <h3 class="video-title">{{video.video_title}}</h3>
+                    <p itemprop="about">{{video.video_description}}</p>
+                </section>
+            </li>
+    {% endfor %} 
+</ul>
 </article>
+<nav role="menu" aria-label="Pagination" aria-hidden="true" class="video-pagination">
+        {% include "templates/partials/paginator.html" %}
+</nav>
+<div class="give-space">Hello</div>
     
+{% endblock %}
+{% block scripts_extra %}
+{% parent %}
+<script src="/static/javascript/jquery.swipebox.min.js"></script>
+<script type="text/javascript" async>
+;( function( $ ) {
+
+    $( '.swipebox-video' ).swipebox( {
+        useCSS : true, // false will force the use of jQuery for animations
+        useSVG : true, // false to force the use of png for buttons
+        initialIndexOnArray : 0, // which image index to init when a array is passed
+        hideCloseButtonOnMobile : false, // true will hide the close button on mobile devices
+        hideBarsDelay : 3000, // delay before hiding bars on desktop
+        videoMaxWidth : 1140 // videos max width
+    } );
+
+} )( jQuery );
+</script>
 {% endblock %}

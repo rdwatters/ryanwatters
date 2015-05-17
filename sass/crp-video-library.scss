@@ -5,6 +5,67 @@
 @import 'bourbon/bourbon';
 @import 'menu-icon';
 @import 'header-and-main';
+@import 'swipebox.scss';
 //END BASE CRP
 /*BEGIN VIDEO LIBRARY STYLES*/
-@import 'video-player';
+
+.main {
+    background-color: white;
+}
+
+article {
+    margin-bottom: $footer-height;
+}
+
+ul.video-list {
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include justify-content(space-around);
+}
+
+li.video {
+    background-color: $body-background-color;
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    width: 100%;
+    @include MQ(M) {
+        width: 45%;
+    }
+    @include MQ(L) {
+        width: 22%;
+    }
+    h3.video-title {
+        @include display(flex);
+    }
+    p{
+    		// @include transform(translateY(-140%));
+    }
+}
+
+.video-head{
+	position:relative;
+	width:100%;
+	img{
+		width:100%;
+	}
+}
+
+.video-library-play-button {
+    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+   position:absolute;
+   top:20%;
+   left:35%;
+    svg {
+        max-width: 100px;
+        fill: $accent-color;
+    }
+}
+
+.featured {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

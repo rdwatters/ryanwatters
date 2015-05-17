@@ -60,6 +60,10 @@
         {{ item.channel }}
       </li>
       <li>
+        <strong>Channel Name: </strong>
+        {{ item.channel_name }}
+      </li>
+      <li>
         <strong>Tags: </strong>
         {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
         {% for relation in item.tags %}
