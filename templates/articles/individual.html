@@ -138,7 +138,7 @@
           <span class="time">{{ lengthInMinutes }}-Minute Read</span>
         </div>
         {% if article.related_video %}
-        <div class="play-button-small">
+        <div class="play-button-small" role="button" aria-hidden="true">
           <svg class="play-button-svg-small" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
           <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
         </div>
@@ -147,7 +147,7 @@
   <section class="body-content" data-swiftype-name="body" data-swiftype-type="text">
   {{ item.body|markdown }}
   </section>
-  <ul class="article-tags" itemprop="keywords">
+  <ul class="article-tags" itemprop="keywords"><span>Tagged in...</span>
       {% for relation in item.tags %}
         <li class="article-tag"><a href="{{ url(relation) }}">{{ relation.name }}</a></li>
       {% endfor %}
@@ -155,7 +155,15 @@
   <div class="all-articles" data-swiftype-index="false">
     <a href="{{ url('articles') }}"><strong>See all articles...</strong></a>
   </div>
+  {% if articleLength.length > 500 %}
+  <aside class="article-navigation" aria-hidden="true">
+    <ul class="navigation">
+
+    </ul>
+  </aside>
+  {% endif %}
 </article>
+
 
 
 {# DISQUS COMMENTS #}

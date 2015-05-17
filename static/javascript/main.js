@@ -59,7 +59,7 @@ $(document).ready(function() {
             $('div.play-button').remove();
         } else if (videoBlock.attr('class') === "video-player-vimeo") {
             iframe.setAttribute('src', '//player.vimeo.com/video/' + videoBlock.attr('data-vimeoid') + '?autoplay=1');
-        } else{
+        } else {
             console.log("you are not gettting what you want!");
         }
         iframe.setAttribute('frameborder', '0');
@@ -67,4 +67,30 @@ $(document).ready(function() {
         thumbNail.replaceWith(iframe);
     });
 
+
 });
+
+$(function() {
+            if ($('aside.article-navigation > ul')) {
+                    $('article h3').each(function() {
+                        var headingId = $(this).attr('id'),
+                            headingText = $(this).text(),
+                            listItem = '<li><a href="#' + headingId + '\">' + headingText + '</a></li>';
+                        $('aside.article-navigation > ul').append(listItem);
+                        console.log(listItem);
+                    });
+                }
+                $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                        var target = $(this.hash);
+                        var headerHeight =  $('.header').height();
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top - headerHeight
+                            }, 500);
+                            return false;
+                        }
+                    }
+                });
+            });

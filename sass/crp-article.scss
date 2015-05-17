@@ -72,6 +72,13 @@
     z-index: 10;
     vertical-align: middle;
     font-size: $base-font-size;
+    span{
+        display:inline-block;
+        line-height:100%;
+        vertical-align:middle;
+        padding-top:8px;
+        font-weight:bold;
+    }
     @include MQ(L) {
         position: absolute;
         margin: 0;
@@ -233,10 +240,14 @@ article.full-length {
             @include transition($base-transition);
             cursor: pointer;
             display: block;
+            border-radius:10px;
             float: right;
-            height: 100px;
+            height: 120px;
             width: 100px;
-            margin: -20px 0px 10px 10px;
+            margin: -40px 0px 10px 10px;
+            padding-top:10px;
+            background-color:darken($full-article-main-element-background-color,10%);
+
             svg {
                 fill: $video-player-play-button-color;
                 height: 100px;
