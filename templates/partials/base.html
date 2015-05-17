@@ -7,7 +7,7 @@
   <head>
     {# the icons.html should house all of your favicons for browsers, mobile, touch, Windows, etc. I'd recommend checking out http://realfavicongenerator.net/#}
     {% include "templates/partials/icons.html" %}
-    {# YOU CAN USE THE TYPOGRAPHY PARTIAL TO ADD FONTS FROM GOOGLE FONTS OR OTHER EXTERNAL RESOURCES (TYPEKIT, ETC) #}
+    {# YOU CAN USE THE TYPOGRAPHY PARTIAL TO ADD FONTS FROM GOOGLE FONTS OR OTHER EXTERNAL RESOURCES (e.g, TYPEKIT, ETC) #}
     {% block typography_extra %} 
     {% include "templates/partials/typography.html" %}
     {% endblock %}
@@ -16,7 +16,7 @@
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>{% block title %}{{getSetting('site_name')}}{% endblock %}</title>
-    <link rel="author" href="{{ url(item.author)|default('Ryan D Watters') }}"> {# Standard Metadata #}
+    <link rel="author" href="{{ url(item.author)|default('Ryan D Watters') }}">
     <meta name="description" content="{{ item.description|default(getSetting('site_description')) }}">
     <meta name="keywords" content="{% if item.tags%}{% for keyword in item.tags %}{{ keyword.name }}{% if not loop.last %}, {% endif %}{% endfor %}{% else %}{{getSetting('site_keywords')}}{% endif %}" />
     {# SOCIAL MEDIA - if you are looking for better ways to create social media links within an article page, I recommend checking out #} 
@@ -40,10 +40,11 @@
       <meta name="twitter:player:width" content="560">
       <meta name="twitter:player:height" content="315"> 
       {% endif %}
-    {#Swiftype - use settings depending on desired faceted search. See https://swiftype.com/documentation/meta_tags for meta tagging#}
-    <meta property="st:image" content="{% if item.image %}{{- item.image.url -}}{% else %}/static/images/site_logo.png{% endif %}">
-    <meta property="st:published_at" content="{{item.publish_date}}" />
-    <meta property="st:updated_at" content="{% if item.most_recent_update %}{{ item.most_recent_update }}{% else %}{{ item.last_updated }}{%endif%}" />
+    {#Swiftype - use settings depending on desired faceted search. See https://swiftype.com/documentation/meta_tags2 for meta tagging. !UPDATED 5/16/2015 to new styles! #}
+    <meta class='swiftype' name='title' data-type='string' content='{% block title %}{{getSetting('site_name')}}{% endblock %}' />
+    <meta class="swiftype" name="image" data-type='enum' content="{% if item.image %}{{- item.image.url -}}{% else %}/static/images/site_logo.png{% endif %}">
+    <meta class='swiftype' name='published_at' data-type='date' content="{{item.publish_date}}" />
+    <meta class='swiftype' name="updated_at" content="{% if item.most_recent_update %}{{ item.most_recent_update }}{% else %}{{ item.last_updated }}{%endif%}" />
     <meta class="swiftype" name="description" data-type="string" content="{{item.description|default(getSetting('site_description'))}}" />
     {% block crp_block %}
       <style>

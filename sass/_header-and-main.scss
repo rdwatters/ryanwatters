@@ -34,6 +34,7 @@
                 &:first-child {}
                 a {
                     text-decoration: none;
+                    border:none;
                     margin: 10px;
                     text-transform: $primary-navigation-text-transform;
                 }
@@ -163,6 +164,7 @@
 }
 
 .site-name {
+    @include transition($base-transition);
     display: block;
     position: fixed;
     line-height: $header-link-font-size * 1.5;
@@ -172,9 +174,23 @@
     color: $logo-color;
     z-index: 900;
     border-bottom: 1px solid $primary-brand;
+    a {
+        border:none;
+        &:hover{
+            border:none;
+        }
+    }
     @include MQ(L) {
         &.hide-header {
-            display: none;
+            font-weight:bold;
+            background-color:darken($header-background-color,10%);
+            border:none;
+            padding:{
+                top:5px;
+                bottom:5px;
+                right:10px;
+                left:10px;
+            }
         }
     }
 }

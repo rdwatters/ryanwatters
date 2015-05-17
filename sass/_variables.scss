@@ -80,6 +80,8 @@ $header-background-color:white;
 $accent-color:desaturate(#DD2922,20%);
 $accent-color-two:#cf7000;
 $white:#FBFAF5;
+//Sets the default anchor color (in the reset/normalize)
+$anchor-color:$primary-brand;
 $header-link-color:$base-font-color;
 $header-link-underline-color:$logo-color;
 $header-link-underline-thickness:2px;
@@ -89,11 +91,12 @@ $footer-background-color:$dark;
 $footer-font-color:white;
 $footer-svg-color:rgba(255,255,255,0.4);
 $footer-svg-color-hover:rgba(255,255,255,1);
-$body-background-color:#ffffff;
+$body-background-color:darken(#ffffff,15%);
 $main-content-background-color:$body-background-color;
 $full-article-main-element-background-color:white;
-//Sets the default anchor color (in the reset/normalize)
-$anchor-color:$primary-brand;
+$full-article-max-width:800px;
+$arrow-color:red;
+
 
 
 /************************************* SEARCH ********************************/
@@ -137,7 +140,7 @@ $home-about-rail-widget-section-underline: 1px solid #cccccc;
 $right-rail-widget-background-color:white;
 $right-rail-widget-section-underline: 1px solid #cccccc;
 
-//"Read more" button on homepage list view
+//"Read more" button on list view
 $read-more-font-color:white;
 $read-more-font-weight:300;
 $read-more-background-color:$primary-brand;
@@ -154,7 +157,7 @@ $category-text-transform:uppercase;
 
 
 /**************************************ARTICLE PAGES****************************************/
-$full-length-article-anchor-underline-color:lighten($primary-brand,40%);
+$article-anchor-underline-color:$primary-brand;
 $social-bar-vertical-width:50px;
 $border-radius-right-and-left-body-images:0;
 $right-and-left-body-images-border-radius:0;

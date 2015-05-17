@@ -22,27 +22,6 @@ $(document).ready(function() {
     $('#mobile-menu-toggle').on('click', function() {
         $('.header,.main,.footer,.search-wrapper,#mobile-menu-toggle').toggleClass('menu-open');
     });
-    window.onscroll = headerFadeOnScroll;
-    // window.addEventListener('scroll', stickySocialBar, false);
-    /*HEADER FADES IN AND OUT ON SCROLL*/
-    function headerFadeOnScroll() {
-        var theHeader = document.getElementsByTagName('header')[0],
-            theSiteName = document.querySelector('.site-name'),
-            headerHeight = parseInt(theHeader.clientHeight);
-        wScrollCurrent = window.pageYOffset | document.body.scrollTop;
-        wScrollDiff = wScrollBefore - wScrollCurrent;
-        if (wScrollCurrent <= headerHeight) {
-            theHeader.classList.remove('hide-header');
-            theSiteName.classList.remove('hide-header');
-        } else if (wScrollDiff > 0) {
-            theHeader.classList.remove('hide-header');
-            theSiteName.classList.remove('hide-header');
-        } else if (wScrollDiff < 0) {
-            theHeader.classList.add('hide-header');
-            theSiteName.classList.add('hide-header');
-        }
-        wScrollBefore = wScrollCurrent;
-    }
     $(function() {
         var shareButtonMobile = $('.share-button');
         if (!shareButtonMobile) {
@@ -55,7 +34,7 @@ $(document).ready(function() {
         }
     });
     $('.play-button').click(function() {
-        $('.full-length-article').toggleClass('film-playing');
+        $('.full-length').toggleClass('film-playing');
         var iframe = document.createElement('iframe');
         if ($(this).parent().attr('class') === 'video-player-youtube') {
             iframe.setAttribute('src', '//www.youtube.com/embed/' + $(this).parent().attr('data-youtubeid') + '?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0');
@@ -68,8 +47,9 @@ $(document).ready(function() {
         $(this).replaceWith(iframe);
     });
     $('.play-button-small').on('click', function() {
-        if ($('.full-length-article.film-playing').length === 0) {
-            $('.full-length-article').toggleClass('film-playing');
+        if ($('.full-length.film-playing').length === 0) {
+            $('.full-length').toggleClass('film-playing');
+            $('.play-button').remove();
         }
         var iframe = document.createElement('iframe'),
             thumbNail = $('.video-thumb'),

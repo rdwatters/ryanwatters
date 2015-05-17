@@ -16,67 +16,102 @@
     <link rel="prerender" href="{{ url(next) }}" />
  -->  {% endif %}
 {% endblock %}
-{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block title %}{{ item.title }}{% endblock %}
 {% block content %}
 {% set article = item %}
+
+
 {% if article.related_video %}
     {% set video = article.related_video %}
     {% set ss = video.streaming_service %}
-            {% if ss == "YouTube"%}
-                {% set videoId = video.video.original_url.split('v=')[1] %}
-                {% set streaming = "youtube" %}
-            {% elseif ss == "Vimeo" %}
-                {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
-                {% set streaming = "vimeo" %}
-            {% endif %}
-            <section class="article-video">        
-                <div class="video-player-{{streaming}}" data-{{-streaming-}}id="{{videoId}}">
-                        {% if video.thumbnail_override %}
-                                <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="1080" height="630">
-                        {% else %}
-                                <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315">
-                        {% endif %}
-                    <div class="play-button" role="button">
-                        <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-                        <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
-                    </div>
-                </div>
-                <div class="image-fade-block"></div>
-            </section>
+    {% set wVideo = "w-video" %}
+    {% if ss == "YouTube"%}
+        {% set videoId = video.video.original_url.split('v=')[1] %}
+        {% set streaming = "youtube" %}
+    {% elseif ss == "Vimeo" %}
+        {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
+        {% set streaming = "vimeo" %}
+    {% endif %}
+    <section class="article-video">        
+        <div class="video-player-{{streaming}}" data-{{-streaming-}}id="{{videoId}}">
+                {% if video.thumbnail_override %}
+                        <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="1080" height="630">
+                {% else %}
+                        <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315">
+                {% endif %}
+            <div class="play-button" role="button">
+                <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
+            </div>
+        </div>
+        <div class="image-fade-block"></div>
+    </section>
 {% else %}
-  <div class="article-main-image">
+  <section class="article-main-image">
     <img class="main-image" src="{{ item.image|imageCrop(1000, 500)}}" />
-    <div class="image-fade-block"></div>           
-  </div>
+    <span class="image-fade-block"></span>           
+  </section>
 {% endif %}
-<article class="full-length-article" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting">
-  <section class="social-media-icons-bar" id="social-media-icons-bar" data-swiftype-index="false">  
+<article class="full-length {{wVideo}}" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting">
+
+  {% if prev %}      
+      <a href="{{ url(prev) }}" role="button" class="previous-article"><!-- data-pjax -->
+          <section class="article-info">
+            <h5 class="previous">Previous Article</h5>
+            <span class="article-title">{{prev.title}}</span>
+            <span class="article-author"> by {{prev.author[0].full_name.first}} {{prev.author[0].full_name.last}}</span> 
+            <span class="publish_date">{{prev.publish_date|date('M d, Y')}}</span>
+          </section>
+            <svg version="1.0" id="left-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
+                 viewBox="0 0 18.6 27.9" enable-background="new 0 0 18.6 27.9" xml:space="preserve">
+              <g>
+                <polygon points="18.6,0 9.3,0 0,14 9.3,27.9 18.6,27.9 9.3,14  "/>
+              </g>
+            </svg>
+        </a>    
+  {% endif %}
+  {% if next %}
+      
+        <a href="{{ url(next) }}" role="button" class="next-article">
+            <svg version="1.1" id="right-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
+                 viewBox="60 -17.1 35.5 53.3" enable-background="new 60 -17.1 35.5 53.3" xml:space="preserve">
+              <g>
+                <polygon points="60,36.2 77.8,36.2 95.6,9.5 77.8,-17.1 60,-17.1 77.8,9.5  "/>
+              </g>
+            </svg>
+          <section class="article-info">
+            <h5 class="next">Next Article</h5>
+            <span class="article-title">{{next.title}}</span>
+            <span class="article-author"> by {{next.author[0].full_name.first}} {{next.author[0].full_name.last}}</span> 
+            <span class="publish-date">{{next.publish_date|date('M d, Y')}}</span> 
+          </section>
+        </a>
+      
+  {% endif %}
+  <aside class="social-media-icons-bar" id="social-media-icons-bar" data-swiftype-index="false">  
     <div class="social-buttons">
     {% include "templates/partials/socialmediaicons.html" %}
     </div>
       <a href="#" role="button" title="Share this article through social media." class="share-button"><div class="share"> SHARE</div></a>
-  </section>
+  </aside>
+  <h1>{{ item.title }}</h1> 
+  <h2 class="article-subtitle">{{ item.subtitle }}</h2>
   {% if item.most_recent_update %}
-    <time class="article-publish-date" itemprop="dateModified" datetime="{{ item.most_recent_update }}">
-        <div class="publish-date-updated"><strong class="updated"><small>UPDATED</small></strong> {{ item.most_recent_update|date('F d, Y') }} </div>
+      <time class="article-publish-date" itemprop="dateModified" datetime="{{ item.most_recent_update }}">
+        <span class="publish-date-updated"><strong class="updated"><small>UPDATED</small></strong> {{ item.most_recent_update|date('F d, Y') }} </span>
     </time>
   {% else %}
-    <time class="article-publish-date" itemprop="datePublished" datetime="{{ item.publish_date }}"> 
+      <time class="article-publish-date" itemprop="datePublished" datetime="{{ item.publish_date }}"> 
       <span class="publish-date">{{ item.publish_date|date('F d, Y') }}</span>
     </time>
-  {% endif %} 
-  {# BEGIN BODY COPY #}
-  <section class="article-information">
- 
-  <h1 class="article-title">{{ item.title }}</h1> 
-  <h2 class="article-subtitle">{{ item.subtitle }}</h2>
+  {% endif %}
     {% set articleLength = item.body.split(' ') %}
     {# You can change this number. Avg wpm in the States is roughly 250-300 #}
     {% set lengthInMinutes = Math.floor(articleLength.length/275) %}            
         <p class="article-metadata" itemprop="author" itemprop="accountablePerson">by 
           {% for relation in item.author %}
             <a href="{{ url(relation) }}">
-              <span class="author-name" itemprop="author">{{ relation.name }}</span>
+              <cite class="author-name" itemprop="author">{{ relation.name }}</cite>
             </a> &mdash;  
             {% if not loop.last %} & {% endif %}
           {% endfor %} posted in
@@ -108,10 +143,8 @@
           <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
         </div>
         {% endif %}
-      </section>       
-  <section class="body-content">
-  
-  {# BEGIN PAGE BODY MARKDOWN CONTENT #}
+  {# BODY CONTENT - Markdown or RTE #}       
+  <section class="body-content" data-swiftype-name="body" data-swiftype-type="text">
   {{ item.body|markdown }}
   </section>
   <ul class="article-tags" itemprop="keywords">
@@ -119,30 +152,11 @@
         <li class="article-tag"><a href="{{ url(relation) }}">{{ relation.name }}</a></li>
       {% endfor %}
   </ul>
-  <div class="all-articles" data-swiftype-index="false"><a href="{{ url('articles') }}"><strong>See all articles...</strong></a></div>
+  <div class="all-articles" data-swiftype-index="false">
+    <a href="{{ url('articles') }}"><strong>See all articles...</strong></a>
+  </div>
 </article>
-<section class="previous-and-next-article">
-  {% if prev %}
-      <div class="previous-article">
-        <a href="{{ url(prev) }}"><!-- data-pjax -->
-          <h5 class="previous">Previous Article</h5>
-          <div class="article-title">{{prev.title}}</div>
-          <div class="article-author"> by {{prev.author[0].full_name.first}} {{prev.author[0].full_name.last}}</div> 
-          <div class="publish_date">{{prev.publish_date|date('M d, Y')}}</div> 
-        </a>
-      </div>
-  {% endif %}
-  {% if next %}
-      <div class="next-article">
-        <a href="{{ url(next) }}"><!-- data-pjax -->
-          <h5 class="next">Next Article</h5>
-          <div class="article-title">{{next.title}}</div>
-          <div class="article-author"> by {{next.author[0].full_name.first}} {{next.author[0].full_name.last}}</div> 
-          <div class="publish-date">{{next.publish_date|date('M d, Y')}}</div>
-        </a>
-      </div>
-  {% endif %}
-</section>
+
 
 {# DISQUS COMMENTS #}
 {% if article.allow_comments && cms.additionalglobals.add_disqus_comments %}
@@ -164,5 +178,28 @@
 
 {% block scripts_extra %}
 {% parent %}
+<script>
+ window.onscroll = headerFadeOnScroll;
+    // window.addEventListener('scroll', stickySocialBar, false);
+    /*HEADER FADES IN AND OUT ON SCROLL*/
+    function headerFadeOnScroll() {
+        var theHeader = document.getElementsByTagName('header')[0],
+            theSiteName = document.querySelector('.site-name'),
+            headerHeight = parseInt(theHeader.clientHeight);
+        wScrollCurrent = window.pageYOffset | document.body.scrollTop;
+        wScrollDiff = wScrollBefore - wScrollCurrent;
+        if (wScrollCurrent <= headerHeight) {
+            theHeader.classList.remove('hide-header');
+            theSiteName.classList.remove('hide-header');
+        } else if (wScrollDiff > 0) {
+            theHeader.classList.remove('hide-header');
+            theSiteName.classList.remove('hide-header');
+        } else if (wScrollDiff < 0) {
+            theHeader.classList.add('hide-header');
+            theSiteName.classList.add('hide-header');
+        }
+        wScrollBefore = wScrollCurrent;
+    }
+</script>
 {% endblock %}
 
