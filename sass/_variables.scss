@@ -71,7 +71,6 @@ $my-logo-location:url('/static/images/rw-logo.svg');
 //MY COLORS
 $primary-brand:#203253;
 $secondary-brand:#39BBE7;
-$logo-color:$primary-brand;
 $logo-font-color:white;
 $dark:#333333;
 $base-font-color:#2d3b44;
@@ -84,7 +83,7 @@ $white:#FBFAF5;
 //Sets the default anchor color (in the reset/normalize)
 $anchor-color:$primary-brand;
 $header-link-color:$base-font-color;
-$header-link-underline-color:$logo-color;
+$header-link-underline-color:$primary-brand;
 $header-link-underline-thickness:2px;
 $darker-white:darken($white,20%);
 $mobile-header-background-color:$header-background-color;
@@ -128,8 +127,6 @@ $article-social-buttons-background-desktop:white;
 //publish date on the article list/summary view
 $publish-date-background-color:$base-font-color;
 $publish-date-font-color:$base-font-color-inverse;
-$publish-date-background-color-large:#333333;
-$publish-date-font-color-large:white;
 $social-icons-background-color:transparent;
 $social-buttons-border:1px solid #cccccc;
 $twitter-blue:#00aced;
@@ -139,7 +136,7 @@ $most-recent-tweet-border-radius:0px;
 
 //List information block -> this is to to the right of the article image on XL screens and under the article image/video on everything else
 $home-article-information-background-color:#ffffff;
-$home-article-description-font-color: rgba(0,0,0,0.54);
+$home-article-description-font-color: lighten($base-font-color,10%);
 
 //This is for the right rail/widget (right on M+ screens; bottom of list on mobile )
 $home-about-rail-widget-background-color:white;
@@ -148,12 +145,12 @@ $right-rail-widget-background-color:white;
 $right-rail-widget-section-underline: 1px solid #cccccc;
 
 //"Read more" button on list view
-$read-more-font-color:white;
+$read-more-font-color:$base-font-color-inverse;
 $read-more-font-weight:300;
 $read-more-background-color:$accent-color;
 $read-more-border:1px solid $read-more-background-color;
 $read-more-font-color-hover:$base-font-color;
-$read-more-background-color-hover:white;
+$read-more-background-color-hover:$base-font-color-inverse;
 
 $read-more-button-width:140px;
 $read-more-button-height:$base-font-size * 1.5;
@@ -215,7 +212,7 @@ $mobile-menu-width:100%;
 $mobile-icon-height: 20px;
 $mobile-icon-width: 30px;
 $mobile-icon-layer-height: 4px;
-$mobile-icon-color: $logo-color;
+$mobile-icon-color: $primary-brand;
 $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES

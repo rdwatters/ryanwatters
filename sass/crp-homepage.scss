@@ -285,11 +285,12 @@
     .month,
     .year {
         font-size: $base-font-size;
-        color: lighten($base-font-color, 25%);
+        color: $publish-date-font-color;
         @include align-self(flex-end);
     }
     .day {
         font-size: 3em;
+        color: $publish-date-font-color;
     }
 }
 
@@ -315,6 +316,7 @@
     width: 100%;
     text-align: left;
     margin-bottom:5px;
+    color:$base-font-color;
     @include MQ(M) {
         font-size: $base-font-size * 1.3;
         a {
@@ -400,6 +402,7 @@
     display: block;
     clear: both;
     margin-bottom: 20px;
+    color:$base-font-color;
 }
 
 .article-author-name {
