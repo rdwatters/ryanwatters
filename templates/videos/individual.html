@@ -39,29 +39,17 @@
         {{ item.streaming_service }}
       </li>
       <li>
-        <strong>Thumbnail Override: </strong>
-        {# You can pull out a lot more information from the image property. Info here: #}
-        {# http://www.webhook.com/docs/widget-template-reference/#image #}
-        <img src="{{ item.thumbnail_override|imageSize(200, 200) }}" />
-      </li>
-      <li>
         <strong>Video Title: </strong>
         {{ item.video_title }}
-      </li>
-      <li>
-        <strong>Video description: </strong>
-        {{ item.video_description }}
       </li>
       <li>
         <strong>Video: </strong>
         {# Embed.ly content usually comes with more data. Info here: #}{# http://www.webhook.com/docs/widget-template-reference/#embedly #}{{ item.video.html|safe  }}      </li>
       <li>
-        <strong>Channel: </strong>
-        {{ item.channel }}
-      </li>
-      <li>
-        <strong>Channel Name: </strong>
-        {{ item.channel_name }}
+        <strong>Thumbnail Override: </strong>
+        {# You can pull out a lot more information from the image property. Info here: #}
+        {# http://www.webhook.com/docs/widget-template-reference/#image #}
+        <img src="{{ item.thumbnail_override|imageSize(200, 200) }}" />
       </li>
       <li>
         <strong>Tags: </strong>
@@ -78,6 +66,10 @@
           {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
           <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
         {% endfor %}
+      </li>
+      <li>
+        <strong>Video description: </strong>
+        {{ item.video_description }}
       </li>
       <li>
         <strong>Preview URL: </strong>

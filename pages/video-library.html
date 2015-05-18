@@ -8,7 +8,7 @@
 {% block content %}
 {% set library = cms.videolibrary %}
 {% set videolibrary = library.list %}
-{% set videos = paginate(videolibrary, 5) %}
+{% set videolibrary = paginate(videolibrary, 4) %}
 
 <article class="video-library">
     <h1>{{ library.name }}</h1>
@@ -16,29 +16,26 @@
     {{ library.introduction|markdown }}
     </section>
 <ul class="video-list js-paginate" itemscope itemtype="http://schema.org/Movie" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
-    {% for video in videos %}
-        {% set video = video.video %}
-        {% set ss = video.streaming_service %}
+    {% for row in videolibrary %}
+        {% set ss = row.video.streaming_service %}
         {% if ss == 'YouTube' %}
             {% set streaming = 'youtube' %}
-            {% set videoUrl = video.video.original_url %}
+            {% set videoUrl = row.video.video.original_url %}
         {% elseif ss == 'Vimeo' %}
             {% set streaming = 'vimeo' %}
-            {% set videoUrl = video.video.original_url %}
+            {% set videoUrl = row.video.video.original_url %}
         {% endif %}
-        {% if loop.first %}
-            <li class="video featured-video">
-            <span class="featured">Featured</span>
-        {% else %}
             <li class="video">
-        {% endif %}
                     <a class="swipebox-video" rel="{{streaming}}" href="{{videoUrl}}">
                         <div class="video-head">
-                        {% if video.thumbnail_override %}
-                            <img class="video-library-thumb" src="{{video.thumbnail_override|imageCrop(560,315)}}" alt="{{row.video.video_title}}"> 
-                            {% else %}
-                            <img class="video-library-thumb" src="{{video.thumbnail_url}}" alt="{{video.video_title}}"> 
-                            {% endif %}
+                        {% if row.featured_video %}
+                        <span class="featured">Featured</span>
+                        {% endif %}
+                        {% if row.video.thumbnail_override %}
+                            <img class="video-library-thumb" src="{{row.video.thumbnail_override|imageCrop(560,315)}}" alt="Thumbnail for the video: {{row.video.video_title}}"> 
+                        {% else %}
+                            <img class="video-library-thumb" src="{{row.video.video.thumbnail_url}}" alt="Thumbnail for the video: {{row.video.video_title}}"> 
+                        {% endif %}
                             
                                 <div class="video-library-play-button" role="button">
                                     <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -48,18 +45,26 @@
                         </div>
                     </a>
                 <section class="video-information">
-                    <h3 class="video-title">{{video.video_title}}</h3>
-                    <p itemprop="about">{{video.video_description}}</p>
+                    <h3 class="video-title">{{row.video.video_title}}</h3>
+                    <div class="channel">
+                        <div class="{{streaming}}-icon"></div> 
+                        <a target="_blank" href="{{video.video.author_url}}">
+                        {{row.video.video.author_name}}</a>                        
+                    </div>
+                    {% if row.video.video_description %}
+                        <p itemprop="about">{{row.video.video_description}}</p>
+                    {% else %}
+                        <p itemprop="about">{{row.video.video.description }}</p>
+                    {% endif %}
+                    
                 </section>
             </li>
     {% endfor %} 
 </ul>
 </article>
-<nav role="menu" aria-label="Pagination" aria-hidden="true" class="video-pagination">
+<nav role="menu" aria-label="Pagination" aria-hidden="true" class="pagination">
         {% include "templates/partials/paginator.html" %}
-</nav>
-<div class="give-space">Hello</div>
-    
+</nav>    
 {% endblock %}
 {% block scripts_extra %}
 {% parent %}

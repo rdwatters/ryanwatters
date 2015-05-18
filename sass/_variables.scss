@@ -75,6 +75,7 @@ $logo-color:$primary-brand;
 $logo-font-color:white;
 $dark:#333333;
 $base-font-color:#2d3b44;
+$base-font-color-inverse:white;
 $light-font-color:#4c6270;
 $header-background-color:white;
 $accent-color:desaturate(#DD2922,20%);
@@ -98,6 +99,11 @@ $full-article-max-width:800px;
 $arrow-color:red;
 
 
+/*************************************VIDEO***********************************/
+$featured-font-color:$base-font-color-inverse;
+$featured-background-color: $accent-color;
+
+
 
 /************************************* SEARCH ********************************/
 //mobile search
@@ -105,12 +111,12 @@ $search-input-y-offset-mobile:200px;
 $search-overlay-color:$header-background-color;
 //tablet & desktop search
 $search-overlay-transparency:1.0;
-$category-button-background-color:#333333;
+$category-button-background-color:$base-font-color;
 $category-button-background-color-hover:$accent-color;
-$home-tags-heading-color:#333333;
-$tags-font-color:darken(white,20%);
+$home-tags-heading-color:$base-font-color;
+$tags-font-color:darken($base-font-color-inverse,20%);
 $tags-font-color-hover:white;
-$tags-background-color:#333333;
+$tags-background-color:$base-font-color;
 $tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
 
@@ -120,7 +126,8 @@ $social-buttons-color:$base-font-color;
 $article-social-buttons-background-mobile:#cccccc;
 $article-social-buttons-background-desktop:white;
 //publish date on the article list/summary view
-$publish-date-background-color:white;
+$publish-date-background-color:$base-font-color;
+$publish-date-font-color:$base-font-color-inverse;
 $publish-date-background-color-large:#333333;
 $publish-date-font-color-large:white;
 $social-icons-background-color:transparent;
@@ -143,10 +150,11 @@ $right-rail-widget-section-underline: 1px solid #cccccc;
 //"Read more" button on list view
 $read-more-font-color:white;
 $read-more-font-weight:300;
-$read-more-background-color:$primary-brand;
+$read-more-background-color:$accent-color;
+$read-more-border:1px solid $read-more-background-color;
 $read-more-font-color-hover:$base-font-color;
 $read-more-background-color-hover:white;
-$read-more-border:1px solid $primary-brand;
+
 $read-more-button-width:140px;
 $read-more-button-height:$base-font-size * 1.5;
 $read-more-button-font-size:$base-font-size;
@@ -169,6 +177,8 @@ $read-time-color:$primary-brand;
 $article-subtitle-font: 100 #{$base-font-size*1.8}/#{150%} $heading-font-family;
 $article-metadata-font-weight:100;
 $article-previous-date-width:50px;
+$mobile-article-share-button-background-color:$primary-brand;
+$mobile-article-share-button-font-color:$base-font-color-inverse; //white
 
 
 
@@ -236,7 +246,12 @@ $video-player-play-button-opacity-hover:1;
 $video-player-play-button-left-padding:(100% - $video-player-play-button-size) / 2;
 $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1.7777;
 //You can turn off the hover animation for the play button here by setting the value to false
-// $video-player-play-button-hover-animation: true;
+
+/******************************VIDEO LIBRARY**********************************/
+$video-tile-background-color:white;
+$video-library-body-background-color:$body-background-color;
+$video-tile-border:none;
+$video-library-overlay-background-color:$body-background-color;
 
 
 /******************************CMS STYLE OVERRIDES****************************/

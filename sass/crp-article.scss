@@ -396,7 +396,7 @@ article.full-length {
         @include align-items(center);
         background-color: $article-social-buttons-background-mobile;
         @include MQ(L) {
-            background-color: white;
+            background-color: $article-social-buttons-background-desktop;
         }
         padding-left: 12.5px;
         padding-right: 12.5px;
@@ -452,8 +452,8 @@ article.full-length {
             font-size: 16px;
             word-wrap: break-word;
             text-align: center;
-            background-color: $primary-brand;
-            color: white;
+            background-color: $mobile-article-share-button-background-color;
+            color: $mobile-article-share-button-font-color;
             opacity: 0.8;
             &.icon-bar-open {
                 opacity: 1;

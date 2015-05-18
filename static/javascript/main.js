@@ -62,8 +62,10 @@ $(document).ready(function() {
     });
     $('.play-button-small').on('click', function() {
         if ($('.full-length.film-playing').length === 0) {
+            var headerHeight = $('.header').height();
             $('.full-length').toggleClass('film-playing');
             $('.play-button').remove();
+            window.scrollTo(0, 0);
         }
         var iframe = document.createElement('iframe'),
             thumbNail = $('.video-thumb'),
@@ -83,16 +85,19 @@ $(document).ready(function() {
 
 
 });
-
+/*Article-level navigation for full-length articles with higher word count and at least THREE H3 headings on the page.*/
+//Pull  
 $(function() {
-    if ($('aside.article-navigation > ul') && !mobileOS) {
+    if (($('aside.article-navigation > ul') && !mobileOS) && $('article h3').length >= 3) {
         $('article h3').each(function() {
             var headingId = $(this).attr('id'),
                 headingText = $(this).text(),
                 listItem = '<li><a href="#' + headingId + '\">' + headingText + '</a></li>';
             $('aside.article-navigation > ul').append(listItem);
-            console.log(listItem);
+            
         });
+    }else{
+        console.log('This page did not meet  the criteria for secondary, article-level navigation');
     }
     $('a[href*=#]:not([href=#])').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -108,21 +113,30 @@ $(function() {
         }
     });
 });
-
+/**
+ * Infinite Scroll
+ * @param  {[type]} ) {               var mobileOS - basic browser sniff
+ * @return {mobileOS}   tests userAgent
+ */
 $(document).ready(function() {
     var mobileOS = true;
-    //MINI BROWSER SNIFF (ONLY IOS AND ANDROID)            
+    //Regex to test user device            
     if (navigator.userAgent.match(/iphone/gi) || navigator.userAgent.match(/ipad/gi) || navigator.userAgent.match(/android/gi)) {
         mobileOS = true;
     } else {
         mobileOS = false;
     }
 
+
+
     var hasContainer = $('.js-paginate').length > 0;
+    if(!mobileOS && hasContainer){
+        $('.pagination').hide();
+    }
     //Check if there is no paginate container OR if user is accessing via mobile OS.
     if (!hasContainer || mobileOS) {
         //If on mobile, show pagination buttons and return the function to prevent infinite-scroll
-        $('.article-pagination').show().attr('aria-hidden', false);
+        $('.pagination').show().attr('aria-hidden', false);
         $(window).unbind('scroll');
         return;
     }

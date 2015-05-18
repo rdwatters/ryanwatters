@@ -6,66 +6,173 @@
 @import 'menu-icon';
 @import 'header-and-main';
 @import 'swipebox.scss';
+@import 'pagination';
 //END BASE CRP
 /*BEGIN VIDEO LIBRARY STYLES*/
 
 .main {
-    background-color: white;
+    background-color: $video-library-body-background-color;
+    color:$base-font-color;
 }
 
-article {
+article.video-library {
     margin-bottom: $footer-height;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    @include MQ(XL) {
+        width: 100%;
+        max-width: $XL;
+    }
+    h1 {
+        background: transparent;
+        display: block;
+        clear: both;
+        font: $article-title-font;
+        padding-top: $base-font-size;
+        margin-top: 8px;
+        margin-bottom: 5px;
+        @include MQ(M) {
+            margin-top: 0px;
+            font-size: $base-font-size * 3.2;
+            padding-top: $base-font-size * 2;
+        }
+    }
 }
 
 ul.video-list {
     @include display(flex);
     @include flex-wrap(wrap);
-    @include justify-content(space-around);
+    opacity: 0.9;
 }
 
 li.video {
-    background-color: $body-background-color;
+    position: relative;
+    float: left;
+    width: 100%;
+    border: $video-tile-border;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    .featured {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding:5px;
+        background-color:$accent-color;
+        color:$featured-font-color;
+        font-weight:bold;
+    }
+    margin-top: 20px;
+    background-color:$video-tile-background-color;
     @include display(flex);
     @include flex-direction(column);
     @include align-items(flex-start);
-    width: 100%;
     @include MQ(M) {
-        width: 45%;
+        width: 47.5%;
+        margin-right: 5%;
+        &:nth-child(2n) {
+            margin-right: 0;
+        }
     }
     @include MQ(L) {
+        width: 30%;
+        &:nth-child(2n) {
+            margin-right: 5%;
+        }
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+    @include MQ(XL) {
         width: 22%;
+        margin-right: 4%;
+        &:nth-child(2n) {
+            margin-right: 4%;
+        }
+        &:nth-child(3n) {
+            margin-right: 4%;
+        }
+        &:nth-child(4n) {
+            margin-right: 0;
+        }
     }
-    h3.video-title {
-        @include display(flex);
-    }
-    p{
-    		// @include transform(translateY(-140%));
-    }
-}
-
-.video-head{
-	position:relative;
-	width:100%;
-	img{
-		width:100%;
-	}
-}
-
-.video-library-play-button {
-    width: 30%;
-    margin-right: auto;
-    margin-left: auto;
-   position:absolute;
-   top:20%;
-   left:35%;
-    svg {
-        max-width: 100px;
-        fill: $accent-color;
+    .video-information {
+        position: relative;
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        h3 {
+            text-align: center;
+        }
+        p {
+            margin: 0px auto $base-font-size auto;
+            &:last-child {
+                margin-bottom: 25px;
+            }
+        }
     }
 }
 
-.featured {
-    position: absolute;
-    top: 0;
-    left: 0;
+.channel {
+    @include align-self(flex-end);
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: $base-font-size * 1.5;
+    a {
+        @include transition($base-transition);
+        font-weight: bold;
+        vertical-align: middle;
+        display: inline-block;
+        border-bottom: 1px dashed $article-anchor-underline-color;
+        &:hover {
+            border-bottom: 1px solid $article-anchor-underline-color;
+        }
+    }
+}
+
+.youtube-icon,
+.vimeo-icon {
+    display: inline-block;
+    height: $base-font-size;
+    width: $base-font-size;
+    line-height: $base-font-size * 1.5;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.vimeo-icon {
+    background-image: url('/static/images/youtube.svg');
+}
+
+.youtube-icon {
+    background-image: url('/static/images/vimeo.svg');
+}
+
+.video-head {
+    position: relative;
+    width: 100%;
+    img {
+        width: 100%;
+    }
+    .video-library-play-button {
+        width: 30%;
+        margin-right: auto;
+        margin-left: auto;
+        position: absolute;
+        top: 23%;
+        left: 33%;
+        svg {
+            @include transition(.4s);
+            fill: $video-player-play-button-color;
+            opacity: $video-player-play-button-opacity;
+            &:hover {
+                fill: $video-player-play-button-color-hover;
+                opacity: $video-player-play-button-opacity-hover;
+            }
+        }
+    }
 }

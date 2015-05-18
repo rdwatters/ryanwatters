@@ -59,7 +59,6 @@
         @include display(flex);
         height: auto;
         padding: 0;
-        background-color: #333333;
     }
     .home-article-video,
     .home-article-image {
@@ -108,9 +107,9 @@
             @include align-self(flex-end);
             @include order(3);
             height: $base-font-size *2;
-            background-color: $publish-date-background-color-large;
+            background-color: $publish-date-background-color;
             position: relative;
-            color: $publish-date-font-color-large;
+            color: $publish-date-font-color;
             vertical-align: auto;
             width: 100%;
             padding: 0px;
@@ -123,7 +122,7 @@
                 margin-right: 5px;
                 font-size: $base-font-size;
                 vertical-align: middle;
-                color: $publish-date-font-color-large;
+                color: $publish-date-font-color;
                 font-family: $publish-date-font-family-large-screen;
                 @include align-self(center);
             }
@@ -190,7 +189,7 @@
     position: absolute;
     top: 0;
     left: 35px;
-    color: white;
+    color: $base-font-color-inverse;
     font-size: $base-font-size;
     line-height: 28px;
     border: 3px solid $body-background-color;
@@ -459,7 +458,7 @@
     width: 90%;
     margin-right: auto;
     margin-left: auto;
-    background-color: white;
+    background-color: $right-rail-widget-background-color;
     @include MQ(MMAX) {
         margin-bottom: $footer-height;
         -webkit-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);

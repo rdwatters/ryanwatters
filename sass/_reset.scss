@@ -1,20 +1,121 @@
-html {-webkit-text-size-adjust: 100%;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;box-sizing: border-box;height: 100%;margin: 0;padding: 0;}
-body {font-size: $base-font-size;min-height: 100%;width: 100%;z-index: 0;margin: 0;padding: 0;overflow-x: hidden;font-family: $body-font-family;background-color: $body-background-color;position: relative;}
-*,*:before,*:after {box-sizing: inherit;}
-h1,h2,h3,h4,p,blockquote,figure,ol,ul {margin: 0;padding: 0;list-style: none outside none;}
-li,article,aside,footer,header,hgroup,main,nav,section,div {display: block;padding:0;margin:0;}
-h1,h2,h3,h4 {font-family: $heading-font-family;}
-h1 {font-size: $heading-one-font-size;}
-h2 {font-size: $heading-two-font-size;}
-h3{font-size: $heading-three-font-size;}
-h4{font-size: $heading-four-font-size;}
-p{line-height: $base-font-size * 1.5;}
-a {color:$anchor-color;text-decoration: none;color: inherit;-webkit-transition: .3s;-moz-transition: .3s;transition: .3s;}
-img {max-width: 100%;height: auto;border: 0;}
-svg:not(:root){overflow:hidden;}
-hr{height:0;}
-button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0;}
-textarea {overflow: auto;}
-cite{font-style: normal;}
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
+body {
+    font-size: $base-font-size;
+    min-height: 100%;
+    width: 100%;
+    z-index: 0;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: $body-font-family;
+    background-color: $body-background-color;
+    position: relative;
+}
 
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+blockquote,
+figure,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none outside none;
+}
+
+li,
+article,
+aside,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+div {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: $heading-font-family;
+}
+
+h1 {
+    font-size: $heading-one-font-size;
+}
+
+h2 {
+    font-size: $heading-two-font-size;
+}
+
+h3 {
+    font-size: $heading-three-font-size;
+}
+
+h4 {
+    font-size: $heading-four-font-size;
+}
+
+p {
+    line-height: $base-font-size * 1.5;
+}
+
+a {
+    color: $anchor-color;
+    text-decoration: none;
+    color: inherit;
+    -webkit-transition: .3s;
+    -moz-transition: .3s;
+    transition: .3s;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+hr {
+    height: 0;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+}
+
+cite {
+    font-style: normal;
+}
