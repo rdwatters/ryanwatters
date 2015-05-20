@@ -134,8 +134,11 @@
 #search-results,
 .st-search-container {
     z-index: 9999;
-    overflow-y: scroll;
+    overflow-y: auto!important;
+    position:relative;
+    display:block;
     color: $base-font-color;
+    height:auto;
     .st-ui-type-detail-bold {
         font-weight: 700!important;
     }

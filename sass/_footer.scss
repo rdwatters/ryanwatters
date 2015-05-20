@@ -11,6 +11,7 @@
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
+    opacity:$footer-opacity;
     background-color: $footer-background-color;
     color: $footer-font-color;
     @include transition(.4s);

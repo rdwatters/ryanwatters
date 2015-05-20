@@ -47,9 +47,6 @@
     <meta class="swiftype" name="description" data-type="string" content="{{item.description|default(getSetting('site_description'))}}" />
     {#This is the block of CSS embedded into the page head for improved PageSpeed and critical render path#}
     {% block crp_block %}
-      <style>
-          {% include "templates/partials/crp-homepage.html" %}
-      </style>
     {% endblock %}     
     {# Useful block for loading outside scripts in other pages. #}
     {% block head_extra %}

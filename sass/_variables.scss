@@ -69,32 +69,37 @@ $publish-date-font-family-large-screen:$body-font-family;
 $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
-$primary-brand:#203253;
+$primary-brand:#0F222E;
 $secondary-brand:#39BBE7;
 $logo-font-color:white;
 $dark:#222222;
 $base-font-color:#2d3b44;
-$base-font-color-inverse:white;
+$base-font-color-inverse:invert($base-font-color);
 $light-font-color:#4c6270;
-$header-background-color:white;
-$accent-color:desaturate(#DD2922,20%);
+$accent-color:lighten(#66101F,20%);
 $accent-color-two:#cf7000;
 $white:#FBFAF5;
 //Sets the default anchor color (in the reset/normalize)
 $anchor-color:$primary-brand;
-$header-link-color:$base-font-color;
-$header-link-underline-color:$primary-brand;
+$header-background-color:$dark;
+$header-mobile-background-color:$header-background-color;
+$header-link-color:white;
+$header-link-underline-color:white;
 $header-link-underline-thickness:2px;
-$darker-white:darken($white,20%);
-$mobile-header-background-color:$header-background-color;
+$header-site-name-font-color:white;
+$header-opacity:1;
+
+$body-background-color:lighten(#b7c6cb,10%);
+$main-content-background-color:$body-background-color;
+
 $footer-background-color:$dark;
 $footer-font-color:white;
 $footer-svg-color:rgba(255,255,255,0.4);
 $footer-svg-color-hover:rgba(255,255,255,1);
-$body-background-color:darken(#ffffff,15%);
-$main-content-background-color:$body-background-color;
-$full-article-main-element-background-color:white;
-$full-article-max-width:800px;
+$footer-opacity:$header-opacity;
+
+
+
 $arrow-color:red;
 
 /*************************************VIDEO***********************************/
@@ -124,7 +129,7 @@ $tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
 
 /***************************** SOCIAL MEDIA ************************************************/
-//icons are inlined svg xml so can be styled directly 
+//icons are inlined svg xml and can therefore be styled directly 
 $social-buttons-color:$base-font-color;
 $article-social-buttons-background-mobile:#cccccc;
 $article-social-buttons-background-desktop:white;
@@ -149,13 +154,12 @@ $right-rail-widget-background-color:white;
 $right-rail-widget-section-underline: 1px solid #cccccc;
 
 //"Read more" button on list view
-$read-more-font-color:$base-font-color-inverse;
-$read-more-font-weight:300;
-$read-more-background-color:$accent-color;
-$read-more-border:1px solid $read-more-background-color;
+$read-more-font-color:$accent-color;
 $read-more-font-color-hover:$base-font-color;
+$read-more-font-weight:700;
+$read-more-background-color:transparent;
+$read-more-border:0px solid $read-more-background-color;
 $read-more-background-color-hover:$base-font-color-inverse;
-
 $read-more-button-width:140px;
 $read-more-button-height:$base-font-size * 1.5;
 $read-more-button-font-size:$base-font-size;
@@ -166,6 +170,8 @@ $category-text-transform:uppercase;
 
 
 /**************************************ARTICLE PAGES****************************************/
+$full-article-main-element-background-color:white;
+$full-article-max-width:800px;
 $article-anchor-underline-color:$primary-brand;
 $social-bar-vertical-width:50px;
 $border-radius-right-and-left-body-images:0;
@@ -186,10 +192,6 @@ $mobile-article-share-button-font-color:$base-font-color-inverse; //white
 
 //You can style the miniature twitter logo with a different color; this is currently set to Twitter blue
 
-
-//OPACITY
-$header-opacity:0.9;
-$footer-opacity:$header-opacity;
 
 //SIZES && SHAPES
 $site-logo-size:32px;
@@ -217,6 +219,7 @@ $mobile-icon-height: 20px;
 $mobile-icon-width: 30px;
 $mobile-icon-layer-height: 4px;
 $mobile-icon-color: $primary-brand;
+$header-mobile-toggle-menu-icon-color:white;
 $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES
@@ -250,10 +253,11 @@ $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1
 
 /******************************VIDEO LIBRARY**********************************/
 $video-tile-background-color:#ffffff;
-$video-library-body-background-color:#6D8A96;
-$video-library-list-background-color:#6D8A96;//just the list of videos in the center
+$video-library-body-background-color:$body-background-color;
+$video-library-list-background-color:$body-background-color;//just the list of videos in the center
 $video-tile-border:none;
 $video-library-overlay-background-color:$body-background-color;
+$video-library-full-width-header-background-color:#2D3B44;
 
 
 /******************************CMS STYLE OVERRIDES****************************/

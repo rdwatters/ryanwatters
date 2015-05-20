@@ -1,5 +1,10 @@
 {% extends "templates/partials/base.html" %}
 {% block title %}{% parent %} - Articles{% endblock %}
+{% block crp_block %}
+      <style>
+          {% include "templates/partials/crp-homepage.html" %}
+      </style>
+{% endblock %}
 
 {% block content %}
   {% set data = cms.articles %}

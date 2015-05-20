@@ -20,7 +20,7 @@
   width: $mobile-icon-width;
   height: $mobile-icon-layer-height; 
   margin-top: $mobile-icon-layer-height * 2;
-  background: $mobile-icon-color;
+  background: $header-mobile-toggle-menu-icon-color;
   -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   
@@ -31,7 +31,7 @@
     z-index: -1;
     width: $mobile-icon-width; 
     height: $mobile-icon-layer-height; 
-    background: $mobile-icon-color;
+    background: $header-mobile-toggle-menu-icon-color;
     -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out; 
   }

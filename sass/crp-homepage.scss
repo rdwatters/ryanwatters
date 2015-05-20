@@ -456,7 +456,6 @@
 }
 
 .right-rail-widget {
-    display: block;
     clear: both;
     width: 90%;
     margin-right: auto;
@@ -470,6 +469,7 @@
     }
     @include display(flex);
     @include flex-direction(column);
+    overflow:auto;
     @include MQ(M) {
         overflow-y: scroll;
         position: fixed;

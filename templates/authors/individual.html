@@ -11,6 +11,11 @@
 {% extends "templates/partials/base.html" %}
 {# This sets our page <title>. It will append this authors's name to the site title defined in base.html #}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block crp_block %}
+      <style>
+          {% include "templates/partials/crp-author.html" %}
+      </style>
+{% endblock %}
 {% block content %}
   <p><a href="{{ url('authors') }}">View a list of all authors</a></p>
   <h1>{{ item.name }}</h1>

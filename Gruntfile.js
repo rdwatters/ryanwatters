@@ -47,6 +47,12 @@ module.exports = function(grunt) {
                         src: ['crp-video-library.scss'],
                         dest: 'templates/partials',
                         ext: '.html'
+                    },{
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['crp-author.scss'],
+                        dest: 'templates/partials',
+                        ext: '.html'
                     }
                 ]
             }

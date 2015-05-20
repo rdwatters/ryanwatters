@@ -20,7 +20,7 @@
     width: 100%;
     width: 100vw;
     height:100%;
-    background-color:$dark;
+    background-color:$video-library-full-width-header-background-color;
     color:$base-font-color-inverse;
     padding-top:$header-height;
     margin-top:0px;
@@ -116,19 +116,19 @@ li.video {
             margin-right: 0;
         }
     }
-    // @include MQ(XL) {
-    //     width: 22%;
-    //     margin-right: 4%;
-    //     &:nth-child(2n) {
-    //         margin-right: 4%;
-    //     }
-    //     &:nth-child(3n) {
-    //         margin-right: 4%;
-    //     }
-    //     &:nth-child(4n) {
-    //         margin-right: 0;
-    //     }
-    // }
+    @include MQ(HUGE) {
+        width: 22%;
+        margin-right: 4%;
+        &:nth-child(2n) {
+            margin-right: 4%;
+        }
+        &:nth-child(3n) {
+            margin-right: 4%;
+        }
+        &:nth-child(4n) {
+            margin-right: 0;
+        }
+    }
     .video-information {
         position: relative;
         width: 90%;

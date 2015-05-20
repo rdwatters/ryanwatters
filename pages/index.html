@@ -1,6 +1,11 @@
 {% extends "templates/partials/base.html" %} 
 {% block title %}{% parent %} - Home{% endblock %} 
-{% block content %} 
+{% block content %}
+{% block crp_block %}
+      <style>
+          {% include "templates/partials/crp-homepage.html" %}
+      </style>
+{% endblock %} 
 {% set articles = cms.articles|sort('publish_date', true) %}
 {% set articles = paginate(articles, 4) %}
 {% set authors = cms.authors %}
