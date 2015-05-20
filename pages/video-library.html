@@ -9,13 +9,14 @@
 {% set library = cms.videolibrary %}
 {% set videolibrary = library.list %}
 {% set videolibrary = paginate(videolibrary, 4) %}
-
-<article class="video-library">
-    <h1>{{ library.name }}</h1>
-    <section class="video-library-introduction">
-    {{ library.introduction|markdown }}
+<section class="video-library-information">
+    <section class="introduction">
+        <h1>{{ library.name }}</h1>
+        <section class="video-library-description">{{ library.introduction|markdown }}</section>
     </section>
-<ul class="video-list js-paginate" itemscope itemtype="http://schema.org/Movie" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+</section>
+<article class="video-library">
+<ul class="video-list js-paginate" id="video-library" itemscope itemtype="http://schema.org/Movie" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
     {% for row in videolibrary %}
         {% set ss = row.video.streaming_service %}
         {% if ss == 'YouTube' %}
@@ -25,8 +26,9 @@
             {% set streaming = 'vimeo' %}
             {% set videoUrl = row.video.video.original_url %}
         {% endif %}
-            <li class="video">
-                    <a class="swipebox-video" rel="{{streaming}}" href="{{videoUrl}}">
+            <li class="video" data-src="{{videoUrl}}">
+                    <!-- <a class="swipebox-video" rel="{{streaming}}" href="{{videoUrl}}"> -->
+                    <a href="#">
                         <div class="video-head">
                         {% if row.featured_video %}
                         <span class="featured">Featured</span>
@@ -68,19 +70,10 @@
 {% endblock %}
 {% block scripts_extra %}
 {% parent %}
-<script src="/static/javascript/jquery.swipebox.min.js"></script>
-<script type="text/javascript" async>
-;( function( $ ) {
-
-    $( '.swipebox-video' ).swipebox( {
-        useCSS : true, // false will force the use of jQuery for animations
-        useSVG : true, // false to force the use of png for buttons
-        initialIndexOnArray : 0, // which image index to init when a array is passed
-        hideCloseButtonOnMobile : false, // true will hide the close button on mobile devices
-        hideBarsDelay : 3000, // delay before hiding bars on desktop
-        videoMaxWidth : 1140 // videos max width
-    } );
-
-} )( jQuery );
+<script src="/static/javascript/lightGallery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#video-libary').lightGallery();
+    });
 </script>
 {% endblock %}

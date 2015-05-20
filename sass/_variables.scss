@@ -72,7 +72,7 @@ $my-logo-location:url('/static/images/rw-logo.svg');
 $primary-brand:#203253;
 $secondary-brand:#39BBE7;
 $logo-font-color:white;
-$dark:#333333;
+$dark:#222222;
 $base-font-color:#2d3b44;
 $base-font-color-inverse:white;
 $light-font-color:#4c6270;
@@ -97,11 +97,15 @@ $full-article-main-element-background-color:white;
 $full-article-max-width:800px;
 $arrow-color:red;
 
-
 /*************************************VIDEO***********************************/
 $featured-font-color:$base-font-color-inverse;
 $featured-background-color: $accent-color;
-
+$video-overlay-background-color: $body-background-color;
+$video-overlay-close-font-color: white;
+$video-overlay-close-background-color:black;
+$video-overlay-close-hover-color:black;
+$video-custom-html-font-color:white;
+$video-overlay-thumb-and-active-border-color-hover:white;
 
 
 /************************************* SEARCH ********************************/
@@ -233,7 +237,7 @@ $home-logo-border-radius:50%;
 $home-button-icon-radius:50%;
 $home-button-background-image:$my-logo-location;
 
-/*****************************VIDEO PLAYER OPTIONS****************************/
+/*****************************VIDEO PLAYER OPTIONS (Just the player - see below for the video library section of the site)****************************/
 //Use % only for play button; only change $video-player-play-button-size to keep proportions
 $video-player-play-button-size:20%;
 $video-player-play-button-color:$accent-color;
@@ -245,8 +249,9 @@ $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1
 //You can turn off the hover animation for the play button here by setting the value to false
 
 /******************************VIDEO LIBRARY**********************************/
-$video-tile-background-color:white;
-$video-library-body-background-color:$body-background-color;
+$video-tile-background-color:#ffffff;
+$video-library-body-background-color:#6D8A96;
+$video-library-list-background-color:#6D8A96;//just the list of videos in the center
 $video-tile-border:none;
 $video-library-overlay-background-color:$body-background-color;
 

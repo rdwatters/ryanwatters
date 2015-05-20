@@ -8,10 +8,6 @@ var mobileOS = true;
     }
     return mobileOS;
 })()
-
-console.log(mobileOS);
-
-
 /*GLOBAL VARS FOR HEADER FADE ON SCROLL */
 var header = $('.header'),
     wScrollCurrent = 0,

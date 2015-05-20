@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-  
   {# Grab the title and description from the CMS general settings. #}
   {% set site_title = getSetting('site_name')%}
   {% set site_description = getSetting('site_description')%}
-
   <head>
     {# the icons.html should house all of your favicons for browsers, mobile, touch, Windows, etc. I'd recommend checking out http://realfavicongenerator.net/#}
     {% include "templates/partials/icons.html" %}
@@ -44,8 +42,10 @@
     <meta class='swiftype' name='title' data-type='string' content='{% block title %}{{getSetting('site_name')}}{% endblock %}' />
     <meta class="swiftype" name="image" data-type='enum' content="{% if item.image %}{{- item.image.url -}}{% else %}/static/images/site_logo.png{% endif %}">
     <meta class='swiftype' name='published_at' data-type='date' content="{{item.publish_date}}" />
-    <meta class='swiftype' name="updated_at" content="{% if item.most_recent_update %}{{ item.most_recent_update }}{% else %}{{ item.last_updated }}{%endif%}" />
+    <meta class='swiftype' name="published" data-type='date' content="{% if item.most_recent_update %}{{ item.most_recent_update|date('M d, Y') }}{% else %}{{ item.last_updated|date('M d, Y') }}{%endif%}" />
+    <meta class="swiftype" name="category" data-type="string" content="{% if item.category.length > 0 %}{% for item in item.category %}{{ item.name }}{% endfor %}{% else %}{{getSetting('site_name')}}{% endif %}">
     <meta class="swiftype" name="description" data-type="string" content="{{item.description|default(getSetting('site_description'))}}" />
+    {#This is the block of CSS embedded into the page head for improved PageSpeed and critical render path#}
     {% block crp_block %}
       <style>
           {% include "templates/partials/crp-homepage.html" %}
@@ -60,55 +60,51 @@
         {% block header %}
           {% include "templates/partials/header.html" %}
         {% endblock %}
-      {# By default, your inner pages will load into this block. #}
-      <main class="main" role="main" id="main">
+        {# By default, your inner pages will load into this block. #}
+        <main class="main" role="main" id="main">
         {% block content %}
 
 
         {% endblock %}
-      </main>
+        </main>
         {% block footer %}
           {% include "templates/partials/footer.html" %}
         {% endblock %}
 
-      {# BELOW-THE-FOLD CSS #}
-      <!-- build:css /static/css/minified.css -->
-      <link rel="stylesheet" href="/static/css/below-the-fold.css"/>
-      <!-- endbuild -->
+        {# BELOW-THE-FOLD CSS #}
+        <!-- build:css /static/css/minified.css -->
+        <link rel="stylesheet" href="/static/css/below-the-fold.css"/>
+        <!-- endbuild -->
 
-      {# JQUERY CDN. OPTIONAL. NOTE: MAY CONFLICT WITH METHODS PROVIDED BY CLASSIE.JS! #}
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      
-      <!-- <script src="/static/javascript/jquery.smoothState.min.js"></script> -->
-      
-      <!-- <script src="/static/javascript/classie.js"></script> -->
-      {# JS BUILD FILES - CONCAT/MIN ON DEPLOYMENT#}      
-      <!-- build:js /static/javascript/minified.js -->     
-      <script src="/static/javascript/main.js"></script>
-      <script src="/static/javascript/jquery.pjax.min.js"></script>
-      <!-- endbuild -->
-      {# Useful for adding extra javascript to the body's bottom. #}
-    {% block scripts_extra %}
-    <script async>
-      $(document).pjax('a[data-pjax]', '#main');  
-    </script>
-    {% endblock %}
+        {# JQUERY CDN. OPTIONAL. NOTE: MAY CONFLICT WITH METHODS PROVIDED BY CLASSIE.JS! #}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>      
+        {# JS BUILD FILES - CONCAT/MIN ON DEPLOYMENT#}      
+        <!-- build:js /static/javascript/minified.js -->     
+        <script src="/static/javascript/main.js"></script>
+        <script src="/static/javascript/jquery.pjax.min.js"></script>
+        <!-- endbuild -->
+        {# Useful for adding extra javascript to the body's bottom. #}
+        {% block scripts_extra %}
+        <script async>
+          $(document).pjax('a[data-pjax]', '#main');  
+        </script>
+      {% endblock %}
            
-      {# GOOGLE ANALYTICS#}
+    {# GOOGLE ANALYTICS#}
         <script async>
           var _gaq=[['_setAccount','{{ getSetting('analytics_id') }}'],['_trackPageview']];
           (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
           g.src='//www.google-analytics.com/ga.js';
           s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-      {% endblock %} 
-        <script type="text/javascript" async>
+    {# Swiftype Install Code #} 
+        <script type="text/javascript">
         (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
         (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
         e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-        })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
-        _st('install','iwMDg2nDWUgtQXzLwkSd');
-        </script>
-  
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','iwMDg2nDWUgtQXzLwkSd','2.0.0');
+        </script>  
   </body>
 </html>
