@@ -19,15 +19,16 @@
     </section>
   </section>
 <article class="articles">
-  <ul class="article-list js-paginate" id="video-library" itemscope itemtype="http://schema.org/Movie" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+  <ul class="article-list js-paginate" id="video-library" itemscope itemtype="http://schema.org/Article" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
     {% for article in data %}
-    <li class="article">            
+    <li class="article">
+      <a href="{% for cat in article.category %}{{url(cat)}}{% endfor %}"><span class="category">{%for category in article.category %}{{category.name}}{%endfor%}</span></a>            
         <a href="{{url(article)}}">
             <div class="head">
             {% if article.featured %}
             <span class="featured">Featured</span>
             {% endif %}
-            <span class="category">{%for category in article.category %}{{category.name}}{%endfor%}</span>
+            
             <img class="list-thumb" src="{{article.image|imageCrop(560,315)}}" alt="Thumbnail for the video: {{row.video.video_title}}"> 
             </div>
         <section class="information">

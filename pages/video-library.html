@@ -50,7 +50,7 @@
                     <h3 class="title">{{row.video.video_title}}</h3>
                     <div class="channel">
                         <div class="{{streaming}}-icon"></div> 
-                        <a target="_blank" href="{{video.video.author_url}}">
+                        <a target="_blank" href="{{row.video.video.author_url}}">
                         {{row.video.video.author_name}}</a>                        
                     </div>
                     {% if row.video.video_description %}
