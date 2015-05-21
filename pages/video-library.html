@@ -8,11 +8,11 @@
 {% block content %}
 {% set library = cms.videolibrary %}
 {% set videolibrary = library.list %}
-{% set videolibrary = paginate(videolibrary, 4) %}
-<section class="video-library-information">
+{% set videolibrary = paginate(videolibrary, 5) %}
+<section class="information-header">
     <section class="introduction">
         <h1>{{ library.name }}</h1>
-        <section class="video-library-description">{{ library.introduction|markdown }}</section>
+        <section class="description">{{ library.introduction|markdown }}</section>
     </section>
 </section>
 <article class="video-library">
@@ -29,7 +29,7 @@
             <li class="video" data-src="{{videoUrl}}">
                     <!-- <a class="swipebox-video" rel="{{streaming}}" href="{{videoUrl}}"> -->
                     <a href="#">
-                        <div class="video-head">
+                        <div class="head">
                         {% if row.featured_video %}
                         <span class="featured">Featured</span>
                         {% endif %}
@@ -46,8 +46,8 @@
                                 </div>
                         </div>
                     </a>
-                <section class="video-information">
-                    <h3 class="video-title">{{row.video.video_title}}</h3>
+                <section class="information">
+                    <h3 class="title">{{row.video.video_title}}</h3>
                     <div class="channel">
                         <div class="{{streaming}}-icon"></div> 
                         <a target="_blank" href="{{video.video.author_url}}">

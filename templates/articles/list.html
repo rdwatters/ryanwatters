@@ -2,7 +2,7 @@
 {% block title %}{% parent %} - Articles{% endblock %}
 {% block crp_block %}
       <style>
-          {% include "templates/partials/crp-homepage.html" %}
+          {% include "templates/partials/crp-article.html" %}
       </style>
 {% endblock %}
 
@@ -11,18 +11,36 @@
   {% set data = data|sort('publish_date', true) %}
 
   {# This is how you set pagination. It's always important to do this after your sort. #}
-  {% set data = paginate(data, 5) %}
-
-  <h1>List of articles</h1>
-
-  {# This forloop can use any data from http:localhost:2000/cms/#/form/articles/ #}
-  <ul>
-    {% for object in data %}
-      <li><a href="{{ url(object) }}">{{ object.title }}</a></li>
+  {% set data = paginate(data, 10) %}
+  <section class="information-header">
+    <section class="introduction">
+        <h1>Articles</h1>
+        <section class="description"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, tempore at fugit iste deleniti inventore. Tempora voluptatum delectus temporibus dolor ipsum porro culpa fugit nostrum, a nihil minima, laborum vitae.</p></section>
+    </section>
+  </section>
+<article class="articles">
+  <ul class="article-list js-paginate" id="video-library" itemscope itemtype="http://schema.org/Movie" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+    {% for article in data %}
+    <li class="article">            
+        <a href="{{url(article)}}">
+            <div class="head">
+            {% if article.featured %}
+            <span class="featured">Featured</span>
+            {% endif %}
+            <span class="category">{%for category in article.category %}{{category.name}}{%endfor%}</span>
+            <img class="list-thumb" src="{{article.image|imageCrop(560,315)}}" alt="Thumbnail for the video: {{row.video.video_title}}"> 
+            </div>
+        <section class="information">
+            <h3 class="title">{{article.title}}</h3>
+                <p itemprop="about">{{article.description}}</p>
+        </section>
+        </a>
+    </li>
     {% endfor %}
   </ul>
-
-  {# The actual pagination template, feel free to edit or replace the default one. #}
-  {% include "templates/partials/paginator.html" %}
+</article>
+<nav role="menu" aria-label="Pagination" aria-hidden="true" class="pagination">
+        {% include "templates/partials/paginator.html" %}
+</nav>
 
 {% endblock %}

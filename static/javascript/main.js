@@ -39,18 +39,22 @@ $(document).ready(function() {
         } else {
             shareButtonMobile.click(function(e) {
                 e.preventDefault();
-                $('.social-media-icons-bar,.share').toggleClass('icon-bar-open');
+                $('.social-media-icons-bar,.share').addClass('icon-bar-open');
             });
         }
+        $('.close-social-buttons').click(function(e) {
+            e.preventDefault();
+            $('.social-media-icons-bar,.share').removeClass('icon-bar-open');
+        });
     });
     $('.play-button').click(function() {
-        $('.full-length').toggleClass('film-playing');
         var iframe = document.createElement('iframe');
         if ($(this).parent().attr('class') === 'video-player-youtube') {
             iframe.setAttribute('src', '//www.youtube.com/embed/' + $(this).parent().attr('data-youtubeid') + '?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0');
-        } else if ($(this).parent().attr('class') == 'video-player-vimeo') {
+        } else if ($(this).parent().attr('class') === 'video-player-vimeo') {
             iframe.setAttribute('src', '//player.vimeo.com/video/' + $(this).parent().attr('data-vimeoid') + '?autoplay=1');
         }
+        console.log(iframe);
         //The parameters for the video embed are set to show video controls but disallow related information at the video's end.
         iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('class', 'video-iframe');
@@ -90,10 +94,10 @@ $(function() {
                 headingText = $(this).text(),
                 listItem = '<li><a href="#' + headingId + '\">' + headingText + '</a></li>';
             $('aside.article-navigation > ul').append(listItem);
-            
+
         });
-    }else{
-        console.log('This page did not meet  the criteria for secondary, article-level navigation');
+    } else {
+        console.log('ok');
     }
     $('a[href*=#]:not([href=#])').click(function() {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
@@ -126,7 +130,7 @@ $(document).ready(function() {
 
 
     var hasContainer = $('.js-paginate').length > 0;
-    if(!mobileOS && hasContainer){
+    if (!mobileOS && hasContainer) {
         $('.pagination').hide();
     }
     //Check if there is no paginate container OR if user is accessing via mobile OS.

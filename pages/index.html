@@ -27,7 +27,7 @@
                     {% endif %}
                         <section class="home-article-video">
                         {% for relation in article.category%}
-                            <div class="home-article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
+                            <div class="article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
                         {% endfor %}         
                             <div class="video-player-{{streaming}}" data-{{-streaming-}}id="{{videoId}}">
                                     {% if video.thumbnail_override %}
@@ -50,7 +50,7 @@
             {% else %}
                         <section class="home-article-image">
                         {% for relation in article.category%}
-                            <div class="home-article-category"><a title="See other articles in the category {{relation.name}}" href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
+                            <div class="article-category"><a title="See other articles in the category {{relation.name}}" href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
                         {% endfor %}
                             <div class="article-image">
                                 <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">
@@ -65,7 +65,7 @@
             {% endif %}
                                       
                         <section class="home-article-information" itemprop="blogPost">
-                            <section class="home-article-social-buttons">
+                            <section class="post-social-buttons">
                                 {# Social Media Icon Buttons #} 
                                 {% include "templates/partials/socialmediaicons.html" %}                       
                             </section>
@@ -82,8 +82,8 @@
                                     <div class="read-more" role="button">
                                         <a role="button" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
                                     </div>                          
-                                    <div class="article-author-name" itemprop="author" role="button">
-                                        <a role="button" aria-label="Find out more about the author, {{article.author[0].full_name.first}} {{article.author[0].full_name.last }}"href="{{ url(article.author[0]) }}" class="article-author-link" title="Find out more about the author, {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}">Author: {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
+                                    <div class="post-author-name" itemprop="author" role="button">
+                                        <a role="button" aria-label="Find out more about the author, {{article.author[0].full_name.first}} {{article.author[0].full_name.last }}"href="{{ url(article.author[0]) }}" class="article-author-link" title="Find out more about the author, {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}">{{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
                                         </a>
                                     </div>
                                 </div>
@@ -100,33 +100,36 @@
 </nav>
 
 {# RIGHT RAIL WIDGET #}
-<aside class="right-rail-widget" data-swiftype-index="false">
-        <section class="right-rail-content">            
+<aside data-swiftype-index="false">
+    {% set siteimage = cms.additionalglobals.site_image %}
+        <section class="content">
+        <img class="site-image" src="{{siteimage|imageCrop(150,150)}}" alt="">
+            <p class="site-description">{{getSetting('site_description')}}</p>            
             {#Grab each of the categories and write them to the page with the total number of articles in each#}
-            <div class="categories" role="navigation" aria-label="Secondary">
-                <h4 class="categories-heading">CATEGORIES</h4>
-                <ul class="category-listing">
+            <section class="categories" role="navigation" aria-label="Secondary">
+                <h4>CATEGORIES</h4>
+                <ul class="category">
                     {% for category in cms.categories %}
-                        <li class="category-name">
+                        <li class="name">
                             <a href="{{ url(category) }}" title="See other article written in the {{category.name}} category">{{ category.name }}
                                 <span class="category-article-total">({{ category.articles.length }})</span>
                             </a>
                         </li>           
                     {% endfor %}
                 </ul>
-            </div>
+            </section>
 
             {#Pull all 'tags' currently being used in the cms and add them to this section of the right rail #}
             {% set tags = cms.tags|sort('name') %}
-            <section class="home-tag-listing">
-                <h4 class="tags-heading">TAGS</h4>
-                {% for tag in tags %}
-                <span class="article-tag"><a href="{{ url(tag) }}">{{ tag.name|lower }}</a></span>
-                {% endfor %}
-            </section>
-            <section class="most-recent-tweet">
+        <section class="tags-list">
+            <h4>TAGS</h4>
+            {% for tag in tags %}
+            <span class="tag"><a href="{{ url(tag) }}">{{ tag.name|lower }}</a></span>
+            {% endfor %}
+        </section>
+        <section class="most-recent-tweet">
                 {% set twitterHandle = getSetting('site_twitter') %}
-                <div class="twitter-content-wrapper">
+            <div class="twitter-content-wrapper">
                 <div class="twitter-header">
                     <span class="twitter-handle">
                         <a href="https://www.twitter.com/@{{twitterHandle}}">@{{ twitterHandle }}</a>
@@ -146,12 +149,12 @@
                     </svg>
                 </div>
                 
-            {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
-            {% set tweet = cms.tweet|sort('publish_date',true)|first %}
-            {% set tweetBody = tweet.tweet_body.split('http')[0] %}
-            {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
-            <p class="tweet-body">{{ tweetBody }} <a href="http{{ tweetUrl }}" class="tweet-url">http{{ tweetUrl }}</a></p>
-            <p><span class="tweet-time"><time datetime="tweet.tweet_time">Published on <a href="https://www.twitter.com/{{twitterHandle}}/status/{{ tweet.name }}" target="_blank">{{ tweet.tweet_time|date('F d Y. g:i a') }}</a></time></span></p>
+                {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
+                {% set tweet = cms.tweet|sort('publish_date',true)|first %}
+                {% set tweetBody = tweet.tweet_body.split('http')[0] %}
+                {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
+                <p class="tweet-body">{{ tweetBody }} <a href="http{{ tweetUrl }}" class="tweet-url">http{{ tweetUrl }}</a></p>
+                <p><span class="tweet-time"><time datetime="tweet.tweet_time">Published on <a href="https://www.twitter.com/{{twitterHandle}}/status/{{ tweet.name }}" target="_blank">{{ tweet.tweet_time|date('F d Y. g:i a') }}</a></time></span></p>
             </div>    
         </section>
     </section>

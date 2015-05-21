@@ -8,20 +8,18 @@
   {% set prev = prevItem(item, 'publish_date', true) %}
   {% set next = nextItem(item, 'publish_date', true) %}
   {% if prev %}
-    <link rel="prefetch" href="{{ url(prev) }}#main" />
-    <link rel="prerender" href="{{ url(prev) }}" />
+    <!-- <link rel="prefetch" href="{{ url(prev) }}" />
+    <link rel="prerender" href="{{ url(prev) }}" /> -->
   {% endif %}
   {% if next %}
-    <link rel="prefetch" href="{{ url(next) }}#main" />
-    <link rel="prerender" href="{{ url(next) }}" />
+   <!--  <link rel="prefetch" href="{{ url(next) }}" />
+    <link rel="prerender" href="{{ url(next) }}" /> -->
   {% endif %}
 {% endblock %}
 {% block title %}{{ item.title }}{% endblock %}
 
 {% block content %}
 {% set article = item %}
-
-
 {% if article.related_video %}
     {% set video = article.related_video %}
     {% set ss = video.streaming_service %}
@@ -34,7 +32,7 @@
         {% set streaming = "vimeo" %}
     {% endif %}
     <section class="article-video">        
-        <div class="video-player-{{streaming}}" data-{{-streaming-}}id="{{videoId}}">
+        <div class="video-player-{{-streaming-}}" data-{{-streaming-}}id="{{videoId}}" data-swiftype-index="false">
                 {% if video.thumbnail_override %}
                         <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="1080" height="630">
                 {% else %}
@@ -48,53 +46,20 @@
         <div class="image-fade-block"></div>
     </section>
 {% else %}
-  <section class="article-main-image">
+  <section class="article-main-image" data-swiftype-index="false">
     <img class="main-image" src="{{ item.image|imageCrop(1000, 500)}}" />
     <span class="image-fade-block"></span>           
   </section>
 {% endif %}
-<article class="full-length {{wVideo}}" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="social-media-icons-bar" id="social-media-icons-bar" data-swiftype-index="false">
+      <div class="social-buttons">
+      {% include "templates/partials/socialmediaicons.html" %}
+      <a href="#" role="button" class="close-social-buttons" title="Close the social sharing screen">CLOSE</a>
+      </div>        
+  </div>
+  <a href="#" role="button" title="Share this article through social media." class="share-button"><div class="share"> SHARE</div></a>
 
-  {% if prev %}      
-      <a href="{{ url(prev) }}" role="button" class="previous-article"><!-- data-pjax -->
-          <section class="article-info">
-            <h5 class="previous">Previous Article</h5>
-            <span class="article-title">{{prev.title}}</span>
-            <span class="article-author"> by {{prev.author[0].full_name.first}} {{prev.author[0].full_name.last}}</span> 
-            <span class="publish_date">{{prev.publish_date|date('M d, Y')}}</span>
-          </section>
-            <svg version="1.0" id="left-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
-                 viewBox="0 0 18.6 27.9" enable-background="new 0 0 18.6 27.9" xml:space="preserve">
-              <g>
-                <polygon points="18.6,0 9.3,0 0,14 9.3,27.9 18.6,27.9 9.3,14  "/>
-              </g>
-            </svg>
-      </a>    
-  {% endif %}
-  {% if next %}
-      
-        <a href="{{ url(next) }}" role="button" class="next-article">
-            <svg version="1.1" id="right-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
-                 viewBox="60 -17.1 35.5 53.3" enable-background="new 60 -17.1 35.5 53.3" xml:space="preserve">
-              <g>
-                <polygon points="60,36.2 77.8,36.2 95.6,9.5 77.8,-17.1 60,-17.1 77.8,9.5  "/>
-              </g>
-            </svg>
-          <section class="article-info">
-            <h5 class="next">Next Article</h5>
-            <span class="article-title">{{next.title}}</span>
-            <span class="article-author"> by {{next.author[0].full_name.first}} {{next.author[0].full_name.last}}</span> 
-            <span class="publish-date">{{next.publish_date|date('M d, Y')}}</span> 
-          </section>
-        </a>
-      
-  {% endif %}
-  <aside class="social-media-icons-bar" id="social-media-icons-bar" data-swiftype-index="false">  
-    <div class="social-buttons">
-    {% include "templates/partials/socialmediaicons.html" %}
-    </div>
-      <a href="#" role="button" title="Share this article through social media." class="share-button"><div class="share"> SHARE</div></a>
-  </aside>
+<article class="full-length {{wVideo}}" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting"> 
   <h1>{{ item.title }}</h1> 
   <h2 class="article-subtitle">{{ item.subtitle }}</h2>
   {% if item.most_recent_update %}
@@ -164,7 +129,43 @@
   </aside>
   {% endif %}
 </article>
+ {% if prev %} 
+    <section class="previous-and-next-article" swiftype-index="false">     
+      <a href="{{ url(prev) }}" role="button" class="previous-article"><!-- data-pjax -->
+          <section class="article-info">
+            <h5>Previous Article</h5>
+            <span class="article-title">{{prev.title}}</span>
+            <span class="article-author">{{prev.author[0].full_name.first}} {{prev.author[0].full_name.last}}</span> 
+            <span class="publish_date">{{prev.publish_date|date('M d, Y')}}</span>
+          </section>
+            <svg version="1.0" id="left-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
+                 viewBox="0 0 18.6 27.9" enable-background="new 0 0 18.6 27.9" xml:space="preserve">
+              <g>
+                <polygon points="18.6,0 9.3,0 0,14 9.3,27.9 18.6,27.9 9.3,14  "/>
+              </g>
+            </svg>
+      </a>    
+  {% endif %}
+  {% if next %}
+      
 
+          <a href="{{ url(next) }}" role="button" class="next-article">
+              <svg version="1.1" id="right-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
+                   viewBox="60 -17.1 35.5 53.3" enable-background="new 60 -17.1 35.5 53.3" xml:space="preserve">
+                <g>
+                  <polygon points="60,36.2 77.8,36.2 95.6,9.5 77.8,-17.1 60,-17.1 77.8,9.5  "/>
+                </g>
+              </svg>
+            <section class="article-info">
+              <h5>Next Article</h5>
+              <span class="article-title">{{next.title}}</span>
+              <span class="article-author">{{next.author[0].full_name.first}} {{next.author[0].full_name.last}}</span> 
+              <span class="publish-date">{{next.publish_date|date('M d, Y')}}</span> 
+            </section>
+          </a>
+        </section>
+      
+  {% endif %}
 
 
 {# DISQUS COMMENTS #}

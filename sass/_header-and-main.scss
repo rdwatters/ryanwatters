@@ -2,7 +2,10 @@
     z-index: $header-z;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: $header-background-color;
+    background-color: $header-background-color-mobile;
+    @include MQ(M){
+        background-color:$header-background-color;
+    }
     @include transition($base-transition);
     display: block;
     position: fixed;
@@ -38,7 +41,10 @@
                     border:none;
                     margin: 10px;
                     text-transform: $primary-navigation-text-transform;
-                    color: $header-link-color;
+                    color: $header-link-color-mobile;
+                    @include MQ(L){
+                        color:$header-link-color;
+                    }
                 }
             }
         }

@@ -1,7 +1,7 @@
 //GRID
 $S: 480px;
 $M: 640px;
-$L: 960px;
+$L: 1000px;
 $XL: 1200px;
 $HUGE: 1600px;
 // Same as above, but handy for setting max values.
@@ -69,31 +69,39 @@ $publish-date-font-family-large-screen:$body-font-family;
 $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
-$primary-brand:#0F222E;
+$primary-brand:#20457C;
 $secondary-brand:#39BBE7;
-$logo-font-color:white;
-$dark:#222222;
-$base-font-color:#2d3b44;
-$base-font-color-inverse:invert($base-font-color);
+$white:#FFFFFF;
+$logo-font-color:$white;
+$darkest:#222222;
+$dark:#3B3A35;
+
+$base-font-color:$dark;
+$base-font-color-inverse:$white;
 $light-font-color:#4c6270;
-$accent-color:lighten(#66101F,20%);
-$accent-color-two:#cf7000;
-$white:#FBFAF5;
+$accent-color:#FB6648;
+$accent-color-two:#5E3448;
+$off-white:darken($white,5%);
+
 //Sets the default anchor color (in the reset/normalize)
 $anchor-color:$primary-brand;
-$header-background-color:$dark;
+$header-background-color-mobile:$white;
+$header-background-color:#3B3A35;
+// $header-background-color:#354458;
 $header-mobile-background-color:$header-background-color;
-$header-link-color:white;
-$header-link-underline-color:white;
+$header-link-color:$white;
+$header-link-color-mobile:$base-font-color;
+$header-link-underline-color:$white;
 $header-link-underline-thickness:2px;
-$header-site-name-font-color:white;
+$header-site-name-font-color:$white;
 $header-opacity:1;
 
-$body-background-color:lighten(#b7c6cb,10%);
+// $body-background-color:#ECDFBD;
+$body-background-color:$off-white;
 $main-content-background-color:$body-background-color;
 
 $footer-background-color:$dark;
-$footer-font-color:white;
+$footer-font-color:$white;
 $footer-svg-color:rgba(255,255,255,0.4);
 $footer-svg-color-hover:rgba(255,255,255,1);
 $footer-opacity:$header-opacity;
@@ -106,11 +114,11 @@ $arrow-color:red;
 $featured-font-color:$base-font-color-inverse;
 $featured-background-color: $accent-color;
 $video-overlay-background-color: $body-background-color;
-$video-overlay-close-font-color: white;
+$video-overlay-close-font-color: $white;
 $video-overlay-close-background-color:black;
 $video-overlay-close-hover-color:black;
-$video-custom-html-font-color:white;
-$video-overlay-thumb-and-active-border-color-hover:white;
+$video-custom-html-font-color:$white;
+$video-overlay-thumb-and-active-border-color-hover:$white;
 
 
 /************************************* SEARCH ********************************/
@@ -119,11 +127,11 @@ $search-input-y-offset-mobile:200px;
 $search-overlay-color:$header-background-color;
 //tablet & desktop search
 $search-overlay-transparency:1.0;
-$category-button-background-color:$base-font-color;
+$category-button-background-color:$primary-brand;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:$base-font-color;
 $tags-font-color:darken($base-font-color-inverse,20%);
-$tags-font-color-hover:white;
+$tags-font-color-hover:$white;
 $tags-background-color:$base-font-color;
 $tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
@@ -131,35 +139,40 @@ $svg-spinner-color:$primary-brand;
 /***************************** SOCIAL MEDIA ************************************************/
 //icons are inlined svg xml and can therefore be styled directly 
 $social-buttons-color:$base-font-color;
-$article-social-buttons-background-mobile:#cccccc;
-$article-social-buttons-background-desktop:white;
+$article-social-buttons-background-mobile:$white;
+$article-social-buttons-opacity-mobile:0.9;
+$article-social-buttons-background-desktop:$white;
 //publish date on the article list/summary view
-$publish-date-background-color:$base-font-color;
+$publish-date-background-color:$category-button-background-color;
 $publish-date-font-color:$base-font-color-inverse;
+$list-social-button-opacity:0.7;
 $social-icons-background-color:transparent;
-$social-buttons-border:1px solid #cccccc;
+$social-buttons-border:1px solid $base-font-color;
+$social-buttons-border-radius:0%;
 $twitter-blue:#00aced;
 $twitter-mini-color:$twitter-blue;
-$most-recent-tweet-background-color:white;
+$most-recent-tweet-background-color:$white;
 $most-recent-tweet-border-radius:0px;
 
 //List information block -> this is to to the right of the article image on XL screens and under the article image/video on everything else
 $home-article-information-background-color:#ffffff;
+$post-list-information-background-color:#ffffff;
 $home-article-description-font-color: lighten($base-font-color,10%);
 
 //This is for the right rail/widget (right on M+ screens; bottom of list on mobile )
-$home-about-rail-widget-background-color:white;
-$home-about-rail-widget-section-underline: 1px solid #cccccc;
-$right-rail-widget-background-color:white;
-$right-rail-widget-section-underline: 1px solid #cccccc;
+$home-about-rail-widget-background-color:$white;
+$home-about-rail-widget-section-underline: 1px solid $light-font-color;
+$right-rail-widget-background-color:$white;
+$right-rail-widget-section-underline: 1px solid $light-font-color;
 
 //"Read more" button on list view
 $read-more-font-color:$accent-color;
-$read-more-font-color-hover:$base-font-color;
+$read-more-font-color-hover:$base-font-color-inverse;
 $read-more-font-weight:700;
 $read-more-background-color:transparent;
-$read-more-border:0px solid $read-more-background-color;
-$read-more-background-color-hover:$base-font-color-inverse;
+$read-more-background-color-hover:$read-more-font-color;
+$read-more-border:1px solid $accent-color;
+$read-more-border-hover:1px solid $read-more-font-color;
 $read-more-button-width:140px;
 $read-more-button-height:$base-font-size * 1.5;
 $read-more-button-font-size:$base-font-size;
@@ -170,14 +183,15 @@ $category-text-transform:uppercase;
 
 
 /**************************************ARTICLE PAGES****************************************/
-$full-article-main-element-background-color:white;
+$full-article-main-element-background-color:$off-white;
 $full-article-max-width:800px;
-$article-anchor-underline-color:$primary-brand;
+$article-anchor-underline:1px dashed $primary-brand;
+$article-anchor-underline-hover:1px solid $primary-brand;
 $social-bar-vertical-width:50px;
 $border-radius-right-and-left-body-images:0;
 $right-and-left-body-images-border-radius:0;
 $right-and-left-body-images-max-width:300px;
-$article-full-length-background-color:white;
+$article-full-length-background-color:$off-white;
 $article-main-image-fade-in-height:100px;
 $article-title-font:700 #{$base-font-size*2.8}#{100%} $heading-font-family;
 $read-time-color:$primary-brand;
@@ -207,8 +221,9 @@ $footer-height:$header-height;
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page on desktop+ screens
 $article-home-page-max-width-m-plus:100%;
-$home-about-widget-width:28%;
+$home-post-list-max-width:100%;
 $home-about-widget-max-width: 400px;
+$article-list-width-m-plus:70%;
 $right-rail-widget-width:28%;
 $right-rail-widget-max-width: 400px;
 
@@ -219,7 +234,7 @@ $mobile-icon-height: 20px;
 $mobile-icon-width: 30px;
 $mobile-icon-layer-height: 4px;
 $mobile-icon-color: $primary-brand;
-$header-mobile-toggle-menu-icon-color:white;
+$header-mobile-toggle-menu-icon-color:$white;
 $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES
@@ -233,7 +248,7 @@ $mobile-menu-icon-z:999;
 /********************************HEADER GLOBALS******************************************/
 $header-main-logo-background-image: '/static/images/favicon.png';
 $home-logo-background-color:$header-background-color;
-$home-logo-hover-background-color:white;
+$home-logo-hover-background-color:$white;
 $site-name:'Ryan Watters';
 $primary-navigation-text-transform:capitalize;
 $home-logo-border-radius:50%;
@@ -257,19 +272,19 @@ $video-library-body-background-color:$body-background-color;
 $video-library-list-background-color:$body-background-color;//just the list of videos in the center
 $video-tile-border:none;
 $video-library-overlay-background-color:$body-background-color;
-$video-library-full-width-header-background-color:#2D3B44;
+$video-library-full-width-header-background-color:$primary-brand;
 
 
 /******************************CMS STYLE OVERRIDES****************************/
 $login-background-color:$base-font-color;
 $cms-logo-background-image:$my-logo-location;
-$login-font-color:white;
+$login-font-color:$white;
 $hide-updates: false;
 
 /*******************************PAGINATION-BUTTONS****************************/
 $pagination-button-width:40px;
 $pagination-button-height: 30px;
-$pagination-button-background-color: white;
+$pagination-button-background-color: $white;
 $pagination-button-background-color-active: $accent-color;
 $pagination-button-background-color-hover:#cccccc;
 $pagination-button-border-radius:10px;

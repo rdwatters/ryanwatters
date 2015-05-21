@@ -6,11 +6,169 @@
 @import 'menu-icon';
 @import 'header-and-main';
 @import 'video-player';
+@import 'pagination';
 //END BASE CRP//
 .main {
     background-color: $full-article-main-element-background-color;
     overflow-x: hidden;
     max-width: 100%;
+    margin-top: 0px;
+}
+
+.information-header {
+    width: 100%;
+    width: 100vw;
+    height: 100%;
+    background-color: $video-library-full-width-header-background-color;
+    color: $base-font-color-inverse;
+    padding-top: $header-height;
+    margin-top: 0px;
+    padding-bottom: 1.5em;
+    .introduction {
+        width: 100%;
+        padding-right: 5%;
+        padding-left: 5%;
+        @include MQ(XL) {
+            padding-right: 0%;
+            padding-left: 0%;
+            margin-right: auto;
+            margin-left: auto;
+            max-width: $XL;
+        }
+        h1 {
+            background: transparent;
+            display: block;
+            clear: both;
+            font: $article-title-font;
+            padding-top: $base-font-size;
+            margin-top: 8px;
+            margin-bottom: 5px;
+            @include MQ(M) {
+                margin-top: 0px;
+                font-size: $base-font-size * 3.2;
+                padding-top: $base-font-size * 2;
+            }
+        }
+        .description {
+            display: none;
+            @include MQ(M) {
+                display: block;
+            }
+        }
+    }
+}
+
+article.articles {
+    margin-bottom: $footer-height;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: $video-library-list-background-color;
+    width: 90%;
+    @include MQ(XL) {
+        width: 100%;
+        max-width: $XL;
+    }
+}
+
+ul.article-list {
+    width: 100%;
+    @include display(flex);
+    @include flex-wrap(wrap);
+}
+
+li.article {
+    position: relative;
+    float: left;
+    width: 100%;
+    border: $video-tile-border;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    .featured {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding: 5px;
+        background-color: $featured-background-color;
+        color: $featured-font-color;
+        font-weight: bold;
+    }
+    margin-top: 20px;
+    background-color:$video-tile-background-color;
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(flex-start);
+    @include MQ(M) {
+        width: 49%;
+        margin-right: 2%;
+        &:nth-child(2n) {
+            margin-right: 0;
+        }
+    }
+    @include MQ(L) {
+        width: 31%;
+        margin-right: 3.5%;
+        &:nth-child(2n) {
+            margin-right: 3.5%;
+        }
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+    }
+    @include MQ(HUGE) {
+        width: 22%;
+        margin-right: 4%;
+        &:nth-child(2n) {
+            margin-right: 4%;
+        }
+        &:nth-child(3n) {
+            margin-right: 4%;
+        }
+        &:nth-child(4n) {
+            margin-right: 0;
+        }
+    }
+    .information {
+        position: relative;
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        h3 {
+            text-align: center;
+        }
+        p {
+            margin: 0px auto $base-font-size auto;
+            &:last-child {
+                margin-bottom: 25px;
+            }
+        }
+    }
+}
+
+.category {
+    @include transition($base-transition);
+    position: absolute;
+    top: 0;
+    left: 35px;
+    color: $base-font-color-inverse;
+    font-size: $base-font-size;
+    line-height: 28px;
+    border: 3px solid $body-background-color;
+    background-color: $category-button-background-color;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 5;
+    @include transform(translateY(-$read-more-button-height / 1.5));
+    a {
+        z-index: 10;
+        text-transform: $category-text-transform;
+    }
+    &:hover {
+        background-color: $category-button-background-color-hover;
+    }
+    .category-article-total {
+        float: right;
+    }
 }
 
 .article-video {
@@ -299,13 +457,13 @@ article.full-length {
         }
     }
     a {
-        border-bottom: 1px dashed $article-anchor-underline-color;
+        border-bottom: $article-anchor-underline;
         -webkit-transition: border .4s ease-in-out;
         transition: border .4s ease-in-out;
         font-weight: 600;
         color: $primary-brand;
         &:hover {
-            border-bottom: 1px solid $article-anchor-underline-color;
+            border-bottom: $article-anchor-underline-hover;
         }
     }
     blockquote {
@@ -369,37 +527,37 @@ article.full-length {
 }
 
 .social-media-icons-bar {
-    @include display(flex);
-    @include flex-direction(row);
-    @include align-items(flex-start);
-    @include transform(translateX(-60px));
     @include transition($base-transition);
-    &.icon-bar-open {
-        @include transform(translateX(0px));
-    }
-    z-index: 1;
-    width: 100%;
-    margin: 0px;
     position: fixed;
-    bottom: 0px;
-    left:0px;
-    width: 80px;
-    background-color: transparent;
-    @include MQ(L) {
-        top: 0px;
-        @include transition(none);
+    display: block;
+    width: 100%;
+    width: 100vw;
+    height: 100%;
+    height: 100vh;
+    bottom: 0;
+    left: 0;
+    @include transform(translateY(-100%));
+    z-index: -1;
+    &.icon-bar-open {
+        @include transition($base-transition);
+        @include transform(translateX(0));
+        @include transform(translateX(0));
+        opacity: $article-social-buttons-opacity-mobile;
+        line-height: 100%;
+        vertical-align: middle;
+        margin-top: $mobile-header-height;
+        z-index: 999999;
     }
     .social-buttons {
-        @include display(flex);
-        @include flex-direction(column);
-        @include align-items(center);
+        width: 100%;
+        width: 100vw;
+        height: 100%;
+        margin: 0;
+        padding-top: $header-height;
         background-color: $article-social-buttons-background-mobile;
         @include MQ(L) {
             background-color: $article-social-buttons-background-desktop;
         }
-        padding-left: 12.5px;
-        padding-right: 12.5px;
-        float: left;
         a {
             border-bottom: none;
             &:hover {
@@ -410,7 +568,12 @@ article.full-length {
             @include transition(.3s);
             fill: $social-buttons-color;
             margin-bottom: 25px;
-            border: none;
+            width: 80px;
+            height: 80px;
+            padding: 20px;
+            margin-right: auto;
+            margin-left: auto;
+            display: block;
             text-decoration: none;
             &:first-child {
                 margin-top: 15px;
@@ -434,32 +597,50 @@ article.full-length {
                 fill: #3b5998;
             }
         }
-    }
-    a.share-button {
-        @include display(flex);
-        @include flex-direction(column);
-        @include align-items(center);
-        background-color: transparent;
-        .share {
-            @include display(flex);
-            width: 24px;
-            padding: {
-                top: 6px;
-                bottom: 6px;
-                left: 4px;
-            }
-            font-size: 16px;
-            word-wrap: break-word;
+        .close-social-buttons {
             text-align: center;
-            background-color: $mobile-article-share-button-background-color;
-            color: $mobile-article-share-button-font-color;
-            opacity: 0.8;
-            &.icon-bar-open {
-                opacity: 1;
+            display: block;
+            width: 30%;
+            padding: 5px;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: $accent-color;
+            color: $white;
+            border: 1px solid $base-font-color;
+            a {
+                border: 1px solid $base-font-color;
+                &:hover {
+                    border: 1px solid $base-font-color;
+                }
             }
-            @include MQ(L) {
-                display: none;
-            }
+        }
+    }
+}
+
+a.share-button {
+    display: block;
+    position: fixed;
+    width: 80px;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 10;
+    .share {
+        display: block;
+        margin: auto;
+        line-height: 50px;
+        font-size: 20px;
+        word-wrap: break-word;
+        text-align: center;
+        background-color: $mobile-article-share-button-background-color;
+        color: $mobile-article-share-button-font-color;
+        opacity: 0.9;
+        &.icon-bar-open {
+            opacity: 1;
+        }
+        @include MQ(L) {
+            display: none;
         }
     }
 }
@@ -503,7 +684,58 @@ img[alt$="full"] {
     width: 100vw;
 }
 
+.previous-and-next-article {
+    @include display(flex);
+    @include justify-content(space-between);
+    width: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
 .previous-article,
 .next-article {
-    display: none;
+    @include display(flex);
+    @include flex-direction(column);
+    // @include justify-content(center);
+    @include align-items(stretch);
+    @include MQ(L) {
+        @include flex-direction(row);
+    }
+    padding: 15px;
+    width: 50%;
+    color: $base-font-color-inverse;
+    background-color: $base-font-color;
+    svg {
+        display: none;
+        fill: $base-font-color-inverse;
+        max-width: 20px;
+        @include order(1);
+        text-align: center;
+        margin-right: auto;
+        margin-left: auto;
+        @include MQ(M) {
+            display: block;
+        }
+    }
+    h5 {}
+    .article-info {
+        text-align: center;
+        @include order(2);
+    }
+    .article-author {
+        display: block;
+        border-bottom: 1px solid $base-font-color-inverse;
+        font-size: .75em;
+        padding: {
+            top: .25em;
+            bottom: .25em;
+        }
+        margin-bottom:20px;
+    }
+    .publish-date {}
+}
+
+.previous-article {
+    border-right: 1px solid $full-article-main-element-background-color;
 }

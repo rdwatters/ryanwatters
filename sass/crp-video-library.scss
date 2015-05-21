@@ -16,7 +16,7 @@
     margin-top:0px;
 }
 
-.video-library-information {
+.information-header {
     width: 100%;
     width: 100vw;
     height:100%;
@@ -50,7 +50,7 @@
                 padding-top: $base-font-size * 2;
             }
         }
-        .video-library-description{
+        .description{
             display:none;
             @include MQ(M){
                 display:block;
@@ -129,7 +129,7 @@ li.video {
             margin-right: 0;
         }
     }
-    .video-information {
+    .information {
         position: relative;
         width: 90%;
         margin-right: auto;
@@ -158,9 +158,9 @@ li.video {
         font-weight: bold;
         vertical-align: middle;
         display: inline-block;
-        border-bottom: 1px dashed $article-anchor-underline-color;
+        border-bottom: $article-anchor-underline;
         &:hover {
-            border-bottom: 1px solid $article-anchor-underline-color;
+            border-bottom: $article-anchor-underline-hover;
         }
     }
 }
@@ -184,7 +184,7 @@ li.video {
     background-image: url('/static/images/vimeo.svg');
 }
 
-.video-head {
+.head {
     position: relative;
     width: 100%;
     img {
