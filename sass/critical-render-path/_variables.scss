@@ -8,33 +8,6 @@ $HUGE: 1600px;
 $LMAX: 760px;
 $MMAX: 640px;
 $SMAX: 480px;
-
-//HEALTHYCHILDREN
-$healthy-children-green:#AEC736;
-$healthy-children-red:#DC4C20;
-$healthy-children-peach:#f9b964;
-$healthy-children-yellow:#E9B424;
-$healthy-children-brown:#5C4727;
-$healthy-children-tan:#FCFBF1;
-$healthy-children-heading-font-family:'Arvo',georgia,serif;
-$healthy-children-body-font-family:'Helvetica Neue',helvetica,arial,sans-serif;
-$healthy-children-title-color:$healthy-children-brown;
-$healthy-children-logo-location:url('/static/images/hc-logo.svg');
-
-//AAP.ORG
-//numbers (one, two, three) run from darkest to lightest
-$aap-blue-one:#01589B;
-$aap-blue-two:#048BC9;
-$aap-blue-three:#99D8F2;
-$aap-red:#D94E17;
-$aap-yellow:#F5AA09;
-$aap-brown:#453329;
-$aap-gray-one:#333333;
-$aap-gray-two:#949494;
-$aap-gray-three:#D4D4D4;
-$aap-heading-font-family:'Museo',serif;
-$aap-body-font-family:helvetica,arial, sans-serif;
-
 //TYPOGRAPHY & FONTS
 // These are WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports. You will need to use them according to the way they are spelled in the module, eg ->
 // font-family: 'arvowoff',Georgia, serif;
@@ -87,7 +60,6 @@ $off-white:darken($white,5%);
 $anchor-color:$primary-brand;
 $header-background-color-mobile:$white;
 $header-background-color:#3B3A35;
-// $header-background-color:#354458;
 $header-mobile-background-color:$header-background-color;
 $header-link-color:$white;
 $header-link-color-mobile:$base-font-color;
@@ -96,8 +68,8 @@ $header-link-underline-thickness:2px;
 $header-site-name-font-color:$white;
 $header-opacity:1;
 
-// $body-background-color:#ECDFBD;
-$body-background-color:$off-white;
+
+$body-background-color:$light-font-color;
 $main-content-background-color:$body-background-color;
 
 $footer-background-color:$dark;
@@ -127,7 +99,7 @@ $search-input-y-offset-mobile:200px;
 $search-overlay-color:$header-background-color;
 //tablet & desktop search
 $search-overlay-transparency:1.0;
-$category-button-background-color:$primary-brand;
+$category-button-background-color:$light-font-color;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:$base-font-color;
 $tags-font-color:darken($base-font-color-inverse,20%);
@@ -139,16 +111,19 @@ $svg-spinner-color:$primary-brand;
 /***************************** SOCIAL MEDIA ************************************************/
 //icons are inlined svg xml and can therefore be styled directly 
 $social-buttons-color:$base-font-color;
-$article-social-buttons-background-mobile:$white;
-$article-social-buttons-opacity-mobile:0.9;
+$article-social-buttons-background-mobile-overlay-color:$white;
+$article-social-buttons-color-mobile:$white;
+$article-social-buttons-opacity-mobile:1;
 $article-social-buttons-background-desktop:$white;
 //publish date on the article list/summary view
 $publish-date-background-color:$category-button-background-color;
 $publish-date-font-color:$base-font-color-inverse;
 $list-social-button-opacity:0.7;
 $social-icons-background-color:transparent;
-$social-buttons-border:1px solid $base-font-color;
+$social-buttons-border:none;
 $social-buttons-border-radius:0%;
+$close-social-button-color:$primary-brand;
+$close-social-button-font-color:$white;
 $twitter-blue:#00aced;
 $twitter-mini-color:$twitter-blue;
 $most-recent-tweet-background-color:$white;
@@ -166,13 +141,13 @@ $right-rail-widget-background-color:$white;
 $right-rail-widget-section-underline: 1px solid $light-font-color;
 
 //"Read more" button on list view
-$read-more-font-color:$accent-color;
-$read-more-font-color-hover:$base-font-color-inverse;
+$read-more-font-color:$white;
+$read-more-font-color-hover:$accent-color;
 $read-more-font-weight:700;
-$read-more-background-color:transparent;
+$read-more-background-color:$accent-color;
 $read-more-background-color-hover:$read-more-font-color;
 $read-more-border:1px solid $accent-color;
-$read-more-border-hover:1px solid $read-more-font-color;
+$read-more-border-hover:1px solid $accent-color;
 $read-more-button-width:140px;
 $read-more-button-height:$base-font-size * 1.5;
 $read-more-button-font-size:$base-font-size;
@@ -183,7 +158,7 @@ $category-text-transform:uppercase;
 
 
 /**************************************ARTICLE PAGES****************************************/
-$full-article-main-element-background-color:$off-white;
+$full-article-main-element-background-color:$white;
 $full-article-max-width:800px;
 $article-anchor-underline:1px dashed $primary-brand;
 $article-anchor-underline-hover:1px solid $primary-brand;
@@ -191,7 +166,7 @@ $social-bar-vertical-width:50px;
 $border-radius-right-and-left-body-images:0;
 $right-and-left-body-images-border-radius:0;
 $right-and-left-body-images-max-width:300px;
-$article-full-length-background-color:$off-white;
+$article-full-length-background-color:$white;
 $article-main-image-fade-in-height:100px;
 $article-title-font:700 #{$base-font-size*2.8}#{100%} $heading-font-family;
 $read-time-color:$primary-brand;
@@ -199,7 +174,11 @@ $article-subtitle-font: 100 #{$base-font-size*1.8}/#{150%} $heading-font-family;
 $article-metadata-font-weight:100;
 $article-previous-date-width:50px;
 $mobile-article-share-button-background-color:$primary-brand;
+$mobile-article-share-button-height:40px;
 $mobile-article-share-button-font-color:$base-font-color-inverse; //white
+$previous-and-next-article-buttons-background-color:$base-font-color;
+$previous-and-next-article-buttons-font-color:$base-font-color-inverse;
+$author-blurb-background-color:$white;
 
 
 
@@ -241,7 +220,8 @@ $mobile-icon-color-inner: $header-link-color;
 $body-z:0;
 $header-z:99;
 $main-content-z:2;
-$footer-z:6;
+$footer-z:99;
+$share-button-z:90;
 $home-icon-z:998;
 $mobile-menu-icon-z:999;
 
@@ -255,12 +235,12 @@ $home-logo-border-radius:50%;
 $home-button-icon-radius:50%;
 $home-button-background-image:$my-logo-location;
 
-/*****************************VIDEO PLAYER OPTIONS (Just the player - see below for the video library section of the site)****************************/
+/*****************************VIDEO PLAYER OPTIONS (Just the player/button - see also video library****************************/
 //Use % only for play button; only change $video-player-play-button-size to keep proportions
 $video-player-play-button-size:20%;
-$video-player-play-button-color:$accent-color;
+$video-player-play-button-color:$white;
 $video-player-play-button-color-hover:$primary-brand;
-$video-player-play-button-opacity:1;
+$video-player-play-button-opacity:.8;
 $video-player-play-button-opacity-hover:1;
 $video-player-play-button-left-padding:(100% - $video-player-play-button-size) / 2;
 $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1.7777;
@@ -272,7 +252,8 @@ $video-library-body-background-color:$body-background-color;
 $video-library-list-background-color:$body-background-color;//just the list of videos in the center
 $video-tile-border:none;
 $video-library-overlay-background-color:$body-background-color;
-$full-width-header-background-color:$accent-color-two;
+$full-width-header-background-color:$primary-brand;
+
 
 
 /******************************CMS STYLE OVERRIDES****************************/

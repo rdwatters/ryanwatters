@@ -1,31 +1,11 @@
-@import 'bourbon/bourbon';
-@import 'basic-grid';
-@import 'variables';
-// @import 'theme';
-@import 'search';
-@import 'footer';
-@import 'pagination';
-@import 'print';
-//MOBILE-ONLY MAIN MENU/HEADER. NOT NEEDED IN CRP FOR MOBILE SCREENS
-.primary-navigation {
-    @include MQ(MMAX) {
-        margin-top: 10px;
-        ul {
-            display: block;
-            margin-right: auto;
-            margin-left: auto;
-            text-align: center;
-            li:after {
-                width: 50%;
-                display: block;
-                margin-right: auto;
-                margin-left: auto;
-                border-bottom: 1px solid #cccccc;
-            }
-        }
-    }
-}
-
+@import 'critical-render-path/bourbon/bourbon';
+@import 'critical-render-path/basic-grid';
+@import 'critical-render-path/variables';
+@import 'below-the-fold/search';
+// @import 'below-the-fold/footer';
+@import 'below-the-fold/footer-new';
+@import 'below-the-fold/pagination';
+@import 'below-the-fold/print';
 // MOBILE MENU CLICKED STATE - FOR BASE STYLES, SEE MENU-ICON.SCSS
 .menu-open {
     .menu-icon-inner {
@@ -70,7 +50,7 @@
 
 #disqus_thread {
     position:relative;
-    display:block;
+    display:none;
     clear:both;
     width:100%;
     padding-right:5%;

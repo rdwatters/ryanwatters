@@ -1,13 +1,12 @@
 .footer {
     z-index: $footer-z;
-    display: block;
-    clear: both;
+    @include display(flex);
     position: absolute;
     width: 100%;
-    width: 100vw;
+    width:100vw;
     height: $footer-height;
     bottom: 0;
-    margin-top: 50px;
+    left:0;
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
@@ -30,9 +29,6 @@
             @include flex-direction(row);
             @include justify-content(flex-end);
         }
-        height: $footer-height;
-        position: absolute;
-        bottom: 0;
         background-color: $footer-background-color;
         width: 100%;
         li {

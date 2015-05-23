@@ -1,39 +1,24 @@
 //BEGIN BASE CRP
-@import 'variables';
-@import 'basic-grid';
-@import 'normalize';
-@import 'bourbon/bourbon';
-@import 'menu-icon';
-@import 'header-and-main';
-@import 'pagination';
+@import 'critical-render-path/crp';
 //END BASE CRP
 /*BEGIN VIDEO LIBRARY STYLES*/
 
-@import 'light-gallery';
-.main {
-    background-color: $video-library-body-background-color;
-    color: $base-font-color;
-    margin-top:0px;
-}
-
 .information-header {
     width: 100%;
-    width: 100vw;
-    height:100%;
-    background-color:$full-width-header-background-color;
-    color:$base-font-color-inverse;
-    padding-top:$header-height;
-    margin-top:0px;
-    padding-bottom:1.5em;
+    height: 100%;
+    background-color: $full-width-header-background-color;
+    color: $base-font-color-inverse;
+    margin-top: 0px;
+    padding-bottom: 1.5em;
     .introduction {
         width: 100%;
         padding-right: 5%;
         padding-left: 5%;
         @include MQ(XL) {
-            padding-right:0%;
-            padding-left:0%;
-            margin-right:auto;
-            margin-left:auto;
+            padding-right: 0%;
+            padding-left: 0%;
+            margin-right: auto;
+            margin-left: auto;
             max-width: $XL;
         }
         h1 {
@@ -50,10 +35,10 @@
                 padding-top: $base-font-size * 2;
             }
         }
-        .description{
-            display:none;
-            @include MQ(M){
-                display:block;
+        .description {
+            display: none;
+            @include MQ(M) {
+                display: block;
             }
         }
     }
@@ -72,12 +57,15 @@ article.video-library {
 }
 
 ul.video-list {
-    width:100%;
+    width: 100%;
     @include display(flex);
     @include flex-wrap(wrap);
 }
 
 li.video {
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(flex-start);
     position: relative;
     float: left;
     width: 100%;
@@ -96,9 +84,6 @@ li.video {
     }
     margin-top: 20px;
     background-color:$video-tile-background-color;
-    @include display(flex);
-    @include flex-direction(column);
-    @include align-items(flex-start);
     @include MQ(M) {
         width: 49%;
         margin-right: 2%;
@@ -107,10 +92,10 @@ li.video {
         }
     }
     @include MQ(L) {
-        width: 31%;
-        margin-right: 3.5%;
+        width: 32%;
+        margin-right: 1.3333%;
         &:nth-child(2n) {
-            margin-right: 3.5%;
+            margin-right: 1.3333%;
         }
         &:nth-child(3n) {
             margin-right: 0;
@@ -177,11 +162,11 @@ li.video {
 }
 
 .vimeo-icon {
-    background-image: url('/static/images/youtube.svg');
+    background-image: url('/static/images/vimeo.svg');
 }
 
 .youtube-icon {
-    background-image: url('/static/images/vimeo.svg');
+    background-image: url('/static/images/youtube.svg');
 }
 
 .head {

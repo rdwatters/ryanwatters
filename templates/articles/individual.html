@@ -4,6 +4,7 @@
           {% include "templates/partials/crp-article.html" %}
       </style>
 {% endblock %}
+{# PREFETCH AND PRERENDER #}
 {% block head_extra %}
   {% set prev = prevItem(item, 'publish_date', true) %}
   {% set next = nextItem(item, 'publish_date', true) %}
@@ -52,12 +53,16 @@
   </section>
 {% endif %}
   <div class="social-media-icons-bar" id="social-media-icons-bar" data-swiftype-index="false">
-      <div class="social-buttons">
-      {% include "templates/partials/socialmediaicons.html" %}
-      <a href="#" role="button" class="close-social-buttons" title="Close the social sharing screen">CLOSE</a>
-      </div>        
+    <ul class="social-buttons icon-bar-open">
+        <div class="share">Share</div>
+        {% include "templates/partials/socialmediaicons.html" %}
+        <li class="close-social">
+        <a href="#" class="close-social-buttons" role="button" title="Close the social sharing screen">CLOSE</a>
+        </li>
+    </ul>  
   </div>
-  <a href="#" role="button" title="Share this article through social media." class="share-button"><div class="share"> SHARE</div></a>
+
+  <a href="#" role="button" title="Share this article via social media." class="share-button"><div class="share"> SHARE</div></a>
 
 <article class="full-length {{wVideo}}" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting"> 
   <h1>{{ item.title }}</h1> 
@@ -109,18 +114,22 @@
           <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
         </div>
         {% endif %}
+
   {# BODY CONTENT - Markdown or RTE #}       
   <section class="body-content" data-swiftype-name="body" data-swiftype-type="text">
   {{ item.body|markdown }}
   </section>
-  <ul class="article-tags" itemprop="keywords"><span>Tagged in...</span>
+
+  <ul class="article-tags" itemprop="keywords" data-swiftype-name="tags" data-swiftype-type="text">
       {% for relation in item.tags %}
         <li class="article-tag"><a href="{{ url(relation) }}">{{ relation.name }}</a></li>
       {% endfor %}
   </ul>
+  
   <div class="all-articles" data-swiftype-index="false">
     <a href="{{ url('articles') }}"><strong>See all articles...</strong></a>
   </div>
+
   {% if articleLength.length > 500 %}
   <aside class="article-navigation" aria-hidden="true">
     <ul class="navigation">
@@ -128,6 +137,21 @@
     </ul>
   </aside>
   {% endif %}
+
+  {# ARTICLE AUTHOR(S)#}
+  {% if article.author.length > 1 %}
+  {# THIS IS SET TO CREATE A SPECIAL CLASS IN CASES WHERE THERE IS MORE THAN ONE AUTHOR #}
+  {% set authorNum = "-" + article.author.length%}
+  {% endif %}
+    {%for author in article.author %}
+    <a href="{{url(author)}}">
+       <section class="author-blurb{{authorNum}}">
+        <img src="{{author.author_photo|imageCrop(100,100)}}" alt="Photo of the article author, {{author.full_name.first}} {{author.full_name.last}}" title="{{author.full_name.first|capitalize}} {{author.full_name.last|capitalize}}">
+        <h5>{{author.full_name.first|capitalize}} {{author.full_name.last|capitalize}}</h5>
+        <p>{{author.short_bio}}</p>
+      </section>
+    </a>
+    {% endfor %}
 </article>
  {% if prev %} 
     <section class="previous-and-next-article" swiftype-index="false">     
@@ -147,25 +171,25 @@
       </a>    
   {% endif %}
   {% if next %}
-      
-
-          <a href="{{ url(next) }}" role="button" class="next-article">
-              <svg version="1.1" id="right-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
-                   viewBox="60 -17.1 35.5 53.3" enable-background="new 60 -17.1 35.5 53.3" xml:space="preserve">
-                <g>
-                  <polygon points="60,36.2 77.8,36.2 95.6,9.5 77.8,-17.1 60,-17.1 77.8,9.5  "/>
-                </g>
-              </svg>
-            <section class="article-info">
-              <h5>Next Article</h5>
-              <span class="article-title">{{next.title}}</span>
-              <span class="article-author">{{next.author[0].full_name.first}} {{next.author[0].full_name.last}}</span> 
-              <span class="publish-date">{{next.publish_date|date('M d, Y')}}</span> 
-            </section>
-          </a>
+      <a href="{{ url(next) }}" role="button" class="next-article">
+          <svg version="1.1" id="right-arrow-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="25px" height="80px"
+               viewBox="60 -17.1 35.5 53.3" enable-background="new 60 -17.1 35.5 53.3" xml:space="preserve">
+            <g>
+              <polygon points="60,36.2 77.8,36.2 95.6,9.5 77.8,-17.1 60,-17.1 77.8,9.5  "/>
+            </g>
+          </svg>
+        <section class="article-info">
+          <h5>Next Article</h5>
+          <span class="article-title">{{next.title}}</span>
+          <span class="article-author">{{next.author[0].full_name.first}} {{next.author[0].full_name.last}}</span> 
+          <span class="publish-date">{{next.publish_date|date('M d, Y')}}</span> 
         </section>
+      </a>
+    </section>
       
   {% endif %}
+
+
 
 
 {# DISQUS COMMENTS #}
@@ -183,14 +207,15 @@
       })();
     </script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-{% endif %}  
+{% endif %}
+<!-- END BLOCK CONTENT -->  
 {% endblock %}
 
+{# EXTRA SCRIPTS AT BODY BOTTOM #}
 {% block scripts_extra %}
 {% parent %}
-<script>
+<script async>
  window.onscroll = headerFadeOnScroll;
-    // window.addEventListener('scroll', stickySocialBar, false);
     /*HEADER FADES IN AND OUT ON SCROLL*/
     function headerFadeOnScroll() {
         var theHeader = document.getElementsByTagName('header')[0],

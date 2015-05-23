@@ -1,20 +1,28 @@
-{% extends "templates/partials/base.html" %} 
-{% block title %}{% parent %} - Home{% endblock %} 
-{% block content %}
-{% block crp_block %}
+{% extends "templates/partials/base.html" %}
+{% block head_extra %}
       <style>
           {% include "templates/partials/crp-homepage.html" %}
       </style>
 {% endblock %} 
+{% block title %}{% parent %} - Home{% endblock %} 
+{% block content %}
 {% set articles = cms.articles|sort('publish_date', true) %}
-{% set articles = paginate(articles, 4) %}
+{% set articles = articles.slice(0,4) %}
 {% set authors = cms.authors %}
 
+
 {# INFINITE SCROLL LIST ON HOMEPAGE #}
-<ul class="home-article-list js-paginate" itemscope itemtype="http://schema.org/Blog" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+<ul class="article-list" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
+     {% if loop.first %}
+        {% set firstplaybuttonhome = "firstplaybutton"%}
+        {% else %}
+        {% set firstplaybuttonhome = ""%}
+    {% endif %}
     <li class="post">
-        <section class="home-article-section"> 
+            {% for relation in article.category%}
+                <div class="article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
+            {% endfor %}
             {% if article.related_video %}
                 {% set video = article.related_video %}
                 {% set ss = video.streaming_service %}
@@ -25,180 +33,73 @@
                         {% set videoId = video.video.original_url.split('vimeo.com/')[1] %}
                         {% set streaming = "vimeo" %}
                     {% endif %}
-                        <section class="home-article-video">
-                        {% for relation in article.category%}
-                            <div class="article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
-                        {% endfor %}         
-                            <div class="video-player-{{streaming}}" data-{{-streaming-}}id="{{videoId}}">
-                                    {% if video.thumbnail_override %}
-                                        <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315">
-                                    {% else %}
-                                        <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315">
-                                    {% endif %}
-                                <div class="play-button" role="button">
+
+                        <section class="list-video">
+                                 
+                            <div class="video-player-{{streaming}}">
+                                {% if video.thumbnail_override %}
+                                    <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315" data-streaming="{{streaming}}" data-videoid="{{videoId}}">
+                                {% else %}
+                                    <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315" data-streaming="{{streaming}}" data-videoid="{{videoId}}">
+                                {% endif %}
+                                <div class="play-button {{firstplaybuttonhome}}" role="button">
                                     <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
                                     <path id="play-button-inner-triangle" d="M52.881,14.708c-18.9,0-34.222,15.321-34.222,34.223c0,18.901,15.322,34.221,34.222,34.221  c18.901,0,34.224-15.32,34.224-34.221C87.104,30.03,71.782,14.708,52.881,14.708z M55.883,58.107L40.02,67.226l0.035-18.294  l0.034-18.296l15.828,9.176l15.828,9.178L55.883,58.107z" /></svg>
                                 </div>
                             </div>
-                            <section class="home-publish-date">
-                                <div class="month">{{- article.publish_date|date('F') -}}</div>
-                                <div class="day">{{- article.publish_date|date('d') -}}</div>
-                                <div class="year">{{- article.publish_date|date('Y') -}}</div>
-                            </section>
                         </section>
-                              
             {% else %}
-                        <section class="home-article-image">
-                        {% for relation in article.category%}
-                            <div class="article-category"><a title="See other articles in the category {{relation.name}}" href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
-                        {% endfor %}
-                            <div class="article-image">
-                                <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">
-                                
+
+                        <section class="list-image">
+                        {% if loop.first %}
+                            <div class="image" style="background-image:url({{article.image|imageCrop(560,315)}});">
+                                <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">                                
                             </div>
-                            <section class="home-publish-date">
-                                <div class="month">{{- article.publish_date|date('F') -}}</div>
-                                <div class="day">{{- article.publish_date|date('d') -}}</div>
-                                <div class="year">{{- article.publish_date|date('Y') -}}</div>
-                            </section>
+                        {% else %}
+                            <div class="image">
+                                <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">                                
+                            </div>
+
+                        {% endif %}  
                         </section>
             {% endif %}
                                       
-                        <section class="home-article-information" itemprop="blogPost">
-                            <section class="post-social-buttons">
-                                {# Social Media Icon Buttons #} 
-                                {% include "templates/partials/socialmediaicons.html" %}                       
-                            </section>
-                            <section class="home-article-title-and-description">
-                                <h1 class="home-article-title">
+                        <section class="information" itemprop="blogPost">
+                            
+                            <section class="title-and-description">
+                                <section class="list-publish-date">
+                                    <span class="month">{{- article.publish_date|date('F') -}}</span>
+                                    <span class="day">{{- article.publish_date|date('d') -}}, </span>
+                                    <span class="year">{{- article.publish_date|date('Y') -}}</span>
+                                </section>
+                                <h1 class="list-article-title">
                                     <a href="{{ url(article) }}">{{ article.title }}</a>
                                 </h1>
                                 {% if article.description.length > 200 %}
-                                <p class="home-article-description">{{ article.description.substring(0,199) }} [...]</p>
+                                <p class="list-description">{{ article.description.substring(0,199) }} [...]</p>
                                 {% else %}
-                                <p class="home-article-description">{{ article.description }}</p>
+                                <p class="list-description">{{ article.description }}</p>
                                 {% endif %}
-                                <div class="read-button-and-author">
+                                
+                                <div class="read-more-and-author">
                                     <div class="read-more" role="button">
                                         <a role="button" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
                                     </div>                          
-                                    <div class="post-author-name" itemprop="author" role="button">
+                                    <div class="author-name" itemprop="author" role="button">
                                         <a role="button" aria-label="Find out more about the author, {{article.author[0].full_name.first}} {{article.author[0].full_name.last }}"href="{{ url(article.author[0]) }}" class="article-author-link" title="Find out more about the author, {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}">{{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
                                         </a>
                                     </div>
                                 </div>
+                                                                                   
+                                
                             </section>
+                           <!--  <ul class="social-buttons">
+                                {# Social Media Icon Buttons #} 
+                                {% include "templates/partials/socialmediaicons.html" %}                       
+                            </ul> -->
+                            
                         </section>
-            </section>
         </li>
-    {% endfor %}
-    {# Pagination #}
-    
+    {% endfor %}   
 </ul>
-<nav role="menu" aria-label="Pagination" aria-hidden="true" class="pagination">
-        {% include "templates/partials/paginator.html" %}
-</nav>
-
-{# RIGHT RAIL WIDGET #}
-<aside data-swiftype-index="false">
-    {% set siteimage = cms.additionalglobals.site_image %}
-        <section class="content">
-        <img class="site-image" src="{{siteimage|imageCrop(150,150)}}" alt="">
-            <p class="site-description">{{getSetting('site_description')}}</p>            
-            {#Grab each of the categories and write them to the page with the total number of articles in each#}
-            <section class="categories" role="navigation" aria-label="Secondary">
-                <h4>CATEGORIES</h4>
-                <ul class="category">
-                    {% for category in cms.categories %}
-                        <li class="name">
-                            <a href="{{ url(category) }}" title="See other article written in the {{category.name}} category">{{ category.name }}
-                                <span class="category-article-total">({{ category.articles.length }})</span>
-                            </a>
-                        </li>           
-                    {% endfor %}
-                </ul>
-            </section>
-
-            {#Pull all 'tags' currently being used in the cms and add them to this section of the right rail #}
-            {% set tags = cms.tags|sort('name') %}
-        <section class="tags-list">
-            <h4>TAGS</h4>
-            {% for tag in tags %}
-            <span class="tag"><a href="{{ url(tag) }}">{{ tag.name|lower }}</a></span>
-            {% endfor %}
-        </section>
-        <section class="most-recent-tweet">
-                {% set twitterHandle = getSetting('site_twitter') %}
-            <div class="twitter-content-wrapper">
-                <div class="twitter-header">
-                    <span class="twitter-handle">
-                        <a href="https://www.twitter.com/@{{twitterHandle}}">@{{ twitterHandle }}</a>
-                    </span>
-                    {# SMALL TWITTER SVG IN RIGHT WIDGET#}
-                    <svg version="1.0"
-                        id="twitter-mini" class="twitter-svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
-                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="130.9 12.4 31.7 25.8"
-                        enable-background="new 130.9 12.4 31.7 25.8" xml:space="preserve" height="15px">
-                        <g id="layer1" transform="translate(-282.32053,-396.30734)">
-                        <path id="path5" d="M444.9,411.8c-1.2,0.5-2.4,0.9-3.7,1c1.3-0.8,2.4-2.1,2.9-3.6c-1.3,0.7-2.6,1.3-4.1,1.6
-                        c-1.2-1.3-2.9-2.1-4.7-2.1c-3.6,0-6.5,2.9-6.5,6.5c0,0.5,0.1,1,0.2,1.5c-5.4-0.3-10.2-2.9-13.4-6.8c-0.6,1-0.9,2.1-0.9,3.3
-                        c0,2.3,1.1,4.2,2.9,5.4c-1.1,0-2.1-0.3-2.9-0.8c0,0,0,0.1,0,0.1c0,3.2,2.2,5.8,5.2,6.4c-0.5,0.1-1.1,0.2-1.7,0.2
-                        c-0.4,0-0.8,0-1.2-0.1c0.8,2.6,3.2,4.5,6.1,4.5c-2.2,1.7-5,2.8-8.1,2.8c-0.5,0-1,0-1.6-0.1c2.9,1.8,6.3,2.9,10,2.9
-                        c12,0,18.5-9.9,18.5-18.5c0-0.3,0-0.6,0-0.8C443,414.2,444.1,413.1,444.9,411.8L444.9,411.8z"/>
-                    </g>
-                    </svg>
-                </div>
-                
-                {#Pull the last Tweet from the 'Tweet' Content Type and add it to the right rail on m+ screen sizes#}
-                {% set tweet = cms.tweet|sort('publish_date',true)|first %}
-                {% set tweetBody = tweet.tweet_body.split('http')[0] %}
-                {% set tweetUrl = tweet.tweet_body.split('http')[1] %}
-                <p class="tweet-body">{{ tweetBody }} <a href="http{{ tweetUrl }}" class="tweet-url">http{{ tweetUrl }}</a></p>
-                <p><span class="tweet-time"><time datetime="tweet.tweet_time">Published on <a href="https://www.twitter.com/{{twitterHandle}}/status/{{ tweet.name }}" target="_blank">{{ tweet.tweet_time|date('F d Y. g:i a') }}</a></time></span></p>
-            </div>    
-        </section>
-    </section>
-</aside>
-
-
-{# SPINNER FOR INFINITE SCROLL #}
-
-<div class="svg-spinner-wrapper">
-<svg id="spinner" width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="15" cy="15" r="15">
-        <animate attributeName="r" from="15" to="15"
-                 begin="0s" dur="0.8s"
-                 values="15;9;15" calcMode="linear"
-                 repeatCount="indefinite" />
-        <animate attributeName="fill-opacity" from="1" to="1"
-                 begin="0s" dur="0.8s"
-                 values="1;.5;1" calcMode="linear"
-                 repeatCount="indefinite" />
-    </circle>
-    <circle cx="60" cy="15" r="9" fill-opacity="0.3">
-        <animate attributeName="r" from="9" to="9"
-                 begin="0s" dur="0.8s"
-                 values="9;15;9" calcMode="linear"
-                 repeatCount="indefinite" />
-        <animate attributeName="fill-opacity" from="0.5" to="0.5"
-                 begin="0s" dur="0.8s"
-                 values=".5;1;.5" calcMode="linear"
-                 repeatCount="indefinite" />
-    </circle>
-    <circle cx="105" cy="15" r="15">
-        <animate attributeName="r" from="15" to="15"
-                 begin="0s" dur="0.8s"
-                 values="15;9;15" calcMode="linear"
-                 repeatCount="indefinite" />
-        <animate attributeName="fill-opacity" from="1" to="1"
-                 begin="0s" dur="0.8s"
-                 values="1;.5;1" calcMode="linear"
-                 repeatCount="indefinite" />
-    </circle>
-        </svg>
-</div>
-
-{% endblock %}
-{% block scripts_extra %}
-{% parent %}
 {% endblock %}

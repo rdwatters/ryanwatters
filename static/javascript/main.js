@@ -1,5 +1,31 @@
 var mobileOS = true;
 
+// $(function() {
+    $('.play-button').click(function(el) {
+        var firstPlayRegEx = new RegExp('firstplay', 'i');
+        var thisClass = $(this).attr('class');
+        console.log(thisClass);
+        if(firstPlayRegEx.test(thisClass) && (window.outerWidth >= 1000)){
+            $('li.post:first-child h1.list-article-title').toggleClass('movie-playing');
+        }
+        var iframe = document.createElement('iframe');
+        var firstPlay = $('li.post:first-child .play-button');
+        var theService = $(this).prev('img').attr('data-streaming');
+        var theVideoId = $(this).prev('img').attr('data-videoid');
+        if (theService == "youtube") {
+            iframe.setAttribute('src', '//www.youtube.com/embed/' + theVideoId + '?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0');
+        } else if (theService == "vimeo") {
+            iframe.setAttribute('src', '//player.vimeo.com/video/' + theVideoId + '?autoplay=1&title=0&byline=0&portrait=0');
+        } else {
+            alert("NADA!");
+        }
+        //The parameters for the video embed are set to show video controls but disallow related information at the video's end.
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('class', 'video-iframe');
+        $(this).replaceWith(iframe);
+    });
+
+// });
 (function() {
     if (navigator.userAgent.match(/iphone/gi) || navigator.userAgent.match(/ipad/gi) || navigator.userAgent.match(/android/gi)) {
         mobileOS = true;
@@ -47,19 +73,6 @@ $(document).ready(function() {
             $('.social-media-icons-bar,.share').removeClass('icon-bar-open');
         });
     });
-    $('.play-button').click(function() {
-        var iframe = document.createElement('iframe');
-        if ($(this).parent().attr('class') === 'video-player-youtube') {
-            iframe.setAttribute('src', '//www.youtube.com/embed/' + $(this).parent().attr('data-youtubeid') + '?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0');
-        } else if ($(this).parent().attr('class') === 'video-player-vimeo') {
-            iframe.setAttribute('src', '//player.vimeo.com/video/' + $(this).parent().attr('data-vimeoid') + '?autoplay=1');
-        }
-        console.log(iframe);
-        //The parameters for the video embed are set to show video controls but disallow related information at the video's end.
-        iframe.setAttribute('frameborder', '0');
-        iframe.setAttribute('class', 'video-iframe');
-        $(this).replaceWith(iframe);
-    });
     $('.play-button-small').on('click', function() {
         if ($('.full-length.film-playing').length === 0) {
             var headerHeight = $('.header').height();
@@ -99,100 +112,4 @@ $(function() {
     } else {
         console.log('ok');
     }
-    $('a[href*=#]:not([href=#])').click(function() {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            var headerHeight = $('.header').height();
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: target.offset().top - headerHeight
-                }, 500);
-                return false;
-            }
-        }
-    });
-});
-/**
- * Infinite Scroll
- * @param  {[type]} ) {               var mobileOS - basic browser sniff
- * @return {mobileOS}   tests userAgent
- */
-$(document).ready(function() {
-    var mobileOS = true;
-    //Regex to test user device            
-    if (navigator.userAgent.match(/iphone/gi) || navigator.userAgent.match(/ipad/gi) || navigator.userAgent.match(/android/gi)) {
-        mobileOS = true;
-    } else {
-        mobileOS = false;
-    }
-
-
-
-    var hasContainer = $('.js-paginate').length > 0;
-    if (!mobileOS && hasContainer) {
-        $('.pagination').hide();
-    }
-    //Check if there is no paginate container OR if user is accessing via mobile OS.
-    if (!hasContainer || mobileOS) {
-        //If on mobile, show pagination buttons and return the function to prevent infinite-scroll
-        $('.pagination').show().attr('aria-hidden', false);
-        $(window).unbind('scroll');
-        return;
-    }
-    //Basic wh pagination
-    var nextPage = $('.js-paginate').attr('data-next-page');
-    var maxPage = $('.js-paginate').attr('data-max-page');
-    var removeFirst = $('.js-paginate').attr('data-remove-first');
-
-    if (maxPage === window.location.pathname) {
-        return;
-    }
-
-    var finishedLoading = false;
-    var loading = false;
-    $(window).scroll(function() {
-        if (loading || finishedLoading) {
-            return;
-        }
-
-        var container = $('.js-paginate');
-        var bottomOfContainer = container.position().top + container.outerHeight(true);
-        var scrollBottom = $(window).scrollTop() + $(window).height();
-        if (scrollBottom > bottomOfContainer) {
-            loading = true;
-            $('#spinner').show();
-
-            $.ajax({
-                url: nextPage,
-                success: function(html) {
-                    if (html) {
-                        var targetHtml = $(html).find('.js-paginate');
-
-                        if (nextPage === maxPage) {
-                            finishedLoading = true;
-                        }
-
-                        nextPage = targetHtml.attr('data-next-page');
-
-                        if (nextPage) {
-                            if (removeFirst)
-                                targetHtml.find('li').first().remove();
-
-                            $(".js-paginate").append(targetHtml.html());
-                        } else {
-                            finishedLoading = true;
-                        }
-
-                        $('#spinner').hide();
-                    } else {
-                        finishedLoading = true;
-                        $('#spinner').hide();
-                    }
-
-                    loading = false;
-                }
-            });
-        }
-    });
 });

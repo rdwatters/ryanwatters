@@ -1,8 +1,16 @@
-<footer data-swiftype-index="false" class="footer">
+<footer data-swiftype-index="false" class="footer" id="footer">
+		{% set siteimage = cms.additionalglobals.site_image %}
+		{% set siteimagealt = cms.additionalglobals.site_image_description %}
+					
+						<section class="site-info">
+							<img class="site-image" src="{{siteimage|imageCrop(80,80)}}" alt="{{siteimagealt}}">
+							<p class="site-description">{{getSetting('site_description')}}</p>
+						</section>
+
     <ul class="footer-social-buttons" role="footer navigation" aria-label="The following links will take you to various social media related to this site.">
         <li>
             <a class="footer-twitter" href="https://www.twitter.com/@{{ getSetting('site_twitter') }}" target="_blank" title="Follow this site on Twitter">
-						<svg version="1.0"
+						<svg version="1.0" class="footer-icon"
 						 id="footer-twitter" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg"
 						 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="130.9 12.4 31.7 25.8"
 						 enable-background="new 130.9 12.4 31.7 25.8" xml:space="preserve" width="30px" height="30px">
@@ -16,12 +24,12 @@
 					</svg>
             </a>
         </li>
-        
+        {# FACEBOOK #}
         {% set facebook = getSetting('site_facebook') %}
         {% if facebook %}
         <li>
         		<a class="footer-facebook" href="{{getSetting('site_facebook')}}" target="_blank" title="Facebook page">
-        			<svg version="1.1" id="footer-facebook" class="facebook-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+        			<svg version="1.1" id="footer-facebook" class="footer-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
 	 									y="0px" width="30px" height="30px" viewBox="-9 11 30 30" enable-background="new -9 11 30 30" xml:space="preserve">
 							<g>
 								<path d="M16.4,11H-4c-2.6,0-5,1.9-5,4.6V36c0,2.6,2.3,5,5,5H8.6c0-3.9,0-8.3,0-12.1c-0.8,0-1.6,0-2.4-0.1c0-1.3,0-2.7,0-4.1
@@ -34,10 +42,11 @@
         		</a>
         </li>
         {% endif %}
+        {# GOOGLE-PLUS #}
         {% if cms.additionalglobals.add_googleplus %}
 				<li>
 					<a class="footer-googleplus" href="{{cms.additionalglobal.googleplus_profile}}" title="Google Plus Page">
-						<svg version="1.1" id="footer-googleplus" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						<svg version="1.1" id="footer-googleplus" class="footer-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="30px" height="30px" viewBox="0 0 96.669 96.669" style="enable-background:new 0 0 96.669 96.669;"
 					 xml:space="preserve">
 				<g>
@@ -60,10 +69,11 @@
 					</a>
 				</li>
         {% endif %}
+        {# LINKEDIN #}
         {% if cms.additionalglobals.add_linkedin %}
         <li>
         	<a class="footer-linkedin" href="{{cms.additionalglobals.linkedin_profile}}" target="_blank" title="LinkedIn Profile">
-        		<svg version="1.1" id="footer-linkedin" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" width="30px" height="30px"
+        		<svg version="1.1" id="footer-linkedin" class="footer-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" width="30px" height="30px"
 						 y="0px" viewBox="10.1 10.1 29.8 29.8" enable-background="new 10.1 10.1 29.8 29.8" xml:space="preserve">
 					<path id="linkedin-square-rounded-icon" d="M36.3,10.1H13.7c-2,0-3.6,1.6-3.6,3.6v22.6c0,2,1.6,3.6,3.6,3.6h22.6
 						c2,0,3.6-1.6,3.6-3.6V13.7C39.9,11.7,38.3,10.1,36.3,10.1z M19.6,34.9h-4.1V21.7h4.1V34.9z M17.5,20c-1.3,0-2.4-1.1-2.4-2.4
@@ -73,10 +83,11 @@
         	</a>
         </li>
         {% endif %}
+        {# GITHUB #}
         {% if cms.additionalglobals.add_github %}
         <li>
         	<a class="footer-github" href="{{cms.additionalglobals.github_profile }}" title="GitHub Profile">
-        		<svg version="1.0" id="footer-github" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        		<svg version="1.0" id="footer-github" class="footer-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
 						 viewBox="0 0 32.6 31.8" enable-background="new 0 0 32.6 31.8" xml:space="preserve">
 						<path fill-rule="evenodd" clip-rule="evenodd" d="M16.3,0C7.3,0,0,7.3,0,16.3c0,7.2,4.7,13.3,11.1,15.5
 						c0.8,0.1,1.1-0.4,1.1-0.8c0-0.4,0-1.4,0-2.8c-4.5,1-5.5-2.2-5.5-2.2c-0.7-1.9-1.8-2.4-1.8-2.4c-1.5-1,0.1-1,0.1-1
@@ -88,10 +99,11 @@
         	</a>
         </li>
         {% endif %}
+        {# PINTEREST #}
         {% if cms.additionalglobals.add_pinterest%}
         <li>
         	<a href="{{ cms.additionalglobals.pinterest_url }}" target="_blank" title="Pinterest Page">
-        		<svg version="1.1" id="footer-pinterest" class="pinterest-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
+        		<svg version="1.1" id="footer-pinterest" class="footer-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px"
 					 viewBox="0 0 543.906 543.906" style="enable-background:new 0 0 543.906 543.906;" xml:space="preserve">
 					<g>
 					<path d="M271.959,0C121.77,0,0,121.753,0,271.953c0,111.354,66.966,207.022,162.786,249.082
@@ -108,9 +120,10 @@
         	</a>
         </li>
         {% endif %}
+        {# RSS #}
         <li>
         	<a href="/feed.xml" class="rss-link" target="_blank" title="Subscribe to {{getSetting('site_name')}} through RSS">
-						<svg version="1.1" id="rss-svg" class="rss-svg"xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						<svg version="1.1" id="rss-svg" class="footer-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							 width="30px" height="30px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 						<g>
 							<path d="M119.9,336.1c-30.8,0-55.9,25.1-55.9,55.8c0,30.8,25.1,55.6,55.9,55.6c30.9,0,55.9-24.9,55.9-55.6

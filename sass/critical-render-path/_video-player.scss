@@ -1,5 +1,5 @@
 .video-player-youtube,
-.video-player-vimeo {
+.video-player-vimeo,.video-player {
     display: block;
     width: 100%;
     /* assuming that the video has a 16:9 ratio */
@@ -35,9 +35,10 @@
     top: 35%; //Assume 16:9 ratio for YouTube videos
     position: absolute;
     cursor: pointer;
+    z-index:5;
 }
 
-.play-button-svg {
+svg.play-button-svg {
     @include transition(.4s);
     fill: $video-player-play-button-color;
     opacity: $video-player-play-button-opacity;
@@ -47,7 +48,7 @@
     }
 }
 
-//this class is set by the main.js javascript
+//this element & class is set by the main.js javascript, which creates the element on the click event
 .video-iframe {
     width: 100%;
     height: 100%;

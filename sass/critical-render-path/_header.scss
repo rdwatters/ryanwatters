@@ -1,5 +1,6 @@
 .header {
     z-index: $header-z;
+    margin-bottom:0px;
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: $header-background-color-mobile;
@@ -171,6 +172,7 @@
     }
 }
 
+//SITE NAME TOP LEFT OF HEADER
 .site-name {
     @include transition($base-transition);
     display: block;
@@ -203,14 +205,14 @@
     }
 }
 
-//The main logo is different than the home logo/icon. The former is all the way to the left in the site header.
+//MAIN LOGO. Diifferent from home logo/icon. The former is all the way to the left in the site header.
 .header-main-logo-image {
     background-image: $header-main-logo-background-image;
     position: fixed;
     z-index: $header-z;
 }
 
-//Search icon: note that the rest of the search styles are not included in CRP files and can be found in _search.scss
+//SEARCH ICON: note that the rest of the search styles are not included in CRP files and can be found in _search.scss
 #search-icon svg {
     display: none;
     @include MQ(M) {
@@ -228,35 +230,48 @@
     }
 }
 
-.main {
-    z-index: $main-content-z;
-    @include transition($base-transition);
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: $footer-height;
-    background-color: $main-content-background-color;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    &.menu-open {
-        @include transform(translateX(-$mobile-menu-width));
-        opacity: 0.5;
-    }
-    margin: {
-        top: 0;
-        bottom: 0;
-    }
-    margin-top: $header-height-non-mobile;
-    padding-bottom: $footer-height;
+.mobile-navigation {
+  position:fixed;
+  top:$site-logo-size / 2;
+  right:$site-logo-size * 1.25;
+  z-index:$mobile-menu-icon-z;
+  @include MQ(M){
+    display:none;
+  }
 }
+.menu-icon {
+  display: block;
+  position: absolute;
+  width: $mobile-icon-height;
+  height: $mobile-icon-width;
+  z-index: 2;
+}
+.menu-icon-inner { 
+  display: block;
+  width: $mobile-icon-width;
+  height: $mobile-icon-layer-height; 
+  margin-top: $mobile-icon-layer-height * 2;
+  background: $header-mobile-toggle-menu-icon-color;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  
+  &::before, &::after { 
+    display: block; 
+    position: absolute; 
+    content: "";
+    z-index: -1;
+    width: $mobile-icon-width; 
+    height: $mobile-icon-layer-height; 
+    background: $header-mobile-toggle-menu-icon-color;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out; 
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    top: $mobile-icon-layer-height * 4;
+  }
+}
+//CLICKED STATE FOR MENU ICON IS INCLUDED IN THE BELOW-THE-FOLD CONTENT!!!
 
-.footer-social-buttons{
-    li{
-        a{
-            svg{
-                max-height:100px!important;
-            }
-        }
-    }
-}

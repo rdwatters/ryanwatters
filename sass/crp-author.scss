@@ -1,12 +1,4 @@
-//BEGIN BASE CRP//
-@import 'variables';
-@import 'basic-grid';
-@import 'normalize';
-@import 'bourbon/bourbon';
-@import 'menu-icon';
-@import 'header-and-main';
-// @import 'video-player';
-//END BASE CRP//
+@import 'critical-render-path/crp';
 
 .authors-information {
     width: 100%;

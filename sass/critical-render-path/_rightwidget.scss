@@ -1,0 +1,140 @@
+aside {
+    @include display(flex);
+    @include flex-direction(column);
+    overflow: auto;
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: $right-rail-widget-background-color;
+    @include MQ(MMAX) {
+        margin-bottom: $footer-height;
+        -webkit-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+        -moz-box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+        box-shadow: 0px 0px 1px 0px rgba(204, 204, 204, 1);
+    }
+    @include MQ(M) {
+        overflow-y: scroll;
+        position: fixed;
+        right: 0;
+        height: 100%;
+        top: 0;
+        display: inline-block;
+        clear: both;
+        padding-top: $header-height-non-mobile + 10px;
+        width: $right-rail-widget-width;
+        max-width: $right-rail-widget-max-width;
+        background-color: $right-rail-widget-background-color;
+    }
+    @include MQ(XL) {
+        width: $right-rail-widget-width;
+        max-width: $right-rail-widget-max-width;
+    }
+    .content {
+        width: 100%;
+        height: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        @include MQ(M) {
+            width: 100%;
+            position: relative;
+        }
+        text-align: center;
+        display: block;
+    }
+    .categories {
+        text-align: left;
+        width: 90%;
+        margin: 10px auto;
+        h4 {
+            border-bottom: $right-rail-widget-section-underline;
+            color: $home-tags-heading-color;
+            font-size: $base-font-size;
+            font-weight: $category-font-weight;
+        }
+        .name {
+            margin: 24px 24px 24px 0px;
+        }
+    }
+    .tags-list {
+        text-align: left;
+        width: 90%;
+        margin: auto;
+        h4 {
+            border-bottom: $right-rail-widget-section-underline;
+            color: $home-tags-heading-color;
+            font-size: $base-font-size;
+            font-weight: 300;
+        }
+        .tag {
+            display: inline-block;
+            margin: 3px;
+            display: inline-block;
+            line-height: $base-font-size * 1.5;
+            vertical-align: middle;
+            padding: 5px;
+            color: $tags-font-color;
+            border-radius: $tags-border-radius;
+            background-color: $tags-background-color;
+            &:hover {
+                background-color: $tags-background-hover;
+                color: $tags-font-color-hover;
+            }
+        }
+    }
+}
+
+.most-recent-tweet {
+    display: block;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 100%;
+    height: auto;
+    .twitter-content-wrapper {
+        border-top: 1px solid #cccccc;
+        display: block;
+        width: 90%;
+        margin-right: auto;
+        padding-top: 10px;
+        margin-left: auto;
+    }
+    .tweet-url:hover ~ #twitter-mini {
+        color: red;
+    }
+}
+
+.twitter-header {
+    clear: both;
+    width: 100%;
+}
+
+.twitter-handle {
+    float: left;
+    margin-bottom: 5px;
+    color: $primary-brand;
+    font-weight: bold;
+}
+
+.tweet-body {
+    display: block;
+    clear: both;
+}
+
+#twitter-mini {
+    display: inline-block;
+    float: right;
+    fill: $twitter-mini-color;
+}
+
+.tweet-url {
+    color: $twitter-mini-color;
+}
+
+.tweet-time {
+    display: block;
+    text-align: right;
+    margin-top: 5px;
+    a {
+        color: $anchor-color;
+        font-weight: bold;
+    }
+}
