@@ -1,0 +1,17 @@
+{% extends "templates/partials/base.html" %}
+{% block content %}
+{% set tags = cms.tags %}
+<style>
+	.footer{
+		display:none!important;
+	}
+</style>
+<h1>Here is my heading!</h1>
+<ul>
+{% for tag in tags %}
+<li><a href="#" class="{{tag.name}}">{{tag.name}}</a></li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}

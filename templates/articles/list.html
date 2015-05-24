@@ -11,7 +11,7 @@
   {% set data = data|sort('publish_date', true) %}
 
   {# This is how you set pagination. It's always important to do this after your sort. #}
-  {% set data = paginate(data, 10) %}
+  {% set data = paginate(data, 8) %}
   <section class="information-header">
     <section class="introduction">
         <h1>Articles</h1>

@@ -47,8 +47,9 @@
     <meta class="swiftype" name="description" data-type="string" content="{{item.description|default(getSetting('site_description'))}}" />
     {#This is the block of CSS embedded into the page head for improved PageSpeed and critical render path#}
     {% block crp_block %}
-    {% endblock %}     
-    {# Useful block for loading outside scripts in other pages. #}
+    {% endblock %}
+    
+    {# Useful block for loading outside scripts or stylesheets into different pages. #}
     {% block head_extra %}
 
     {% endblock %}
@@ -82,20 +83,21 @@
         <script src="/static/javascript/jquery.pjax.min.js"></script>
         <!-- endbuild -->
         {# Useful for adding extra javascript to the body's bottom. #}
+        
         {% block scripts_extra %}
         <script async>
           $(document).pjax('a[data-pjax]', '#main');  
         </script>
-      {% endblock %}
+        {% endblock %}
            
-    {# GOOGLE ANALYTICS#}
+      {# GOOGLE ANALYTICS#}
         <script async>
           var _gaq=[['_setAccount','{{ getSetting('analytics_id') }}'],['_trackPageview']];
           (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
           g.src='//www.google-analytics.com/ga.js';
           s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-    {# Swiftype Install Code #} 
+      {# Swiftype Install Code #} 
         <script type="text/javascript">
         (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
         (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);

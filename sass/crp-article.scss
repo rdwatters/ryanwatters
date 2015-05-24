@@ -1,12 +1,11 @@
-//BEGIN BASE CRP//
 @import 'critical-render-path/crp';
+
+//BEGIN BASE CRP//
 .information-header {
     width: 100%;
-    width: 100vw;
     height: 100%;
     background-color: $full-width-header-background-color;
     color: $base-font-color-inverse;
-    padding-top: $header-height;
     margin-top: 0px;
     padding-bottom: 1.5em;
     .introduction {
@@ -26,6 +25,7 @@
             clear: both;
             font: $article-title-font;
             padding-top: $base-font-size;
+            margin-top: 8px;
             margin-bottom: 5px;
             @include MQ(M) {
                 margin-top: 0px;
@@ -543,16 +543,15 @@ article.full-length {
         @include MQ(L) {
             background-color: $article-social-buttons-background-desktop;
         }
-
-        .share{
-            width:40%;
-            border-bottom:1px solid $base-font-color;
-            margin-right:auto;
-            margin-left:auto;
-            text-align:center;
+        .share {
+            width: 40%;
+            border-bottom: 1px solid $base-font-color;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
             font-size: $base-font-size;
-            line-height:1.5;
-            font-weight:bold;
+            line-height: 1.5;
+            font-weight: bold;
         }
         a {
             border-bottom: none;
@@ -573,18 +572,18 @@ article.full-length {
             margin-left: auto;
             display: block;
             text-decoration: none;
-            background-color:$article-social-buttons-color-mobile;
+            background-color: $article-social-buttons-color-mobile;
             &:first-child {
                 margin-top: 10px;
             }
             &:last-child {
                 margin-bottom: 25px;
             }
-            &:nth-child(odd){
-                padding-right:-10px;
+            &:nth-child(odd) {
+                padding-right: -10px;
             }
-            &:nth-child(even){
-                padding-left:-10px;
+            &:nth-child(even) {
+                padding-left: -10px;
             }
             &.pinterest-svg {
                 fill: #cb2027;
@@ -614,7 +613,7 @@ article.full-length {
     margin-left: auto;
     a.close-social-buttons {
         text-align: center;
-        line-height:1.5;
+        line-height: 1.5;
         display: block;
         padding: 5px;
         margin-left: 25%;
@@ -641,7 +640,7 @@ a.share-button {
         margin: auto;
         line-height: $mobile-article-share-button-height;
         font-size: 20px;
-        font-weight:bold;
+        font-weight: bold;
         word-wrap: break-word;
         text-align: center;
         background-color: $mobile-article-share-button-background-color;
