@@ -8,14 +8,15 @@
 {% block head_extra %}
   {% set prev = prevItem(item, 'publish_date', true) %}
   {% set next = nextItem(item, 'publish_date', true) %}
-  {% if prev %}
-    <!-- <link rel="prefetch" href="{{ url(prev) }}" />
-    <link rel="prerender" href="{{ url(prev) }}" /> -->
-  {% endif %}
   {% if next %}
-   <!--  <link rel="prefetch" href="{{ url(next) }}" />
-    <link rel="prerender" href="{{ url(next) }}" /> -->
+    <link rel="prefetch" href="{{ url(next) }}" />
+    <link rel="prerender" href="{{ url(next) }}" />
   {% endif %}
+  {% if prev %}
+    <link rel="prefetch" href="{{ url(prev) }}" />
+    <link rel="prerender" href="{{ url(prev) }}" />
+  {% endif %}
+  
 {% endblock %}
 {% block title %}{{ item.title }}{% endblock %}
 
@@ -192,13 +193,14 @@
 
 
 
+
 {# DISQUS COMMENTS #}
 {% if article.allow_comments && cms.additionalglobals.add_disqus_comments %}
-  {% set disqusName = cms.additionalglobals.disqus_shortname %}
-  <div id="disqus_thread" itemscope "https://schema.org/UserComments"></div>
+{% set disqusName = cms.additionalglobals.disqus_shortname %}  
+  <div id="disqus_thread"></div>
     <script type="text/javascript">
       /* * * CONFIGURATION VARIABLES * * */
-      var disqus_shortname = '{{disqusName}}';
+      var disqus_shortname = 'ryanwattersme';
       /* * * DON'T EDIT BELOW THIS LINE * * */
       (function() {
           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
