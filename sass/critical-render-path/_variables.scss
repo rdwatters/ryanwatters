@@ -1,7 +1,7 @@
 //GRID
 $S: 480px;
 $M: 640px;
-$L: 1000px;
+$L: 960px;
 $XL: 1200px;
 $HUGE: 1600px;
 // Same as above, but handy for setting max values.
@@ -71,6 +71,7 @@ $header-opacity:1;
 
 $body-background-color:$white;
 $main-content-background-color:$body-background-color;
+$list-page-background-color:$light-font-color;
 
 $footer-background-color:$dark;
 $footer-font-color:$white;
@@ -100,7 +101,7 @@ $search-overlay-color:$header-background-color;
 $close-search-overlay-button-border-radius:0%;
 //tablet & desktop search
 $search-overlay-transparency:1.0;
-$category-button-background-color:$light-font-color;
+$category-button-background-color:$primary-brand;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:$base-font-color;
 $tags-font-color:darken($base-font-color-inverse,20%);
@@ -157,7 +158,7 @@ $home-article-author-name-underline:1px solid $primary-brand;
 $category-font-weight:300;
 $category-text-transform:uppercase;
 
-
+$tile-border:none;
 /**************************************ARTICLE PAGES****************************************/
 $full-article-main-element-background-color:$white;
 $full-article-max-width:800px;
@@ -180,6 +181,7 @@ $mobile-article-share-button-font-color:$base-font-color-inverse; //white
 $previous-and-next-article-buttons-background-color:$base-font-color;
 $previous-and-next-article-buttons-font-color:$base-font-color-inverse;
 $author-blurb-background-color:$white;
+$article-tile-border:$tile-border;
 
 //SIZES && SHAPES
 $site-logo-size:32px;
@@ -190,7 +192,7 @@ $mobile-logo-size:$site-logo-size;
 $mobile-header-height:$header-height;
 //if you increase the header height considerably, you will end up with an equally large footer with these default values. You can change that here.
 $header-height-non-mobile:$header-height;
-$footer-height:$header-height;
+$footer-height:$header-height * 2;
 //tags
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page on desktop+ screens
@@ -200,6 +202,7 @@ $home-about-widget-max-width: 400px;
 $article-list-width-m-plus:70%;
 $right-rail-widget-width:28%;
 $right-rail-widget-max-width: 400px;
+
 
 
 //MOBILE-MENU
@@ -242,12 +245,14 @@ $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1
 //You can turn off the hover animation for the play button here by setting the value to false
 
 /******************************VIDEO LIBRARY**********************************/
+$tile-background-color:#ffffff;
 $video-tile-background-color:#ffffff;
 $video-library-body-background-color:$body-background-color;
 $video-library-list-background-color:$body-background-color;//just the list of videos in the center
-$video-tile-border:none;
+$video-tile-border:$tile-border;
 $video-library-overlay-background-color:$body-background-color;
-$full-width-header-background-color:$primary-brand;
+$full-width-header-background-color:#FAFAFA;
+$full-width-header-font-color:$base-font-color;
 
 
 

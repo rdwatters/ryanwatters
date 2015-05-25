@@ -53,6 +53,12 @@ module.exports = function(grunt) {
                         src: ['crp-author.scss'],
                         dest: 'templates/partials',
                         ext: '.html'
+                    },{
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['crp-list.scss'],
+                        dest: 'templates/partials',
+                        ext: '.html'
                     }
                 ]
             }

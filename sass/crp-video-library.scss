@@ -1,12 +1,23 @@
-//BEGIN BASE CRP
 @import 'critical-render-path/crp';
-//END BASE CRP
 /*BEGIN VIDEO LIBRARY STYLES*/
+
+body {
+    // display:block!important;
+    position:relative;
+    background-color: $list-page-background-color;
+}
+
+.main {
+    // display: block!important;
+    height:100%;
+    margin-top:40px;
+}
+
 .information-header {
     width: 100%;
-    height: 100%;
     background-color: $full-width-header-background-color;
-    color: $base-font-color-inverse;
+    color: $full-width-header-font-color;
+    padding-top:0px;
     margin-top: 0px;
     padding-bottom: 1.5em;
     .introduction {
@@ -43,152 +54,57 @@
     }
 }
 
-article.video-library {
-    margin-bottom: $footer-height;
+article {
+    max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
-    background-color: $video-library-list-background-color;
-    width: 90%;
-    @include MQ(XL) {
-        width: 100%;
-        max-width: $XL;
+    font-family: 'Raleway', 'ralewayregular';
+    margin-bottom:80px;
+    @include MQ(M){
+        margin-bottom:120px;
     }
 }
 
-ul.video-list {
+.caption-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    min-height: 70px;
+    background-color: white;
+    color: black!important;
+    font-family: 'Raleway', 'ralewayregular';
     width: 100%;
-    @include display(flex);
-    @include flex-wrap(wrap);
+    opacity: 0.9;
 }
 
-li.video {
-    @include display(flex);
-    @include flex-direction(column);
-    @include align-items(flex-start);
-    position: relative;
-    float: left;
-    width: 100%;
-    border: $video-tile-border;
-    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    .featured {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        padding: 5px;
-        background-color: $featured-background-color;
-        color: $featured-font-color;
-        font-weight: bold;
-    }
-    margin-top: 20px;
-    background-color:$video-tile-background-color;
-    @include MQ(M) {
-        width: 49%;
-        margin-right: 2%;
-        &:nth-child(2n) {
-            margin-right: 0;
-        }
-    }
-    @include MQ(L) {
-        width: 32%;
-        margin-right: 1.3333%;
-        &:nth-child(2n) {
-            margin-right: 1.3333%;
-        }
-        &:nth-child(3n) {
-            margin-right: 0;
-        }
-    }
-    @include MQ(HUGE) {
-        width: 22%;
-        margin-right: 4%;
-        &:nth-child(2n) {
-            margin-right: 4%;
-        }
-        &:nth-child(3n) {
-            margin-right: 4%;
-        }
-        &:nth-child(4n) {
-            margin-right: 0;
-        }
-    }
-    .information {
-        position: relative;
-        width: 90%;
-        margin-right: auto;
-        margin-left: auto;
-        h3 {
-            text-align: center;
-        }
-        p {
-            margin: 0px auto $base-font-size auto;
-            &:last-child {
-                margin-bottom: 25px;
-            }
-        }
-    }
-}
-
-.channel {
-    @include align-self(flex-end);
-    display: block;
-    text-align: right;
-    margin-top: 10px;
+.cbp-l-caption-title {
+    font-family: 'Raleway', 'ralewayregular';
+    padding-right: 5px;
+    padding-left: 5px;
+    color: black!important;
+    font-size: 1.1em;
+    text-align: center;
     margin-bottom: 10px;
-    line-height: $base-font-size * 1.5;
-    a {
-        @include transition($base-transition);
-        font-weight: bold;
-        vertical-align: middle;
-        display: inline-block;
-        border-bottom: $article-anchor-underline;
-        &:hover {
-            border-bottom: $article-anchor-underline-hover;
-        }
-    }
 }
 
-.youtube-icon,
-.vimeo-icon {
-    display: inline-block;
-    height: $base-font-size;
-    width: $base-font-size;
-    line-height: $base-font-size * 1.5;
-    vertical-align: middle;
-    background-size: cover;
-    background-repeat: no-repeat;
+.cbp-l-caption-desc {
+    font-family: 'Raleway', 'ralewayregular';
+    color: black!important;
+    float: right;
 }
 
-.vimeo-icon {
-    background-image: url('/static/images/vimeo.svg');
+.cbp-caption-defaultWrap > .play-svg {
+    @include transition($base-transition);
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    bottom: 15%;
+    opacity: .4;
 }
 
-.youtube-icon {
-    background-image: url('/static/images/youtube.svg');
-}
-
-.head {
-    position: relative;
-    width: 100%;
-    img {
-        width: 100%;
-    }
-    .video-library-play-button {
-        width: 30%;
-        margin-right: auto;
-        margin-left: auto;
-        position: absolute;
-        top: 23%;
-        left: 33%;
-        svg {
-            @include transition(.4s);
-            fill: $video-player-play-button-color;
-            opacity: $video-player-play-button-opacity;
-            &:hover {
-                fill: $video-player-play-button-color-hover;
-                opacity: $video-player-play-button-opacity-hover;
-            }
-        }
-    }
+.cbp-caption-defaultWrap > .play-svg:hover {
+    @include transition($base-transition);
+    opacity: 1;
+    fill: red;
 }

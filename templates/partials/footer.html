@@ -2,10 +2,10 @@
 		{% set siteimage = cms.additionalglobals.site_image %}
 		{% set siteimagealt = cms.additionalglobals.site_image_description %}
 					
-						<section class="site-info">
-							<img class="site-image" src="{{siteimage|imageCrop(80,80)}}" alt="{{siteimagealt}}">
-							<p class="site-description">{{getSetting('site_description')}}</p>
-						</section>
+		<section class="site-info">
+			<img class="site-image" src="{{siteimage|imageCrop(80,80)}}" alt="{{siteimagealt}}">
+			<p class="site-description">{{getSetting('site_description')}}</p>
+		</section>
 
     <ul class="footer-social-buttons" role="footer navigation" aria-label="The following links will take you to various social media related to this site.">
         <li>

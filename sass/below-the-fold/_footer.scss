@@ -1,42 +1,76 @@
-.footer {
-    z-index: $footer-z;
-    @include display(flex);
-    position: absolute;
-    width: 100%;
-    width:100vw;
-    height: $footer-height;
-    bottom: 0;
-    left:0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    opacity:$footer-opacity;
-    background-color: $footer-background-color;
-    color: $footer-font-color;
-    @include transition(.4s);
-    overflow-x: hidden;
-    &.menu-open {
-        @include transform(translateX(-$mobile-menu-width));
-        opacity: 0.5;
+#footer,.footer {
+    display:block;
+    background-color:$footer-background-color;
+    margin-top:50px;
+    margin-bottom:0px;
+    padding-bottom:0px;
+    position:absolute;
+    bottom: -100px;
+
+    right:0;
+    width:100%;
+    height:140px;
+    @include MQ(M){
+        height:95px;
+    }
+    padding-top:15px;
+    padding-bottom:$mobile-article-share-button-height;
+    border:0px;
+    z-index:$footer-z;
+    color:$footer-font-color;
+    .site-info{
+        width:90%;
+        display:block;
+        text-align:center;
+        margin-right:auto;
+        margin-left:auto;
+        @include MQ(M){
+            width:50%;
+            float:left;
+            padding-left:15px;
+            text-align:left;
+        }
+    }
+    .site-image,.site-description{
+        vertical-align:middle;
+    }
+
+    .site-description{
+        @include MQ(M){
+            width:70%;
+            margin-left:15px;
+            display:inline-block;
+        }
+    }
+    img.site-image{
+        display:none;
+        border-radius:50%;
+        width:60px;
+        height:60px;
+        min-width:60px;
+        min-height:60px;
+        @include MQ(M){
+            display:block;
+            float:left;
+        }
     }
     .footer-social-buttons {
-        @include display(flex);
-        @include flex-direction(row);
-        @include justify-content(space-around);
-        @include flex-wrap(wrap);
-        @include align-items(center);
-        @include MQ(M) {
-            @include flex-direction(row);
-            @include justify-content(flex-end);
+        width:100%;
+        text-align:center;
+        display:block;
+        @include MQ(M){
+            width:50%;
+            display:inline-block;
+            text-align:right;
         }
-        background-color: $footer-background-color;
-        width: 100%;
         li {
-            margin-left: 15px;
-            a {
+            display:inline;
+                margin-bottom:15px;
+            a { 
+                margin-right:15px;
                 background-size: cover;
                 background-repeat: no-repeat;
-                svg {
+                svg.footer-icon {
                     @include transition($base-transition);
                     width: 30px;
                     fill:$footer-svg-color;
@@ -51,9 +85,6 @@
                 #footer-googleplus{
                     padding:1px;
                 }
-            }
-            &:last-child {
-                margin-right: 10px;
             }
         }
     }

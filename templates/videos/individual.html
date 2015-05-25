@@ -1,7 +1,17 @@
+{% set ss = item.streaming_service %}
+    {% if ss == "YouTube"%}
+        {% set theVideoId = item.video.original_url.split('v=')[1] %}
+        {% set iframeSource = "//www.youtube.com/embed/" %}
+        {% set parameters = "?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0" %}
+    {% elseif ss == "Vimeo" %}
+        {% set theVideoId = item.video.original_url.split('vimeo.com/')[1] %}
+        {% set iframeSource = "//player.vimeo.com/video/" %}
+        {% set parameters = "?autoplay=1&title=0&byline=0&portrait=0"%}
+    {% endif %}
 <div class="cbp-l-inline">
     <div class="cbp-l-inline-left">
         <div class="cbp-misc-video">
-            {{ item.video.html|safe  }}
+            <iframe src="{{-iframeSource-}}{{-theVideoId-}}{{-parameters-}}" frameborder="0"></iframe>
         </div>
     </div>
 

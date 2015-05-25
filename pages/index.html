@@ -12,6 +12,7 @@
 
 
 {# INFINITE SCROLL LIST ON HOMEPAGE #}
+<article class="homepage">
 <ul class="article-list" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
      {% if loop.first %}
@@ -40,7 +41,7 @@
                                 {% if video.thumbnail_override %}
                                     <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315" data-streaming="{{streaming}}" data-videoid="{{videoId}}">
                                 {% else %}
-                                    <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" class="video-thumb" width="560" height="315" data-streaming="{{streaming}}" data-videoid="{{videoId}}">
+                                    <img class="video-thumb" src="{{ video.video.thumbnail_url }}" alt="{{ video.video_title}}" width="560" height="315" data-streaming="{{streaming}}" data-videoid="{{videoId}}">
                                 {% endif %}
                                 <div class="play-button {{firstplaybuttonhome}}" role="button">
                                     <svg class="play-button-svg" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
@@ -52,7 +53,7 @@
 
                         <section class="list-image">
                         {% if loop.first %}
-                            <div class="image" style="background-image:url({{article.image|imageCrop(560,315)}});">
+                            <div class="image" style="background-image:url('{{article.image|imageCrop(560,315)}}');">
                                 <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">                                
                             </div>
                         {% else %}
@@ -67,11 +68,7 @@
                         <section class="information" itemprop="blogPost">
                             
                             <section class="title-and-description">
-                                <section class="list-publish-date">
-                                    <span class="month">{{- article.publish_date|date('F') -}}</span>
-                                    <span class="day">{{- article.publish_date|date('d') -}}, </span>
-                                    <span class="year">{{- article.publish_date|date('Y') -}}</span>
-                                </section>
+                                <span class="list-publish-date">{{- article.publish_date|date('F d, Y') -}}</span>
                                 <h1 class="list-article-title">
                                     <a href="{{ url(article) }}">{{ article.title }}</a>
                                 </h1>
@@ -102,4 +99,5 @@
         </li>
     {% endfor %}   
 </ul>
+</article>
 {% endblock %}

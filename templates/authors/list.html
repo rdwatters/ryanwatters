@@ -1,18 +1,9 @@
-{# ------------------------------------------------------- #}
-
-{# LIST VIEW OF ALL authors #}
-
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-
-{# ------------------------------------------------------- #}
-
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
+{% block crp_block %}
+<style>
+    {% include "templates/partials/crp-list.html" %}
+</style>
+{% endblock %}
 
 {# This sets our page <title>. It will append authors to the site title defined in base.html #}
 {% block title %}{% parent %} - authors{% endblock %}
