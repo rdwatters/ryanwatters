@@ -13,7 +13,7 @@
 
 {# INFINITE SCROLL LIST ON HOMEPAGE #}
 <article class="homepage">
-<ul class="article-list" itemscope itemtype="http://schema.org/Blog">
+<ul class="home" itemscope itemtype="http://schema.org/Blog">
     {% for article in articles %}
      {% if loop.first %}
         {% set firstplaybuttonhome = "firstplaybutton"%}
@@ -22,7 +22,7 @@
     {% endif %}
     <li class="post">
             {% for relation in article.category%}
-                <div class="article-category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
+                <div class="category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
             {% endfor %}
             {% if article.related_video %}
                 {% set video = article.related_video %}
@@ -35,7 +35,7 @@
                         {% set streaming = "vimeo" %}
                     {% endif %}
 
-                        <section class="list-video">
+                        <section class="list-image">
                                  
                             <div class="video-player-{{streaming}}">
                                 {% if video.thumbnail_override %}
@@ -52,52 +52,38 @@
             {% else %}
 
                         <section class="list-image">
-                        {% if loop.first %}
-                            <div class="image" style="background-image:url('{{article.image|imageCrop(560,315)}}');">
                                 <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">                                
-                            </div>
-                        {% else %}
-                            <div class="image">
-                                <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">                                
-                            </div>
+                        </section> 
 
-                        {% endif %}  
-                        </section>
             {% endif %}
                                       
                         <section class="information" itemprop="blogPost">
-                            
-                            <section class="title-and-description">
-                                <span class="list-publish-date">{{- article.publish_date|date('F d, Y') -}}</span>
-                                <h1 class="list-article-title">
-                                    <a href="{{ url(article) }}">{{ article.title }}</a>
-                                </h1>
-                                {% if article.description.length > 200 %}
-                                <p class="list-description">{{ article.description.substring(0,199) }} [...]</p>
-                                {% else %}
-                                <p class="list-description">{{ article.description }}</p>
-                                {% endif %}
                                 
-                                <div class="read-more-and-author">
-                                    <div class="read-more" role="button">
-                                        <a role="button" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
-                                    </div>                          
-                                    <div class="author-name" itemprop="author" role="button">
-                                        <a role="button" aria-label="Find out more about the author, {{article.author[0].full_name.first}} {{article.author[0].full_name.last }}"href="{{ url(article.author[0]) }}" class="article-author-link" title="Find out more about the author, {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}">{{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
-                                        </a>
-                                    </div>
-                                </div>
-                                                                                   
-                                
-                            </section>
-                           <!--  <ul class="social-buttons">
-                                {# Social Media Icon Buttons #} 
-                                {% include "templates/partials/socialmediaicons.html" %}                       
-                            </ul> -->
+                                    <h1>
+                                        <a href="{{ url(article) }}">{{ article.title }}</a>
+                                    </h1>
+                                    {% if article.description.length > 180 %}
+                                    <p>{{ article.description.substring(0,180) }} [...]</p>
+                                    {% else %}
+                                    <p>{{ article.description }}</p>
+                                    {% endif %}
+                                    
+                                    <a role="button" class="read-more" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
+                                    
+                                    <a role="button" aria-label="Find out more about the author, {{article.author[0].full_name.first}} {{article.author[0].full_name.last }}" href="{{ url(article.author[0]) }}" class="article-author-link" title="Find out more about the author, {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}" itemprop="author">
+                                            <div class="author-name" itemprop="author" role="button">by {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
+                                            </div>
+                                    </a>
+                                   
                             
                         </section>
+
         </li>
     {% endfor %}   
 </ul>
 </article>
+<section class="middle-row">
+    <h2>Here is a Heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam adipisci fuga exercitationem? Quos totam iusto porro odio suscipit quisquam saepe sequi, consectetur et odit nemo impedit qui dolores perferendis aliquid? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, ea fugiat eaque soluta aut explicabo quibusdam. Natus voluptas architecto placeat, voluptate doloremque vero ullam, in eveniet animi ex a minus.</p>
+</section>
 {% endblock %}

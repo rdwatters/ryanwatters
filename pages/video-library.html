@@ -13,6 +13,22 @@
 {% set videolibrary = library.list %}
 {% set videolibrary = paginate(videolibrary, 20) %}
 {% set tags = cms.tags|sort('name',true)%}
+<style>
+    .cbp-filter-item-active.cbp-filter-item{
+        background-color:#cccccc!important;
+        font-weight:bold;
+        color:#01589B!important;
+    }
+    .cbp-filter-item{
+        background-color:white!important;
+        border-top:1px solid black!important;
+        border-left:1px solid black!important;
+        border-bottom:1px solid black!important;
+    }
+    .cbp-filter-item:last-child{
+        border-right:1px solid black!important;
+    }
+</style>
 <section class="information-header">
     <section class="introduction">
         <h1>{{ library.name }}</h1>
@@ -21,7 +37,7 @@
 </section>
 
 <article>
-        <div id="filters-container" class="cbp-l-filters-buttonCenter">
+        <div id="filters-container" class="cbp-l-filters-list">
                     <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
                         All <div class="cbp-filter-counter"></div>
                     </div>
@@ -37,7 +53,7 @@
                     {% endfor %}
         </div>
 
-        <ul id="grid-container" class="cbp">
+        <ul id="video-list" class="cbp js-paginate" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true">
                 {% for row in videolibrary %}
                 {% if row.video.thumbnail_override %}
                     {% set thumb = row.video.thumbnail_override|imageCrop(500,375) %}
@@ -84,7 +100,7 @@
     'use strict';
 
     // init cubeportfolio
-    $('#grid-container').cubeportfolio({
+    $('#video-list').cubeportfolio({
         filters: '#filters-container',
         loadMore: '#loadMore-container',
         loadMoreAction: 'click',
@@ -147,4 +163,71 @@
 
 
 </script>
+<!-- <script>
+ $(document).ready(function() {
+  var hasContainer = $('.js-paginate').length > 0;
+
+  if(!hasContainer) {
+    return;
+  }
+
+  var nextPage = $('.js-paginate').attr('data-next-page');
+  var maxPage = $('.js-paginate').attr('data-max-page');
+  var removeFirst = $('.js-paginate').attr('data-remove-first');
+
+  if(maxPage === window.location.pathname) {
+    return;
+  }
+
+  var finishedLoading = false;
+  var loading = false;
+  $(window).scroll( function() {
+    if(loading || finishedLoading) {
+      return;
+    }
+    console.log("HEY!");
+
+    var container = $('.js-paginate');
+    var bottomOfContainer = container.position().top + container.outerHeight(true);
+    var scrollBottom = $(window).scrollTop() + $(window).height();
+    if(scrollBottom > bottomOfContainer)
+    {
+      loading = true;
+      $('#js-spinner').show();
+
+      $.ajax({
+        url: nextPage,
+        success: function(html)
+        {
+            if(html) {
+                var targetHtml = $(html).find('.js-paginate');
+
+                if(nextPage === maxPage) {
+                  finishedLoading = true;
+                }
+
+                nextPage = targetHtml.attr('data-next-page');
+
+                if(nextPage) {
+                  if(removeFirst)
+                    targetHtml.find('li').first().remove();
+
+                  $(".js-paginate").append(targetHtml.html());
+                } else {
+                  finishedLoading = true;
+                }
+
+                $('#js-spinner').hide();
+            } else {
+                finishedLoading = true;
+                $('#js-spinner').hide();
+            }
+
+            loading = false;
+        }
+      });
+    }
+  });
+});   
+</script> -->
 {% endblock %}

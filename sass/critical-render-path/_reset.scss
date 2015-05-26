@@ -30,8 +30,8 @@ textarea {overflow: auto;}
 optgroup {font-weight: bold;}
 table {border-collapse: collapse;border-spacing: 0;}td,th {padding: 0;}
 //My reset -RDW
-html {-webkit-text-size-adjust: 100%;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;-moz-box-sizing:border-box;-webkit-box-sizing: border-box;box-sizing: border-box;height: 100%;margin: 0;padding: 0;font-size:$base-font-size;}
-body {font-size: $base-font-size;min-height: 100%;width: 100%;z-index: 0;margin: 0;padding: 0;overflow-x: hidden;font-family: $body-font-family;background-color: $body-background-color;position: relative;}
+html {-webkit-text-size-adjust: 100%;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;-moz-box-sizing:border-box;-webkit-box-sizing: border-box;box-sizing: border-box;height: 100%;width:100%;margin: 0;padding: 0;font-size:$base-font-size;}
+body {font-size: $base-font-size;min-height: 100%;width: 100%;max-width:100%;z-index: 0;margin: 0;padding: 0;overflow-x: hidden;font-family: $body-font-family;background-color: $body-background-color;position: relative;}
 *,*:before,*:after {box-sizing: inherit;}
 h1,h2,h3,h4,p,blockquote,figure,ol,ul {margin: 0;padding: 0;list-style: none outside none;}
 li,article,aside,footer,header,hgroup,main,nav,section,div,summary {display: block;padding:0;margin:0;}

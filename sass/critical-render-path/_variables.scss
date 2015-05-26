@@ -3,6 +3,7 @@ $S: 480px;
 $M: 640px;
 $L: 960px;
 $XL: 1200px;
+$XXL: 1300px;
 $HUGE: 1600px;
 // Same as above, but handy for setting max values.
 $LMAX: 760px;
@@ -42,18 +43,23 @@ $publish-date-font-family-large-screen:$body-font-family;
 $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
-$primary-brand:#20457C;
-$secondary-brand:#39BBE7;
+$light-font-color:#4c6270;
+// $primary-brand:darken($light-font-color,10%);
+// $primary-brand:#88A0A8;
+$primary-brand:#86A9CA;
+$secondary-brand:#88A0A8;
 $white:#FFFFFF;
 $logo-font-color:$white;
 $darkest:#222222;
 $dark:#3B3A35;
+$semi-dark:#444444;
 
 $base-font-color:$dark;
 $base-font-color-inverse:$white;
-$light-font-color:#4c6270;
-$accent-color:#FB6648;
-$accent-color-two:#5E3448;
+
+$accent-color:#5E3448;
+// $accent-color:#A098AE;
+$accent-color-two:#FB6648;
 $off-white:darken($white,5%);
 
 //Sets the default anchor color (in the reset/normalize)
@@ -101,7 +107,8 @@ $search-overlay-color:$header-background-color;
 $close-search-overlay-button-border-radius:0%;
 //tablet & desktop search
 $search-overlay-transparency:1.0;
-$category-button-background-color:$primary-brand;
+$category-button-font-color:$white;
+$category-button-background-color:$dark;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:$base-font-color;
 $tags-font-color:darken($base-font-color-inverse,20%);
@@ -110,7 +117,13 @@ $tags-background-color:$base-font-color;
 $tags-background-hover:black;
 $svg-spinner-color:$primary-brand;
 
-/***************************** SOCIAL MEDIA ************************************************/
+
+/******************************* HOMEPAGE ****************************************/
+$home-page-featured-article-information-width:95%;
+$middle-row-background-color-homepage:$secondary-brand;
+$homepage-feature-heading-background-color:$primary-brand;
+
+/***************************** SOCIAL MEDIA **************************************/
 //icons are inlined svg xml and can therefore be styled directly 
 $social-buttons-color:$base-font-color;
 $article-social-buttons-background-mobile-overlay-color:$white;
@@ -143,14 +156,14 @@ $right-rail-widget-background-color:$white;
 $right-rail-widget-section-underline: 1px solid $light-font-color;
 
 //"Read more" button on list view
-$read-more-font-color:$white;
-$read-more-font-color-hover:$accent-color;
+$read-more-font-color-hover:$white;
+$read-more-font-color:$accent-color;
 $read-more-font-weight:700;
-$read-more-background-color:$accent-color;
-$read-more-background-color-hover:$read-more-font-color;
+$read-more-background-color:$white;
+$read-more-background-color-hover:$accent-color;
 $read-more-border:1px solid $accent-color;
 $read-more-border-hover:1px solid $accent-color;
-$read-more-button-width:140px;
+$read-more-button-width:160px;
 $read-more-button-height:$base-font-size * 1.5;
 $read-more-button-font-size:$base-font-size;
 $read-more-text-transform:uppercase;
@@ -216,7 +229,7 @@ $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES
 $body-z:0;
-$header-z:99;
+$header-z:50;
 $main-content-z:2;
 $footer-z:99;
 $share-button-z:90;

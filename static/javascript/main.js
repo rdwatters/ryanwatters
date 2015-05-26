@@ -6,7 +6,7 @@ var mobileOS = true;
         var thisClass = $(this).attr('class');
         console.log(thisClass);
         if(firstPlayRegEx.test(thisClass) && (window.outerWidth >= 1000)){
-            $('li.post:first-child h1.list-article-title').toggleClass('movie-playing');
+            $('li.post:first-child h1').toggleClass('movie-playing');
         }
         var iframe = document.createElement('iframe');
         var firstPlay = $('li.post:first-child .play-button');
@@ -41,9 +41,14 @@ var header = $('.header'),
     wScrollDiff = 0;
 
 $(document).ready(function() {
-    $('#search-icon,#search-close-button').on('click', function() {
+    $('#search-icon,#close-search').click(function() {
         var searchInput = $('#search-input');
         $('.search-wrapper').toggleClass('search-open');
+        if($('.search-wrapper.search-open')){
+            $('#close-search').attr('aria-hidden','false');
+        }else{
+            $('#close-search').attr('aria-hidden','true');
+        }
         if (!searchInput.activeElement) {
             searchInput.focus();
         }
