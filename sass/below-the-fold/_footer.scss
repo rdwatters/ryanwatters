@@ -6,12 +6,12 @@
     padding-bottom:0px;
     position:absolute;
     bottom: -100px;
-
+    height:$footer-height-mobile;
     right:0;
     width:100%;
     height:140px;
     @include MQ(M){
-        height:95px;
+        height:$footer-height;
     }
     padding-top:15px;
     padding-bottom:$mobile-article-share-button-height;

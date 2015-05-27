@@ -4,7 +4,6 @@ var mobileOS = true;
     $('.play-button').click(function(el) {
         var firstPlayRegEx = new RegExp('firstplay', 'i');
         var thisClass = $(this).attr('class');
-        console.log(thisClass);
         if(firstPlayRegEx.test(thisClass) && (window.outerWidth >= 1000)){
             $('li.post:first-child h1').toggleClass('movie-playing');
         }
@@ -12,12 +11,13 @@ var mobileOS = true;
         var firstPlay = $('li.post:first-child .play-button');
         var theService = $(this).prev('img').attr('data-streaming');
         var theVideoId = $(this).prev('img').attr('data-videoid');
+        console.log(theVideoId);
         if (theService == "youtube") {
             iframe.setAttribute('src', '//www.youtube.com/embed/' + theVideoId + '?autoplay=1&autohide=2&border=0&wmode=opaque&enablejsapi=1&controls=1&showinfo=0&rel=0');
         } else if (theService == "vimeo") {
             iframe.setAttribute('src', '//player.vimeo.com/video/' + theVideoId + '?autoplay=1&title=0&byline=0&portrait=0');
         } else {
-            alert("NADA!");
+            console.log("If you are getting this error in the console, it is probably a sign that the youtube or vimeo api with embedly has changed, especially if the issue is that you are not getting the correct \"videoid\" being written to the page.");
         }
         //The parameters for the video embed are set to show video controls but disallow related information at the video's end.
         iframe.setAttribute('frameborder', '0');
@@ -34,7 +34,7 @@ var mobileOS = true;
     }
     return mobileOS;
 })()
-/*GLOBAL VARS FOR HEADER FADE ON SCROLL */
+/*GLOBAL VARS FOR HEADER FADE ON SCROLL - THIS SCROLL IS ONLY SET TO WORK ON FULL-LENGTH ARTICLE PAGES*/
 var header = $('.header'),
     wScrollCurrent = 0,
     wScrollBefore = 0,
@@ -53,6 +53,7 @@ $(document).ready(function() {
             searchInput.focus();
         }
     });
+    //close search overlay on M+ screens using the esc key
     window.onkeydown = function(e) {
         //bind escape key
         //if pressed when search wrapper is open, toggle class off to close search
@@ -60,6 +61,7 @@ $(document).ready(function() {
             $('.search-wrapper').toggleClass('search-open');
         }
     };
+    //toggle mobile menu
     $('#mobile-menu-toggle').on('click', function() {
         $('.header,.main,.footer,.search-wrapper,#mobile-menu-toggle').toggleClass('menu-open');
     });
@@ -78,6 +80,7 @@ $(document).ready(function() {
             $('.social-media-icons-bar,.share').removeClass('icon-bar-open');
         });
     });
+    //toggle classes that shift video down for M+ screens in articles with header/feature videos at the top
     $('.play-button-small').on('click', function() {
         if ($('.full-length.film-playing').length === 0) {
             var headerHeight = $('.header').height();
@@ -96,6 +99,7 @@ $(document).ready(function() {
         } else {
             console.log("you are not gettting what you want!");
         }
+        //set iframe attributes
         iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('class', 'video-iframe');
         thumbNail.replaceWith(iframe);
@@ -112,9 +116,8 @@ $(function() {
                 headingText = $(this).text(),
                 listItem = '<li><a href="#' + headingId + '\">' + headingText + '</a></li>';
             $('aside.article-navigation > ul').append(listItem);
-
         });
     } else {
-        console.log('ok');
+        console.log('no seconday navigation');
     }
 });

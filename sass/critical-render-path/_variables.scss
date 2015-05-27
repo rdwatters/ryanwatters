@@ -206,6 +206,7 @@ $mobile-header-height:$header-height;
 //if you increase the header height considerably, you will end up with an equally large footer with these default values. You can change that here.
 $header-height-non-mobile:$header-height;
 $footer-height:$header-height * 2;
+$footer-height-mobile:140px;
 //tags
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page on desktop+ screens
