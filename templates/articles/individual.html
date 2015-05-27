@@ -14,12 +14,12 @@
   {% set prev = prevItem(item, 'publish_date', true) %}
   {% set next = nextItem(item, 'publish_date', true) %}
   {% if next %}
-    <!-- <link rel="prefetch" href="{{ url(next) }}" />
-    <link rel="prerender" href="{{ url(next) }}" /> -->
+    <link rel="prefetch" href="{{ url(next) }}#main" />
+    <link rel="prerender" href="{{ url(next) }}" />
   {% endif %}
   {% if prev %}
-    <!-- <link rel="prefetch" href="{{ url(prev) }}" />
-    <link rel="prerender" href="{{ url(prev) }}" /> -->
+    <link rel="prefetch" href="{{ url(prev) }}#main" />
+    <link rel="prerender" href="{{ url(prev) }}" />
   {% endif %}
   
 {% endblock %}
@@ -149,10 +149,10 @@
     {% endfor %}
 </article>
 {% if prev %}
-      <a href="{{ url(prev) }}" role="button" class="move-previous" title="Read the previous article titled: {{prev.title}}"> 
+      <a href="{{ url(prev) }}" role="button" class="move-previous yui3-pjax" title="Read the previous article titled: {{prev.title}}"> 
             <i class="fa fa-chevron-left"></i>
       </a>   
-      <a href="{{ url(prev) }}" role="button" class="previous-article" title="Read the previous article titled: {{prev.title}}"><!-- data-pjax --> 
+      <a href="{{ url(prev) }}" role="button" data-pjax class="previous-article" title="Read the previous article titled: {{prev.title}}"><!-- data-pjax --> 
           <section class="article-info">
             <small>Previous Article</small>
             <h5 class="title">{{prev.title}}</h5>
@@ -161,10 +161,10 @@
       </a>    
   {% endif %}
   {% if next %}
-      <a href="{{ url(next) }}" role="button" class="move-next" title="Read the next article titled: {{next.title}}"> 
+      <a href="{{ url(next) }}" role="button" class="move-next yui3-pjax" title="Read the next article titled: {{next.title}}"> 
           <i class="fa fa-chevron-right"></i>
       </a>
-      <a href="{{ url(next) }}" role="button" class="next-article" title="Read the next article titled: {{next.title}}">
+      <a href="{{ url(next) }}" role="button" data-pjax class="next-article" title="Read the next article titled: {{next.title}}">
         <section class="article-info">
           <small>Next Article</small>
           <h5 class="title">{{next.title}}</h5>
@@ -215,6 +215,11 @@
         }
         wScrollBefore = wScrollCurrent;
     }
+    $(window).scroll(function(){
+      if((window.outerWidth > 960) && ($('.video-iframe').length === 0)){
+      $('.introduction').css({'opacity':( 100-$(window).scrollTop() )/100});
+      }
+    });
 </script>
 {% endblock %}
 

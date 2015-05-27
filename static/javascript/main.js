@@ -103,9 +103,9 @@ $(document).ready(function() {
         iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('class', 'video-iframe');
         thumbNail.replaceWith(iframe);
+        $('.introduction').addClass('relative');
+        $('.play-button-small').fadeOut('slow');
     });
-
-
 });
 /*Article-level navigation for full-length articles with higher word count and at least THREE H3 headings on the page.*/
 //Pull  

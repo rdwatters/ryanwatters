@@ -76,7 +76,8 @@
         <!-- endbuild -->
 
         {# JQUERY CDN. OPTIONAL. NOTE: MAY CONFLICT WITH METHODS PROVIDED BY CLASSIE.JS! #}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>      
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>      
         {# JS BUILD FILES - CONCAT/MIN ON DEPLOYMENT#}      
         <!-- build:js /static/javascript/minified.js -->     
         <script src="/static/javascript/main.js"></script>
@@ -85,9 +86,14 @@
         {# Useful for adding extra javascript to the body's bottom. #}
         
         {% block scripts_extra %}
-        <script async>
-          $(document).pjax('a[data-pjax]', '#main');  
+        <script>
+          YUI().use('pjax', function (Y) {
+              new Y.Pjax({container: '#main'});
+          });
         </script>
+        <!-- <script async>
+          $(document).pjax('a[data-pjax]', '#main');  
+        </script -->>
         {% endblock %}
            
       {# GOOGLE ANALYTICS#}

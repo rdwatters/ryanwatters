@@ -205,7 +205,7 @@ $mobile-logo-size:$site-logo-size;
 $mobile-header-height:$header-height;
 //if you increase the header height considerably, you will end up with an equally large footer with these default values. You can change that here.
 $header-height-non-mobile:$header-height;
-$footer-height:$header-height * 2;
+$footer-height:auto;
 $footer-height-mobile:140px;
 //tags
 $tags-border-radius:0px;

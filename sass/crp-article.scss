@@ -142,6 +142,7 @@ article.full-length {
 
 .introduction {
     @include MQ(L) {
+        @include transition($base-transition);
         font-size: $base-font-size * 1.25;
         background-color: white;
         z-index: 10;
@@ -152,6 +153,17 @@ article.full-length {
         width: $full-article-max-width;
         margin-left: -15px;
         opacity: 1;
+        h1{
+            padding-right:.25em;
+            padding-left:.25em;
+        }
+        p.article-metadata{
+            font-size:1em;
+        }
+        &.relative{
+            @include transition($base-transition);
+            position:relative;
+        }
     }
 }
 
@@ -214,8 +226,8 @@ h2 {
 
 strong.updated {
     color: $accent-color;
-    font-size:$base-font-size;
-    font-weight:bold;
+    font-size: $base-font-size;
+    font-weight: bold;
 }
 
 .article-metadata {
@@ -236,13 +248,16 @@ strong.updated {
     margin-top: 0;
     margin-top: 12px;
     margin-bottom: 12px;
-    @include MQ(L) {
-        padding-bottom: 60px;
-    }
     .clock-icon {
         display: inline;
         font-size: 24px;
         line-height: 22px;
+    }
+}
+
+@include MQ(L){
+    .w-video .introduction .length-in-minutes{
+        padding-bottom:85px;
     }
 }
 
@@ -323,8 +338,11 @@ cite {
 }
 
 @include MQ(M) {
-    .body-content p {
-        font-size: $base-font-size * 1.25;
+    .body-content {
+        z-index:3;
+        p {
+            font-size: $base-font-size * 1.25;
+        }
     }
     .body-content > p:first-child {
         font-size: $base-font-size * 1.25 + 4px;
