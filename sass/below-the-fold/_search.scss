@@ -2,17 +2,18 @@
     @include MQ(M) {
         @include transform(translateX(0px));
         @include transition($base-transition);
-        opacity:0;
-        z-index:-1;
+        opacity: 0;
+        z-index: -1;
         position: absolute;
         width: 100%;
         height: 100%;
         left: 0;
         top: 0;
+        margin-bottom: $footer-height;
         &.search-open {
             display: block;
-            opacity:1;
-            z-index:99999;
+            opacity: 1;
+            z-index: 99999;
         }
     }
     overflow-x:hidden;
@@ -28,19 +29,59 @@
     &.menu-open {
         @include transform(translateX(0px));
     }
-    .search-form {
+}
+
+.search-form {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-width: $XL;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: $header-height + 10px;
+    @include MQ(M) {
+        width: 90%!important;
+        margin-left: 5%;
+    }
+    @include MQ(L) {
+        width: 55%!important;
+        display: inline-block;
+        float: left;
+    }
+}
+
+.search-helpers {
+    display: none;
+    width: 35%;
+    min-width:360px;
+    max-width:370px;
+    float: right;
+    margin-right: 5%;
+    @include MQ(L) {
         display: block;
-        overflow-x:hidden;
-        overflow-y: scroll;
-        @include MQ(MMAX) {
-            width: 90%;
-        }
+    }
+}
+
+.featured-article {
+    margin-bottom: 20px;
+    font-weight:bold;
+    background-color: $brand-three;
+    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+    span {
+        background-color: $search-overlay-featured-heading-color;
+        color: $white;
+        display: block;
         width: 100%;
-        max-width: 750px;
-        margin-right: auto;
-        margin-left: auto;
-        padding-top: $header-height + 10px;
-        
+        padding: .5em;
+    }
+    h3,
+    p {
+        padding: .5em;
+    }
+    p time {
+        float: right;
     }
 }
 
@@ -48,6 +89,7 @@ input[type="search"],
 #search-input,
 .st-default-search-input {
     display: block;
+    width: 100%;
     font-family: $body-font-family!important;
     padding: 0!important;
     background: none!important;
@@ -66,7 +108,6 @@ input[type="search"],
         background: none!important;
         background-image: none!important;
     }
-    width:100%!important;
     outline: none!important;
     &:focus {
         outline: none!important;
@@ -77,20 +118,31 @@ input[type="search"],
 }
 
 #close-search {
-    display:none;
-    @include MQ(M) {
-        z-index:999999;
-        position:fixed;
-        top:0px;
-        width:100%;
-        right:40%;
+    display: none;
+    strong{
+        font-size:.75em;
+        line-height:1.5;
+        vertical-align:middle;
         color:white;
-        cursor:pointer;
+        font-weight:bold;
+        background-color: $base-font-color;
+        text-align: center;
+        padding-left:.25em;
+        margin-right:.25em;
+        margin-bottom:.1em;
+    }
+    @include MQ(M) {
+        z-index: 999999;
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        right: 40%;
+        cursor: pointer;
         font-weight: bold;
         margin-bottom: -36px;
         cursor: pointer;
-        font-size:$header-link-font-size;
-        font-weight: 300;
+        font-size: $header-link-font-size * 1.2;
+        font-weight: bold;
         float: right;
         text-align: center;
         vertical-align: middle;
@@ -101,8 +153,79 @@ input[type="search"],
         color: $base-font-color;
     }
 }
-.search-wrapper.search-open + #close-search{
-    display:block;
+
+.search-wrapper.search-open + #close-search {
+    display: block;
+}
+
+ul.search-by-tags {
+    margin-bottom:20px;
+    .search-tag {
+        @include transition($base-transition);
+        padding: .25em;
+        color: $tags-font-color;
+        display: inline-block;
+        border: 1px solid $base-font-color;
+        width: auto;
+        margin: .25em;
+        font-size: $base-font-size * 0.8;
+        text-transform: $tags-text-transform;
+        border-radius: $tags-border-radius;
+        background-color: $tags-background-color;
+        &:hover {
+            background-color: $tags-background-hover;
+            color: $tags-font-color-hover;
+        }
+    }
+}
+
+.search-by-category {
+    overflow-x: hidden;
+    position: relative;
+    .search-category {
+        position: relative;
+        z-index:1;
+        display: block;
+        clear:both;
+        margin-bottom: 8px;
+        &:before{
+            overflow-x:hidden;
+            z-index:-1;
+            // position:absolute;
+            left:0px;
+            right:0px;
+            bottom:0px;
+            content:'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .';
+        }
+        span:first-child {
+            display: inline-block;
+            position:absolute;
+            left:0px;
+            bottom:1px;
+            z-index:2;
+            background-color:$search-overlay-color;
+        }
+        span:nth-child(2) {
+            display: inline-block;
+            z-index:2;            
+            position:absolute;
+            right:0px;
+            bottom:1px;
+            background-color:$search-overlay-color;
+        }
+    }
+    margin-bottom:20px;
+}
+
+
+.category-count{
+    float:right;
+}
+
+h3.search-overlay {
+    width: 100%;
+    margin-bottom: 10px;
+    border-bottom: 2px solid $base-font-color;
 }
 
 //BEGIN SWIFTYPE STYLES
@@ -142,71 +265,50 @@ input[type="search"],
 
 #search-results,
 .st-search-container {
-    z-index:-1;
+    z-index: -1;
     overflow-y: auto!important;
     display: block;
-    overflow-y:scroll;
+    overflow-y: scroll;
     color: $base-font-color;
     height: auto;
+}
+
+.st-default-autocomplete,
+.st-query-present,
+.st-ui-autocomplete,
+.st-automcomplete-results {
+    border-radius: 0px!important;
+    color: $base-font-color!important;
+    margin-top: 0px!important;
+    padding-top: 0px!important;
+}
+
+.st-ui-autocomplete {
+    margin-top: 0px;
+}
+
+.st-query-present {
+    margin-top: 0px!important;
+    padding-top: 0px!important;
+}
+
+a.st-ui-result.__swiftype_result {
+    border-radius: none!important;
+    span.st-ui-type-heading {
+        em {
+            color: $primary-brand!important;
+        }
+    }
+}
+
+.st-ui-type-detail {
     .st-ui-type-detail-bold {
         font-weight: 700!important;
-    }
-}
-
-.swiftype-widget .autocomplete ul li {
-    border-radius: 0px!important;
-}
-
-.swiftype-widget,
-.swiftype-widget .autocomplete,
-.swiftype-widget .autocomplete ul {
-    border-radius: none!important;
-    background-color: #cccccc;
-    -webkit-box-shadow: none!important;
-    -moz-box-shadow: none!important;
-    box-shadow: none!important;
-}
-
-.swiftype-widget .autocomplete ul li p.title {
-    color: $primary-brand;
-    font-weight: bold;
-}
-
-@include MQ(M) {
-    .swiftype-widget {
-        margin-bottom: 0px;
-        .autocomplete {
-            margin-top: 0px;
+        color: $base-font-color;
+        text-transform: uppercase;
+        &:before {
+            content: 'In: '!important;
+            text-transform: none;
         }
     }
-}
-
-.swiftype-widget .autocomplete ul li.active {
-    background-image: none;
-    background-color: $base-font-color;
-    color: white;
-    border-top: 0px;
-    border-bottom: 1px solid $base-font-color;
-    -webkit-box-shadow: none!important;
-    -moz-box-shadow: none!important;
-    box-shadow: none!important;
-    p.title {
-        color: $secondary-brand;
-        em {
-            color: white;
-            font-style: italic;
-        }
-    }
-}
-
-.st-result-listing a {
-    text-decoration: underline;
-    font-weight: bold;
-    font-size: 1.4em;
-    color: $primary-brand;
-}
-
-.st-snippet em {
-    font-size: 1.2em;
-    font-weight: bold;
 }

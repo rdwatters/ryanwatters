@@ -44,10 +44,11 @@ $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
 $light-font-color:#4c6270;
-// $primary-brand:darken($light-font-color,10%);
-// $primary-brand:#88A0A8;
 $primary-brand:#86A9CA;
 $secondary-brand:#88A0A8;
+$brand-primary:#86A9CA;
+$brand-two:#88A0A8;
+$brand-three:lighten($secondary-brand,15%);
 $white:#FFFFFF;
 $logo-font-color:$white;
 $darkest:#222222;
@@ -78,15 +79,11 @@ $header-opacity:1;
 $body-background-color:$white;
 $main-content-background-color:$body-background-color;
 $list-page-background-color:$light-font-color;
-
 $footer-background-color:$dark;
 $footer-font-color:$white;
 $footer-svg-color:rgba(255,255,255,0.4);
 $footer-svg-color-hover:rgba(255,255,255,1);
 $footer-opacity:$header-opacity;
-
-
-
 $arrow-color:red;
 
 /*************************************VIDEO***********************************/
@@ -103,7 +100,8 @@ $video-overlay-thumb-and-active-border-color-hover:$white;
 /************************************* SEARCH ********************************/
 //mobile search
 $search-input-y-offset-mobile:200px;
-$search-overlay-color:$header-background-color;
+$search-overlay-color:$white;
+$search-overlay-featured-heading-color:$accent-color;
 $close-search-overlay-button-border-radius:0%;
 //tablet & desktop search
 $search-overlay-transparency:1.0;
@@ -111,10 +109,11 @@ $category-button-font-color:$white;
 $category-button-background-color:$dark;
 $category-button-background-color-hover:$accent-color;
 $home-tags-heading-color:$base-font-color;
-$tags-font-color:darken($base-font-color-inverse,20%);
-$tags-font-color-hover:$white;
+$tags-font-color:$white;
+$tags-font-color-hover:white;
 $tags-background-color:$base-font-color;
 $tags-background-hover:black;
+$tags-text-transform:uppercase;
 $svg-spinner-color:$primary-brand;
 
 
@@ -286,7 +285,4 @@ $pagination-button-border-radius:10px;
 
 /*******************************TRANSITIONS***********************************/
 $base-transition:0.2s;
-
-
-// @import 'theme';
 

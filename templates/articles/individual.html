@@ -112,10 +112,11 @@
         </div>
         {% endif %}
          <ul class="article-tags" itemprop="keywords" data-swiftype-name="tags" data-swiftype-type="text">
-      {% for relation in item.tags %}
-        <li class="article-tag"><a href="{{ url(relation) }}">{{ relation.name }}</a></li>
-      {% endfor %}
-          </ul>
+            <i class="fa fa-tags fa-2x"></i>
+            {% for relation in item.tags %}
+            <li class="article-tag"><a href="{{ url(relation) }}">{{ relation.name }}</a></li>
+            {% endfor %}
+         </ul>
   </section>
   {# BODY CONTENT - Markdown or RTE #}       
   <section class="body-content" data-swiftype-name="body" data-swiftype-type="text">

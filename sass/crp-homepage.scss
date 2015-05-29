@@ -19,8 +19,8 @@ article {
     margin-right: auto;
     margin-left: auto;
     width: 100%;
-    @include MQ(M){
-        margin-top:0px;
+    @include MQ(M) {
+        margin-top: 0px;
     }
 }
 
@@ -28,16 +28,18 @@ ul.home {
     width: 100%;
     background-color: $list-page-background-color;
     @include display(flex);
+    @include flex-direction(row);
     @include flex-wrap(wrap);
-    clear: both;
+    @include align-items(stretch);
 }
 
 li.post {
     @include display(flex);
     @include flex-direction(column);
-    @include align-items(flex-start);
+    @include align-items(stretch);
     position: relative;
     margin-bottom: 0px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.4);
     float: left;
     width: 100%;
     border: $tile-border;
@@ -50,11 +52,12 @@ li.post {
         margin-bottom: 0;
     }
     @include MQ(L) {
-        width:28%;
-        margin-top:4vw;
-        margin-bottom:4vw;
-        &:not(:first-child){
-            margin-left:4%;
+        width: 28%;
+        margin-top: 4vw;
+        margin-bottom: 4vw;
+        &:not(:first-child) {
+            margin-left: 4%;
+
         }
         .information {
             p {
@@ -63,26 +66,23 @@ li.post {
         }
     }
     .information {
+        @include flex-direction(column);
         position: relative;
         width: 90%;
         margin-right: auto;
         margin-left: auto;
         h3 {
-            text-align: center;
+            margin-bottom: .5em;
         }
         p {
-            display:none;
-            @include clearfix;
             margin: 0px auto $base-font-size auto;
-            &:last-child {
-                margin-bottom: 25px;
-            }
-            @include MQ(L){
-                display:block;
+            @include MQ(XL) {
+                font-size: 1.2em;
             }
         }
     }
 }
+
 
 .category {
     @include transition($base-transition);
@@ -109,52 +109,65 @@ li.post {
     }
 }
 
-.read-more {
-    display: block;
-    margin: 20px auto;
-    color: $read-more-font-color;
-    font-size: $read-more-button-font-size;
-    font-weight: $read-more-font-weight;
-    text-transform: $read-more-text-transform;
-    line-height: $read-more-button-font-size * 3;
-    width: $read-more-button-width;
-    height: $read-more-button-font-size * 3;
-    border: $read-more-border;
-    vertical-align: middle;
-    background-color: $read-more-background-color;
-    border: $read-more-border;
-    width: $read-more-button-width;
-    text-align: center;
-    &:hover {
-        background-color: $read-more-background-color-hover;
-        color: $read-more-font-color-hover;
-        border: $read-more-border-hover;
+.author-and-read-more {
+    @include display(flex);
+    @include flex(1); // flex an equal amt of space yo!
+    @include align-items(flex-end); // make that shit sit on the bottom dawg.
+    @include justify-content(center); // center the text horizontally suckah. the poor man's 
+    .read-more {
+        margin-bottom: 20px;
+        color: $read-more-font-color;
+        font-size: $read-more-button-font-size;
+        font-weight: $read-more-font-weight;
+        text-transform: $read-more-text-transform;
+        line-height: $read-more-button-font-size * 3;
+        width: $read-more-button-width;
+        height: $read-more-button-font-size * 3;
+        border: $read-more-border;
+        vertical-align: middle;
+        background-color: $read-more-background-color;
+        border: $read-more-border;
+        width: $read-more-button-width;
+        text-align: center;
+        &:hover {
+            background-color: $read-more-background-color-hover;
+            color: $read-more-font-color-hover;
+            border: $read-more-border-hover;
+        }
+        @include MQ(HUGE){
+            font-size:$base-font-size * 1.2;
+            padding-right:25px;
+            padding-left:25px;
+            width:auto;
+        }
     }
 }
 
 .author-name {
     @include align-self(flex-start);
-    padding-bottom:20px;
+    padding-bottom: 20px;
 }
 
 //STYLES FOR HOMEPAGE FEATURE ARTICLE (IE, FIRST CHILD LIST ITEM)
 //
-li.post:first-child{
-    .category{
-        display:none;
+li.post:first-child {
+    .category {
+        display: none;
     }
-    .information{
-        p{
-            display:block;
+    .information {
+        p {
+            display: block;
         }
     }
 }
+
 @include MQ(M) {
     li.post:first-child {
         width: 100%;
-        margin-top:0;
+        margin-top: 0;
         .information p {
             display: block;
+            line-height:1.5;
         }
     }
 }
@@ -162,20 +175,21 @@ li.post:first-child{
 @include MQ(L) {
     li.post:first-child {
         @include flex-direction(row);
-        margin-bottom:0;
-        h1 {
+        margin-bottom: 0;
+        h3 {
             @include transition($base-transition);
             width: 100%;
             color: $white;
             background-color: $homepage-feature-heading-background-color;
             padding: .25em;
+            margin-top:20px;
             @include transform(translateX(-100px));
             font-size: 1.8em;
             &.movie-playing {
                 @include transform(translateY(0));
             }
-            @include MQ(XL){
-                font-size:2.2em;
+            @include MQ(XL) {
+                font-size: 2.2em;
             }
         }
         .list-video,
@@ -190,43 +204,55 @@ li.post:first-child{
                 margin-right: auto;
                 margin-left: auto;
             }
-            p{
-                @include MQ(XL){
-                    font-size:1.2em;
+            p {
+                @include MQ(XL) {
+                    font-size: 1.3em;
                 }
             }
             .read-more {
                 text-align: center;
-                width:$read-more-button-width;
+                width: $read-more-button-width;
+            }
+        }
+    }
+}
+
+@include MQ(HUGE) {
+    li.post:first-child {
+        h3 {
+            font-size: 2.8em;
+        }
+        .information {
+            p {
+                font-size: 2em;
+                line-height:1.5;
             }
         }
     }
 }
 
 //MIDDLE ROW
-
-
-section.middle-row{
+section.middle-row {
     @include display(flex);
     @include flex-direction(column);
     @include justify-content(center);
-    clear:both;
-    width:100%;
-    height:auto;
-    vertical-align:middle;
-    padding:2em;
-    margin:0%;
-    padding:2em 5%;
-    background-color:$middle-row-background-color-homepage;
-    color:$white;
-    h2{
-        text-align:center;
-        font-size:2em;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.4);
+    clear: both;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    padding: 2em;
+    margin: 0%;
+    padding: 2em 5%;
+    background-color: $middle-row-background-color-homepage;
+    color: $white;
+    h2 {
+        text-align: center;
+        font-size: 2em;
         flex-shrink: 0;
-        margin-bottom:1em;
+        margin-bottom: 1em;
     }
-    p{
+    p {
         flex-shrink: 0;
     }
 }
-

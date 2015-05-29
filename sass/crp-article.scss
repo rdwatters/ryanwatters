@@ -53,39 +53,35 @@
 iframe + .image-fade-block {
     display: none;
 }
-
 .article-tags {
     display: block;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 10px;
+    clear: both;
     z-index: 10;
     vertical-align: middle;
-    font-size: $base-font-size;
-    span {
-        display: inline-block;
-        line-height: 100%;
-        vertical-align: middle;
-        padding-top: 8px;
-        font-weight: bold;
-    }
+    font-size: $base-font-size * 0.75;
     position: absolute;
-    margin: 0;
+    margin-top: 15px;
+    margin-top: 25px;
     padding: 0;
-    top: 0;
-    right: 0;
-    .article-tag {
+    bottom: 10px;
+    left: 10px;
+    li.article-tag {
         display: inline;
         line-height: $base-font-size/1.2 * 1.5;
         float: right;
         margin-left: 10px;
         vertical-align: middle;
         padding: 5px;
+        text-transform:$tags-text-transform;
         border-radius: $tags-border-radius;
         background-color: $tags-background-color;
         &:hover {
             background-color: $tags-background-hover;
             color: $tags-font-color-hover;
+        }
+        .fa.fa-tags {
+            $font-size: $base-font-size * 2;
+            line-height: 1.5;
         }
         a {
             text-decoration: none;
@@ -97,13 +93,15 @@ iframe + .image-fade-block {
         }
     }
 }
+.play-button-small + .article-tags{
+    bottom:15px;
+}
 
 .play-button {
     @include MQ(L) {
         display: none;
     }
 }
-
 article.full-length {
     position: relative;
     background-color: $article-full-length-background-color;
@@ -117,7 +115,6 @@ article.full-length {
     margin-right: auto;
     margin-left: auto;
     color: $base-font-color;
-    opacity: 0.9;
     @include MQ(L) {
         width: 90%;
         margin-right: auto;
@@ -556,6 +553,7 @@ img[alt$="full"] {
         display: block;
         margin-right: auto;
         margin-left: auto;
+        max-width:100px;
     }
     h5 {
         font-size: $base-font-size;

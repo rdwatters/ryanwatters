@@ -35,8 +35,7 @@
                         {% set streaming = "vimeo" %}
                     {% endif %}
 
-                        <section class="list-image">
-                                 
+                        <section class="list-image">                                 
                             <div class="video-player-{{streaming}}">
                                 {% if video.thumbnail_override %}
                                     <img class="video-thumb" src="{{ video.thumbnail_override|imageCrop(560,315)}}" alt="{{video.video_title}}" width="560" height="315" data-streaming="{{streaming}}" data-videoid="{{videoId}}">
@@ -59,26 +58,27 @@
                                       
                         <section class="information" itemprop="blogPost">
                                 
-                                    <h1>
+                                    <h3>
                                         <a href="{{ url(article) }}">{{ article.title }}</a>
-                                    </h1>
+                                    </h3>
+                                    {% if loop.first %}
                                     {% if article.description.length > 180 %}
                                     <p>{{ article.description.substring(0,180) }} [...]</p>
                                     {% else %}
                                     <p>{{ article.description }}</p>
                                     {% endif %}
+
                                     
-                                    <a role="button" class="read-more" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
-                                    
-                                    <a role="button" aria-label="Find out more about the author, {{article.author[0].full_name.first}} {{article.author[0].full_name.last }}" href="{{ url(article.author[0]) }}" class="article-author-link" title="Find out more about the author, {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}" itemprop="author">
-                                            <div class="author-name" itemprop="author" role="button">by {{- article.author[0].full_name.first }}&nbsp;{{ article.author[0].full_name.last }}
-                                            </div>
-                                    </a>
+                                <div class="author-and-read-more">
+                                        <a role="button" class="read-more" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read&nbsp;more</a>
+                                </div>
+                                {% endif %}
+
                                    
                             
                         </section>
 
-        </li>
+    </li>
     {% endfor %}   
 </ul>
 </article>

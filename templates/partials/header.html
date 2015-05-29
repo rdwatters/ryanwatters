@@ -14,11 +14,45 @@
         </ul>
     </nav>   
 </header>
-<div class="search-wrapper">
+<div class="search-wrapper"> <!-- search-open -->
         <form class="search-form">            
             <input type="search" autocomplete="false" id="search-input" class="st-default-search-input" role="search" aria-label="search input" placeholder="Search this site...">
             <div id="search-results" class="st-search-container"></div>           
-        </form>        
+        </form>
+        <div class="search-helpers">
+        {% if cms.additionalglobals.fa_in_search %}
+            {% set featured = cms.featuredarticles.featured %}
+            {% for row in featured %}
+                {% if loop.first %}
+                <div class="featured-article">
+                    <a href="{{url(row.article)}}">
+                        <span>Featured Article</span>
+                        <h3>{{row.article.title}}</h3>
+                        <p>Published in {{row.article.category[0].name}}<time>{{row.article.publish_date|date('F d,Y')}}</time></p>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+            <h3 class="search-overlay">Categories</h3>
+            <section class="search-by-category">
+            {% for category in cms.categories %}
+                <div class="search-category">
+                    <a href="{{url(category)}}">
+                        <span>{{category.name|capitalize}}</span>
+                        <span>({{category.articles.length}})</span>
+                    </a>
+                </div>
+            {% endfor %}
+            </section>
+            <h3 class="search-overlay">Tags</h3>
+            <ul class="search-by-tags">
+                {% for tag in cms.tags|sort('name',false) %}
+                <li class="search-tag"><a href="{{url(tag)}}">{{tag.name}}</a></li>
+                {% endfor %}
+            </ul>
+            
+        </div>        
 </div>
 <a id="close-search" title="Close the search overlay" href="#" role="button"><strong>X </strong>Close Search</a> 
 <div class="site-name"><a href="/">{{ getSetting('site_name')}}</a></div>

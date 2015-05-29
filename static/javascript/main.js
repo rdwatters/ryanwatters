@@ -5,7 +5,7 @@ var mobileOS = true;
         var firstPlayRegEx = new RegExp('firstplay', 'i');
         var thisClass = $(this).attr('class');
         if(firstPlayRegEx.test(thisClass) && (window.outerWidth >= 1000)){
-            $('li.post:first-child h1').toggleClass('movie-playing');
+            $('li.post:first-child h3').toggleClass('movie-playing');
         }
         var iframe = document.createElement('iframe');
         var firstPlay = $('li.post:first-child .play-button');
@@ -61,6 +61,9 @@ $(document).ready(function() {
             $('.search-wrapper').toggleClass('search-open');
         }
     };
+    // $('.search-tag').on('click',function(){
+    //     $('.search-wrapper').toggleClass('search-open');
+    // });
     //toggle mobile menu
     $('#mobile-menu-toggle').on('click', function() {
         $('.header,.main,.footer,.search-wrapper,#mobile-menu-toggle').toggleClass('menu-open');

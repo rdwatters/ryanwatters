@@ -13,35 +13,37 @@
   {% set data = data|sort('publish_date', true) %}
 
   {# This is how you set pagination. It's always important to do this after your sort. #}
-  {% set data = paginate(data, 10) %}
-<section class="information-header">
+  {% set data = paginate(data, 6) %}
+<header class="list-introduction">
     <section class="introduction">
         <h1>Articles</h1>
-        <section class="description"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, tempore at fugit iste deleniti inventore. Tempora voluptatum delectus temporibus dolor ipsum porro culpa fugit nostrum, a nihil minima, laborum vitae.</p></section>
+        <section class="description">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, tempore at fugit iste deleniti inventore. Tempora voluptatum delectus temporibus dolor ipsum porro culpa fugit nostrum, a nihil minima, laborum vitae.</p>
+        </section>
     </section>
-</section>
+</header>
 <article class="articles">
   
-  <ul class="list js-paginate" id="video-library" itemscope itemtype="http://schema.org/Article" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+  <ul class="list js-paginate" id="articles-list" itemscope itemtype="http://schema.org/Article" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
     {% for article in data %}
-    <li class="list-item">
-      <a href="{% for cat in article.category %}{{url(cat)}}{% endfor %}"><span class="category">{%for category in article.category %}{{category.name}}{%endfor%}</span></a>            
-        <a href="{{url(article)}}">
-            <div class="head">
-            {% if article.featured %}
-            <span class="featured">Featured</span>
-            {% endif %}
-            
-            <img class="list-thumb" src="{{article.image|imageCrop(560,315)}}" alt="Thumbnail image for the article - {{article.title}}"> 
-            </div>
-        </a>
-        <section class="information">
-        <a href="{{url(article)}}">
-            <h3 class="title">{{article.title}}</h3>
-        </a>
-            <p itemprop="about">{{article.description}}</p>
-        </section>
+    <li class="post">
+      <a href="{% for cat in article.category %}{{url(cat)}}{% endfor %}">
+        <div class="category">{%for category in article.category %}{{category.name}}{%endfor%}</div>
+      </a>            
+
+            <header class="list-image">
+              {% if article.featured %}
+              <span class="featured">Featured</span>
+              {% endif %}
+              
+              <img src="{{article.image|imageCrop(560,315)}}" alt="Thumbnail image for the article - {{article.title}}">
+              <h3 class="title"><a href="{{url(article)}}">{{article.title}}</a></h3> 
+            </header>
         
+            <p itemprop="about">{{article.description}}</p>
+            <div class="text-bottom">
+              <a role="button" class="read-more" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
+            </div>        
     </li>
     {% endfor %}
   </ul>
@@ -49,6 +51,8 @@
         {% include "templates/partials/paginator.html" %}
   </nav>
 </article>
-
-
+{% endblock %}
+{% block scripts_extra %}
+{% parent %}
+<script src="/static/javascript/infinitescroll.js" async></script>
 {% endblock %}

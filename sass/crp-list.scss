@@ -1,10 +1,9 @@
 @import 'critical-render-path/crp';
-
-body{
-    background-color:$list-page-background-color;
+body {
+    background-color: $list-page-background-color;
 }
 
-.information-header {
+.list-introduction {
     @include display(flex);
     width: 100%;
     background-color: $full-width-header-background-color;
@@ -49,178 +48,162 @@ article {
     @include display(flex);
     @include flex-direction(column);
     @include flex-wrap(wrap);
-    margin-bottom: $footer-height;
     margin-right: auto;
     margin-left: auto;
     background-color: $list-page-background-color;
     width: 90%;
-    @include MQ(XL) {
-        width: 100%;
-        max-width: $XL;
-    }
+
+}
+
+.header,
+img,
+.list-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0%;
+    border: 0;
+    padding: 0%;
 }
 
 ul.list {
     width: 100%;
     @include display(flex);
+    @include flex-direction(row);
     @include flex-wrap(wrap);
-    clear:both;
-}
-
-li.list-item {
-    @include display(flex);
-    @include flex-direction(column);
-    @include align-items(flex-start);
-    position: relative;
-    float: left;
-    width: 100%;
-    border: $tile-border;
-    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    .featured {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        padding: 5px;
-        background-color: $featured-background-color;
-        color: $featured-font-color;
-        font-weight: bold;
+    @include align-items(stretch);
+    margin-right:auto;
+    margin-left:auto;
+    @include MQ(XL) {
+        max-width: $XL;
+        margin-bottom: $footer-height + 10px;
+        padding-bottom:20px;
     }
-    margin-top: 20px;
-    background-color:$tile-background-color;
-    @include MQ(M) {
-        width: 49%;
-        margin-right: 2%;
-        &:nth-child(2n) {
-            margin-right: 0;
-        }
-    }
-    @include MQ(L) {
-        width: 32%;
-        margin-right: 1.3333%;
-        &:nth-child(2n) {
-            margin-right: 1.3333%;
-        }
-        &:nth-child(3n) {
-            margin-right: 0;
-        }
-    }
-    @include MQ(HUGE) {
-        width: 22%;
-        margin-right: 4%;
-        &:nth-child(2n) {
-            margin-right: 4%;
-        }
-        &:nth-child(3n) {
-            margin-right: 4%;
-        }
-        &:nth-child(4n) {
-            margin-right: 0;
-        }
-    }
-    .information {
+    li {
+        @include display(flex);
+        @include flex-direction(column);
+        @include align-items(stretch);
         position: relative;
-        width: 90%;
-        margin-right: auto;
-        margin-left: auto;
+        margin-bottom: 0px;
+        margin-top: 20px;
+        float: left;
+        width: 100%;
+        border: $tile-border;
+        -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+        -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+        box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
+        -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+        -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
+        background-color: $tile-background-color;
+        @include MQ(M) {
+            width: 49%;
+            max-width: 49%;
+            margin-right: 2%;
+            &:nth-child(2n) {
+                margin-right: 0;
+            }
+        }
+        @include MQ(L) {
+            width: 32%;
+            max-width: 32%;
+            margin-right: 1.3333%;
+            &:nth-child(2n) {
+                margin-right: 1.3333%;
+            }
+            &:nth-child(3n) {
+                margin-right: 0;
+            }
+        }
+        @include MQ(HUGE) {
+            width: 22%;
+            max-width: 22%;
+            margin-right: 4%;
+            &:nth-child(2n) {
+                margin-right: 4%;
+            }
+            &:nth-child(3n) {
+                margin-right: 4%;
+            }
+            &:nth-child(4n) {
+                margin-right: 0;
+            }
+        }
+        h3,
+        p {
+            width: 90%;
+            max-width: 90%;
+            margin-right: auto;
+            margin-left: auto;
+            position: relative;
+        }
         h3 {
-            text-align: center;
+            margin-bottom: .5em;
         }
         p {
             margin: 0px auto $base-font-size auto;
-            &:last-child {
-                margin-bottom: 25px;
-            }
         }
     }
-}
-
-.channel {
-    @include align-self(flex-end);
-    display: block;
-    text-align: right;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    line-height: $base-font-size * 1.5;
-    a {
+    .category {
         @include transition($base-transition);
-        font-weight: bold;
-        vertical-align: middle;
-        display: inline-block;
-        border-bottom: $article-anchor-underline;
-        &:hover {
-            border-bottom: $article-anchor-underline-hover;
-        }
-    }
-}
-
-.category {
-    @include transition($base-transition);
-    position: absolute;
-    top: 0;
-    left: 35px;
-    color: $base-font-color-inverse;
-    font-size: $base-font-size;
-    line-height: 28px;
-    border: 3px solid $body-background-color;
-    background-color: $category-button-background-color;
-    padding-right: 10px;
-    padding-left: 10px;
-    z-index: 5;
-    @include transform(translateY(-$read-more-button-height / 1.5));
-    a {
+        position: absolute;
+        top: 0;
+        left: 0px;
+        color: $category-button-font-color;
+        font-size: $base-font-size;
+        line-height: 28px;
+        border: 3px solid $body-background-color;
+        background-color: $category-button-background-color;
+        padding-right: 10px;
+        padding-left: 10px;
         z-index: 10;
         text-transform: $category-text-transform;
+        a {
+            z-index: 10;
+            text-transform: $category-text-transform;
+        }
+        &:hover {
+            background-color: $category-button-background-color-hover;
+        }
+        .category-article-total {
+            float: right;
+        }
     }
-    &:hover {
-        background-color: $category-button-background-color-hover;
-    }
-    .category-article-total {
-        float: right;
-    }
-}
-//Channel icons for video-library if not using "cube portfolio"
-.youtube-icon,
-.vimeo-icon {
-    display: inline-block;
-    height: $base-font-size;
-    width: $base-font-size;
-    line-height: $base-font-size * 1.5;
-    vertical-align: middle;
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
-.vimeo-icon {
-    background-image: url('/static/images/vimeo.svg');
+.authors > ul.list > li > header > img {
+    border-radius:50%;
 }
 
-.youtube-icon {
-    background-image: url('/static/images/youtube.svg');
-}
+.authors > ul.list li {
 
-.head {
-    position: relative;
-    width: 100%;
-    img {
-        width: 100%;
-    }
-    .video-library-play-button {
-        width: 30%;
-        margin-right: auto;
-        margin-left: auto;
-        position: absolute;
-        top: 23%;
-        left: 33%;
-        svg {
-            @include transition(.4s);
-            fill: $video-player-play-button-color;
-            opacity: $video-player-play-button-opacity;
-            &:hover {
-                fill: $video-player-play-button-color-hover;
-                opacity: $video-player-play-button-opacity-hover;
-            }
+}
+//'text-bottom' forces the final div in a list item to to to the bottom of the column. This is used for the "read more" button.
+.text-bottom {
+    @include display(flex); // set the context
+    @include flex(1); // flex an equal amt of space yo!
+    @include align-items(flex-end); // make that shit sit on the bottom dawg.
+    @include justify-content(center); // center the text horizontally suckah. the poor man's text-align: center
+    .read-more {
+        margin-bottom: 20px;
+        color: $read-more-font-color;
+        font-size: $read-more-button-font-size;
+        font-weight: $read-more-font-weight;
+        text-transform: $read-more-text-transform;
+        line-height: $read-more-button-font-size * 3;
+        width: $read-more-button-width;
+        height: $read-more-button-font-size * 3;
+        border: $read-more-border;
+        vertical-align: middle;
+        background-color: $read-more-background-color;
+        border: $read-more-border;
+        width: $read-more-button-width;
+        text-align: center;
+        &:hover {
+            background-color: $read-more-background-color-hover;
+            color: $read-more-font-color-hover;
+            border: $read-more-border-hover;
         }
     }
 }

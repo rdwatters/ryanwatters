@@ -1,0 +1,38 @@
+//Channel icons for video-library if not using "cube portfolio"
+.youtube-icon,
+.vimeo-icon {
+    display: inline-block;
+    height: $base-font-size;
+    width: $base-font-size;
+    line-height: $base-font-size * 1.5;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.channel {
+    @include align-self(flex-end);
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: $base-font-size * 1.5;
+    a {
+        @include transition($base-transition);
+        font-weight: bold;
+        vertical-align: middle;
+        display: inline-block;
+        border-bottom: $article-anchor-underline;
+        &:hover {
+            border-bottom: $article-anchor-underline-hover;
+        }
+    }
+}
+
+.vimeo-icon {
+    background-image: url('/static/images/vimeo.svg');
+}
+
+.youtube-icon {
+    background-image: url('/static/images/youtube.svg');
+}

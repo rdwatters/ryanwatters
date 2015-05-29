@@ -1,23 +1,20 @@
 #footer,.footer {
     display:block;
     background-color:$footer-background-color;
-    margin-top:50px;
     margin-bottom:0px;
     padding-bottom:0px;
     position:absolute;
-    bottom: -100px;
-    height:$footer-height-mobile;
     right:0;
     width:100%;
-    height:140px;
-    @include MQ(M){
-        height:$footer-height;
-    }
+    height:$footer-height-mobile;
     padding-top:15px;
     padding-bottom:$mobile-article-share-button-height;
     border:0px;
     z-index:$footer-z;
     color:$footer-font-color;
+    @include MQ(M){
+        height:$footer-height;
+    }
     .site-info{
         width:90%;
         display:block;
@@ -57,7 +54,6 @@
     .footer-social-buttons {
         width:100%;
         text-align:center;
-        display:block;
         @include MQ(M){
             width:50%;
             display:inline-block;

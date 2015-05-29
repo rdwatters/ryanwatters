@@ -1,4 +1,9 @@
 {% extends "templates/partials/base.html" %}
+{% block crp_block %}
+      <style>
+          {% include "templates/partials/crp-list.html" %}
+      </style>
+{% endblock %}
 
 {% block content %}
   {% set data = cms.tags %}
