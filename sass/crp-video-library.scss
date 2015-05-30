@@ -1,23 +1,27 @@
 @import 'critical-render-path/crp';
+@import 'cube-portfolio';
 /*BEGIN VIDEO LIBRARY STYLES*/
 
-body {
-    // display:block!important;
-    position:relative;
-    background-color: $list-page-background-color;
+body{
+	background-color:#4C6270;
+}
+#main,article{
+	background-color:#4C6270;
+	margin-bottom:0px;
+	padding-bottom:0px;
+}
+#main{
+	margin-bottom:0px;
+	padding-bottom:150px;
+	overflow-y:hidden;
+	height:100%;
 }
 
-.main {
-    // display: block!important;
-    height:100%;
-    margin-top:40px;
-}
-
-.information-header {
+.list-introduction {
+    @include display(flex);
     width: 100%;
     background-color: $full-width-header-background-color;
     color: $full-width-header-font-color;
-    padding-top:0px;
     margin-top: 0px;
     padding-bottom: 1.5em;
     .introduction {
@@ -37,8 +41,8 @@ body {
             clear: both;
             font: $article-title-font;
             padding-top: $base-font-size;
-            margin-top: 8px;
             margin-bottom: 5px;
+            margin-top: 0px;
             @include MQ(M) {
                 margin-top: 0px;
                 font-size: $base-font-size * 3.2;
@@ -53,58 +57,6 @@ body {
         }
     }
 }
-
-article {
-    max-width: 1200px;
-    margin-right: auto;
-    margin-left: auto;
-    font-family: 'Raleway', 'ralewayregular';
-    margin-bottom:80px;
-    @include MQ(M){
-        margin-bottom:120px;
-    }
-}
-
-.caption-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: auto;
-    min-height: 70px;
-    background-color: white;
-    color: black!important;
-    font-family: 'Raleway', 'ralewayregular';
-    width: 100%;
-    opacity: 0.9;
-}
-
-.cbp-l-caption-title {
-    font-family: 'Raleway', 'ralewayregular';
-    padding-right: 5px;
-    padding-left: 5px;
-    color: black!important;
-    font-size: 1.1em;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.cbp-l-caption-desc {
-    font-family: 'Raleway', 'ralewayregular';
-    color: black!important;
-    float: right;
-}
-
-.cbp-caption-defaultWrap > .play-svg {
-    @include transition($base-transition);
-    position: absolute;
-    width: 50%;
-    left: 25%;
-    bottom: 15%;
-    opacity: .4;
-}
-
-.cbp-caption-defaultWrap > .play-svg:hover {
-    @include transition($base-transition);
-    opacity: 1;
-    fill: red;
+.cbp-filter-item-active{
+	background-color:$accent-color!important;
 }

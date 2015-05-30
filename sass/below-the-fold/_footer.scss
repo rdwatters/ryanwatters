@@ -1,9 +1,11 @@
 #footer,.footer {
     display:block;
     background-color:$footer-background-color;
+    background:$footer-background-pattern;
     margin-bottom:0px;
     padding-bottom:0px;
     position:absolute;
+    bottom:0px;
     right:0;
     width:100%;
     height:$footer-height-mobile;
@@ -12,6 +14,7 @@
     border:0px;
     z-index:$footer-z;
     color:$footer-font-color;
+    vertical-align:middle;
     @include MQ(M){
         height:$footer-height;
     }

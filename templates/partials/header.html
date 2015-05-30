@@ -28,29 +28,44 @@
                     <a href="{{url(row.article)}}">
                         <span>Featured Article</span>
                         <h3>{{row.article.title}}</h3>
-                        <p>Published in {{row.article.category[0].name}}<time>{{row.article.publish_date|date('F d,Y')}}</time></p>
+                        <p>Posted in {{row.article.category[0].name}}<time>{{row.article.publish_date|date('F d,Y')}}</time></p>
                     </a>
                 </div>
                 {% endif %}
             {% endfor %}
         {% endif %}
             <h3 class="search-overlay">Categories</h3>
-            <section class="search-by-category">
+            <ul class="search-by-category">
             {% for category in cms.categories %}
-                <div class="search-category">
+                <li class="search-category">
                     <a href="{{url(category)}}">
                         <span>{{category.name|capitalize}}</span>
                         <span>({{category.articles.length}})</span>
                     </a>
-                </div>
+                </li>
             {% endfor %}
-            </section>
+            </ul>
             <h3 class="search-overlay">Tags</h3>
-            <ul class="search-by-tags">
+            <ul class="search-by-tag">
                 {% for tag in cms.tags|sort('name',false) %}
                 <li class="search-tag"><a href="{{url(tag)}}">{{tag.name}}</a></li>
                 {% endfor %}
             </ul>
+            
+        {% if cms.additionalglobals.authors_in_search %}
+            <h3 class="search-overlay">Authors</h3>
+            <ul class="search-by-author">
+            {% set authors = cms.authors|sort('full_name.last',true)%}
+                {% for author in authors%}
+                <li class="search-author">
+                    <a href="{{url(author)}}">
+                        <img src="{{author.author_photo|imageCrop(50,50)}}" alt="Photo of the author, {{author.full_name.first}} {{author.full_name.last}}">
+                        <span>{{author.full_name.first}} {{author.full_name.last}}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
             
         </div>        
 </div>

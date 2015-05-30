@@ -11,6 +11,7 @@
     @include transition($base-transition);
     position: fixed;
     height: 100%;
+    height:100vh;
     top: 0px;
     right: 0px;
     width: $mobile-menu-width;

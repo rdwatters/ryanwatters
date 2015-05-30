@@ -12,7 +12,6 @@ $SMAX: 480px;
 //TYPOGRAPHY & FONTS
 // These are WOFF converted Google fonts - can be called in the variables module with the same spelling as the following @imports. You will need to use them according to the way they are spelled in the module, eg ->
 // font-family: 'arvowoff',Georgia, serif;
-// 
 // @import 'woff-fonts/abrilfatfaceregular';
 // @import 'woff-fonts/arvobold';
 // @import 'woff-fonts/bitterbold';
@@ -66,13 +65,13 @@ $off-white:darken($white,5%);
 //Sets the default anchor color (in the reset/normalize)
 $anchor-color:$primary-brand;
 $header-background-color-mobile:$white;
-$header-background-color:#3B3A35;
+$header-background-color:$white;
 $header-mobile-background-color:$header-background-color;
-$header-link-color:$white;
+$header-link-color:$darkest;
 $header-link-color-mobile:$base-font-color;
 $header-link-underline-color:$white;
 $header-link-underline-thickness:2px;
-$header-site-name-font-color:$white;
+$header-site-name-font-color:$header-link-color;
 $header-opacity:1;
 
 
@@ -84,6 +83,7 @@ $footer-font-color:$white;
 $footer-svg-color:rgba(255,255,255,0.4);
 $footer-svg-color-hover:rgba(255,255,255,1);
 $footer-opacity:$header-opacity;
+$footer-background-pattern:url('/static/images/slash_it.png') top left repeat;
 $arrow-color:red;
 
 /*************************************VIDEO***********************************/
@@ -95,13 +95,16 @@ $video-overlay-close-background-color:black;
 $video-overlay-close-hover-color:black;
 $video-custom-html-font-color:$white;
 $video-overlay-thumb-and-active-border-color-hover:$white;
+//new as of 5/30/2015
+$play-video-button-color:$primary-brand;
 
 
 /************************************* SEARCH ********************************/
 //mobile search
 $search-input-y-offset-mobile:200px;
 $search-overlay-color:$white;
-$search-overlay-featured-heading-color:$accent-color;
+$search-overlay-featured-heading-color:$primary-brand;
+$search-overlay-featured-description-color:$white;
 $close-search-overlay-button-border-radius:0%;
 //tablet & desktop search
 $search-overlay-transparency:1.0;
@@ -229,7 +232,7 @@ $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES
 $body-z:0;
-$header-z:50;
+$header-z:70;
 $main-content-z:2;
 $footer-z:99;
 $share-button-z:90;

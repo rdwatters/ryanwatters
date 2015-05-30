@@ -8,24 +8,36 @@
         {% set iframeSource = "//player.vimeo.com/video/" %}
         {% set parameters = "?autoplay=1&title=0&byline=0&portrait=0"%}
     {% endif %}
+
+<div class="cbp-item graphic logos">
+    <div class="cbp-caption">
+        <div class="cbp-caption-defaultWrap">
+            <img src="http://scriptpie.com/cubeportfolio/img/?i=500x325/626a9e" alt="">
+        </div>
+        <div class="cbp-caption-activeWrap">
+            <div class="cbp-l-caption-alignCenter">
+                <div class="cbp-l-caption-body">
+                    <a href="http://vimeo.com/14912890" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="To-Do Dashboard<br>by Tiberiu Neamu">view video</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cbp-l-grid-projects-title">To-Do Dashboard</div>
+    <div class="cbp-l-grid-projects-desc">Graphic / Logo</div>
+</div>
+
+
 <div class="cbp-l-inline">
     <div class="cbp-l-inline-left">
         <div class="cbp-misc-video">
             <iframe src="{{-iframeSource-}}{{-theVideoId-}}{{-parameters-}}" frameborder="0"></iframe>
         </div>
     </div>
-
     <div class="cbp-l-inline-right">
         <div class="cbp-l-inline-title">{{item.title}}</div>
         <div class="cbp-l-inline-subtitle"><a href="{{item.video.author_url}}" target="_blank">{{item.video.author_name}}</a></div>
-
         <div class="cbp-l-inline-desc">
-        {% if item.video_description %}
-        {{-item.video_description-}}
-        {% else %}
-        {{-item.video.description-}}
-        {% endif %}</div>
-
+            {% if item.video_description %} {{-item.video_description-}} {% else %} {{-item.video.description-}} {% endif %}</div>
         <a href="#" target="_blank" class="cbp-l-inline-view">VIDEO</a>
     </div>
 </div>

@@ -71,9 +71,6 @@ li.post {
         width: 90%;
         margin-right: auto;
         margin-left: auto;
-        h3 {
-            margin-bottom: .5em;
-        }
         p {
             margin: 0px auto $base-font-size auto;
             @include MQ(XL) {
@@ -111,9 +108,9 @@ li.post {
 
 .author-and-read-more {
     @include display(flex);
-    @include flex(1); // flex an equal amt of space yo!
-    @include align-items(flex-end); // make that shit sit on the bottom dawg.
-    @include justify-content(center); // center the text horizontally suckah. the poor man's 
+    @include flex(1); // flex an equal amount of space
+    @include align-items(flex-end); // keep buttom at bottom
+    @include justify-content(center); // center the text horizontally 
     .read-more {
         margin-bottom: 20px;
         color: $read-more-font-color;
@@ -155,6 +152,17 @@ li.post:first-child {
         display: none;
     }
     .information {
+        h3 {
+            height:auto;
+            line-height:1.5em;
+            font-size:1.5em;
+            background-color: $homepage-feature-heading-background-color;
+            width:120%;
+            margin-left:-10%;
+            text-align:center;
+            overflow-x:hidden;
+            margin-bottom:.5em;
+        }
         p {
             display: block;
         }
@@ -176,27 +184,28 @@ li.post:first-child {
     li.post:first-child {
         @include flex-direction(row);
         margin-bottom: 0;
-        h3 {
-            @include transition($base-transition);
-            width: 100%;
-            color: $white;
-            background-color: $homepage-feature-heading-background-color;
-            padding: .25em;
-            margin-top:20px;
-            @include transform(translateX(-100px));
-            font-size: 1.8em;
-            &.movie-playing {
-                @include transform(translateY(0));
-            }
-            @include MQ(XL) {
-                font-size: 2.2em;
-            }
-        }
         .list-video,
         .image {
             width: 65%;
         }
         .information {
+            h3 {
+            text-align:left;
+            @include transition($base-transition);
+            color: $white;            
+            padding: .25em;
+            margin-top:20px;
+            @include transform(translateX(-40%));
+            font-size: 2.0em;
+            &.movie-playing {
+                @include transform(translateX(0%));
+                margin-left:0px;
+                width:100%;
+            }
+            @include MQ(XL) {
+                font-size: 2em;
+            }
+        }
             width: 35%;
             p, .read-more, .author-name {
                 display: block;
@@ -206,7 +215,7 @@ li.post:first-child {
             }
             p {
                 @include MQ(XL) {
-                    font-size: 1.3em;
+                    font-size: 1.2em;
                 }
             }
             .read-more {

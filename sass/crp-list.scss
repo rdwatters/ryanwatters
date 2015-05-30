@@ -52,11 +52,10 @@ article {
     margin-left: auto;
     background-color: $list-page-background-color;
     width: 90%;
-
 }
 
-.header,
-img,
+
+.list-page-image,
 .list-image {
     display: block;
     width: 100%;
@@ -174,10 +173,6 @@ ul.list {
 
 .authors > ul.list > li > header > img {
     border-radius:50%;
-}
-
-.authors > ul.list li {
-
 }
 //'text-bottom' forces the final div in a list item to to to the bottom of the column. This is used for the "read more" button.
 .text-bottom {

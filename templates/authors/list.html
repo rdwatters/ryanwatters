@@ -24,8 +24,8 @@
     {% for author in authors %}
     <li>       
 
-            <header class="list-image">              
-              <img src="{{author.author_photo|imageCrop(300,300)}}" alt="Photograph of author {{article.title}}">
+            <header class="list-page-image">              
+              <img class="list-image" src="{{author.author_photo|imageCrop(300,300)}}" alt="Photograph of author {{article.title}}">
               <h3 class="title"><a href="{{url(author)}}">{{author.full_name.first}} {{author.full_name.last}}</a></h3> 
             </header>
         

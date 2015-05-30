@@ -53,8 +53,8 @@
 .search-helpers {
     display: none;
     width: 35%;
-    min-width:360px;
-    max-width:370px;
+    min-width: 360px;
+    max-width: 370px;
     float: right;
     margin-right: 5%;
     @include MQ(L) {
@@ -64,8 +64,8 @@
 
 .featured-article {
     margin-bottom: 20px;
-    font-weight:bold;
-    background-color: $brand-three;
+    font-weight: bold;
+    background-color: $search-overlay-featured-description-color;
     -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
     -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
     box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
@@ -119,17 +119,17 @@ input[type="search"],
 
 #close-search {
     display: none;
-    strong{
-        font-size:.75em;
-        line-height:1.5;
-        vertical-align:middle;
-        color:white;
-        font-weight:bold;
+    strong {
+        font-size: .75em;
+        line-height: 1.5;
+        vertical-align: middle;
+        color: white;
+        font-weight: bold;
         background-color: $base-font-color;
         text-align: center;
-        padding-left:.25em;
-        margin-right:.25em;
-        margin-bottom:.1em;
+        padding-left: .25em;
+        margin-right: .25em;
+        margin-bottom: .1em;
     }
     @include MQ(M) {
         z-index: 999999;
@@ -158,9 +158,9 @@ input[type="search"],
     display: block;
 }
 
-ul.search-by-tags {
-    margin-bottom:20px;
-    .search-tag {
+ul.search-by-tag {
+    margin-bottom: 20px;
+    li.search-tag {
         @include transition($base-transition);
         padding: .25em;
         color: $tags-font-color;
@@ -184,47 +184,78 @@ ul.search-by-tags {
     position: relative;
     .search-category {
         position: relative;
-        z-index:1;
+        z-index: 1;
         display: block;
-        clear:both;
-        margin-bottom: 8px;
-        &:before{
-            overflow-x:hidden;
-            z-index:-1;
+        clear: both;
+        margin-top: 8px;
+        &:before {
+            overflow-x: hidden;
+            z-index: -1;
             // position:absolute;
-            left:0px;
-            right:0px;
-            bottom:0px;
-            content:'. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .';
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            content: '. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .';
         }
         span:first-child {
             display: inline-block;
-            position:absolute;
-            left:0px;
-            bottom:1px;
-            z-index:2;
-            background-color:$search-overlay-color;
+            position: absolute;
+            left: 0px;
+            bottom: 1px;
+            z-index: 2;
+            background-color: $search-overlay-color;
         }
         span:nth-child(2) {
             display: inline-block;
-            z-index:2;            
-            position:absolute;
-            right:0px;
-            bottom:1px;
-            background-color:$search-overlay-color;
+            z-index: 2;
+            position: absolute;
+            right: 0px;
+            bottom: 1px;
+            background-color: $search-overlay-color;
         }
     }
     margin-bottom:20px;
 }
 
+ul.search-by-author {
+    li.search-author {
+        height: 50px;
+        line-height: 50px;
+        vertical-align: middle;
+        margin-top:10px;
+        display:inline;
+        &:nth-child(odd){
+            float:left;
+        }
+        &:nth-child(even){
+            float:right;
+        }
 
-.category-count{
-    float:right;
+        a {
+            img {
+                line-height: 50px;
+                height: 50px;
+                border-radius:50%;
+                width:50px;
+                vertical-align: middle;
+                margin-right:5px;
+            }
+            span:nth-child(2) {
+                height: 50px;
+                line-height: 50px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.category-count {
+    float: right;
 }
 
 h3.search-overlay {
     width: 100%;
-    margin-bottom: 10px;
+    margin-top: 12px;
     border-bottom: 2px solid $base-font-color;
 }
 
