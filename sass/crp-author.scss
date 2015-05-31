@@ -1,22 +1,23 @@
 @import 'critical-render-path/crp';
-.authors-information {
+#main{
+    background-color:$list-page-background-color;
+}
+
+.list-introduction {
     width: 100%;
-    width: 100vw;
-    height:100%;
-    background-color:$full-width-header-background-color;
-    color:$base-font-color-inverse;
-    padding-top:$header-height;
-    margin-top:0px;
-    padding-bottom:1.5em;
+    background-color: $full-width-header-background-color;
+    color: $full-width-header-font-color;
+    margin-top: 0px;
+    padding-bottom: 1.5em;
     .introduction {
         width: 100%;
         padding-right: 5%;
         padding-left: 5%;
         @include MQ(XL) {
-            padding-right:0%;
-            padding-left:0%;
-            margin-right:auto;
-            margin-left:auto;
+            padding-right: 0%;
+            padding-left: 0%;
+            margin-right: auto;
+            margin-left: auto;
             max-width: $XL;
         }
         h1 {
@@ -25,18 +26,95 @@
             clear: both;
             font: $article-title-font;
             padding-top: $base-font-size;
-            margin-top: 8px;
             margin-bottom: 5px;
+            margin-top: 0px;
             @include MQ(M) {
                 margin-top: 0px;
                 font-size: $base-font-size * 3.2;
                 padding-top: $base-font-size * 2;
             }
         }
-        .authors-description{
-            display:none;
-            @include MQ(M){
-                display:block;
+        .description {
+            display: none;
+            @include MQ(M) {
+                display: block;
+            }
+        }
+    }
+}
+
+article {
+    @include display(flex);
+    @include flex-direction(column);
+    @include flex-wrap(wrap);
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    padding-top:20px;
+}
+
+.list-page-image,
+.list-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0%;
+    border: 0;
+    padding: 0%;
+}
+
+ul.authors {
+    width: 100%;
+    @include display(flex);
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    @include align-items(center);
+    margin-right: auto;
+    margin-left: auto;
+    @include MQ(XL) {
+        max-width: $XL;
+        padding-bottom: 20px;
+    }
+    li {
+        @include display(flex);
+        @include flex-direction(column);
+        @include justify-content(center);
+        float:left;
+        width: 100%;
+        padding:1em;
+        background-color:$tile-background-color;
+        margin-top:15px;
+        @include MQ(M) {
+            width: 47.5%;
+            margin-bottom:2.5%;
+            &:nth-child(odd){
+            margin-right:5%;
+            }
+        }
+        @include MQ(L) {
+            width: 30%;
+            margin-right:5%;
+            &:nth-child(3){
+                margin-right:0;
+            }
+        }
+        @include MQ(XL) {
+            width: 25%;
+        }
+        header {
+            h3 {
+                font-size: 1.2em;
+                font-weight: 300;
+                text-align: center;
+                padding-top: .5em;
+                margin-top: .5em;
+            }
+            img {
+                width:70%;
+                margin-left:15%;
+                border-radius: 50%;
             }
         }
     }

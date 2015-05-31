@@ -43,21 +43,23 @@ $my-logo-location:url('/static/images/rw-logo.svg');
 
 //MY COLORS
 $light-font-color:#4c6270;
-$primary-brand:#86A9CA;
+$primary-brand:$light-font-color;
 $secondary-brand:#88A0A8;
-$brand-primary:#86A9CA;
+$brand-primary:$light-font-color;
 $brand-two:#88A0A8;
+// $brand-two:#0c63aa;
 $brand-three:lighten($secondary-brand,15%);
 $white:#FFFFFF;
 $logo-font-color:$white;
 $darkest:#222222;
 $dark:#3B3A35;
 $semi-dark:#444444;
+$light-gray:#f2f3f7;
 
 $base-font-color:$dark;
 $base-font-color-inverse:$white;
 
-$accent-color:#5E3448;
+$accent-color:#66101F;
 // $accent-color:#A098AE;
 $accent-color-two:#FB6648;
 $off-white:darken($white,5%);
@@ -65,9 +67,9 @@ $off-white:darken($white,5%);
 //Sets the default anchor color (in the reset/normalize)
 $anchor-color:$primary-brand;
 $header-background-color-mobile:$white;
-$header-background-color:$white;
+$header-background-color:$darkest;
 $header-mobile-background-color:$header-background-color;
-$header-link-color:$darkest;
+$header-link-color:$white;
 $header-link-color-mobile:$base-font-color;
 $header-link-underline-color:$white;
 $header-link-underline-thickness:2px;
@@ -111,6 +113,8 @@ $search-overlay-transparency:1.0;
 $category-button-font-color:$white;
 $category-button-background-color:$dark;
 $category-button-background-color-hover:$accent-color;
+$category-border-color:$white;
+$category-border:2px solid $white;
 $home-tags-heading-color:$base-font-color;
 $tags-font-color:$white;
 $tags-font-color-hover:white;
@@ -122,8 +126,9 @@ $svg-spinner-color:$primary-brand;
 
 /******************************* HOMEPAGE ****************************************/
 $home-page-featured-article-information-width:95%;
-$middle-row-background-color-homepage:$secondary-brand;
+$middle-row-background-color-homepage:$primary-brand;
 $homepage-feature-heading-background-color:$primary-brand;
+$homepage-background-color:$light-gray;
 
 /***************************** SOCIAL MEDIA **************************************/
 //icons are inlined svg xml and can therefore be styled directly 
@@ -172,7 +177,6 @@ $read-more-text-transform:uppercase;
 $home-article-author-name-underline:1px solid $primary-brand;
 $category-font-weight:300;
 $category-text-transform:uppercase;
-
 $tile-border:none;
 /**************************************ARTICLE PAGES****************************************/
 $full-article-main-element-background-color:$white;
@@ -198,17 +202,20 @@ $previous-and-next-article-buttons-font-color:$base-font-color-inverse;
 $author-blurb-background-color:$white;
 $article-tile-border:$tile-border;
 
+
 //SIZES && SHAPES
-$site-logo-size:32px;
+$site-logo-size:36px;
 $header-height: $site-logo-size * 1.5;
 $header-link-font-size:$site-logo-size/2;
 $search-icon-size:$header-link-font-size * 1.5;
 $mobile-logo-size:$site-logo-size;
-$mobile-header-height:$header-height;
+$header-height-mobile:$header-height;
 //if you increase the header height considerably, you will end up with an equally large footer with these default values. You can change that here.
 $header-height-non-mobile:$header-height;
-$footer-height:auto;
+$footer-height:140px;
 $footer-height-mobile:140px;
+$footer-latest-tweet-background-color:$white;
+$footer-latest-tweet-font-color:$base-font-color;
 //tags
 $tags-border-radius:0px;
 //$article-home-home-page-max-width-m-plus sets the width of the infite scroll/list view of the home page on desktop+ screens
@@ -219,22 +226,21 @@ $article-list-width-m-plus:70%;
 $right-rail-widget-width:28%;
 $right-rail-widget-max-width: 400px;
 
-
-
 //MOBILE-MENU
 $mobile-menu-width:100%;
 $mobile-icon-height: 20px;
 $mobile-icon-width: 30px;
 $mobile-icon-layer-height: 4px;
 $mobile-icon-color: $primary-brand;
-$header-mobile-toggle-menu-icon-color:$white;
+$header-mobile-toggle-menu-icon-color:$header-link-color;
 $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES
 $body-z:0;
-$header-z:70;
-$main-content-z:2;
-$footer-z:99;
+$header-z:5;
+$header-mobile-z:5;//not actually the header, but the bar across the top on mobile devices;
+$main-content-z:1;
+$footer-z:2;
 $share-button-z:90;
 $home-icon-z:998;
 $mobile-menu-icon-z:999;
@@ -244,7 +250,7 @@ $header-main-logo-background-image: '/static/images/favicon.png';
 $home-logo-background-color:$header-background-color;
 $home-logo-hover-background-color:$white;
 $site-name:'Ryan Watters';
-$primary-navigation-text-transform:capitalize;
+$primary-navigation-text-transform:uppercase;
 $home-logo-border-radius:50%;
 $home-button-icon-radius:50%;
 $home-button-background-image:$my-logo-location;
@@ -252,22 +258,22 @@ $home-button-background-image:$my-logo-location;
 /*****************************VIDEO PLAYER OPTIONS (Just the player/button - see also video library****************************/
 //Use % only for play button; only change $video-player-play-button-size to keep proportions
 $video-player-play-button-size:20%;
-$video-player-play-button-color:$white;
+$video-player-play-button-color:$accent-color;
 $video-player-play-button-color-hover:$primary-brand;
-$video-player-play-button-opacity:.8;
+$video-player-play-button-opacity:.6;
 $video-player-play-button-opacity-hover:1;
 $video-player-play-button-left-padding:(100% - $video-player-play-button-size) / 2;
 $video-player-play-button-top-padding:$video-player-play-button-left-padding * 1.7777;
 //You can turn off the hover animation for the play button here by setting the value to false
 
 /******************************VIDEO LIBRARY**********************************/
-$tile-background-color:#ffffff;
-$video-tile-background-color:#ffffff;
+$tile-background-color:$white;
+$video-tile-background-color:$white;
 $video-library-body-background-color:$body-background-color;
 $video-library-list-background-color:$body-background-color;//just the list of videos in the center
 $video-tile-border:$tile-border;
 $video-library-overlay-background-color:$body-background-color;
-$full-width-header-background-color:#FAFAFA;
+$full-width-header-background-color:#FAFAFA;//the top bar/information section that introduces the list
 $full-width-header-font-color:$base-font-color;
 
 

@@ -1,7 +1,7 @@
 {% extends "templates/partials/base.html" %}
 {% block crp_block %}
 <style>
-    {% include "templates/partials/crp-list.html" %}
+    {% include "templates/partials/crp-author.html" %}
 </style>
 {% endblock %}
 
@@ -15,21 +15,21 @@
 <header class="list-introduction">
     <section class="introduction">
         <h1>Authors</h1>
-        <section class="description"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, tempore at fugit iste deleniti inventore. Tempora voluptatum delectus temporibus dolor ipsum porro culpa fugit nostrum, a nihil minima, laborum vitae.</p></section>
+        <section class="description">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, tempore at fugit iste deleniti inventore. Tempora voluptatum delectus temporibus dolor ipsum porro culpa fugit nostrum, a nihil minima, laborum vitae.</p>
+        </section>
     </section>
 </header>
-<article class="authors">
-  
-  <ul class="list js-paginate" id="video-library" itemscope itemtype="http://schema.org/Article" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+<article>
+  <ul class="authors js-paginate" id="video-library" itemscope itemtype="http://schema.org/Article" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
     {% for author in authors %}
     <li>       
-
-            <header class="list-page-image">              
-              <img class="list-image" src="{{author.author_photo|imageCrop(300,300)}}" alt="Photograph of author {{article.title}}">
-              <h3 class="title"><a href="{{url(author)}}">{{author.full_name.first}} {{author.full_name.last}}</a></h3> 
-            </header>
-        
-            <p itemprop="about">{{author.short_bio}}</p>       
+            <header class="list-image">
+              <a href="{{url(author)}}">              
+                <img src="{{author.author_photo|imageCrop(300,300)}}" alt="Photograph of author {{article.title}}">
+                <h3>{{author.full_name.first}} {{author.full_name.last}}</h3>
+              </a>
+            </header>               
     </li>
     {% endfor %}
   </ul>
@@ -37,4 +37,5 @@
         {% include "templates/partials/paginator.html" %}
   </nav>
 </article>
+
 {% endblock %}

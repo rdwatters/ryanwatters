@@ -14,17 +14,16 @@
   {% set prev = prevItem(item, 'publish_date', true) %}
   {% set next = nextItem(item, 'publish_date', true) %}
   {% if next %}
-    <link rel="prefetch" href="{{ url(next) }}#main" />
-    <link rel="prerender" href="{{ url(next) }}" />
+    <!-- <link rel="prefetch" href="{{ url(next) }}#main" />
+    <link rel="prerender" href="{{ url(next) }}" /> -->
   {% endif %}
   {% if prev %}
-    <link rel="prefetch" href="{{ url(prev) }}#main" />
-    <link rel="prerender" href="{{ url(prev) }}" />
+    <!-- <link rel="prefetch" href="{{ url(prev) }}#main" />
+    <link rel="prerender" href="{{ url(prev) }}" /> -->
   {% endif %}
   
 {% endblock %}
 {% block title %}{{ item.title }}{% endblock %}
-
 
 {% block content %}
 {% set article = item %}
@@ -59,19 +58,19 @@
       <span class="image-fade-block"></span>           
     </section>
 {% endif %}
+  
+
+<article class="full-length {{wVideo}}" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="social-media-icons-bar" id="social-media-icons-bar" data-swiftype-index="false">
-    <ul class="social-buttons icon-bar-open">
-        <div class="share">Share</div>
-        {% include "templates/partials/socialmediaicons.html" %}
-        <li class="close-social">
-        <a href="#" class="close-social-buttons" role="button" title="Close the social sharing screen">CLOSE</a>
-        </li>
-    </ul>  
+      <ul class="social-buttons">
+          <div class="share">Share</div>
+          {% include "templates/partials/socialmediaicons.html" %}
+          <li class="close-social">
+          <a href="#" class="close-social-buttons" role="button" title="Close the social sharing screen">CLOSE</a>
+          </li>
+      </ul>  
   </div>
-
-  <a href="#" role="button" title="Share this article via social media." class="share-button"><div class="share"> SHARE</div></a>
-
-<article class="full-length {{wVideo}}" data-swiftype-index="true" itemscope itemtype="https://schema.org/BlogPosting"> 
+  <a href="#" role="button" title="Share this article via social media." class="share-button"><div class="share"> SHARE</div></a> 
   <section class="introduction">
   <h1>{{ item.title }}</h1> 
   <h2 class="article-subtitle">{{ item.subtitle }}</h2>
@@ -153,7 +152,7 @@
       <a href="{{ url(prev) }}" role="button" class="move-previous yui3-pjax" title="Read the previous article titled: {{prev.title}}"> 
             <i class="fa fa-chevron-left"></i>
       </a>   
-      <a href="{{ url(prev) }}" role="button" data-pjax class="previous-article" title="Read the previous article titled: {{prev.title}}"><!-- data-pjax --> 
+      <a href="{{ url(prev) }}" role="button" data-pjax class="previous-article yui3-pjax" title="Read the previous article titled: {{prev.title}}"><!-- data-pjax --> 
           <section class="article-info">
             <small>Previous Article</small>
             <h5 class="title">{{prev.title}}</h5>
@@ -165,7 +164,7 @@
       <a href="{{ url(next) }}" role="button" class="move-next yui3-pjax" title="Read the next article titled: {{next.title}}"> 
           <i class="fa fa-chevron-right"></i>
       </a>
-      <a href="{{ url(next) }}" role="button" data-pjax class="next-article" title="Read the next article titled: {{next.title}}">
+      <a href="{{ url(next) }}" role="button" data-pjax class="next-article yui3-pjax" title="Read the next article titled: {{next.title}}">
         <section class="article-info">
           <small>Next Article</small>
           <h5 class="title">{{next.title}}</h5>
@@ -219,6 +218,11 @@
     $(window).scroll(function(){
       if((window.outerWidth > 960) && ($('.video-iframe').length === 0)){
       $('.introduction').css({'opacity':( 100-$(window).scrollTop() )/100});
+      }
+      if($('.introduction').css('opacity') <= 0 ){
+        $('.introduction').css('display','none');
+      }else{
+        $('.introduction').css('display','block');
       }
     });
 </script>

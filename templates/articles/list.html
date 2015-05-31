@@ -22,8 +22,7 @@
         </section>
     </section>
 </header>
-<article class="articles">
-  
+<article class="articles">  
   <ul class="list js-paginate" id="articles-list" itemscope itemtype="http://schema.org/Article" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
     {% for article in data %}
     <li class="post">

@@ -1,35 +1,30 @@
 .header {
+    position: fixed;
+    display: block;
     z-index: $header-z;
-    margin-bottom:0px;
+    margin-bottom: 0px;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding-left:15px;
     background-color: $header-background-color-mobile;
-    @include MQ(M){
-        background-color:$header-background-color;
-        position: fixed;
+    @include MQ(M) {
+        background-color: $header-background-color;
     }
     @include transition($base-transition);
-    position: fixed;
     height: 100%;
     height:100vh;
     top: 0px;
     right: 0px;
     width: $mobile-menu-width;
-    max-width:100%;
+    // max-width:100%;
     opacity:$header-opacity;
-    -webkit-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
-    @include transform(translateX($mobile-menu-width));
+    @include transform(translateX(100%));
     &.menu-open {
         @include transform(translateX(0px));
+        overflow-y: scroll;
     }
     .primary-navigation {
-        @include MQ(MMAX) {
-            padding-top: $mobile-header-height;
-            -webkit-transition: none;
-            transition: none;
-        }
+        margin-top:$header-height-mobile;
         ul {
             width: 100%;
             padding-left: -5px;
@@ -39,76 +34,56 @@
                 &:first-child {}
                 a {
                     text-decoration: none;
-                    border:none;
+                    border: none;
                     margin: 10px;
                     text-transform: $primary-navigation-text-transform;
                     color: $header-link-color-mobile;
-                    @include MQ(L){
-                        color:$header-link-color;
+                    @include MQ(L) {
+                        color: $header-link-color;
                     }
                 }
             }
         }
     }
-    //BEGIN HEADER FOR MEDIUM+ SCREENS
-    @include MQ(M) {
-        top: 0;
-        left: 0;
-        width: 100%;
-        width: 100vw;
-        height: $header-height-non-mobile;
-        line-height: $header-height-non-mobile;
-        padding-top: 0;
+}
+
+@include MQ(M) {
+    .header {
+        width:100%;
+        @include display(flex);
+        @include align-items(center);
+        @include flex(none);
+        @include flex-shrink(0);
+        position: relative;
+        height: $header-height;
+        opacity:$header-opacity;
         @include transform(translateX(0px));
+        .site-name{
+            @include flex(1);
+            padding-left:1em;
+            color:$header-link-color;
+        }
         &.hide-header {
             opacity: 0;
         }
         .primary-navigation {
-            float: right;
+            margin-top:0;
             ul {
+                @include flex(1);
                 li {
-                    display: inline-block;
-                    // margin-bottom:32px;
-                    padding: 0;
-                    &:last-child {
-                        padding-right: $site-logo-size/3;
-                    }
+                    display: inline;
+                    line-height:1.5;
                     a {
                         cursor: pointer;
                         vertical-align: middle;
                         color: $header-link-color;
                         font-size: $header-link-font-size;
-                        margin: 0;
                         position: relative;
                         width: 100%;
                         margin-right: 10px;
-                        &:hover:before {
-                            padding-bottom: 0;
-                            margin-bottom: 0;
+                        &:hover {
+                            border-bottom:3px solid $primary-brand;
                         }
-                    }
-                    a:before {
-                        content: '';
-                        position: absolute;
-                        width: 100%;
-                        height: $header-link-underline-thickness;
-                        margin-top: 2px;
-                        bottom: 0;
-                        left: 0;
-                        background-color: $header-link-underline-color;
-                        visibility: hidden;
-                        -webkit-transform: scaleX(0);
-                        -ms-transform: scaleX(0);
-                        transform: scaleX(0);
-                        @include transition($base-transition);
-                    }
-                    a:hover:before {
-                        visibility: visible;
-                        @include transform(scaleX(1));
-                    }
-                    //This removes the underline from appearing underneath the search icon on hover
-                    a#search-icon:hover:before {
-                        visibility: hidden;
                     }
                 }
             }
@@ -116,166 +91,96 @@
     }
 }
 
-.header-main-logo-image {
-    width: 100vw;
-    z-index: 999;
-    top: 0;
-    left: 0;
-    -webkit-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
-    -moz-box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
-    box-shadow: 0px 0px 3px 0px rgba(51, 51, 51, 0.5);
-    height: $mobile-header-height;
-    color: $header-link-color;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    background-color: $header-mobile-background-color;
-    @include MQ(M) {
+.header-mobile-only {
+    display: none;
+    @include MQ(MMAX) {
+        display:block;
+        height: $header-height-mobile;
+        background-color: $header-background-color;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: $header-mobile-z;
+        img{
+            width:$header-height-mobile *.75;
+            height:$header-height-mobile * .75;
+            margin-top:$header-height-mobile * .125;
+            margin-left:10px;
+        }
+    }
+}
+
+
+//SEARCH ICON: note that the rest of the search styles are not included in CRP files and can be found in _search.scss
+.search-button {
+    padding-right:1em;
+    #search-icon svg {
         display: none;
-    }
-}
-
-//icon or link in the top left to the header. The main logo, which is optional, is in the center of the header and is described below.
-.home-icon {
-    z-index: $home-icon-z;
-    position: fixed;
-    top: $site-logo-size/4;
-    left: $site-logo-size/4;
-    height: $site-logo-size;
-    width: $site-logo-size;
-    display: block;
-    padding: auto;
-    vertical-align: middle;
-    font-size: $site-logo-size/3;
-    background-color: $home-logo-background-color;
-    background-image: $home-button-background-image;
-    border-radius: $home-logo-border-radius;
-    &:hover {
-        cursor: pointer;
-    }
-    a {
-        @include transition($base-transition);
-        cursor: pointer;
-        margin-bottom: 0;
-        width: $site-logo-size;
-        height: $site-logo-size;
-        line-height: $site-logo-size;
-        color: $logo-font-color;
-        text-align: center;
-        font-weight: bold;
-        display: block;
-        background-size: contain;
-        &:hover {
-            cursor: pointer;
-        }
-    }
-}
-
-//SITE NAME TOP LEFT OF HEADER
-.site-name {
-    @include transition($base-transition);
-    display: block;
-    position: fixed;
-    line-height: $header-link-font-size * 1.5;
-    top: $header-link-font-size/1.5;
-    left: 15px;
-    font-size: $header-link-font-size;
-    color: $header-site-name-font-color;
-    z-index: 900;
-    border-bottom: 1px solid $header-site-name-font-color;
-    a {
-        border:none;
-        &:hover{
-            border:none;
-        }
-    }
-    @include MQ(L) {
-        &.hide-header {
-            font-weight:bold;
-            background-color:darken($header-background-color,10%);
-            border:none;
-            padding:{
-                top:5px;
-                bottom:5px;
-                right:10px;
-                left:10px;
+        @include MQ(M) {
+            display: inline;
+            vertical-align: middle;
+            fill: $header-link-color;
+            margin: 0;
+            padding: 0;
+            line-height: $site-logo-size;
+            height: $search-icon-size;
+            width: $search-icon-size;
+            .magnifying-glass {
+                fill: $header-link-color;
             }
         }
     }
 }
 
-//MAIN LOGO. Diifferent from home logo/icon. The former is all the way to the left in the site header.
-.header-main-logo-image {
-    background-image: $header-main-logo-background-image;
-    position: fixed;
-    z-index: $header-z;
-}
 
-//SEARCH ICON: note that the rest of the search styles are not included in CRP files and can be found in _search.scss
-#search-icon svg {
-    display: none;
+.mobile-navigation {
+    position: fixed;
+    top: $site-logo-size / 2;
+    right: $site-logo-size * 1.25;
+    z-index: $mobile-menu-icon-z;
     @include MQ(M) {
-        display: inline-block;
-        vertical-align: middle;
-        fill: $header-link-color;
-        margin: 0;
-        padding: 0;
-        line-height: $site-logo-size;
-        height: $search-icon-size;
-        width: $search-icon-size;
-        .magnifying-glass {
-            fill: $header-link-color;
-        }
+        display: none;
     }
 }
 
-.mobile-navigation {
-  position:fixed;
-  top:$site-logo-size / 2;
-  right:$site-logo-size * 1.25;
-  z-index:$mobile-menu-icon-z;
-  @include MQ(M){
-    display:none;
-  }
-}
 .menu-icon {
-  display: block;
-  position: absolute;
-  width: $mobile-icon-height;
-  height: $mobile-icon-width;
-  z-index: 2;
+    display: block;
+    position: absolute;
+    width: $mobile-icon-height;
+    height: $mobile-icon-width;
+    z-index: 2;
 }
-.menu-icon-inner { 
-  display: block;
-  width: $mobile-icon-width;
-  height: $mobile-icon-layer-height; 
-  margin-top: $mobile-icon-layer-height * 2;
-  background: $header-mobile-toggle-menu-icon-color;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-  
-  &::before, &::after { 
-    display: block; 
-    position: absolute; 
-    content: "";
-    z-index: -1;
-    width: $mobile-icon-width; 
-    height: $mobile-icon-layer-height; 
+
+.menu-icon-inner {
+    display: block;
+    width: $mobile-icon-width;
+    height: $mobile-icon-layer-height;
+    margin-top: $mobile-icon-layer-height * 2;
     background: $header-mobile-toggle-menu-icon-color;
     -webkit-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out; 
-  }
-  &::before {
-    top: 0;
-  }
-  &::after {
-    top: $mobile-icon-layer-height * 4;
-  }
+    transition: all 0.4s ease-in-out;
+    &::before, &::after {
+        display: block;
+        position: absolute;
+        content: "";
+        z-index: -1;
+        width: $mobile-icon-width;
+        height: $mobile-icon-layer-height;
+        background: $header-mobile-toggle-menu-icon-color;
+        -webkit-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out;
+    }
+    &::before {
+        top: 0;
+    }
+    &::after {
+        top: $mobile-icon-layer-height * 4;
+    }
 }
 
-.search-wrapper{
-    display:none;
+.search-wrapper {
+    display: none;
 }
+
 //CLICKED STATE FOR MENU ICON IS INCLUDED IN THE BELOW-THE-FOLD CONTENT!!!
-

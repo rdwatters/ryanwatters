@@ -1,4 +1,19 @@
 .search-wrapper {
+    overflow-x:hidden;
+    @include transition($base-transition);
+    overflow-y: scroll;
+    z-index:99;
+    display: block;
+    width: $mobile-menu-width;
+    position: fixed;
+    right:0;
+    padding-left:15px;
+    top: $search-input-y-offset-mobile;
+    background-color: white;
+    @include transform(translateX(100%));
+    &.menu-open {
+        @include transform(translateX(0px));
+    }
     @include MQ(M) {
         @include transform(translateX(0px));
         @include transition($base-transition);
@@ -9,30 +24,20 @@
         height: 100%;
         left: 0;
         top: 0;
+        margin-top:$header-height;
         margin-bottom: $footer-height;
         &.search-open {
             display: block;
             opacity: 1;
             z-index: 99999;
+            height:100%!important;
         }
-    }
-    overflow-x:hidden;
-    @include transition($base-transition);
-    overflow-y: scroll;
-    z-index:99;
-    display: block;
-    width: 100%;
-    position: fixed;
-    top: $search-input-y-offset-mobile;
-    background-color: white;
-    @include transform(translateX(100%));
-    &.menu-open {
-        @include transform(translateX(0px));
     }
 }
 
 .search-form {
     display: block;
+    width:100%;
     overflow-x: hidden;
     overflow-y: scroll;
     max-width: $XL;
@@ -40,7 +45,7 @@
     margin-left: auto;
     padding-top: $header-height + 10px;
     @include MQ(M) {
-        width: 90%!important;
+        width: 90%;
         margin-left: 5%;
     }
     @include MQ(L) {
@@ -52,6 +57,7 @@
 
 .search-helpers {
     display: none;
+    padding-left:10px;
     width: 35%;
     min-width: 360px;
     max-width: 370px;
@@ -59,6 +65,7 @@
     margin-right: 5%;
     @include MQ(L) {
         display: block;
+        min-height:100%;
     }
 }
 
@@ -223,13 +230,7 @@ ul.search-by-author {
         line-height: 50px;
         vertical-align: middle;
         margin-top:10px;
-        display:inline;
-        &:nth-child(odd){
-            float:left;
-        }
-        &:nth-child(even){
-            float:right;
-        }
+        display:block;
 
         a {
             img {

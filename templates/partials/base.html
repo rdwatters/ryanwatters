@@ -76,23 +76,29 @@
         <!-- endbuild -->
 
         {# JQUERY CDN. OPTIONAL. NOTE: MAY CONFLICT WITH METHODS PROVIDED BY CLASSIE.JS! #}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>   
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- <script src="//yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script> -->   
         {# JS BUILD FILES - CONCAT/MIN ON DEPLOYMENT#}      
         <!-- build:js /static/javascript/minified.js -->     
         <script src="/static/javascript/main.js"></script>
         <script src="/static/javascript/jquery.pjax.min.js"></script>
         <!-- endbuild -->
+
+        
+        
         {# Useful for adding extra javascript to the body's bottom. #}
         
         {% block scripts_extra %}
-        <script>
+        <!-- <script async>
           YUI().use('pjax', function (Y) {
               new Y.Pjax({container: '#main'});
           });
-        </script>
-        <!-- <script async>
+        </script> -->
+        <script async defer>
           $(document).pjax('a[data-pjax]', '#main');  
-        </script -->>
+        </script>
+        <script data-st-module="em_7Z2HF18d_dA7uodm5ECM" src="//s.swiftypecdn.com/modules/v1/embed.js" async defer></script>
+        
         {% endblock %}
            
       {# GOOGLE ANALYTICS#}

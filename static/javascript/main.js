@@ -44,6 +44,7 @@ $(document).ready(function() {
     $('#search-icon,#close-search').click(function() {
         var searchInput = $('#search-input');
         $('.search-wrapper').toggleClass('search-open');
+        $('.main').toggleClass('faded');
         if($('.search-wrapper.search-open')){
             $('#close-search').attr('aria-hidden','false');
         }else{
@@ -58,14 +59,12 @@ $(document).ready(function() {
         //bind escape key
         //if pressed when search wrapper is open, toggle class off to close search
         if (e.keyCode === 27 && $('.search-wrapper.search-open').length > 0) {
-            $('.search-wrapper').toggleClass('search-open');
+            $('.search-wrapper').removeClass('search-open');
+            $('.main').removeClass('faded');
         }
     };
-    // $('.search-tag').on('click',function(){
-    //     $('.search-wrapper').toggleClass('search-open');
-    // });
     //toggle mobile menu
-    $('#mobile-menu-toggle').on('click', function() {
+    $('#mobile-menu-toggle,.main.menu-open').on('click', function() {
         $('.header,.main,.footer,.search-wrapper,#mobile-menu-toggle').toggleClass('menu-open');
     });
     $(function() {

@@ -1,8 +1,8 @@
 @import 'critical-render-path/crp';
-body {
-    background-color: $list-page-background-color;
-}
 
+#main{
+    background-color:$homepage-background-color;
+}
 img,
 .list-image {
     width: 100%;
@@ -26,11 +26,12 @@ article {
 
 ul.home {
     width: 100%;
-    background-color: $list-page-background-color;
+    background-color: $homepage-background-color;
     @include display(flex);
     @include flex-direction(row);
     @include flex-wrap(wrap);
     @include align-items(stretch);
+    padding-bottom:15px;
 }
 
 li.post {
@@ -39,7 +40,7 @@ li.post {
     @include align-items(stretch);
     position: relative;
     margin-bottom: 0px;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
     float: left;
     width: 100%;
     border: $tile-border;
@@ -47,21 +48,25 @@ li.post {
     -moz-box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
     box-shadow: 0px 0px 1px 0px rgba(51, 51, 51, 0.5);
     background-color: $tile-background-color;
-    @include MQ(M) {
-        width: 33.333%;
-        margin-bottom: 0;
-    }
-    @include MQ(L) {
-        width: 28%;
-        margin-top: 4vw;
-        margin-bottom: 4vw;
-        &:not(:first-child) {
-            margin-left: 4%;
-
+    &:not(:first-child) {
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        margin-top: 15px;
+        @include MQ(M) {
+            width: 33.333%;
         }
-        .information {
-            p {
-                display: block;
+        @include MQ(L) {
+            width: 28%;
+            margin-top: 4vw;
+            margin-bottom: 4vw;
+            &:not(:first-child) {
+                margin-left: 4%;
+            }
+            .information {
+                p {
+                    display: block;
+                }
             }
         }
     }
@@ -71,6 +76,14 @@ li.post {
         width: 90%;
         margin-right: auto;
         margin-left: auto;
+        h3{
+            font-size:1.5em;
+            line-height:1.5;
+            text-align:center;
+            padding-top:.5em;
+            vertical-align:middle;
+            padding:0;
+        }
         p {
             margin: 0px auto $base-font-size auto;
             @include MQ(XL) {
@@ -80,7 +93,6 @@ li.post {
     }
 }
 
-
 .category {
     @include transition($base-transition);
     position: absolute;
@@ -89,13 +101,12 @@ li.post {
     color: $category-button-font-color;
     font-size: $base-font-size;
     line-height: 28px;
-    border: 3px solid $body-background-color;
+    border: $category-border;
     background-color: $category-button-background-color;
     padding-right: 10px;
     padding-left: 10px;
-    z-index: 10;
+    z-index: 1;
     a {
-        z-index: 10;
         text-transform: $category-text-transform;
     }
     &:hover {
@@ -131,11 +142,11 @@ li.post {
             color: $read-more-font-color-hover;
             border: $read-more-border-hover;
         }
-        @include MQ(HUGE){
-            font-size:$base-font-size * 1.2;
-            padding-right:25px;
-            padding-left:25px;
-            width:auto;
+        @include MQ(HUGE) {
+            font-size: $base-font-size * 1.2;
+            padding-right: 25px;
+            padding-left: 25px;
+            width: auto;
         }
     }
 }
@@ -148,20 +159,25 @@ li.post {
 //STYLES FOR HOMEPAGE FEATURE ARTICLE (IE, FIRST CHILD LIST ITEM)
 //
 li.post:first-child {
+    overflow-x: hidden;
     .category {
         display: none;
     }
     .information {
         h3 {
-            height:auto;
-            line-height:1.5em;
-            font-size:1.5em;
+            height: auto;
+            line-height: 1.5;
+            padding:.25em;
+            font-size: 1.5em;
+            vertical-align:middle;
             background-color: $homepage-feature-heading-background-color;
-            width:120%;
-            margin-left:-10%;
-            text-align:center;
+            width: 115%;
+            margin-left:-7.5%;
             overflow-x:hidden;
-            margin-bottom:.5em;
+            text-align: center;
+            margin-bottom: .5em;
+            color:$white;
+            opacity:.9;
         }
         p {
             display: block;
@@ -173,41 +189,50 @@ li.post:first-child {
     li.post:first-child {
         width: 100%;
         margin-top: 0;
-        .information p {
-            display: block;
-            line-height:1.5;
+        .information {
+            h3 {
+                width: 120%;
+                margin-left: -10%;
+                overflow-x: hidden;
+            }
+            p {
+                line-height: 1.5;
+            }
         }
     }
 }
 
 @include MQ(L) {
     li.post:first-child {
+        @include display(flex);
         @include flex-direction(row);
+        @include align-items(center);
         margin-bottom: 0;
-        .list-video,
-        .image {
+        .list-video, .image {
             width: 65%;
         }
         .information {
             h3 {
-            text-align:left;
-            @include transition($base-transition);
-            color: $white;            
-            padding: .25em;
-            margin-top:20px;
-            @include transform(translateX(-40%));
-            font-size: 2.0em;
-            &.movie-playing {
-                @include transform(translateX(0%));
-                margin-left:0px;
-                width:100%;
+                text-align: left;
+                @include transition($base-transition);
+                padding: .25em;
+                margin-top: 20px;
+                @include transform(translateX(-40%));
+                font-size: 2.0em;
+                &.movie-playing {
+                    @include transform(translateX(0%));
+                    margin-left: 0px;
+                    width: 100%;
+                    opacity:1;
+                }
+                @include MQ(XL) {
+                    font-size: 2em;
+                }
             }
-            @include MQ(XL) {
-                font-size: 2em;
-            }
-        }
             width: 35%;
-            p, .read-more, .author-name {
+            p,
+            .read-more,
+            .author-name {
                 display: block;
                 width: 90%;
                 margin-right: auto;
@@ -233,8 +258,8 @@ li.post:first-child {
         }
         .information {
             p {
-                font-size: 2em;
-                line-height:1.5;
+                font-size: 1.6em;
+                line-height: 1.5;
             }
         }
     }
@@ -244,17 +269,20 @@ li.post:first-child {
 section.middle-row {
     @include display(flex);
     @include flex-direction(column);
+    @include flex(1);
     @include justify-content(center);
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,0.4);
-    clear: both;
+    @include align-items(center);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4);
     width: 100%;
-    height: auto;
     vertical-align: middle;
     padding: 2em;
     margin: 0%;
     padding: 2em 5%;
     background-color: $middle-row-background-color-homepage;
     color: $white;
+    @include MQ(XL){
+        min-height:300px;
+    }
     h2 {
         text-align: center;
         font-size: 2em;

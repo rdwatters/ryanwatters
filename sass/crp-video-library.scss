@@ -2,23 +2,10 @@
 @import 'cube-portfolio';
 /*BEGIN VIDEO LIBRARY STYLES*/
 
-body{
-	background-color:#4C6270;
-}
-#main,article{
-	background-color:#4C6270;
-	margin-bottom:0px;
-	padding-bottom:0px;
-}
 #main{
-	margin-bottom:0px;
-	padding-bottom:150px;
-	overflow-y:hidden;
-	height:100%;
+    background-color:$list-page-background-color;
 }
-
 .list-introduction {
-    @include display(flex);
     width: 100%;
     background-color: $full-width-header-background-color;
     color: $full-width-header-font-color;

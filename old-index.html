@@ -1,33 +1,29 @@
 {% extends "templates/partials/base.html" %}
-{% block crp_block %}
-    <style>
-          {% include "templates/partials/crp-homepage.html" %}
-    </style>
-{% endblock %}
 {% block head_extra %}
-    <link rel="prefetch" href="{{ url(cms.homepage.featured_articles[0].article) }}#main" />
-    <link rel="prerender" href="{{ url(cms.homepage.featured_articles[0].article) }}" />
-{% endblock %}
+      <style>
+          {% include "templates/partials/crp-homepage.html" %}
+      </style>
+{% endblock %} 
 {% block title %}{% parent %} - Home{% endblock %} 
 {% block content %}
-{% set featuredarticles = cms.homepage.featured_articles %}
+{% set articles = cms.articles|sort('publish_date', true) %}
+{% set articles = articles.slice(0,4) %}
 {% set authors = cms.authors %}
 
 
-
 <ul class="home" itemscope itemtype="http://schema.org/Blog">
-    {% for row in featuredarticles %}
-     {% if row.index == 0 %}
+    {% for article in articles %}
+     {% if loop.first %}
         {% set firstplaybuttonhome = "firstplaybutton"%}
         {% else %}
         {% set firstplaybuttonhome = ""%}
     {% endif %}
     <li class="post">
-            {% for relation in row.article.category%}
+            {% for relation in article.category%}
                 <div class="category"><a href="{{ url(relation) }}">{{ relation.name|capitalize }}</a></div>
             {% endfor %}
-            {% if row.article.related_video %}
-                {% set video = row.article.related_video %}
+            {% if article.related_video %}
+                {% set video = article.related_video %}
                 {% set ss = video.streaming_service %}
                     {% if ss == "YouTube"%}
                         {% set videoId = video.video.original_url.split('v=')[1] %}
@@ -53,7 +49,7 @@
             {% else %}
 
                         <section class="list-image">
-                                <img src="{{row.article.image|imageCrop(560,315)}}" alt="{{row.article.image_description }}" itemprop="image" width="560" height="315">                                
+                                <img src="{{article.image|imageCrop(560,315)}}" alt="{{ article.image_description }}" itemprop="image" width="560" height="315">                                
                         </section> 
 
             {% endif %}
@@ -61,18 +57,18 @@
                         <section class="information" itemprop="blogPost">
                                 
                                     <h3>
-                                        <a href="{{ url(row.article) }}">{{ row.article.title }}</a>
+                                        <a href="{{ url(article) }}">{{ article.title }}</a>
                                     </h3>
                                     {% if loop.first %}
-                                    {% if row.article.description.length > 180 %}
-                                    <p>{{ row.article.description.substring(0,180) }} [...]</p>
+                                    {% if article.description.length > 180 %}
+                                    <p>{{ article.description.substring(0,180) }} [...]</p>
                                     {% else %}
-                                    <p>{{ row.article.description }}</p>
+                                    <p>{{ article.description }}</p>
                                     {% endif %}
 
                                     
                                 <div class="author-and-read-more">
-                                        <a role="button" class="read-more" aria-label="Read the full text of the article - {{ row.article.title }}" href="{{ url(row.article) }}" title="Read {{row.article.title}} in its entirety">Read&nbsp;more</a>
+                                        <a role="button" class="read-more" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read&nbsp;more</a>
                                 </div>
                                 {% endif %}
 
@@ -85,6 +81,7 @@
 </ul>
 
 <section class="middle-row">
-    {{ cms.homepage.homepage_center_block|markdown }}
+    {% set middlerowcontent = cms.homepage.homepage_center_block %}
+    {{middlerowcontent|markdown}}
 </section>
 {% endblock %}

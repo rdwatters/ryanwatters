@@ -1,10 +1,9 @@
 @import 'critical-render-path/crp';
-body {
-    background-color: $list-page-background-color;
-}
 
+#main{
+    background-color:$list-page-background-color;
+}
 .list-introduction {
-    @include display(flex);
     width: 100%;
     background-color: $full-width-header-background-color;
     color: $full-width-header-font-color;
@@ -48,6 +47,7 @@ article {
     @include display(flex);
     @include flex-direction(column);
     @include flex-wrap(wrap);
+    height:100%;
     margin-right: auto;
     margin-left: auto;
     background-color: $list-page-background-color;
@@ -76,7 +76,6 @@ ul.list {
     margin-left:auto;
     @include MQ(XL) {
         max-width: $XL;
-        margin-bottom: $footer-height + 10px;
         padding-bottom:20px;
     }
     li {
@@ -152,7 +151,7 @@ ul.list {
         color: $category-button-font-color;
         font-size: $base-font-size;
         line-height: 28px;
-        border: 3px solid $body-background-color;
+        border: $category-border;
         background-color: $category-button-background-color;
         padding-right: 10px;
         padding-left: 10px;
@@ -171,9 +170,6 @@ ul.list {
     }
 }
 
-.authors > ul.list > li > header > img {
-    border-radius:50%;
-}
 //'text-bottom' forces the final div in a list item to to to the bottom of the column. This is used for the "read more" button.
 .text-bottom {
     @include display(flex); // set the context

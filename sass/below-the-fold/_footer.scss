@@ -1,89 +1,113 @@
-#footer,.footer {
-    display:block;
-    background-color:$footer-background-color;
-    background:$footer-background-pattern;
-    margin-bottom:0px;
-    padding-bottom:0px;
-    position:absolute;
-    bottom:0px;
-    right:0;
-    width:100%;
-    height:$footer-height-mobile;
-    padding-top:15px;
-    padding-bottom:$mobile-article-share-button-height;
-    border:0px;
-    z-index:$footer-z;
-    color:$footer-font-color;
-    vertical-align:middle;
-    @include MQ(M){
-        height:$footer-height;
+.footer {
+    @include flex(none);
+    @include order(3);
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(center);
+    @include flex-shrink(0);
+    padding: 1em;
+    background: $footer-background-pattern;
+    margin-bottom: 0;
+    @include MQ(M) {
+        @include flex-direction(row);
+        @include justify-content(space-around);
     }
-    .site-info{
-        width:90%;
-        display:block;
-        text-align:center;
-        margin-right:auto;
-        margin-left:auto;
-        @include MQ(M){
-            width:50%;
-            float:left;
-            padding-left:15px;
-            text-align:left;
-        }
-    }
-    .site-image,.site-description{
-        vertical-align:middle;
-    }
+}
 
-    .site-description{
-        @include MQ(M){
-            width:70%;
-            margin-left:15px;
-            display:inline-block;
+.site-info {
+    width: 100%;
+    padding-bottom:1em;
+    @include MQ(M) {
+        width: 33.333%;
+        padding-bottom:0px;
+    }
+    @include display(flex);
+    @include align-items(center);
+    color: $white;
+    img.site-image {
+        display: none;
+        border-radius: 50%;
+        margin-right: 1em;
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        @include MQ(M) {
+            display: inline;
         }
     }
-    img.site-image{
-        display:none;
-        border-radius:50%;
-        width:60px;
-        height:60px;
-        min-width:60px;
-        min-height:60px;
-        @include MQ(M){
-            display:block;
-            float:left;
+}
+
+.latest-tweet {
+    width: 100%;
+    margin-bottom:1em;
+    @include MQ(M) {
+        width: 27.333%;
+        margin-bottom:0;
+        margin-right: 3%;
+        margin-left: 3%;
+    }
+    padding:.5em;
+    border-radius:5px;
+    background-color: $footer-latest-tweet-background-color;
+    color: $footer-latest-tweet-font-color;
+    svg {
+        height: 15px;
+        width: 15px;
+        fill: $twitter-blue;
+        float: right;
+    }
+    h5 {
+        padding-top:.25em;
+        padding-bottom:.25em;
+        margin:.25em;
+        a {
+            color: $twitter-blue;
         }
     }
-    .footer-social-buttons {
-        width:100%;
-        text-align:center;
-        @include MQ(M){
-            width:50%;
-            display:inline-block;
-            text-align:right;
-        }
-        li {
-            display:inline;
-                margin-bottom:15px;
-            a { 
-                margin-right:15px;
-                background-size: cover;
-                background-repeat: no-repeat;
-                svg.footer-icon {
-                    @include transition($base-transition);
-                    width: 30px;
-                    fill:$footer-svg-color;
-                    height: $footer-height/2;
-                    &:hover{
-                        fill:$footer-svg-color-hover;
-                    }
+    p {
+        display: block;
+        width:90%;
+        padding-top:.25em;
+        margin-top:0;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    time{
+        float:right;
+    }
+    
+}
+
+ul.footer-social-buttons {
+    width: 100%;
+    @include MQ(M) {
+        width: 33.333%;
+        display: inline-block;
+    }
+    text-align: center;
+    li {
+        display: inline;
+        a {
+            margin-right: 15px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            svg.footer-icon {
+                @include transition($base-transition);
+                width: 25px;
+                @include MQ(M){
+                    width:35px;
                 }
-                #footer-twitter{
-                    padding:2px;
+                fill: $footer-svg-color;
+    
+                &:hover {
+                    fill: $footer-svg-color-hover;
                 }
-                #footer-googleplus{
-                    padding:1px;
-                }
+            }
+            #footer-twitter {
+                padding: 2px;
+            }
+            #footer-googleplus {
+                padding: 1px;
             }
         }
     }
