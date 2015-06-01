@@ -1,18 +1,14 @@
 .search-wrapper {
-    overflow-x:hidden;
-    @include transition($base-transition);
-    overflow-y: scroll;
-    z-index:99;
-    display: block;
-    width: $mobile-menu-width;
-    position: fixed;
-    right:0;
-    padding-left:15px;
-    top: $search-input-y-offset-mobile;
-    background-color: white;
-    @include transform(translateX(100%));
     &.menu-open {
         @include transform(translateX(0px));
+        z-index: 99;
+        display: block;
+        width: $mobile-menu-width;
+        position: fixed;
+        right: 0;
+        padding-left: 15px;
+        top: $search-input-y-offset-mobile;
+        background-color: white;
     }
     @include MQ(M) {
         @include transform(translateX(0px));
@@ -24,20 +20,20 @@
         height: 100%;
         left: 0;
         top: 0;
-        margin-top:$header-height;
+        margin-top: $header-height;
         margin-bottom: $footer-height;
         &.search-open {
             display: block;
             opacity: 1;
             z-index: 99999;
-            height:100%!important;
+            height: 100%!important;
         }
     }
 }
 
 .search-form {
     display: block;
-    width:100%;
+    width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
     max-width: $XL;
@@ -57,7 +53,7 @@
 
 .search-helpers {
     display: none;
-    padding-left:10px;
+    padding-left: 10px;
     width: 35%;
     min-width: 360px;
     max-width: 370px;
@@ -65,7 +61,7 @@
     margin-right: 5%;
     @include MQ(L) {
         display: block;
-        min-height:100%;
+        min-height: 100%;
     }
 }
 
@@ -229,17 +225,16 @@ ul.search-by-author {
         height: 50px;
         line-height: 50px;
         vertical-align: middle;
-        margin-top:10px;
-        display:block;
-
+        margin-top: 10px;
+        display: block;
         a {
             img {
                 line-height: 50px;
                 height: 50px;
-                border-radius:50%;
-                width:50px;
+                border-radius: 50%;
+                width: 50px;
                 vertical-align: middle;
-                margin-right:5px;
+                margin-right: 5px;
             }
             span:nth-child(2) {
                 height: 50px;

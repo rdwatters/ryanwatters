@@ -12,9 +12,6 @@
 {% block content %}
 {% set featuredarticles = cms.homepage.featured_articles %}
 {% set authors = cms.authors %}
-
-
-
 <ul class="home" itemscope itemtype="http://schema.org/Blog">
     {% for row in featuredarticles %}
      {% if row.index == 0 %}
@@ -71,7 +68,7 @@
                                     {% endif %}
 
                                     
-                                <div class="author-and-read-more">
+                                <div class="read-button">
                                         <a role="button" class="read-more" aria-label="Read the full text of the article - {{ row.article.title }}" href="{{ url(row.article) }}" title="Read {{row.article.title}} in its entirety">Read&nbsp;more</a>
                                 </div>
                                 {% endif %}
@@ -85,6 +82,6 @@
 </ul>
 
 <section class="middle-row">
-    {{ cms.homepage.homepage_center_block|markdown }}
+    {{ cms.homepage.homepage_center_row|safe }}
 </section>
 {% endblock %}

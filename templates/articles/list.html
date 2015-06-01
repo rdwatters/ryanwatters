@@ -1,13 +1,10 @@
 {% extends "templates/partials/base.html" %}
 {% block title %}{% parent %} - Articles{% endblock %}
-
 {% block crp_block %}
       <style>
           {% include "templates/partials/crp-list.html" %}
       </style>
 {% endblock %}
-
-
 {% block content %}
   {% set data = cms.articles %}
   {% set data = data|sort('publish_date', true) %}
@@ -53,5 +50,5 @@
 {% endblock %}
 {% block scripts_extra %}
 {% parent %}
-<script src="/static/javascript/infinitescroll.js" async></script>
+<script src="/static/javascript/infinitescroll.js" async defer></script>
 {% endblock %}

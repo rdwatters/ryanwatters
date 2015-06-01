@@ -1,14 +1,27 @@
-@media print{
-	.header, .footer{
-		display:none!important;
-	}
-	*{
-		display:none;
-	}
-	.main*{
-		display:block!important;
-		width:90%;
-		margin-right:auto;
-		margin-left:auto;
-	}
+@media print {
+    #header,#footer,aside,.site-name,#disqus_thread{
+    	display:none!important;
+    } 
+    #main{
+    	display:block;
+    }
+    #main img*{
+    	display:block;
+    	page-break-after: avoid;
+    	page-break-inside: avoid;
+    }
+    article{
+    	display:block;
+    }
+    article img*{
+    	display:block;
+    	page-break-after: avoid;
+    	page-break-inside: avoid;
+    }
+    .header-mobile-only:after{
+    	content:'Copyright RyanWatters.me';
+    }
+    #disqus_thread > iframe{
+    	display:none!important;
+    }
 }

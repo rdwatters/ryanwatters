@@ -45,13 +45,12 @@
     <meta class='swiftype' name="published" data-type='date' content="{% if item.most_recent_update %}{{ item.most_recent_update|date('M d, Y') }}{% else %}{{ item.last_updated|date('M d, Y') }}{%endif%}" />
     <meta class="swiftype" name="category" data-type="string" content="{% if item.category.length > 0 %}{% for item in item.category %}{{ item.name }}{% endfor %}{% else %}{{getSetting('site_name')}}{% endif %}">
     <meta class="swiftype" name="description" data-type="string" content="{{item.description|default(getSetting('site_description'))}}" />
-    {#This is the block of CSS embedded into the page head for improved PageSpeed and critical render path#}
-    {% block crp_block %}
-    {% endblock %}
-    
     {# Useful block for loading outside scripts or stylesheets into different pages. #}
     {% block head_extra %}
 
+    {% endblock %}
+    {#This is the block of CSS embedded into the page head for improved PageSpeed and critical render path#}
+    {% block crp_block %}
     {% endblock %}
   </head>
   <body id="body">
@@ -82,23 +81,14 @@
         <!-- build:js /static/javascript/minified.js -->     
         <script src="/static/javascript/main.js"></script>
         <script src="/static/javascript/jquery.pjax.min.js"></script>
-        <!-- endbuild -->
-
-        
+        <!-- endbuild -->        
         
         {# Useful for adding extra javascript to the body's bottom. #}
         
         {% block scripts_extra %}
-        <!-- <script async>
-          YUI().use('pjax', function (Y) {
-              new Y.Pjax({container: '#main'});
-          });
-        </script> -->
         <script async defer>
           $(document).pjax('a[data-pjax]', '#main');  
-        </script>
-        <script data-st-module="em_7Z2HF18d_dA7uodm5ECM" src="//s.swiftypecdn.com/modules/v1/embed.js" async defer></script>
-        
+        </script>        
         {% endblock %}
            
       {# GOOGLE ANALYTICS#}
@@ -109,7 +99,7 @@
           s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
       {# Swiftype Install Code #} 
-        <script type="text/javascript">
+        <script type="text/javascript" async defer>
         (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
         (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
         e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);

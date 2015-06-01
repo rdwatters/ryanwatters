@@ -6,51 +6,47 @@
 {% endblock %}
 {% block title %}{% parent %} - {{ item.name }}{% endblock %}
 {% block content %}
-  <p><a href="{{ url('categories') }}">View a list of all categories</a></p>
-  <h1>{{ item.name }}</h1>
-  <ul>
-      <li>
-        <strong>Name: </strong>
-        {{ item.name }}
-      </li>
-      <li>
-        <strong>Create Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.create_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Last Updated: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.last_updated|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Publish Date: </strong>
-        {# Format the date. You can use PHP's date function to format as needed. http://php.net/manual/en/function.date.php #}
-        {{ item.publish_date|date('F d Y') }}
-      </li>
-      <li>
-        <strong>Instructions for Topics: </strong>
-        {{ item.instructions_for_topics }}
-      </li>
-      <li>
-        <strong>Preview URL: </strong>
-        {{ item.preview_url }}
-      </li>
-      <li>
-        <strong>Slug: </strong>
-        {{ item.slug }}
-      </li>
-      <li>
-        <strong>Articles: </strong>
-        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
-        {% for relation in item.articles %}
-          {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
-          <a href="{{ url(relation) }}">{{ relation.name }}</a>{% if not loop.last %},{% endif %}
-        {% endfor %}
-      </li>
-      <li>
-        <strong>Topic Description: </strong>
-        {{ item.topic_description }}
-      </li>
+
+<header class="list-introduction">
+    <section class="introduction">
+        <ul class="breadcrumb">
+            <li><a href="{{ url('categories') }}">categories</a></li>
+            <li>
+                <h1>/{{item.name}}</h1>
+            </li>
+        </ul>
+        <section class="description">
+            <p>{{item.topic_description}}</p>
+        </section>
+    </section>
+</header>
+{% set data = item.articles %}
+<article class="category">  
+  <ul class="list js-paginate" id="articles-list" itemscope itemtype="http://schema.org/Article" data-next-page="{{ getPageUrl(getCurPage() + 1) }}" data-max-page="{{ getPageUrl(getMaxPage()) }}" data-remove-first="true" data-swiftype-index="false">
+    {% for article in data %}
+    <li class="post">
+      <a href="{% for cat in article.category %}{{url(cat)}}{% endfor %}">
+        <div class="category">{%for category in article.category %}{{category.name}}{%endfor%}</div>
+      </a>            
+
+            <header class="list-image">
+              {% if article.featured %}
+              <span class="featured">Featured</span>
+              {% endif %}
+              
+              <img src="{{article.image|imageCrop(560,315)}}" alt="Thumbnail image for the article - {{article.title}}">
+              <h3 class="title"><a href="{{url(article)}}">{{article.title}}</a></h3> 
+            </header>
+        
+            <p itemprop="about">{{article.description}}</p>
+            <div class="text-bottom">
+              <a role="button" class="read-more" aria-label="Read the full text of the article - {{ article.title }}" href="{{ url(article) }}" title="Read {{article.title}} in its entirety">Read more</a>
+            </div>        
+    </li>
+    {% endfor %}
   </ul>
+  <nav role="menu" aria-label="Pagination" aria-hidden="true" class="pagination">
+        {% include "templates/partials/paginator.html" %}
+  </nav>
+</article>
 {% endblock %}

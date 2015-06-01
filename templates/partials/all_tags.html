@@ -1,0 +1,8 @@
+{% set allthetags = cms.tags|sort('name',false) %}
+<ul class="article-tags">
+	{% for tag in allthetags %}
+	{% if tag.articles_tags.length > 0 %}
+	<li class="article-tag"><a href="{{url(tag)}}">{{tag.name}}</a></li>
+	{% endif %}
+	{% endfor %}
+</ul>

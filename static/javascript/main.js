@@ -120,6 +120,7 @@ $(function() {
             $('aside.article-navigation > ul').append(listItem);
         });
     } else {
-        console.log('no seconday navigation');
+        console.log('no secondary navigation');
+        $('aside.article-navigation').remove();
     }
 });

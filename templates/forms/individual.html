@@ -1,0 +1,26 @@
+{% extends "templates/partials/base.html" %}
+{% block crp_block %}
+      <style>
+          {% include "templates/partials/crp-list.html" %}
+      </style>
+{% endblock %}
+{# This sets our page <title>. It will append this forms's name to the site title defined in base.html #}
+{% block title %}{% parent %} - {{ item.name }}{% endblock %}
+{% block content %}
+<header class="list-introduction">
+    <section class="introduction">
+        <h1>{{ item.form_title }}</h1>
+        <section class="description">
+          {{ item.form_introduction|markdown }}
+        </section>
+    </section>
+</header>
+{% set provider = item.form_provider|lower %}
+{% set formid = item.form_id %}
+{% if provider == "jotform" %}
+  {% set embed = "https://secure.jotform.us/jsform/" %}
+{% endif %}
+  <section class="form">
+    <script type="text/javascript" src="{{embed}}{{-formid-}}"></script>
+  </section>
+{% endblock %}

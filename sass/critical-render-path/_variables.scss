@@ -237,13 +237,15 @@ $mobile-icon-color-inner: $header-link-color;
 
 //Z-INDEXES
 $body-z:0;
-$header-z:5;
-$header-mobile-z:5;//not actually the header, but the bar across the top on mobile devices;
+$header-z:10;
+$header-z-menu-open:10;
+$header-mobile-z:10;//not actually the header, but the bar across the top on mobile devices;
 $main-content-z:1;
 $footer-z:2;
 $share-button-z:90;
 $home-icon-z:998;
 $mobile-menu-icon-z:999;
+$category-button-z-index:1;
 
 /********************************HEADER GLOBALS******************************************/
 $header-main-logo-background-image: '/static/images/favicon.png';
@@ -282,7 +284,7 @@ $full-width-header-font-color:$base-font-color;
 $login-background-color:$base-font-color;
 $cms-logo-background-image:$my-logo-location;
 $login-font-color:$white;
-$hide-updates: false;
+$hide-updates: true;
 
 /*******************************PAGINATION-BUTTONS****************************/
 $pagination-button-width:40px;

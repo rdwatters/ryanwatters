@@ -1,6 +1,4 @@
 .main {
-    @include transition($base-transition);
-    @include order(2);
     @include flex(1 0 auto);
     @include flex-shrink(0);
     width: 100%;
@@ -11,10 +9,8 @@
     }
 }
 
-.main.faded {
-    opacity: 0;
-}
-
-.main.menu-open {
-	opacity:.2;
+@include MQ(L) {
+    .main.faded {
+        opacity: 0;
+    }
 }

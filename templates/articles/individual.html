@@ -1,14 +1,16 @@
 {% extends "templates/partials/base.html" %}
+{# Critical Render Path Styles for the Article Page #}
 {% block crp_block %}
       <style>
           {% include "templates/partials/crp-article.html" %}
       </style>
 {% endblock %}
+
 {% block head_extra %}
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 {% endblock %}
 
-{# PREFETCH AND PRERENDER #}
+{# PREFETCH AND PRERENDER - note the prerender is currently only supported by Google Chrome; however, the feature will degrage gracefull in older browsers#}
 {% block head_extra %}
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   {% set prev = prevItem(item, 'publish_date', true) %}
@@ -125,13 +127,7 @@
     <a href="{{ url('articles') }}"><strong>See all articles...</strong></a>
   </div>
 
-  {% if articleLength.length > 500 %}
-  <aside class="article-navigation" aria-hidden="true">
-    <ul class="navigation">
-
-    </ul>
-  </aside>
-  {% endif %}
+ 
 
   {# ARTICLE AUTHOR(S)#}
   {% if article.author.length > 1 %}
@@ -148,6 +144,14 @@
     </a>
     {% endfor %}
 </article>
+ {% if articleLength.length > 500 %}
+  <aside class="article-navigation" aria-hidden="true">
+    <h4>In This Article</h4>
+    <ul class="navigation" id="article-nav">
+
+    </ul>
+  </aside>
+  {% endif %}
 {% if prev %}
       <a href="{{ url(prev) }}" role="button" class="move-previous yui3-pjax" title="Read the previous article titled: {{prev.title}}"> 
             <i class="fa fa-chevron-left"></i>
@@ -191,7 +195,7 @@
 <!-- END BLOCK CONTENT -->  
 {% endblock %}
 
-{# EXTRA SCRIPTS AT BODY BOTTOM #}
+{# EXTRA SCRIPTS#}
 {% block scripts_extra %}
 {% parent %}
 <script async>
@@ -215,6 +219,7 @@
         }
         wScrollBefore = wScrollCurrent;
     }
+    //Fade out 'section.introduction' on larger screens
     $(window).scroll(function(){
       if((window.outerWidth > 960) && ($('.video-iframe').length === 0)){
       $('.introduction').css({'opacity':( 100-$(window).scrollTop() )/100});
@@ -224,6 +229,51 @@
       }else{
         $('.introduction').css('display','block');
       }
+    });
+    // Cache selectors
+    var lastId,
+        topMenu = $("#article-nav"),
+        topMenuHeight = topMenu.outerHeight()+15,
+        // All list items
+        menuItems = topMenu.find("a"),
+        // Anchors corresponding to menu items
+        scrollItems = menuItems.map(function(){
+          var item = $($(this).attr("href"));
+          if (item.length) { return item; }
+        });
+
+    // Bind click handler to menu items
+    // so we can get a fancy scroll animation
+    menuItems.click(function(e){
+      var href = $(this).attr("href"),
+          offsetTop = href === "#" ? 0 : $(href).offset().top-topMenuHeight+1;
+      $('html, body').stop().animate({ 
+          scrollTop: offsetTop
+      }, 300);
+      e.preventDefault();
+    });
+
+    // Bind to scroll
+    $(window).scroll(function(){
+       // Get container scroll position
+       var fromTop = $(this).scrollTop()+topMenuHeight;
+       
+       // Get id of current scroll item
+       var cur = scrollItems.map(function(){
+         if ($(this).offset().top < fromTop)
+           return this;
+       });
+       // Get the id of the current element
+       cur = cur[cur.length-1];
+       var id = cur && cur.length ? cur[0].id : "";
+       
+       if (lastId !== id) {
+           lastId = id;
+           // Set/remove active class
+           menuItems
+             .parent().removeClass("active")
+             .end().filter("[href=#"+id+"]").parent().addClass("active");
+       }                   
     });
 </script>
 {% endblock %}

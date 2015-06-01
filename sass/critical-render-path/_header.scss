@@ -5,7 +5,7 @@
     margin-bottom: 0px;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding-left:15px;
+    padding-left: 15px;
     background-color: $header-background-color-mobile;
     @include MQ(M) {
         background-color: $header-background-color;
@@ -16,15 +16,15 @@
     top: 0px;
     right: 0px;
     width: $mobile-menu-width;
-    // max-width:100%;
     opacity:$header-opacity;
     @include transform(translateX(100%));
     &.menu-open {
         @include transform(translateX(0px));
         overflow-y: scroll;
+        z-index:$header-z-menu-open;
     }
     .primary-navigation {
-        margin-top:$header-height-mobile;
+        margin-top: $header-height-mobile;
         ul {
             width: 100%;
             padding-left: -5px;
@@ -49,30 +49,30 @@
 
 @include MQ(M) {
     .header {
-        width:100%;
+        width: 100%;
         @include display(flex);
         @include align-items(center);
         @include flex(none);
         @include flex-shrink(0);
         position: relative;
         height: $header-height;
-        opacity:$header-opacity;
+        opacity: $header-opacity;
         @include transform(translateX(0px));
-        .site-name{
+        .site-name {
             @include flex(1);
-            padding-left:1em;
-            color:$header-link-color;
+            padding-left: 1em;
+            color: $header-link-color;
         }
         &.hide-header {
             opacity: 0;
         }
         .primary-navigation {
-            margin-top:0;
+            margin-top: 0;
             ul {
                 @include flex(1);
                 li {
                     display: inline;
-                    line-height:1.5;
+                    line-height: 1.5;
                     a {
                         cursor: pointer;
                         vertical-align: middle;
@@ -82,7 +82,7 @@
                         width: 100%;
                         margin-right: 10px;
                         &:hover {
-                            border-bottom:3px solid $primary-brand;
+                            border-bottom: 3px solid $primary-brand;
                         }
                     }
                 }
@@ -92,29 +92,28 @@
 }
 
 .header-mobile-only {
-    display: none;
-    @include MQ(MMAX) {
-        display:block;
-        height: $header-height-mobile;
-        background-color: $header-background-color;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: $header-mobile-z;
-        img{
-            width:$header-height-mobile *.75;
-            height:$header-height-mobile * .75;
-            margin-top:$header-height-mobile * .125;
-            margin-left:10px;
-        }
+    display: block;
+    @include MQ(M) {
+        display: none;
+    }
+    height: $header-height-mobile;
+    background-color: $header-background-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: $header-mobile-z;
+    svg {
+        width: 40px;
+        height: 40px;
+        margin-left: 5px;
+        margin-top: 5px;
     }
 }
 
-
 //SEARCH ICON: note that the rest of the search styles are not included in CRP files and can be found in _search.scss
 .search-button {
-    padding-right:1em;
+    padding-right: 1em;
     #search-icon svg {
         display: none;
         @include MQ(M) {
@@ -133,7 +132,6 @@
     }
 }
 
-
 .mobile-navigation {
     position: fixed;
     top: $site-logo-size / 2;
@@ -149,7 +147,7 @@
     position: absolute;
     width: $mobile-icon-height;
     height: $mobile-icon-width;
-    z-index: 2;
+    z-index: $mobile-menu-icon-z;
 }
 
 .menu-icon-inner {
@@ -164,7 +162,6 @@
         display: block;
         position: absolute;
         content: "";
-        z-index: -1;
         width: $mobile-icon-width;
         height: $mobile-icon-layer-height;
         background: $header-mobile-toggle-menu-icon-color;
@@ -180,7 +177,10 @@
 }
 
 .search-wrapper {
-    display: none;
+    @include transition($base-transition);
+    @include transform(translateX(100%));
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 //CLICKED STATE FOR MENU ICON IS INCLUDED IN THE BELOW-THE-FOLD CONTENT!!!

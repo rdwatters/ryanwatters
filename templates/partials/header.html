@@ -15,26 +15,34 @@
         </a>
     </div>   
 </header>
-<section class="header-mobile-only"><a href="/"><img src="/static/images/site_logo.png" alt=""></a></section>
-<div class="search-wrapper"> <!-- search-open -->
+<section class="header-mobile-only">
+    <a href="/">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve" width="40px" height="40px">
+        <g id="Layer_1_1_">
+            <circle fill="#FFFFFF" cx="25" cy="25" r="25"/>
+        </g>
+        <g id="rw">
+            <text transform="matrix(1 0 0 1 4.8005 33.3848)" fill="#333333" font-family="'Adelle-Regular'" font-size="25">RW</text>
+        </g>
+        </svg>
+    </a>
+</section>
+<div class="search-wrapper">
         <form class="search-form">            
             <input type="search" autocomplete="false" id="search-input" class="st-default-search-input" role="search" aria-label="search input" placeholder="Search this site...">
             <div id="search-results" class="st-search-container"></div>           
         </form>
         <div class="search-helpers">
         {% if cms.additionalglobals.fa_in_search %}
-            {% set featured = cms.featuredarticles.featured %}
-            {% for row in featured %}
-                {% if loop.first %}
+        {% set feature = cms.additionalglobals.featured_article_name %}
                 <div class="featured-article">
-                    <a href="{{url(row.article)}}">
+                    <a href="">
                         <span>Featured Article</span>
-                        <h3>{{row.article.title}}</h3>
-                        <p>Posted in {{row.article.category[0].name}}<time>{{row.article.publish_date|date('F d,Y')}}</time></p>
+                        <h3>{{feature.title}}</h3>
+                        <p>Posted in {{feature.category[0].name}}<time>{{feature.publish_date|date('F d, Y')}}</time></p>
                     </a>
                 </div>
-                {% endif %}
-            {% endfor %}
         {% endif %}
             <h3 class="search-overlay">Categories</h3>
             <ul class="search-by-category">

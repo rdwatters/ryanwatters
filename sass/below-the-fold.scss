@@ -3,9 +3,9 @@
 @import 'critical-render-path/variables';
 @import 'below-the-fold/search';
 @import 'below-the-fold/footer';
-// @import 'below-the-fold/footer-new';
 @import 'below-the-fold/pagination';
-@import 'below-the-fold/print';
+@import 'below-the-fold/_article_below_the_fold.scss';
+@import 'below-the-fold/_homepage_below_the_fold.scss';
 // MOBILE MENU CLICKED STATE - FOR BASE STYLES, SEE MENU-ICON.SCSS
 .menu-open {
     .menu-icon-inner {
@@ -47,31 +47,3 @@
         fill: $svg-spinner-color;
     }
 }
-
-#disqus_thread {
-    position:relative;
-    display:block;
-    width:100%;
-    clear:both;
-    padding-right:5%;
-    padding-left:5%;
-    opacity:1!important;
-    background-color:$full-article-main-element-background-color!important;
-    z-index:99;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom:30px;   
-    @include MQ(M){
-        width:100%;
-        margin-bottom:10px;
-        max-width: $full-article-max-width;
-        padding:{
-            left:15px;
-            right:15px;
-        }
-    }
-}
-
-
-
-

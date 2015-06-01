@@ -105,7 +105,7 @@ li.post {
     background-color: $category-button-background-color;
     padding-right: 10px;
     padding-left: 10px;
-    z-index: 1;
+    z-index: $category-button-z-index;
     a {
         text-transform: $category-text-transform;
     }
@@ -117,7 +117,7 @@ li.post {
     }
 }
 
-.author-and-read-more {
+.read-button {
     @include display(flex);
     @include flex(1); // flex an equal amount of space
     @include align-items(flex-end); // keep buttom at bottom
@@ -207,7 +207,6 @@ li.post:first-child {
         @include display(flex);
         @include flex-direction(row);
         @include align-items(center);
-        margin-bottom: 0;
         .list-video, .image {
             width: 65%;
         }
@@ -280,10 +279,10 @@ section.middle-row {
     padding: 2em 5%;
     background-color: $middle-row-background-color-homepage;
     color: $white;
-    @include MQ(XL){
+    @include MQ(L){
         min-height:300px;
     }
-    h2 {
+    h3 {
         text-align: center;
         font-size: 2em;
         flex-shrink: 0;

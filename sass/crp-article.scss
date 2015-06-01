@@ -10,6 +10,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+    z-index: 2;
     @include MQ(L) {
         width: 100%;
         .play-button {
@@ -26,6 +27,7 @@
     min-width: 100vw;
     padding: 0px;
     margin-top: 0px;
+    z-index: 2;
     img {
         width: 100%;
         padding: 0px;
@@ -54,7 +56,7 @@ iframe + .image-fade-block {
     display: none;
 }
 
-.article-tags {
+ul.article-tags {
     display: block;
     clear: both;
     z-index: 10;
@@ -114,6 +116,7 @@ article.full-length {
     padding-right: 15px;
     padding-left: 15px;
     margin-bottom: 15px;
+    padding-bottom:15px;
     z-index: 5;
     margin-right: auto;
     margin-left: auto;
@@ -473,6 +476,36 @@ cite {
                 a {
                     svg {
                         fill: $base-font-color;
+                        &.pinterest-svg {
+                            fill: $social-buttons-color;
+                            &:hover {
+                                fill: #cb2027;
+                            }
+                        }
+                        &.google-plus-svg {
+                            fill: $social-buttons-color;
+                            &:hover {
+                                fill: #dd4b39;
+                            }
+                        }
+                        &.twitter-svg {
+                            fill: $social-buttons-color;
+                            &:hover {
+                                fill: #00aced;
+                            }
+                        }
+                        &.linkedin-svg {
+                            fill: $social-buttons-color;
+                            &:hover {
+                                fill: #007bb6;
+                            }
+                        }
+                        &.facebook-svg {
+                            fill: $social-buttons-color;
+                            &:hover {
+                                fill: #3b5998;
+                            }
+                        }
                     }
                 }
             }
@@ -582,6 +615,7 @@ img[alt$="full"] {
     background-color: $author-blurb-background-color;
     color: $base-font-color;
     padding: 10px;
+    margin-bottom:10px;
     img {
         border-radius: 50%;
         display: block;
@@ -610,18 +644,24 @@ img[alt$="full"] {
 a.next-article,
 a.previous-article {
     @include display(flex);
+    @include justify-content(center);
     @include clearfix;
     background-color: $dark;
     color: white;
-    width: auto;
-    max-width: 50%;
+    width: 50%;
+    @include MQ(M) {
+        width: auto;
+    }
     height: auto;
     max-width: 50%;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     vertical-align: middle;
     text-align: center;
     z-index: 99;
     border-bottom: 2px solid $body-background-color;
+    @include MQ(M) {
+        border: none;
+    }
 }
 
 .previous-article {

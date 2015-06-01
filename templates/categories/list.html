@@ -12,9 +12,6 @@
 
   {# The first thing we do is call categories data from the CMS. #}
   {% set data = cms.categories %}
-
-  {# Next we sort the data by publish_date. The true bit reverses it so it's newest first. Learn more: #}
-  {# http://www.webhook.com/docs/template-rules-and-filters/#sortproperty_reverseorder #}
   {% set data = data|sort('publish_date', true) %}
 
   {# This is how you set pagination. It's always important to do this after your sort. #}

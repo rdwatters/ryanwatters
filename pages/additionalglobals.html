@@ -107,12 +107,18 @@
         {{ cms.additionalglobals.pinterest_url }}
       </li>
       <li>
-        <strong>Featured Articles in Search Overlay: </strong>
-        {{ cms.additionalglobals.featured_articles_in_search_overlay }}
+        <strong>Featured Article in Search Overlay: </strong>
+        {{ cms.additionalglobals.featured_article_in_search_overlay }}
       </li>
       <li>
         <strong>FA in Search: </strong>
         {{ cms.additionalglobals.fa_in_search }}
+      </li>
+      <li>
+        <strong>Featured Article Name: </strong>
+        {# Relationship. Note that use the label you set for the relation, not the content-type name. #}
+        {# You can ouput more than just the name. Feel free to output more fields from the CMS. #}
+        <a href="{{ url(cms.additionalglobals.featured_article_name) }}">{{ cms.additionalglobals.featured_article_name.name }}</a>
       </li>
       <li>
         <strong>Authors in Search Overlay: </strong>
