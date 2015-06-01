@@ -51,40 +51,43 @@
     }
 }
 
-article{
-	margin-top:20px;
-    margin-bottom:20px;
-	width:100%;
-	@include MQ(M){
-		width:90%;
-		margin-right:auto;
-		margin-left:auto;
-		max-width:$XL;
-	}
+article {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    @include MQ(M) {
+        width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        max-width: $XL;
+    }
 }
 
 .author-photo {
     width: 100%;
     img.author {
         width: 100%;
-        border-radius:$author-image-solo-page-border-radius;
-        display:block;
-        margin-right:auto;
-        margin-left:auto;
+        border-radius: 0px;
+        @include MQ(M) {
+            border-radius: $author-image-solo-page-border-radius;
+        }
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
         height: auto;
         max-width: 400px;
     }
-    @include MQ(M){
-    	width:50%;
-    	display:block;
-    	float:left;
-    	@include clearfix;
-    	img.author{
-    		margin-right:auto;
-    		margin-left:auto;
-    		display:block;
-    		@include clearfix;
-    	}
+    @include MQ(M) {
+        width: 50%;
+        display: block;
+        float: left;
+        @include clearfix;
+        img.author {
+            margin-right: auto;
+            margin-left: auto;
+            display: block;
+            @include clearfix;
+        }
     }
 }
 
@@ -93,24 +96,36 @@ article{
     margin-right: auto;
     margin-left: auto;
     @include MQ(M) {
-    	@include clearfix;
+        @include clearfix;
         display: block;
         float: right;
         width: 50%;
-        padding-right:5%;
-        padding-left:5%;
+        padding-right: 5%;
+        padding-left: 5%;
     }
 }
 
-ul.recent-articles{
-	li{
-		margin-top:8px;
-		a{
-			font-weight:bold;
-		}
-	}
+ul.recent-articles {
+    li {
+        margin-top: 8px;
+        a {
+            font-weight: bold;
+        }
+    }
 }
 
-ul.social{
-
+.social {
+    @include display(flex);
+    @include justify-content(center);
+    @include align-items(center);
+    padding-top: 20px;
+    width: 100%;
+    clear: both;
+    ul {
+        font-size: $base-font-size* 1.5;
+        display: inline;
+        li {
+            display: inline;
+        }
+    }
 }

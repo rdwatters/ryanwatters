@@ -26,31 +26,31 @@
 <section class="author-photo">
   <img class="author" src="{{ item.author_photo|imageSize(400, 400) }}" />
 </section>
-<section class="author-information">
-<h2>{{ item.full_name.first }} {{ item.full_name.last }}</h2>
-{{ item.long_bio|markdown }}
+  <section class="author-information">
+    <h2>{{ item.full_name.first }} {{ item.full_name.last }}</h2>
+    {{ item.long_bio|markdown }}
 
-<h5>Recently published Articles by {{ item.full_name.first }} {{ item.full_name.last }}:</h5>
-<ul class="recent-articles">
-{% for relation in item.articles_written %}
-  <li>
-    <a href="{{ url(relation) }}">{{ relation.name }}</a>
-  </li>
-{% endfor %}
-</ul>
-</section>
-<section class="social">
-  <ul>
-      <li><a href="mailto:{{item.email}}"><i class="fa fa-envelope-o"><strong></i><strong> Email</strong></a></li>
-      <li><a href="{{item.twitter}}" target="_blank"><i class="fa fa-twitter-square"></i> Twitter</strong></a></li>
-      <li><a href="{{item.google_plus}}"><i class="fa fa-google-plus-square"></i><strong> Google+</strong></a></li>
-      {% if item.github %}
-      <li><a href="{{item.github}}"><i class="fa fa-github-square"></i><strong> Github</strong></a></li>
-      {% endif %}
-      {% if item.linkedin %}
-      <li><a href="{{ item.linkedin }}"><i class="fa fa-linkedin-square"></i><strong> LinkedIn</strong></a></li>
-      {% endif %}
-  </ul>
+    <h4><i class="fa fa-book"></i>Recently published by {{ item.full_name.first }} {{ item.full_name.last }}:</h4>
+    <ul class="recent-articles">
+    {% for relation in item.articles_written %}
+      <li>
+        <a href="{{ url(relation) }}">{{ relation.name }}</a>
+      </li>
+    {% endfor %}
+    </ul>
   </section>
-  </article>
+  <section class="social">
+    <ul>
+        <li><a href="mailto:{{item.email}}"><i class="fa fa-envelope-o"><strong></i><strong> Email</strong></a></li>
+        <li><a href="{{item.twitter}}" target="_blank"><i class="fa fa-twitter-square"></i> Twitter</strong></a></li>
+        <li><a href="{{item.google_plus}}"><i class="fa fa-google-plus-square"></i><strong> Google+</strong></a></li>
+        {% if item.github %}
+        <li><a href="{{item.github}}"><i class="fa fa-github-square"></i><strong> Github</strong></a></li>
+        {% endif %}
+        {% if item.linkedin %}
+        <li><a href="{{ item.linkedin }}"><i class="fa fa-linkedin-square"></i><strong> LinkedIn</strong></a></li>
+        {% endif %}
+    </ul>
+  </section>
+</article>
 {% endblock %}
