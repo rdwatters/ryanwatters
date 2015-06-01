@@ -1,14 +1,14 @@
 @import 'critical-render-path/crp';
-#main{
-    background-color:$list-page-background-color;
-}
-
 .list-introduction {
+    @include display(flex);
+    @include flex-direction(column);
+    position: relative;
     width: 100%;
     background-color: $full-width-header-background-color;
     color: $full-width-header-font-color;
     margin-top: 0px;
     padding-bottom: 1.5em;
+    height: auto;
     .introduction {
         width: 100%;
         padding-right: 5%;
@@ -20,18 +20,26 @@
             margin-left: auto;
             max-width: $XL;
         }
-        h1 {
-            background: transparent;
-            display: block;
-            clear: both;
-            font: $article-title-font;
-            padding-top: $base-font-size;
-            margin-bottom: 5px;
-            margin-top: 0px;
-            @include MQ(M) {
-                margin-top: 0px;
-                font-size: $base-font-size * 3.2;
-                padding-top: $base-font-size * 2;
+        ul.breadcrumb {
+            display: inline;
+            li {
+                display: inline;
+                h1 {
+                    small {
+                        font-size: .5em;
+                    }
+                    background: transparent;
+                    display: inline-block;
+                    font: $article-title-font;
+                    padding-top: $base-font-size;
+                    margin-bottom: 5px;
+                    margin-top: 0px;
+                    @include MQ(M) {
+                        margin-top: 0px;
+                        font-size: $base-font-size * 3.2;
+                        padding-top: $base-font-size * 2;
+                    }
+                }
             }
         }
         .description {
@@ -43,79 +51,66 @@
     }
 }
 
-article {
-    @include display(flex);
-    @include flex-direction(column);
-    @include flex-wrap(wrap);
-    height: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    width: 90%;
-    padding-top:20px;
+article{
+	margin-top:20px;
+    margin-bottom:20px;
+	width:100%;
+	@include MQ(M){
+		width:90%;
+		margin-right:auto;
+		margin-left:auto;
+		max-width:$XL;
+	}
 }
 
-.list-page-image,
-.list-image {
-    display: block;
+.author-photo {
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin: 0%;
-    border: 0;
-    padding: 0%;
-}
-
-ul.authors {
-    width: 100%;
-    @include display(flex);
-    @include flex-direction(row);
-    @include flex-wrap(wrap);
-    @include align-items(center);
-    margin-right: auto;
-    margin-left: auto;
-    @include MQ(XL) {
-        max-width: $XL;
-        padding-bottom: 20px;
-    }
-    li {
-        @include display(flex);
-        @include flex-direction(column);
-        @include justify-content(center);
-        float:left;
+    img.author {
         width: 100%;
-        padding:1em;
-        background-color:$tile-background-color;
-        margin-top:15px;
-        @include MQ(M) {
-            width: 47.5%;
-            margin-bottom:2.5%;
-            &:nth-child(odd){
-            margin-right:5%;
-            }
-        }
-        @include MQ(L) {
-            width: 30%;
-            margin-right:5%;
-            &:nth-child(3){
-                margin-right:0;
-            }
-        }
-        @include MQ(XL) {
-            width: 25%;
-        }
-        header {
-            h3 {
-                font-size: 1.2em;
-                font-weight: 300;
-                text-align: center;
-                padding-top: .5em;
-                margin-top: .5em;
-            }
-            img {
-                width:70%;
-                margin-left:15%;
-                border-radius: 50%;
-            }
-        }
+        border-radius:$author-image-solo-page-border-radius;
+        display:block;
+        margin-right:auto;
+        margin-left:auto;
+        height: auto;
+        max-width: 400px;
     }
+    @include MQ(M){
+    	width:50%;
+    	display:block;
+    	float:left;
+    	@include clearfix;
+    	img.author{
+    		margin-right:auto;
+    		margin-left:auto;
+    		display:block;
+    		@include clearfix;
+    	}
+    }
+}
+
+.author-information {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    @include MQ(M) {
+    	@include clearfix;
+        display: block;
+        float: right;
+        width: 50%;
+        padding-right:5%;
+        padding-left:5%;
+    }
+}
+
+ul.recent-articles{
+	li{
+		margin-top:8px;
+		a{
+			font-weight:bold;
+		}
+	}
+}
+
+ul.social{
+
 }

@@ -50,10 +50,17 @@ module.exports = function(grunt) {
                     },{
                         expand: true,
                         cwd: 'sass',
-                        src: ['crp-author.scss'],
+                        src: ['crp-author-list.scss'],
                         dest: 'templates/partials',
                         ext: '.html'
                     },{
+                        expand: true,
+                        cwd: 'sass',
+                        src: ['crp-author.scss'],
+                        dest: 'templates/partials',
+                        ext: '.html'
+                    },
+                    {
                         expand: true,
                         cwd: 'sass',
                         src: ['crp-list.scss'],

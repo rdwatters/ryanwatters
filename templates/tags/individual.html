@@ -14,7 +14,12 @@
 <header class="list-introduction">
     <section class="introduction">
         <a href="#" class="see-all-tags"><i class="fa fa-arrow-circle-o-down"></i> See all tags <i class="fa fa-tags"></i></a>
-        <h1 class="tag-name"><small>tagged in </small>{{item.name}}</h1>
+        <ul class="breadcrumb">
+            <li><a href="/">home</a></li>
+            <li>
+                <h1>/{{item.name}}</h1>
+            </li>
+        </ul>
         <section class="description">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat, tempore at fugit iste deleniti inventore. Tempora voluptatum delectus temporibus dolor ipsum porro culpa fugit nostrum, a nihil minima, laborum vitae.</p>
         </section>

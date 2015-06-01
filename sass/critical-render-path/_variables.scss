@@ -241,11 +241,14 @@ $header-z:10;
 $header-z-menu-open:10;
 $header-mobile-z:10;//not actually the header, but the bar across the top on mobile devices;
 $main-content-z:1;
+$search-wrapper-z-index:99;
 $footer-z:2;
 $share-button-z:90;
 $home-icon-z:998;
 $mobile-menu-icon-z:999;
 $category-button-z-index:1;
+/********************************AUTHOR PAGES******************************************/
+$author-image-solo-page-border-radius:10px;
 
 /********************************HEADER GLOBALS******************************************/
 $header-main-logo-background-image: '/static/images/favicon.png';
